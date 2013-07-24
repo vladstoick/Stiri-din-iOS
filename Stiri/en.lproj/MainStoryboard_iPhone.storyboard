@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12D78" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="cAC-bs-HZC">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
+    </dependencies>
+    <scenes>
+        <!--All Groups View Controller-->
+        <scene sceneID="eyk-1f-IQn">
+            <objects>
+                <viewController id="CBJ-JQ-w2e" customClass="AllGroupsViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="tN0-qW-HDZ">
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Tqz-Tw-J0r">
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="CBJ-JQ-w2e" id="K5x-ft-DqH"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Tqz-Tw-J0r" firstAttribute="leading" secondItem="tN0-qW-HDZ" secondAttribute="leading" type="default" id="811-5S-xge"/>
+                            <constraint firstItem="Tqz-Tw-J0r" firstAttribute="bottom" secondItem="tN0-qW-HDZ" secondAttribute="bottom" type="default" id="abV-dG-WeF"/>
+                            <constraint firstItem="Tqz-Tw-J0r" firstAttribute="top" secondItem="tN0-qW-HDZ" secondAttribute="top" type="default" id="mD7-Wv-i0H"/>
+                            <constraint firstItem="Tqz-Tw-J0r" firstAttribute="trailing" secondItem="tN0-qW-HDZ" secondAttribute="trailing" type="default" id="rWY-bk-hte"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="ce1-Wk-I1N"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nsS-ON-Dg2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="581" y="124"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="rqj-Ql-TuD">
+            <objects>
+                <navigationController id="cAC-bs-HZC" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="5Xo-dU-PMh">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="CBJ-JQ-w2e" kind="relationship" relationship="rootViewController" id="bNe-Y0-REo"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="T6T-JM-VmN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="55" y="124"/>
+        </scene>
+    </scenes>
+    <classes>
+        <class className="AllGroupsViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/AllGroupsViewController.h"/>
+        </class>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+    </classes>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
+</document>
