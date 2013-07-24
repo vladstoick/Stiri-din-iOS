@@ -17,13 +17,12 @@
 		7208344E17A0288800CEC1E5 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7208344D17A0288800CEC1E5 /* Default@2x.png */; };
 		7208345017A0288800CEC1E5 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7208344F17A0288800CEC1E5 /* Default-568h@2x.png */; };
 		7208345317A0288800CEC1E5 /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7208345117A0288800CEC1E5 /* MainStoryboard_iPhone.storyboard */; };
-		7208345617A0288800CEC1E5 /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7208345417A0288800CEC1E5 /* MainStoryboard_iPad.storyboard */; };
-		7208345917A0288800CEC1E5 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7208345817A0288800CEC1E5 /* ViewController.m */; };
 		7208346117A0288800CEC1E5 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7208346017A0288800CEC1E5 /* SenTestingKit.framework */; };
 		7208346217A0288800CEC1E5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7208343917A0288800CEC1E5 /* UIKit.framework */; };
 		7208346317A0288800CEC1E5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7208343B17A0288800CEC1E5 /* Foundation.framework */; };
 		7208346B17A0288800CEC1E5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7208346917A0288800CEC1E5 /* InfoPlist.strings */; };
 		7208346E17A0288800CEC1E5 /* StiriTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7208346D17A0288800CEC1E5 /* StiriTests.m */; };
+		7228957E17A02CF4009C9DCF /* AllGroupsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7228957D17A02CF4009C9DCF /* AllGroupsViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,15 +50,14 @@
 		7208344D17A0288800CEC1E5 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		7208344F17A0288800CEC1E5 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		7208345217A0288800CEC1E5 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
-		7208345517A0288800CEC1E5 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
-		7208345717A0288800CEC1E5 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		7208345817A0288800CEC1E5 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		7208345F17A0288800CEC1E5 /* StiriTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StiriTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7208346017A0288800CEC1E5 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		7208346817A0288800CEC1E5 /* StiriTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "StiriTests-Info.plist"; sourceTree = "<group>"; };
 		7208346A17A0288800CEC1E5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		7208346C17A0288800CEC1E5 /* StiriTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StiriTests.h; sourceTree = "<group>"; };
 		7208346D17A0288800CEC1E5 /* StiriTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StiriTests.m; sourceTree = "<group>"; };
+		7228957C17A02CF4009C9DCF /* AllGroupsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllGroupsViewController.h; sourceTree = "<group>"; };
+		7228957D17A02CF4009C9DCF /* AllGroupsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllGroupsViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,10 +120,9 @@
 				7208344817A0288800CEC1E5 /* AppDelegate.h */,
 				7208344917A0288800CEC1E5 /* AppDelegate.m */,
 				7208345117A0288800CEC1E5 /* MainStoryboard_iPhone.storyboard */,
-				7208345417A0288800CEC1E5 /* MainStoryboard_iPad.storyboard */,
-				7208345717A0288800CEC1E5 /* ViewController.h */,
-				7208345817A0288800CEC1E5 /* ViewController.m */,
 				7208344017A0288800CEC1E5 /* Supporting Files */,
+				7228957C17A02CF4009C9DCF /* AllGroupsViewController.h */,
+				7228957D17A02CF4009C9DCF /* AllGroupsViewController.m */,
 			);
 			path = Stiri;
 			sourceTree = "<group>";
@@ -173,6 +170,7 @@
 				7208343217A0288800CEC1E5 /* Sources */,
 				7208343317A0288800CEC1E5 /* Frameworks */,
 				7208343417A0288800CEC1E5 /* Resources */,
+				50524F424C454D533F /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -239,7 +237,6 @@
 				7208344E17A0288800CEC1E5 /* Default@2x.png in Resources */,
 				7208345017A0288800CEC1E5 /* Default-568h@2x.png in Resources */,
 				7208345317A0288800CEC1E5 /* MainStoryboard_iPhone.storyboard in Resources */,
-				7208345617A0288800CEC1E5 /* MainStoryboard_iPad.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -254,6 +251,19 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		50524F424C454D533F /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "export CODESIGN_ALLOCATE=/Library/JailCoder/codesign_allocate\nif [ \"${PLATFORM_NAME}\" == \"iphoneos\" ]; then\n/Library/JailCoder/Entitlements/Entitlements.py \"my.company.${PROJECT_NAME}\" \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/${PROJECT_NAME}.xcent\";\ncodesign -f -s \"iPhone Developer\" --entitlements \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/${PROJECT_NAME}.xcent\" \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/\"\nfi";
+		};
 		7208345D17A0288800CEC1E5 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -276,7 +286,7 @@
 			files = (
 				7208344617A0288800CEC1E5 /* main.m in Sources */,
 				7208344A17A0288800CEC1E5 /* AppDelegate.m in Sources */,
-				7208345917A0288800CEC1E5 /* ViewController.m in Sources */,
+				7228957E17A02CF4009C9DCF /* AllGroupsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -315,14 +325,6 @@
 			name = MainStoryboard_iPhone.storyboard;
 			sourceTree = "<group>";
 		};
-		7208345417A0288800CEC1E5 /* MainStoryboard_iPad.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				7208345517A0288800CEC1E5 /* en */,
-			);
-			name = MainStoryboard_iPad.storyboard;
-			sourceTree = "<group>";
-		};
 		7208346917A0288800CEC1E5 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -346,7 +348,7 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -378,7 +380,7 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -399,6 +401,7 @@
 				GCC_PREFIX_HEADER = "Stiri/Stiri-Prefix.pch";
 				INFOPLIST_FILE = "Stiri/Stiri-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -410,6 +413,7 @@
 				GCC_PREFIX_HEADER = "Stiri/Stiri-Prefix.pch";
 				INFOPLIST_FILE = "Stiri/Stiri-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -467,6 +471,7 @@
 				7208347317A0288800CEC1E5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		7208347417A0288800CEC1E5 /* Build configuration list for PBXNativeTarget "StiriTests" */ = {
 			isa = XCConfigurationList;
@@ -475,6 +480,7 @@
 				7208347617A0288800CEC1E5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

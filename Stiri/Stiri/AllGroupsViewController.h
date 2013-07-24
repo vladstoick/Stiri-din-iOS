@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  AllGroupsViewController.h
 //  Stiri
 //
 //  Created by Stoica Vlad on 7/24/13.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
+@interface AllGroupsViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
 @end
