@@ -34,6 +34,7 @@ static NSString * const kClientId = @"976584719831.apps.googleusercontent.com";
                      kGTLAuthScopePlusLogin, // defined in GTLPlusConstants.h
                      nil];
     signIn.shouldFetchGoogleUserID = true;
+    signIn.shouldFetchGoogleUserEmail = true;
     signIn.delegate = self;
 	// Do any additional setup after loading the view.
 }
@@ -47,6 +48,7 @@ static NSString * const kClientId = @"976584719831.apps.googleusercontent.com";
 - (void)finishedWithAuth: (GTMOAuth2Authentication *)auth
                    error: (NSError *) error
 {
-    NSLog(@"Received error %@ and auth object %@",error, auth);
+    NSLog(@"Received error %@ and auth object %@",[GPPSignIn sharedInstance].userID , auth);
+    
 }
 @end
