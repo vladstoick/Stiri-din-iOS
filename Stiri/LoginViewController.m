@@ -30,6 +30,9 @@ static NSString * const kClientId = @"976584719831.apps.googleusercontent.com";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    if([defaults integerForKey:@"user_id"])
+        [self performSegueWithIdentifier:@"loginSuccesfulSegue" sender:self];
     GPPSignIn *signIn = [GPPSignIn sharedInstance];
     signIn.clientID = kClientId;
     signIn.scopes = [NSArray arrayWithObjects:
