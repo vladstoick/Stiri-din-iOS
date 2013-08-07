@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12C54" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="cAC-bs-HZC">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12C54" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="4CE-vG-fCR">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
@@ -32,7 +32,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nsS-ON-Dg2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="871" y="124"/>
+            <point key="canvasLocation" x="1110" y="105"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="hml-Dq-Qvq">
@@ -66,30 +66,30 @@
                     <navigationItem key="navigationItem" id="7Tj-Hd-5Ue"/>
                     <connections>
                         <outlet property="signInButton" destination="zB9-69-Bbp" id="xN9-kR-cQO"/>
-                        <segue destination="CBJ-JQ-w2e" kind="push" identifier="loginSuccesfulSegue" id="5kn-PG-dLs"/>
+                        <segue destination="CBJ-JQ-w2e" kind="push" identifier="loginSuccesfulSegue" id="FYP-3V-eo7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZhV-ym-bIP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="437" y="124"/>
+            <point key="canvasLocation" x="713" y="105"/>
         </scene>
         <!--Navigation Controller-->
-        <scene sceneID="rqj-Ql-TuD">
+        <scene sceneID="XRZ-aS-7Pm">
             <objects>
-                <navigationController id="cAC-bs-HZC" sceneMemberID="viewController">
+                <navigationController id="4CE-vG-fCR" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="5Xo-dU-PMh">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="lQb-et-R4b">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="IVC-mC-uX5" kind="relationship" relationship="rootViewController" id="FKZ-uF-Ttc"/>
+                        <segue destination="IVC-mC-uX5" kind="relationship" relationship="rootViewController" id="VBh-Mq-IDO"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="T6T-JM-VmN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vca-ZU-3dy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="55" y="124"/>
+            <point key="canvasLocation" x="187" y="105"/>
         </scene>
     </scenes>
     <classes>
