@@ -9,6 +9,7 @@
 #import "LoginViewController.h"
 #import <GoogleOpenSource/GoogleOpenSource.h>
 #import <GooglePlus/GooglePlus.h>
+#import "AFNetworking.h"
 @interface LoginViewController ()
 
 @end
@@ -16,6 +17,7 @@
 @implementation LoginViewController
 @synthesize signInButton;
 static NSString * const kClientId = @"976584719831.apps.googleusercontent.com";
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -48,7 +50,26 @@ static NSString * const kClientId = @"976584719831.apps.googleusercontent.com";
 - (void)finishedWithAuth: (GTMOAuth2Authentication *)auth
                    error: (NSError *) error
 {
-    NSLog(@"Received error %@ and auth object %@",[GPPSignIn sharedInstance].userID , auth);
+    if(!error){
+        NSString *userId = [GPPSignIn sharedInstance].userID;
+        NSString *token = [auth.parameters valueForKey:@"id_token"];
+        NSLog(@"Received error %@ and auth object %@",
+              [GPPSignIn sharedInstance].userID , auth);
+        NSString *urlString =[NSString stringWithFormat:@"http://stiriromania.eu01.aws.af.cm/"];
+        NSURL *url = [NSURL URLWithString:urlString];
+        AFHTTPClient *httpClient = [[AFHTTPClient alloc] initWithBaseURL:url];
+        NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
+                                userId, @"fbaccount",
+                                token, @"fbtoken",
+                                nil];
+        [httpClient postPath:@"/user/login" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            NSString *responseStr = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+            [self performSegueWithIdentifier:@"loginSuccesfulSegue" sender:self];
+            NSLog(@"Request Successful, response '%@'", responseStr);
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            NSLog(@"[HTTPClient Error]: %@", error.localizedDescription);
+        }];
+    }
     
 }
 @end
