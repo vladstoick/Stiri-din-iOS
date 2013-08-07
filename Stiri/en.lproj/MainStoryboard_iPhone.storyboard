@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12D78" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="cAC-bs-HZC">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12C54" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="cAC-bs-HZC">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
@@ -32,7 +32,44 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nsS-ON-Dg2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="581" y="124"/>
+            <point key="canvasLocation" x="877" y="124"/>
+        </scene>
+        <!--Login View Controller-->
+        <scene sceneID="hml-Dq-Qvq">
+            <objects>
+                <viewController id="IVC-mC-uX5" customClass="LoginViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ePC-5z-AUW">
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zB9-69-Bbp" customClass="GPPSignInButton">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="261" id="WBE-bz-Qwd"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Button">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="zB9-69-Bbp" firstAttribute="centerX" secondItem="ePC-5z-AUW" secondAttribute="centerX" type="default" id="5T7-oS-iZa"/>
+                            <constraint firstItem="zB9-69-Bbp" firstAttribute="top" secondItem="ePC-5z-AUW" secondAttribute="top" constant="230" id="9uh-rV-Eb0"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="7Tj-Hd-5Ue"/>
+                    <connections>
+                        <outlet property="signInButton" destination="zB9-69-Bbp" id="xN9-kR-cQO"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZhV-ym-bIP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="485" y="124"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="rqj-Ql-TuD">
@@ -45,7 +82,7 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="CBJ-JQ-w2e" kind="relationship" relationship="rootViewController" id="bNe-Y0-REo"/>
+                        <segue destination="IVC-mC-uX5" kind="relationship" relationship="rootViewController" id="FKZ-uF-Ttc"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="T6T-JM-VmN" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -56,6 +93,15 @@
     <classes>
         <class className="AllGroupsViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/AllGroupsViewController.h"/>
+        </class>
+        <class className="GPPSignInButton" superclassName="UIButton">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/GPPSignInButton.h"/>
+        </class>
+        <class className="LoginViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/LoginViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="signInButton" candidateClass="GPPSignInButton"/>
+            </relationships>
         </class>
         <class className="NSLayoutConstraint" superclassName="NSObject">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>

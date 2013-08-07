@@ -1,13 +1,16 @@
 PODS:
   - AFNetworking (1.3.1)
   - Facebook-iOS-SDK (3.6.0)
+  - google-plus-ios-sdk (1.3.0)
 
 DEPENDENCIES:
   - AFNetworking (~> 1.3)
   - Facebook-iOS-SDK (~> 3.6.0)
+  - google-plus-ios-sdk (~> 1.3.0)
 
 SPEC CHECKSUMS:
   AFNetworking: 9ec8aafb9269236a7630bd8d9838ce2ba30fa2a0
-  Facebook-iOS-SDK: 1c59b1f4838e5f8d3cb71943096673db3eefb15d
+  Facebook-iOS-SDK: a60c23acea22161609ef6144ffff686e6f133902
+  google-plus-ios-sdk: 38378c4094a72a4fcdd5254c03fdd1813b345fb9
 
 COCOAPODS: 0.22.3
