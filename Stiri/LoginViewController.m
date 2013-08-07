@@ -64,6 +64,12 @@ static NSString * const kClientId = @"976584719831.apps.googleusercontent.com";
                                 nil];
         [httpClient postPath:@"/user/login" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
             NSString *responseStr = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+            NSDictionary *jsonDictionary = [NSJSONSerialization JSONObjectWithData: [responseStr dataUsingEncoding:NSUTF8StringEncoding]
+                                                                           options: NSJSONReadingMutableContainers
+                                                                             error: nil];
+            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+            NSNumber *userServerId = [jsonDictionary valueForKey:@"id"];
+            [defaults setValue:userServerId forKey:@"user_id"];
             [self performSegueWithIdentifier:@"loginSuccesfulSegue" sender:self];
             NSLog(@"Request Successful, response '%@'", responseStr);
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
