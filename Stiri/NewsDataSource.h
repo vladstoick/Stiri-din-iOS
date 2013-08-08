@@ -10,4 +10,6 @@
 
 @interface NewsDataSource : NSObject
 @property NSArray *groups;
+@property int userId;
+- (void) loadData: (NSDictionary*) jsonData;
 @end

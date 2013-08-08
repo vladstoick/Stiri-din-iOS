@@ -55,7 +55,7 @@ static NSString * const kClientId = @"976584719831.apps.googleusercontent.com";
                    error: (NSError *) error
 {
     if(!error){
-        [SVProgressHUD show];
+        [SVProgressHUD showWithStatus:@"Logging in"];
         NSString *userId = [GPPSignIn sharedInstance].userID;
         NSString *token = [auth.parameters valueForKey:@"id_token"];
         NSLog(@"Received error %@ and auth object %@",

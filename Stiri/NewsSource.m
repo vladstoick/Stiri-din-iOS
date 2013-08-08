@@ -16,5 +16,6 @@
         self.title = title;
         self.description = description;
     }
+    return self;
 }
 @end

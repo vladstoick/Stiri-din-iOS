@@ -7,12 +7,16 @@
 //
 
 #import "AllGroupsViewController.h"
+#import "NewsDataSource.h"
+#import "AFNetworking.h"
+#import "SVProgressHud.h"
 @interface AllGroupsViewController ()
 
 @end
 
 @implementation AllGroupsViewController{
-    NSArray *allGroups;
+    NewsDataSource *newsDataSource;
+    int userId;
 }
 
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
@@ -23,9 +27,23 @@
 {
     [super viewDidLoad];
     [self.navigationItem setHidesBackButton:YES];
-    [super setTitle:@"Grupurile tale"];
-    allGroups = [NSArray arrayWithObjects:@"Egg Benedict", @"Mushroom Risotto", @"Full Breakfast", @"Hamburger", @"Ham and Egg Sandwich", @"Creme Brelee", @"White Chocolate Donut", @"Starbucks Coffee", @"Vegetable Curry", @"Instant Noodle with Egg", @"Noodle with BBQ Pork", @"Japanese Noodle with Pork", @"Green Tea", @"Thai Shrimp Cake", @"Angry Birds Cake", @"Ham and Cheese Panini", nil];
-	// Do any additional setup after loading the view.
+    [super setTitle:@"Your Groups"];
+    [SVProgressHUD show];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    userId = [defaults integerForKey:@"user_id"];
+    newsDataSource.userId = userId;
+    NSString *urlString = [NSString stringWithFormat:@"http://stiriromania.eu01.aws.af.cm/user/%d",userId];
+    NSURL *url = [NSURL URLWithString:urlString];
+    AFHTTPClient *httpClient = [[AFHTTPClient alloc] initWithBaseURL:url];
+    [httpClient getPath:@"" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSString *responseStr = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+        NSDictionary *jsonDictionary = [NSJSONSerialization JSONObjectWithData: [responseStr dataUsingEncoding:NSUTF8StringEncoding]
+                                                                       options: NSJSONReadingMutableContainers
+                                                                         error: nil];
+        [newsDataSource loadData:jsonDictionary];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"error recieved : %@",error);
+    }];
 }
 
 - (void)didReceiveMemoryWarning
@@ -35,20 +53,20 @@
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [allGroups count];
+    return 0;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *simpleTableIdentifier = @"GroupCell";
-    
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
-    
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:simpleTableIdentifier];
-    }
-    
-    cell.textLabel.text = [allGroups objectAtIndex:indexPath.row];
-    return cell;
+//    static NSString *simpleTableIdentifier = @"GroupCell";
+//    
+//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
+//    
+//    if (cell == nil) {
+//        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:simpleTableIdentifier];
+//    }
+//    
+//    cell.textLabel.text = [allGroups objectAtIndex:indexPath.row];
+//    return cell;
 }
 @end

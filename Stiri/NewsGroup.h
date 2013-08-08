@@ -10,6 +10,7 @@
 
 @interface NewsGroup : NSObject
 @property NSString *title;
+@property int id;
 @property NSArray *newsSources;
--(id) initWithTitle: (NSString*) title;
+
 @end
