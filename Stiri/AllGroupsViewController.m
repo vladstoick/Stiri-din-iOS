@@ -13,13 +13,16 @@
 #import "NewsGroup.h"
 @interface AllGroupsViewController ()
 
+@property (strong, nonatomic) NewsDataSource *newsDataSource;
+@property (assign, nonatomic) int userId;
+
 @end
 
-@implementation AllGroupsViewController{
-    NewsDataSource *newsDataSource;
-    int userId;
-}
+@implementation AllGroupsViewController
 @synthesize tableView;
+@synthesize newsDataSource;
+@synthesize userId;
+
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     
 }
@@ -29,11 +32,13 @@
     [super viewDidLoad];
     [self.navigationItem setHidesBackButton:YES];
     [super setTitle:@"Your Groups"];
+	self.newsDataSource = [[NewsDataSource alloc] init];
     [SVProgressHUD show];
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     userId = [defaults integerForKey:@"user_id"];
-    newsDataSource = [[NewsDataSource alloc]init];
     newsDataSource.userId = userId;
+    self.userId = [defaults integerForKey:@"user_id"];
+    self.newsDataSource.userId = userId;
     NSString *urlString = [NSString stringWithFormat:@"http://stiriromania.eu01.aws.af.cm/user/%d",userId];
     NSURL *url = [NSURL URLWithString:urlString];
     AFHTTPClient *httpClient = [[AFHTTPClient alloc] initWithBaseURL:url];
@@ -45,6 +50,7 @@
         [newsDataSource loadData:jsonDictionary];
         [SVProgressHUD dismiss];
         [tableView reloadData];
+        [self.newsDataSource loadData:jsonDictionary];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"error recieved : %@",error);
     }];
