@@ -29,12 +29,15 @@
 			<string>com.vladstoick.stiri</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
+				<string>fb498421953559265</string>
 				<string>com.vladstoick.stiri</string>
 			</array>
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
 	<string>1.0</string>
+	<key>FacebookAppID</key>
+	<string>498421953559265</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>UIMainStoryboardFile</key>

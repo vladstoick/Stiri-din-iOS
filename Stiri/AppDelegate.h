@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
-
+- (BOOL)openSessionWithAllowLoginUI:(BOOL)allowLoginUI;
 @property (strong, nonatomic) UIWindow *window;
 @end

@@ -11,6 +11,7 @@
 #import <GooglePlus/GooglePlus.h>
 #import "AFNetworking.h"
 #import "SVProgressHUD.h"
+#import "AppDelegate.h"
 @interface LoginViewController ()
 
 @end
@@ -36,9 +37,7 @@ static NSString * const kClientId = @"976584719831.apps.googleusercontent.com";
         [self performSegueWithIdentifier:@"loginSuccesfulSegue" sender:self];
     GPPSignIn *signIn = [GPPSignIn sharedInstance];
     signIn.clientID = kClientId;
-    signIn.scopes = [NSArray arrayWithObjects:
-                     kGTLAuthScopePlusLogin, // defined in GTLPlusConstants.h
-                     nil];
+    signIn.scopes = @[kGTLAuthScopePlusLogin];
     signIn.shouldFetchGoogleUserID = true;
     signIn.shouldFetchGoogleUserEmail = true;
     signIn.delegate = self;
@@ -50,6 +49,8 @@ static NSString * const kClientId = @"976584719831.apps.googleusercontent.com";
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+//GOOGLE +
 
 - (void)finishedWithAuth: (GTMOAuth2Authentication *)auth
                    error: (NSError *) error
@@ -63,10 +64,8 @@ static NSString * const kClientId = @"976584719831.apps.googleusercontent.com";
         NSString *urlString =[NSString stringWithFormat:@"http://stiriromania.eu01.aws.af.cm/"];
         NSURL *url = [NSURL URLWithString:urlString];
         AFHTTPClient *httpClient = [[AFHTTPClient alloc] initWithBaseURL:url];
-        NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
-                                userId, @"fbaccount",
-                                token, @"fbtoken",
-                                nil];
+        NSDictionary *params = @{@"fbaccount": userId,
+                                @"fbtoken": token};
         [httpClient postPath:@"/user/login" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
             NSString *responseStr = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
             NSDictionary *jsonDictionary = [NSJSONSerialization JSONObjectWithData: [responseStr dataUsingEncoding:NSUTF8StringEncoding]
@@ -84,4 +83,16 @@ static NSString * const kClientId = @"976584719831.apps.googleusercontent.com";
     }
     
 }
+
+//FACEBOOK
+
+- (IBAction)loginWithFacebook:(id)sender {
+    AppDelegate* appDelegate = [UIApplication sharedApplication].delegate;
+    [appDelegate openSessionWithAllowLoginUI:YES];
+}
 @end
+
+
+
+
+

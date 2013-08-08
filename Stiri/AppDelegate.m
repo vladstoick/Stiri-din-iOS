@@ -8,8 +8,50 @@
 
 #import "AppDelegate.h"
 #import <GooglePlus/GooglePlus.h>
-
+#import <FacebookSDK/FacebookSDK.h>
 @implementation AppDelegate
+
+- (BOOL)openSessionWithAllowLoginUI:(BOOL)allowLoginUI {
+    // Ask for permissions for getting info about uploaded
+    // custom photos.
+    
+    return [FBSession openActiveSessionWithReadPermissions:nil
+                                              allowLoginUI:allowLoginUI
+                                         completionHandler:^(FBSession *session,
+                                                             FBSessionState state,
+                                                             NSError *error) {
+                                             [self sessionStateChanged:session
+                                                                 state:state
+                                                                 error:error];
+                                         }];
+}
+
+- (void)sessionStateChanged:(FBSession *)session
+                      state:(FBSessionState) state
+                      error:(NSError *)error
+{
+    switch (state) {
+        case FBSessionStateOpen: break;
+        case FBSessionStateClosed: break;
+        case FBSessionStateClosedLoginFailed:{
+            [FBSession.activeSession closeAndClearTokenInformation];
+            break;
+        }
+        default:
+            break;
+    }
+    
+    if (error) {
+        UIAlertView *alertView = [[UIAlertView alloc]
+                                  initWithTitle:@"Error"
+                                  message:error.localizedDescription
+                                  delegate:nil
+                                  cancelButtonTitle:@"OK"
+                                  otherButtonTitles:nil];
+        [alertView show];
+    }    
+}
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
@@ -36,6 +78,7 @@
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    [FBSession.activeSession handleDidBecomeActive];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
@@ -47,9 +90,10 @@
             openURL: (NSURL *)url
   sourceApplication: (NSString *)sourceApplication
          annotation: (id)annotation {
-    return [GPPURLHandler handleURL:url
-                  sourceApplication:sourceApplication
-                         annotation:annotation];
+    return [FBSession.activeSession handleOpenURL:url];
+//    return [GPPURLHandler handleURL:url
+//                  sourceApplication:sourceApplication
+//                         annotation:annotation];
 }
 
 @end

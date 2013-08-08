@@ -75,7 +75,7 @@
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:simpleTableIdentifier];
     }
-    NewsGroup *ng = [newsDataSource.groups objectAtIndex:indexPath.row];
+    NewsGroup *ng = (newsDataSource.groups)[indexPath.row];
     cell.textLabel.text = ng.title;
     return cell;
 }
