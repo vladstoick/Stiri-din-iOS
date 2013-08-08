@@ -12,6 +12,7 @@
 #import "AFNetworking.h"
 #import "SVProgressHUD.h"
 #import "AppDelegate.h"
+#import <FacebookSDK/FacebookSDK.h>
 @interface LoginViewController ()
 
 @end
@@ -27,6 +28,13 @@ static NSString * const kClientId = @"976584719831.apps.googleusercontent.com";
         // Custom initialization
     }
     return self;
+}
+
+- (void) viewDidAppear:(BOOL)animated{
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(sessionStateChanged:)
+                                                 name:FB_SESSION_CHANGE_NOTIFICATION
+                                               object:nil];
 }
 
 - (void)viewDidLoad
@@ -61,25 +69,7 @@ static NSString * const kClientId = @"976584719831.apps.googleusercontent.com";
         NSString *token = [auth.parameters valueForKey:@"id_token"];
         NSLog(@"Received error %@ and auth object %@",
               [GPPSignIn sharedInstance].userID , auth);
-        NSString *urlString =[NSString stringWithFormat:@"http://stiriromania.eu01.aws.af.cm/"];
-        NSURL *url = [NSURL URLWithString:urlString];
-        AFHTTPClient *httpClient = [[AFHTTPClient alloc] initWithBaseURL:url];
-        NSDictionary *params = @{@"fbaccount": userId,
-                                @"fbtoken": token};
-        [httpClient postPath:@"/user/login" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-            NSString *responseStr = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
-            NSDictionary *jsonDictionary = [NSJSONSerialization JSONObjectWithData: [responseStr dataUsingEncoding:NSUTF8StringEncoding]
-                                                                           options: NSJSONReadingMutableContainers
-                                                                             error: nil];
-            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-            NSNumber *userServerId = [jsonDictionary valueForKey:@"id"];
-            [defaults setValue:userServerId forKey:@"user_id"];
-            [SVProgressHUD dismiss];
-            [self performSegueWithIdentifier:@"loginSuccesfulSegue" sender:self];
-            NSLog(@"Request Successful, response '%@'", responseStr);
-        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-            NSLog(@"[HTTPClient Error]: %@", error.localizedDescription);
-        }];
+        [self authWithServerToken:token andUserId:userId withType:@"g+"];
     }
     
 }
@@ -88,7 +78,54 @@ static NSString * const kClientId = @"976584719831.apps.googleusercontent.com";
 
 - (IBAction)loginWithFacebook:(id)sender {
     AppDelegate* appDelegate = [UIApplication sharedApplication].delegate;
-    [appDelegate openSessionWithAllowLoginUI:YES];
+    [appDelegate openActiveSessionWithLoginUI:YES];
+}
+- (void)sessionStateChanged:(NSNotification*)notification
+{
+    NSLog(@"sessionStateChanged: in NHOCLoginVC");
+    if (FBSession.activeSession.isOpen) {
+        [SVProgressHUD show];
+        [[NSNotificationCenter defaultCenter] removeObserver:self];
+        NSString *token =FBSession.activeSession.accessTokenData;
+        [[FBRequest requestForMe]
+         startWithCompletionHandler:
+         ^(FBRequestConnection *connection, NSDictionary<FBGraphUser> *result, NSError *error)
+         {
+             // Did everything come back okay with no errors?
+             if (!error && result)
+             {
+                 NSString *userID = result.id;
+                 [self authWithServerToken:token andUserId:userID withType:@"fb"];
+             }
+         }];
+        NSLog(@"%@",token);
+        
+    }
+}
+
+
+//server communication
+
+-(void) authWithServerToken: (NSString*) token andUserId: (NSString*) userId withType:(NSString*) type{
+    NSString *urlString =[NSString stringWithFormat:@"http://stiriromania.eu01.aws.af.cm/"];
+    NSURL *url = [NSURL URLWithString:urlString];
+    AFHTTPClient *httpClient = [[AFHTTPClient alloc] initWithBaseURL:url];
+    NSDictionary *params = @{@"fbaccount": userId,
+                             @"fbtoken": token};
+    [httpClient postPath:@"/user/login" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSString *responseStr = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+        NSDictionary *jsonDictionary = [NSJSONSerialization JSONObjectWithData: [responseStr dataUsingEncoding:NSUTF8StringEncoding]
+                                                                       options: NSJSONReadingMutableContainers
+                                                                         error: nil];
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        NSNumber *userServerId = [jsonDictionary valueForKey:@"id"];
+        [defaults setValue:userServerId forKey:@"user_id"];
+        [SVProgressHUD dismiss];
+        [self performSegueWithIdentifier:@"loginSuccesfulSegue" sender:self];
+        NSLog(@"Request Successful, response '%@'", responseStr);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"[HTTPClient Error]: %@", error.localizedDescription);
+    }];
 }
 @end
 

@@ -11,63 +11,18 @@
 #import <FacebookSDK/FacebookSDK.h>
 @implementation AppDelegate
 
-- (BOOL)openSessionWithAllowLoginUI:(BOOL)allowLoginUI {
-    // Ask for permissions for getting info about uploaded
-    // custom photos.
-    
-    return [FBSession openActiveSessionWithReadPermissions:nil
-                                              allowLoginUI:allowLoginUI
-                                         completionHandler:^(FBSession *session,
-                                                             FBSessionState state,
-                                                             NSError *error) {
-                                             [self sessionStateChanged:session
-                                                                 state:state
-                                                                 error:error];
-                                         }];
-}
-
-- (void)sessionStateChanged:(FBSession *)session
-                      state:(FBSessionState) state
-                      error:(NSError *)error
-{
-    switch (state) {
-        case FBSessionStateOpen: break;
-        case FBSessionStateClosed: break;
-        case FBSessionStateClosedLoginFailed:{
-            [FBSession.activeSession closeAndClearTokenInformation];
-            break;
-        }
-        default:
-            break;
-    }
-    
-    if (error) {
-        UIAlertView *alertView = [[UIAlertView alloc]
-                                  initWithTitle:@"Error"
-                                  message:error.localizedDescription
-                                  delegate:nil
-                                  cancelButtonTitle:@"OK"
-                                  otherButtonTitles:nil];
-        [alertView show];
-    }    
-}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Override point for customization after application launch.
     return YES;
 }
 							
 - (void)applicationWillResignActive:(UIApplication *)application
 {
-    // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
-    // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
 }
 
-- (void)applicationDidEnterBackground:(UIApplication *)application
-{
-    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
-    // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+
+- (void)applicationDidEnterBackground:(UIApplication *)application{
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
@@ -83,6 +38,7 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application
 {
+    [FBSession.activeSession close];
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
@@ -97,6 +53,53 @@
         return [GPPURLHandler handleURL:url
                   sourceApplication:sourceApplication
                          annotation:annotation];
+    }
+}
+
+//FACEBOOK LOGIN
+
+- (void)openActiveSessionWithLoginUI:(BOOL)allowLoginUI
+{
+    NSLog(@"openActiveSessionWithLoginUI: %d in NHOCAppDelegate", allowLoginUI);
+    [FBSession openActiveSessionWithReadPermissions:nil
+                                       allowLoginUI:allowLoginUI
+                                  completionHandler:^(FBSession *session, FBSessionState state, NSError *error) {
+                                      [self sessionStateChanged:session state:state error:error];
+                                  }];
+}
+
+- (void)sessionStateChanged:(FBSession *)session state:(FBSessionState) state error:(NSError *)error
+{
+    NSLog(@"sessionStateChanged:state:error: in NHOCAppDelegate");
+    switch (state) {
+        case FBSessionStateOpen:
+            if (!error) {
+                //
+                // We have a valid session
+                //
+                NSLog(@"FBSessionStateOpen");
+            }
+            break;
+            
+        case FBSessionStateClosed:
+            NSLog(@"FBSessionStateClosed");
+            [FBSession.activeSession closeAndClearTokenInformation];
+            break;
+            
+        case FBSessionStateClosedLoginFailed:
+            NSLog(@"FBSessionStateClosedLoginFailed");
+            [FBSession.activeSession closeAndClearTokenInformation];
+            break;
+            
+        default:
+            break;
+    }
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:FB_SESSION_CHANGE_NOTIFICATION object:session];
+    
+    if (error) {
+        NSLog(@"Some nasty error! <o> (Tip: check if the app is allowed in Settings / Facebook / Allow these apps...)");
+
     }
 }
 

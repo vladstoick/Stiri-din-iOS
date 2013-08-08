@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#define FB_SESSION_CHANGE_NOTIFICATION @"FBSessionChangeNotification"
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
-- (BOOL)openSessionWithAllowLoginUI:(BOOL)allowLoginUI;
+- (void) openActiveSessionWithLoginUI:(BOOL)allowLoginUI;
 @property (strong, nonatomic) UIWindow *window;
 @end
