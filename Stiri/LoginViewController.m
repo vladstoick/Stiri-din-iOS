@@ -10,6 +10,7 @@
 #import <GoogleOpenSource/GoogleOpenSource.h>
 #import <GooglePlus/GooglePlus.h>
 #import "AFNetworking.h"
+#import "SVProgressHUD.h"
 @interface LoginViewController ()
 
 @end
@@ -54,6 +55,7 @@ static NSString * const kClientId = @"976584719831.apps.googleusercontent.com";
                    error: (NSError *) error
 {
     if(!error){
+        [SVProgressHUD show];
         NSString *userId = [GPPSignIn sharedInstance].userID;
         NSString *token = [auth.parameters valueForKey:@"id_token"];
         NSLog(@"Received error %@ and auth object %@",
@@ -73,6 +75,7 @@ static NSString * const kClientId = @"976584719831.apps.googleusercontent.com";
             NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
             NSNumber *userServerId = [jsonDictionary valueForKey:@"id"];
             [defaults setValue:userServerId forKey:@"user_id"];
+            [SVProgressHUD dismiss];
             [self performSegueWithIdentifier:@"loginSuccesfulSegue" sender:self];
             NSLog(@"Request Successful, response '%@'", responseStr);
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
