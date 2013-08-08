@@ -10,14 +10,18 @@
 #import "NewsDataSource.h"
 #import "AFNetworking.h"
 #import "SVProgressHud.h"
+
 @interface AllGroupsViewController ()
+
+@property (strong, nonatomic) NewsDataSource *newsDataSource;
+@property (assign, nonatomic) int userId;
 
 @end
 
-@implementation AllGroupsViewController{
-    NewsDataSource *newsDataSource;
-    int userId;
-}
+@implementation AllGroupsViewController
+
+@synthesize newsDataSource;
+@synthesize userId;
 
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     
@@ -28,10 +32,11 @@
     [super viewDidLoad];
     [self.navigationItem setHidesBackButton:YES];
     [super setTitle:@"Your Groups"];
+	self.newsDataSource = [[NewsDataSource alloc] init];
     [SVProgressHUD show];
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    userId = [defaults integerForKey:@"user_id"];
-    newsDataSource.userId = userId;
+    self.userId = [defaults integerForKey:@"user_id"];
+    self.newsDataSource.userId = userId;
     NSString *urlString = [NSString stringWithFormat:@"http://stiriromania.eu01.aws.af.cm/user/%d",userId];
     NSURL *url = [NSURL URLWithString:urlString];
     AFHTTPClient *httpClient = [[AFHTTPClient alloc] initWithBaseURL:url];
@@ -40,7 +45,7 @@
         NSDictionary *jsonDictionary = [NSJSONSerialization JSONObjectWithData: [responseStr dataUsingEncoding:NSUTF8StringEncoding]
                                                                        options: NSJSONReadingMutableContainers
                                                                          error: nil];
-        [newsDataSource loadData:jsonDictionary];
+        [self.newsDataSource loadData:jsonDictionary];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"error recieved : %@",error);
     }];
