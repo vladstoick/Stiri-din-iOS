@@ -90,10 +90,14 @@
             openURL: (NSURL *)url
   sourceApplication: (NSString *)sourceApplication
          annotation: (id)annotation {
-    return [FBSession.activeSession handleOpenURL:url];
-//    return [GPPURLHandler handleURL:url
-//                  sourceApplication:sourceApplication
-//                         annotation:annotation];
+    NSString *urlString = [url absoluteString];
+    if([urlString hasPrefix:@"fb"]){
+        return [FBSession.activeSession handleOpenURL:url];
+    } else{
+        return [GPPURLHandler handleURL:url
+                  sourceApplication:sourceApplication
+                         annotation:annotation];
+    }
 }
 
 @end
