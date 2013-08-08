@@ -16,7 +16,6 @@
 		7208344C17A0288800CEC1E5 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 7208344B17A0288800CEC1E5 /* Default.png */; };
 		7208344E17A0288800CEC1E5 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7208344D17A0288800CEC1E5 /* Default@2x.png */; };
 		7208345017A0288800CEC1E5 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7208344F17A0288800CEC1E5 /* Default-568h@2x.png */; };
-		7208345317A0288800CEC1E5 /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7208345117A0288800CEC1E5 /* MainStoryboard_iPhone.storyboard */; };
 		7208346117A0288800CEC1E5 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7208346017A0288800CEC1E5 /* SenTestingKit.framework */; };
 		7208346217A0288800CEC1E5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7208343917A0288800CEC1E5 /* UIKit.framework */; };
 		7208346317A0288800CEC1E5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7208343B17A0288800CEC1E5 /* Foundation.framework */; };
@@ -27,6 +26,9 @@
 		72AD444E17A0578500074FF2 /* NewsSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 72AD444D17A0578500074FF2 /* NewsSource.m */; };
 		72AD445117A0587100074FF2 /* NewsGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 72AD445017A0587100074FF2 /* NewsGroup.m */; };
 		72AD445417A05A4900074FF2 /* NewsDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 72AD445317A05A4900074FF2 /* NewsDataSource.m */; };
+		72B8681B17B3C49F00A871E5 /* LoginWithFacebookNormal.png in Resources */ = {isa = PBXBuildFile; fileRef = 72B8681917B3C49F00A871E5 /* LoginWithFacebookNormal.png */; };
+		72B8681C17B3C49F00A871E5 /* LoginWithFacebookNormal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 72B8681A17B3C49F00A871E5 /* LoginWithFacebookNormal@2x.png */; };
+		72B8682417B3C50100A871E5 /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 72B8682117B3C50100A871E5 /* MainStoryboard_iPhone.storyboard */; };
 		72C5AA8817B2CE05006958EE /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 72C5AA8717B2CE05006958EE /* LoginViewController.m */; };
 		F6ACFD7519D3414A9256BAA2 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 33E65F1F32904CA68E71C0AC /* libPods.a */; };
 /* End PBXBuildFile section */
@@ -57,7 +59,6 @@
 		7208344B17A0288800CEC1E5 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		7208344D17A0288800CEC1E5 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		7208344F17A0288800CEC1E5 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		7208345217A0288800CEC1E5 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
 		7208345F17A0288800CEC1E5 /* StiriTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StiriTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7208346017A0288800CEC1E5 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		7208346817A0288800CEC1E5 /* StiriTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "StiriTests-Info.plist"; sourceTree = "<group>"; };
@@ -74,6 +75,9 @@
 		72AD445017A0587100074FF2 /* NewsGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsGroup.m; sourceTree = "<group>"; };
 		72AD445217A05A4900074FF2 /* NewsDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsDataSource.h; sourceTree = "<group>"; };
 		72AD445317A05A4900074FF2 /* NewsDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsDataSource.m; sourceTree = "<group>"; };
+		72B8681917B3C49F00A871E5 /* LoginWithFacebookNormal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LoginWithFacebookNormal.png; sourceTree = "<group>"; };
+		72B8681A17B3C49F00A871E5 /* LoginWithFacebookNormal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LoginWithFacebookNormal@2x.png"; sourceTree = "<group>"; };
+		72B8682217B3C50100A871E5 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
 		72C5AA8617B2CE05006958EE /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		72C5AA8717B2CE05006958EE /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -138,11 +142,13 @@
 		7208343F17A0288800CEC1E5 /* Stiri */ = {
 			isa = PBXGroup;
 			children = (
+				72B8681D17B3C4A400A871E5 /* Assets */,
+				72B8681817B3C47F00A871E5 /* Assets */,
 				72AD444817A054B800074FF2 /* Data */,
 				72AD444717A054A900074FF2 /* Controllers */,
 				7208344817A0288800CEC1E5 /* AppDelegate.h */,
 				7208344917A0288800CEC1E5 /* AppDelegate.m */,
-				7208345117A0288800CEC1E5 /* MainStoryboard_iPhone.storyboard */,
+				72B8682117B3C50100A871E5 /* MainStoryboard_iPhone.storyboard */,
 				7208344017A0288800CEC1E5 /* Supporting Files */,
 			);
 			path = Stiri;
@@ -205,6 +211,23 @@
 				72AD445317A05A4900074FF2 /* NewsDataSource.m */,
 			);
 			name = Data;
+			sourceTree = "<group>";
+		};
+		72B8681817B3C47F00A871E5 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Assets;
+			path = ..;
+			sourceTree = "<group>";
+		};
+		72B8681D17B3C4A400A871E5 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				72B8681917B3C49F00A871E5 /* LoginWithFacebookNormal.png */,
+				72B8681A17B3C49F00A871E5 /* LoginWithFacebookNormal@2x.png */,
+			);
+			name = Assets;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -285,7 +308,9 @@
 				7208344C17A0288800CEC1E5 /* Default.png in Resources */,
 				7208344E17A0288800CEC1E5 /* Default@2x.png in Resources */,
 				7208345017A0288800CEC1E5 /* Default-568h@2x.png in Resources */,
-				7208345317A0288800CEC1E5 /* MainStoryboard_iPhone.storyboard in Resources */,
+				72B8681B17B3C49F00A871E5 /* LoginWithFacebookNormal.png in Resources */,
+				72B8681C17B3C49F00A871E5 /* LoginWithFacebookNormal@2x.png in Resources */,
+				72B8682417B3C50100A871E5 /* MainStoryboard_iPhone.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -401,20 +426,21 @@
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
-		7208345117A0288800CEC1E5 /* MainStoryboard_iPhone.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				7208345217A0288800CEC1E5 /* en */,
-			);
-			name = MainStoryboard_iPhone.storyboard;
-			sourceTree = "<group>";
-		};
 		7208346917A0288800CEC1E5 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
 				7208346A17A0288800CEC1E5 /* en */,
 			);
 			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		72B8682117B3C50100A871E5 /* MainStoryboard_iPhone.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				72B8682217B3C50100A871E5 /* en */,
+			);
+			name = MainStoryboard_iPhone.storyboard;
+			path = en.lproj;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

@@ -40,6 +40,7 @@ static NSString * const kClientId = @"976584719831.apps.googleusercontent.com";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self.navigationController setNavigationBarHidden:true];
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     if([defaults integerForKey:@"user_id"])
         [self performSegueWithIdentifier:@"loginSuccesfulSegue" sender:self];
@@ -85,6 +86,7 @@ static NSString * const kClientId = @"976584719831.apps.googleusercontent.com";
     NSLog(@"sessionStateChanged: in NHOCLoginVC");
     if (FBSession.activeSession.isOpen) {
         [SVProgressHUD show];
+
         [[NSNotificationCenter defaultCenter] removeObserver:self];
         NSString *token =FBSession.activeSession.accessTokenData;
         [[FBRequest requestForMe]
@@ -95,6 +97,7 @@ static NSString * const kClientId = @"976584719831.apps.googleusercontent.com";
              if (!error && result)
              {
                  NSString *userID = result.id;
+                 
                  [self authWithServerToken:token andUserId:userID withType:@"fb"];
              }
          }];

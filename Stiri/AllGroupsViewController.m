@@ -30,6 +30,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self.navigationController setNavigationBarHidden:false animated:true];
     [self.navigationItem setHidesBackButton:YES];
     [super setTitle:@"Your Groups"];
 	self.newsDataSource = [[NewsDataSource alloc] init];
