@@ -29,6 +29,9 @@
                     </view>
                     <navigationItem key="navigationItem" id="ce1-Wk-I1N"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <connections>
+                        <outlet property="tableView" destination="Tqz-Tw-J0r" id="kll-5g-2PC"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nsS-ON-Dg2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -95,6 +98,9 @@
     <classes>
         <class className="AllGroupsViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/AllGroupsViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+            </relationships>
         </class>
         <class className="GPPSignInButton" superclassName="UIButton">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/GPPSignInButton.h"/>

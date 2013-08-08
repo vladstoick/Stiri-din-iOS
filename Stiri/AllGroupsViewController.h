@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface AllGroupsViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
-
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 @end

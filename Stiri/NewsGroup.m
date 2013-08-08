@@ -9,4 +9,7 @@
 #import "NewsGroup.h"
 
 @implementation NewsGroup
+@synthesize title;
+@synthesize id;
+@synthesize newsSources;
 @end

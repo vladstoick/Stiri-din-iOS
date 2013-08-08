@@ -12,15 +12,15 @@
 @implementation NewsDataSource
 -(void) loadData:(NSDictionary *)jsonData;
 {
-            [SVProgressHUD dismiss];
+    self.groups = [[NSMutableArray alloc]init];
     for(NSDictionary* group in jsonData){
-        NewsGroup *ng;
+        NewsGroup *ng = [[NewsGroup alloc]init];
         NSNumber *id = [group valueForKey:@"group_id"];
         NSString *title = [group valueForKey:@"group_title"];
         ng.title = title;
         ng.id = [id integerValue];
-        NSLog(@"%@",ng);
-        
+        [self.groups addObject:ng];
     }
 }
 @end
+
