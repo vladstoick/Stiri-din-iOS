@@ -1,5 +1,5 @@
 //
-//  FlatUITabBarController.h
+//  NewsItemsViewController.h
 //  Stiri
 //
 //  Created by Vlad Stoica on 8/13/13.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FlatUITabBarController : UITabBarController
-
+@interface NewsItemsViewController : UIViewController
+@property (strong, nonatomic) NSNumber *sourceId;
 @end

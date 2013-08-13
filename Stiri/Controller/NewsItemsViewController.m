@@ -1,17 +1,18 @@
 //
-//  FlatUITabBarController.m
+//  NewsItemsViewController.m
 //  Stiri
 //
 //  Created by Vlad Stoica on 8/13/13.
 //  Copyright (c) 2013 Stoica Vlad. All rights reserved.
 //
 
-#import "FlatUITabBarController.h"
-@interface FlatUITabBarController ()
+#import "NewsItemsViewController.h"
 
+@interface NewsItemsViewController ()
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 @end
 
-@implementation FlatUITabBarController
+@implementation NewsItemsViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -19,7 +20,6 @@
     if (self) {
         // Custom initialization
     }
-   
     return self;
 }
 

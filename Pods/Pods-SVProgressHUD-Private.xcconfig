@@ -1,5 +1,5 @@
 #include "Pods-SVProgressHUD.xcconfig"
 GCC_PREPROCESSOR_DEFINITIONS = COCOAPODS=1
-HEADER_SEARCH_PATHS = "${PODS_ROOT}/BuildHeaders" "${PODS_ROOT}/BuildHeaders/SVProgressHUD" "${PODS_ROOT}/Headers" "${PODS_ROOT}/Headers/AFNetworking" "${PODS_ROOT}/Headers/ECSlidingViewController" "${PODS_ROOT}/Headers/Facebook-iOS-SDK" "${PODS_ROOT}/Headers/Facebook-iOS-SDK/FacebookSDK" "${PODS_ROOT}/Headers/NewRelicAgent" "${PODS_ROOT}/Headers/SVProgressHUD" "${PODS_ROOT}/Headers/google-plus-ios-sdk"
+HEADER_SEARCH_PATHS = "${PODS_ROOT}/BuildHeaders" "${PODS_ROOT}/BuildHeaders/SVProgressHUD" "${PODS_ROOT}/Headers" "${PODS_ROOT}/Headers/AFNetworking" "${PODS_ROOT}/Headers/ECSlidingViewController" "${PODS_ROOT}/Headers/Facebook-iOS-SDK" "${PODS_ROOT}/Headers/Facebook-iOS-SDK/FacebookSDK" "${PODS_ROOT}/Headers/FoundationExtension" "${PODS_ROOT}/Headers/FoundationExtension/UIKitExtension" "${PODS_ROOT}/Headers/KLSwitch" "${PODS_ROOT}/Headers/NewRelicAgent" "${PODS_ROOT}/Headers/SVProgressHUD" "${PODS_ROOT}/Headers/UI7Kit" "${PODS_ROOT}/Headers/UI7Kit/UI7Kit" "${PODS_ROOT}/Headers/cdebug" "${PODS_ROOT}/Headers/google-plus-ios-sdk"
 OTHER_LDFLAGS = -ObjC ${PODS_SVPROGRESSHUD_OTHER_LDFLAGS}
 PODS_ROOT = ${SRCROOT}

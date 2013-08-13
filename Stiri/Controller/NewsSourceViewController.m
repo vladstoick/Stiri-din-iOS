@@ -7,6 +7,7 @@
 //
 
 #import "NewsSourceViewController.h"
+#import "NewsItemsViewController.h"
 #import "NewsGroup.h"
 #import "NewsSource.h"
 #import "NewsDataSource.h"
@@ -64,6 +65,16 @@
     [super didReceiveMemoryWarning];
 }
 
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if([segue.identifier isEqualToString:@"showNewsItemsForNewsSource"]){
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        NewsItemsViewController *destViewController = segue.destinationViewController;
+        NewsSource *selectedNewsSource = [self.newsSources objectAtIndex:indexPath.row];
+        destViewController.sourceId = selectedNewsSource.sourceId;
+        [self.tableView deselectRowAtIndexPath:indexPath animated:false];
+    }
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return self.newsSources.count;
@@ -71,7 +82,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableViewLocal cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *subtitleTableIdentifier = @"subltileViewCell";
+    static NSString *subtitleTableIdentifier = @"subtitleViewCellSource";
     
     UITableViewCell *cell = [tableViewLocal dequeueReusableCellWithIdentifier:subtitleTableIdentifier];
     

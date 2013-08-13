@@ -10,5 +10,5 @@
 
 @interface NewsSourceViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (nonatomic) NSNumber *groupId;
+@property (strong, nonatomic) NSNumber *groupId;
 @end

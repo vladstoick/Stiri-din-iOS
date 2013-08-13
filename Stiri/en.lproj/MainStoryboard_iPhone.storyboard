@@ -88,10 +88,10 @@
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="gth-Ie-a4Q">
                                 <rect key="frame" x="5" y="2" width="35" height="39"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="29"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-UltraLight" family="Helvetica Neue" pointSize="25"/>
                                 <state key="normal" title="☰">
-                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleColor" red="0.0" green="0.47843137254901957" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" cocoaTouchSystemColor="darkTextColor"/>
                                 </state>
                                 <state key="highlighted">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -123,11 +123,11 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="8tK-cG-Djc">
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="subtitleViewCell" textLabel="eJE-qe-SGA" detailTextLabel="mat-uh-4jk" style="IBUITableViewCellStyleSubtitle" id="8VV-Sy-Tse">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="detailDisclosureButton" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="subtitleViewCellSource" textLabel="eJE-qe-SGA" detailTextLabel="mat-uh-4jk" style="IBUITableViewCellStyleSubtitle" id="8VV-Sy-Tse">
                                         <rect key="frame" x="0.0" y="22" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eJE-qe-SGA">
@@ -143,6 +143,9 @@
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
+                                        <connections>
+                                            <segue destination="rSr-bq-DR0" kind="push" identifier="showNewsItemsForNewsSource" id="owv-AR-IaS"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -166,7 +169,22 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="heM-ce-aJr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3510" y="-252"/>
+            <point key="canvasLocation" x="3506" y="-258"/>
+        </scene>
+        <!--News Items View Controller-->
+        <scene sceneID="i9f-x9-604">
+            <objects>
+                <viewController id="rSr-bq-DR0" customClass="NewsItemsViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="0gH-Jy-ylg">
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="NqY-ZY-tLC"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6rN-PK-di3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4109" y="-258"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="hml-Dq-Qvq">
@@ -264,18 +282,12 @@
                                     <outlet property="delegate" destination="PPO-E5-ZKi" id="bxr-HO-zEX"/>
                                 </connections>
                             </tableView>
-                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="fCa-zc-tKS">
-                                <textInputTraits key="textInputTraits"/>
-                            </searchBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="CKb-cI-4u1" firstAttribute="top" secondItem="fCa-zc-tKS" secondAttribute="bottom" type="default" id="3G7-8v-FyU"/>
-                            <constraint firstItem="fCa-zc-tKS" firstAttribute="leading" secondItem="R72-a8-z1M" secondAttribute="leading" type="default" id="I6G-a7-MzX"/>
                             <constraint firstItem="CKb-cI-4u1" firstAttribute="trailing" secondItem="R72-a8-z1M" secondAttribute="trailing" type="default" id="KJl-Um-BIY"/>
-                            <constraint firstItem="fCa-zc-tKS" firstAttribute="top" secondItem="R72-a8-z1M" secondAttribute="top" type="default" id="TIx-pl-Y0K"/>
+                            <constraint firstItem="CKb-cI-4u1" firstAttribute="top" secondItem="R72-a8-z1M" secondAttribute="top" type="default" id="R5q-XX-G7X"/>
                             <constraint firstItem="CKb-cI-4u1" firstAttribute="bottom" secondItem="R72-a8-z1M" secondAttribute="bottom" type="default" id="WOo-Bo-rxg"/>
-                            <constraint firstItem="fCa-zc-tKS" firstAttribute="trailing" secondItem="R72-a8-z1M" secondAttribute="trailing" type="default" id="Wog-Pw-7b0"/>
                             <constraint firstItem="CKb-cI-4u1" firstAttribute="leading" secondItem="R72-a8-z1M" secondAttribute="leading" type="default" id="lqS-fC-cSo"/>
                         </constraints>
                     </view>
@@ -306,11 +318,10 @@
                     <toolbarItems/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="blackTranslucent"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="blackOpaque" prompted="NO"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="blackOpaque" id="6Qg-7c-cO0">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="6Qg-7c-cO0">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                        <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.60000002384185791" green="0.40000000596046448" blue="0.20000000298023224" alpha="1" colorSpace="calibratedRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -321,10 +332,10 @@
             </objects>
             <point key="canvasLocation" x="1919" y="112"/>
         </scene>
-        <!--FlatUI Tab Bar Controller-->
+        <!--Tab Bar Controller-->
         <scene sceneID="ld1-PS-toD">
             <objects>
-                <tabBarController id="ceo-2c-FHC" customClass="FlatUITabBarController" sceneMemberID="viewController">
+                <tabBarController id="ceo-2c-FHC" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="eq4-gm-TwY"/>
                     <nil key="simulatedBottomBarMetrics"/>
@@ -347,48 +358,6 @@
         <image name="manual_tab_bar_icon.png" width="40" height="40"/>
         <image name="recommended_tab_bar_icon.png" width="40" height="40"/>
     </resources>
-    <classes>
-        <class className="AddNewsSourceManuallyViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/AddNewsSourceManuallyViewController.h"/>
-        </class>
-        <class className="ECSlidingViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ECSlidingViewController.h"/>
-        </class>
-        <class className="FlatUITabBarController" superclassName="UITabBarController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/FlatUITabBarController.h"/>
-        </class>
-        <class className="GPPSignInButton" superclassName="UIButton">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/GPPSignInButton.h"/>
-        </class>
-        <class className="InitialViewController" superclassName="ECSlidingViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/InitialViewController.h"/>
-        </class>
-        <class className="LoginViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/LoginViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="loginWithFacebook:"/>
-                <relationship kind="outlet" name="signInButton" candidateClass="GPPSignInButton"/>
-            </relationships>
-        </class>
-        <class className="MenuViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/MenuViewController.h"/>
-        </class>
-        <class className="NSLayoutConstraint" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
-        </class>
-        <class className="NewsGroupViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NewsGroupViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
-            </relationships>
-        </class>
-        <class className="NewsSourceViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NewsSourceViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

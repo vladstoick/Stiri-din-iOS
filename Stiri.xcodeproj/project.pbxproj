@@ -9,10 +9,12 @@
 /* Begin PBXBuildFile section */
 		7206266217BA8EF200455298 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7206266117BA8EF200455298 /* CoreTelephony.framework */; };
 		7206266C17BA9DAF00455298 /* AddNewsSourceRecommendedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7206266B17BA9DAF00455298 /* AddNewsSourceRecommendedViewController.m */; };
-		7206266F17BAA04B00455298 /* FlatUITabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7206266E17BAA04B00455298 /* FlatUITabBarController.m */; };
 		7206267217BAA25100455298 /* manual_tab_bar_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 7206267117BAA25100455298 /* manual_tab_bar_icon.png */; };
 		7206267417BAA2C300455298 /* recommended_tab_bar_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 7206267317BAA2C300455298 /* recommended_tab_bar_icon.png */; };
 		7206267717BAA2FA00455298 /* AddNewsSourceManuallyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7206267617BAA2FA00455298 /* AddNewsSourceManuallyViewController.m */; };
+		7206267A17BAAA8F00455298 /* NewsItemsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7206267917BAAA8F00455298 /* NewsItemsViewController.m */; };
+		7206267F17BAAEA500455298 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7206267E17BAAEA500455298 /* SystemConfiguration.framework */; };
+		7206268117BAAEB500455298 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7206268017BAAEB500455298 /* libz.dylib */; };
 		7208343A17A0288800CEC1E5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7208343917A0288800CEC1E5 /* UIKit.framework */; };
 		7208343C17A0288800CEC1E5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7208343B17A0288800CEC1E5 /* Foundation.framework */; };
 		7208343E17A0288800CEC1E5 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7208343D17A0288800CEC1E5 /* CoreGraphics.framework */; };
@@ -60,12 +62,14 @@
 		7206266117BA8EF200455298 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		7206266A17BA9DAF00455298 /* AddNewsSourceRecommendedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddNewsSourceRecommendedViewController.h; sourceTree = "<group>"; };
 		7206266B17BA9DAF00455298 /* AddNewsSourceRecommendedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddNewsSourceRecommendedViewController.m; sourceTree = "<group>"; };
-		7206266D17BAA04B00455298 /* FlatUITabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlatUITabBarController.h; sourceTree = "<group>"; };
-		7206266E17BAA04B00455298 /* FlatUITabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlatUITabBarController.m; sourceTree = "<group>"; };
 		7206267117BAA25100455298 /* manual_tab_bar_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = manual_tab_bar_icon.png; path = Assets/manual_tab_bar_icon.png; sourceTree = "<group>"; };
 		7206267317BAA2C300455298 /* recommended_tab_bar_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = recommended_tab_bar_icon.png; path = Assets/recommended_tab_bar_icon.png; sourceTree = "<group>"; };
 		7206267517BAA2FA00455298 /* AddNewsSourceManuallyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AddNewsSourceManuallyViewController.h; path = Controller/AddNewsSourceManuallyViewController.h; sourceTree = "<group>"; };
 		7206267617BAA2FA00455298 /* AddNewsSourceManuallyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AddNewsSourceManuallyViewController.m; path = Controller/AddNewsSourceManuallyViewController.m; sourceTree = "<group>"; };
+		7206267817BAAA8F00455298 /* NewsItemsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewsItemsViewController.h; path = Controller/NewsItemsViewController.h; sourceTree = "<group>"; };
+		7206267917BAAA8F00455298 /* NewsItemsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewsItemsViewController.m; path = Controller/NewsItemsViewController.m; sourceTree = "<group>"; };
+		7206267E17BAAEA500455298 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		7206268017BAAEB500455298 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		7208343617A0288800CEC1E5 /* Stiri.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Stiri.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7208343917A0288800CEC1E5 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		7208343B17A0288800CEC1E5 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -115,6 +119,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7206268117BAAEB500455298 /* libz.dylib in Frameworks */,
+				7206267F17BAAEA500455298 /* SystemConfiguration.framework in Frameworks */,
 				7206266217BA8EF200455298 /* CoreTelephony.framework in Frameworks */,
 				727B033A17BA12CD003A0500 /* CoreData.framework in Frameworks */,
 				7208343A17A0288800CEC1E5 /* UIKit.framework in Frameworks */,
@@ -137,19 +143,44 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		7206267017BAA0AB00455298 /* FlatUIElements */ = {
+		7206267B17BAABCA00455298 /* AddNewsSource */ = {
 			isa = PBXGroup;
 			children = (
-				7206266D17BAA04B00455298 /* FlatUITabBarController.h */,
-				7206266E17BAA04B00455298 /* FlatUITabBarController.m */,
+				7206266A17BA9DAF00455298 /* AddNewsSourceRecommendedViewController.h */,
+				7206266B17BA9DAF00455298 /* AddNewsSourceRecommendedViewController.m */,
+				7206267517BAA2FA00455298 /* AddNewsSourceManuallyViewController.h */,
+				7206267617BAA2FA00455298 /* AddNewsSourceManuallyViewController.m */,
 			);
-			name = FlatUIElements;
+			name = AddNewsSource;
+			sourceTree = "<group>";
+		};
+		7206267C17BAABDC00455298 /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				7291565D17BA364600A6FD66 /* LoginViewController.h */,
+				7291565E17BA364600A6FD66 /* LoginViewController.m */,
+			);
+			name = Other;
+			sourceTree = "<group>";
+		};
+		7206267D17BAABEB00455298 /* DataControllers */ = {
+			isa = PBXGroup;
+			children = (
+				7291565717BA35FB00A6FD66 /* NewsGroupViewController.h */,
+				7291565817BA35FB00A6FD66 /* NewsGroupViewController.m */,
+				7291565A17BA363400A6FD66 /* NewsSourceViewController.h */,
+				7291565B17BA363400A6FD66 /* NewsSourceViewController.m */,
+				7206267817BAAA8F00455298 /* NewsItemsViewController.h */,
+				7206267917BAAA8F00455298 /* NewsItemsViewController.m */,
+			);
+			name = DataControllers;
 			sourceTree = "<group>";
 		};
 		7208342D17A0288800CEC1E5 = {
 			isa = PBXGroup;
 			children = (
-				7206266117BA8EF200455298 /* CoreTelephony.framework */,
+				7206268017BAAEB500455298 /* libz.dylib */,
+				7206267E17BAAEA500455298 /* SystemConfiguration.framework */,
 				7208343F17A0288800CEC1E5 /* Stiri */,
 				7208346617A0288800CEC1E5 /* StiriTests */,
 				7208343817A0288800CEC1E5 /* Frameworks */,
@@ -170,6 +201,7 @@
 		7208343817A0288800CEC1E5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7206266117BA8EF200455298 /* CoreTelephony.framework */,
 				727B033917BA12CD003A0500 /* CoreData.framework */,
 				7208343917A0288800CEC1E5 /* UIKit.framework */,
 				7208343B17A0288800CEC1E5 /* Foundation.framework */,
@@ -258,18 +290,10 @@
 		72AD444717A054A900074FF2 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				7206267017BAA0AB00455298 /* FlatUIElements */,
+				7206267C17BAABDC00455298 /* Other */,
+				7206267B17BAABCA00455298 /* AddNewsSource */,
 				7291566617BA5BEE00A6FD66 /* SlidingMenu */,
-				7291565D17BA364600A6FD66 /* LoginViewController.h */,
-				7291565E17BA364600A6FD66 /* LoginViewController.m */,
-				7291565717BA35FB00A6FD66 /* NewsGroupViewController.h */,
-				7291565817BA35FB00A6FD66 /* NewsGroupViewController.m */,
-				7291565A17BA363400A6FD66 /* NewsSourceViewController.h */,
-				7291565B17BA363400A6FD66 /* NewsSourceViewController.m */,
-				7206266A17BA9DAF00455298 /* AddNewsSourceRecommendedViewController.h */,
-				7206266B17BA9DAF00455298 /* AddNewsSourceRecommendedViewController.m */,
-				7206267517BAA2FA00455298 /* AddNewsSourceManuallyViewController.h */,
-				7206267617BAA2FA00455298 /* AddNewsSourceManuallyViewController.m */,
+				7206267D17BAABEB00455298 /* DataControllers */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -465,8 +489,8 @@
 				7291566217BA595800A6FD66 /* InitialViewController.m in Sources */,
 				7291566917BA5DE900A6FD66 /* MenuViewController.m in Sources */,
 				7206266C17BA9DAF00455298 /* AddNewsSourceRecommendedViewController.m in Sources */,
-				7206266F17BAA04B00455298 /* FlatUITabBarController.m in Sources */,
 				7206267717BAA2FA00455298 /* AddNewsSourceManuallyViewController.m in Sources */,
+				7206267A17BAAA8F00455298 /* NewsItemsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

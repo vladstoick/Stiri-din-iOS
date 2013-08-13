@@ -59,7 +59,8 @@
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:subtitleTableIdentifier];
     }
-    NSString *menuItem = [self.allMenuItems objectAtIndex:indexPath.row];
+    NSArray *menuItemsForCurrentSection = [self.menuItems objectAtIndex:indexPath.section];
+    NSString *menuItem = [menuItemsForCurrentSection objectAtIndex:indexPath.row];
     cell.textLabel.text = menuItem;
     return cell;
 }
