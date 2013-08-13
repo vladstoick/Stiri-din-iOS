@@ -9,6 +9,7 @@
 #import "NewsSourceViewController.h"
 
 @interface NewsSourceViewController ()
+@property (weak, nonatomic) IBOutlet UITableView *newsSourceTableView;
 
 @end
 
