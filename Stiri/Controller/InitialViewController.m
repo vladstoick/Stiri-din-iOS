@@ -26,7 +26,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.topViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"NewsGroup"];
+    self.topViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"LoginView"];
 	// Do any additional setup after loading the view.
 }
 
