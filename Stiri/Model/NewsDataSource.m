@@ -10,7 +10,6 @@
 #import "NewsGroup.h"
 #import "NewsItem.h"
 #import "NewsSource.h"
-#import "SVProgressHud.h"
 #import "AppDelegate.h"
 #import "AFNetworking.h"
 #define RAILSBASEURL @"http://stiriromania.eu01.aws.af.cm/user/"
@@ -76,7 +75,6 @@ static NewsDataSource *_newsDataSource;
                                                                        options: NSJSONReadingMutableContainers
                                                                          error: nil];
         [self insertGroupsAndNewsSource:jsonDictionary];
-        [SVProgressHUD dismiss];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
   
     }];

@@ -19,9 +19,15 @@
 @interface NewsGroupViewController ()
 @property (strong, nonatomic) NewsDataSource *newsDataSource;
 @property (strong, nonatomic) NSArray *groups;
+@property (strong, nonatomic) UIRefreshControl *refreshControl;
 @property (nonatomic) int userId;
 @end
 @implementation NewsGroupViewController
+
+- (UIRefreshControl *) refreshControl{
+    if(!_refreshControl) _refreshControl = [[UIRefreshControl alloc] init];
+    return _refreshControl;
+}
 
 - (NewsDataSource *) newsDataSource{
     if(!_newsDataSource) _newsDataSource = [NewsDataSource newsDataSource];
@@ -31,6 +37,27 @@
 - (NSArray *) groups{
     _groups = [self.newsDataSource allGroups];
     return _groups;
+}
+
+- (IBAction)addItem:(id)sender{
+    [self performSegueWithIdentifier:@"showAddTabController" sender:self];
+
+}
+
+- (IBAction)openMenu:(id)sender{
+    [self.slidingViewController anchorTopViewTo:ECRight];
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    [super setTitle:@"Grupurile tale"];
+    self.navigationItem.hidesBackButton = true;
+    [self.refreshControl addTarget:self action:@selector(refresh) forControlEvents:UIControlEventValueChanged];
+    [self.tableView addSubview:self.refreshControl];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dataChanged:) name:DATA_CHANGED_EVENT object:nil];
+    [self.tableView setContentOffset:CGPointMake(0, -self.refreshControl.frame.size.height) animated:YES];
+    [self.refreshControl beginRefreshing];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -47,29 +74,16 @@
     [self.navigationController.view addGestureRecognizer:self.slidingViewController.panGesture];
     UIBarButtonItem *barBtnItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addItem:)];
     self.navigationItem.rightBarButtonItem=barBtnItem;
-
-}
-
-- (IBAction)addItem:(id)sender{
-    [self performSegueWithIdentifier:@"showAddTabController" sender:self];
-}
-
-- (IBAction)openMenu:(id)sender{
-    [self.slidingViewController anchorTopViewTo:ECRight];
-}
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    [super setTitle:@"Grupurile tale"];
-    self.navigationItem.hidesBackButton = true;
-    [SVProgressHUD show];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dataChanged:) name:DATA_CHANGED_EVENT object:nil];
     
+}
+
+- (void) refresh {
+    [[NewsDataSource newsDataSource]loadData];
 }
 
 - (void) dataChanged:(NSNotification*) event{
     [self.tableView reloadData];
+    [self.refreshControl endRefreshing];
 }
 
 - (void)didReceiveMemoryWarning
