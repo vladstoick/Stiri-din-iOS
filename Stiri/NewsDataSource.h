@@ -9,7 +9,10 @@
 #import <Foundation/Foundation.h>
 
 @interface NewsDataSource : NSObject
-@property NSMutableArray *groups;
-@property int userId;
-- (void) loadData: (NSDictionary*) jsonData;
+@property (readonly, strong, nonatomic) NSArray *allGroups;
+@property (nonatomic) int userId;
+
++ (NewsDataSource*) newsDataSource;
+- (void) insertGroupsAndNewsSource: (NSArray*) groups;
+- (NSArray*) allGroups;
 @end

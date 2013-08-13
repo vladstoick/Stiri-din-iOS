@@ -22,9 +22,11 @@
 		7208346B17A0288800CEC1E5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7208346917A0288800CEC1E5 /* InfoPlist.strings */; };
 		7208346E17A0288800CEC1E5 /* StiriTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7208346D17A0288800CEC1E5 /* StiriTests.m */; };
 		7228957E17A02CF4009C9DCF /* AllGroupsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7228957D17A02CF4009C9DCF /* AllGroupsViewController.m */; };
+		727B033A17BA12CD003A0500 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 727B033917BA12CD003A0500 /* CoreData.framework */; };
+		727B033D17BA12EF003A0500 /* NewsModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 727B033B17BA12EF003A0500 /* NewsModel.xcdatamodeld */; };
+		729155EB17BA179000A6FD66 /* NewsSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 729155EA17BA179000A6FD66 /* NewsSource.m */; };
+		729155EE17BA183000A6FD66 /* NewsGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 729155ED17BA183000A6FD66 /* NewsGroup.m */; };
 		72AD444B17A054DA00074FF2 /* NewsItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 72AD444A17A054DA00074FF2 /* NewsItem.m */; };
-		72AD444E17A0578500074FF2 /* NewsSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 72AD444D17A0578500074FF2 /* NewsSource.m */; };
-		72AD445117A0587100074FF2 /* NewsGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 72AD445017A0587100074FF2 /* NewsGroup.m */; };
 		72AD445417A05A4900074FF2 /* NewsDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 72AD445317A05A4900074FF2 /* NewsDataSource.m */; };
 		72B8681B17B3C49F00A871E5 /* LoginWithFacebookNormal.png in Resources */ = {isa = PBXBuildFile; fileRef = 72B8681917B3C49F00A871E5 /* LoginWithFacebookNormal.png */; };
 		72B8681C17B3C49F00A871E5 /* LoginWithFacebookNormal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 72B8681A17B3C49F00A871E5 /* LoginWithFacebookNormal@2x.png */; };
@@ -67,12 +69,14 @@
 		7208346D17A0288800CEC1E5 /* StiriTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StiriTests.m; sourceTree = "<group>"; };
 		7228957C17A02CF4009C9DCF /* AllGroupsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllGroupsViewController.h; sourceTree = "<group>"; };
 		7228957D17A02CF4009C9DCF /* AllGroupsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllGroupsViewController.m; sourceTree = "<group>"; };
+		727B033917BA12CD003A0500 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		727B033C17BA12EF003A0500 /* NewsModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = NewsModel.xcdatamodel; sourceTree = "<group>"; };
+		729155E917BA179000A6FD66 /* NewsSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewsSource.h; path = Model/NewsSource.h; sourceTree = "<group>"; };
+		729155EA17BA179000A6FD66 /* NewsSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewsSource.m; path = Model/NewsSource.m; sourceTree = "<group>"; };
+		729155EC17BA183000A6FD66 /* NewsGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewsGroup.h; path = Model/NewsGroup.h; sourceTree = "<group>"; };
+		729155ED17BA183000A6FD66 /* NewsGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewsGroup.m; path = Model/NewsGroup.m; sourceTree = "<group>"; };
 		72AD444917A054DA00074FF2 /* NewsItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsItem.h; sourceTree = "<group>"; };
 		72AD444A17A054DA00074FF2 /* NewsItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsItem.m; sourceTree = "<group>"; };
-		72AD444C17A0578500074FF2 /* NewsSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsSource.h; sourceTree = "<group>"; };
-		72AD444D17A0578500074FF2 /* NewsSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsSource.m; sourceTree = "<group>"; };
-		72AD444F17A0587100074FF2 /* NewsGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsGroup.h; sourceTree = "<group>"; };
-		72AD445017A0587100074FF2 /* NewsGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsGroup.m; sourceTree = "<group>"; };
 		72AD445217A05A4900074FF2 /* NewsDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsDataSource.h; sourceTree = "<group>"; };
 		72AD445317A05A4900074FF2 /* NewsDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsDataSource.m; sourceTree = "<group>"; };
 		72B8681917B3C49F00A871E5 /* LoginWithFacebookNormal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LoginWithFacebookNormal.png; sourceTree = "<group>"; };
@@ -87,6 +91,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				727B033A17BA12CD003A0500 /* CoreData.framework in Frameworks */,
 				7208343A17A0288800CEC1E5 /* UIKit.framework in Frameworks */,
 				7208343C17A0288800CEC1E5 /* Foundation.framework in Frameworks */,
 				7208343E17A0288800CEC1E5 /* CoreGraphics.framework in Frameworks */,
@@ -110,6 +115,7 @@
 		7208342D17A0288800CEC1E5 = {
 			isa = PBXGroup;
 			children = (
+				727B033917BA12CD003A0500 /* CoreData.framework */,
 				7208343F17A0288800CEC1E5 /* Stiri */,
 				7208346617A0288800CEC1E5 /* StiriTests */,
 				7208343817A0288800CEC1E5 /* Frameworks */,
@@ -142,6 +148,7 @@
 		7208343F17A0288800CEC1E5 /* Stiri */ = {
 			isa = PBXGroup;
 			children = (
+				729155E217BA173900A6FD66 /* Model */,
 				72B8681D17B3C4A400A871E5 /* Assets */,
 				72B8681817B3C47F00A871E5 /* Assets */,
 				72AD444817A054B800074FF2 /* Data */,
@@ -187,6 +194,17 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		729155E217BA173900A6FD66 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				729155EC17BA183000A6FD66 /* NewsGroup.h */,
+				729155ED17BA183000A6FD66 /* NewsGroup.m */,
+				729155E917BA179000A6FD66 /* NewsSource.h */,
+				729155EA17BA179000A6FD66 /* NewsSource.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
 		72AD444717A054A900074FF2 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -203,12 +221,9 @@
 			children = (
 				72AD444917A054DA00074FF2 /* NewsItem.h */,
 				72AD444A17A054DA00074FF2 /* NewsItem.m */,
-				72AD444C17A0578500074FF2 /* NewsSource.h */,
-				72AD444D17A0578500074FF2 /* NewsSource.m */,
-				72AD444F17A0587100074FF2 /* NewsGroup.h */,
-				72AD445017A0587100074FF2 /* NewsGroup.m */,
 				72AD445217A05A4900074FF2 /* NewsDataSource.h */,
 				72AD445317A05A4900074FF2 /* NewsDataSource.m */,
+				727B033B17BA12EF003A0500 /* NewsModel.xcdatamodeld */,
 			);
 			name = Data;
 			sourceTree = "<group>";
@@ -392,10 +407,11 @@
 				7208344A17A0288800CEC1E5 /* AppDelegate.m in Sources */,
 				7228957E17A02CF4009C9DCF /* AllGroupsViewController.m in Sources */,
 				72AD444B17A054DA00074FF2 /* NewsItem.m in Sources */,
-				72AD444E17A0578500074FF2 /* NewsSource.m in Sources */,
-				72AD445117A0587100074FF2 /* NewsGroup.m in Sources */,
 				72AD445417A05A4900074FF2 /* NewsDataSource.m in Sources */,
 				72C5AA8817B2CE05006958EE /* LoginViewController.m in Sources */,
+				727B033D17BA12EF003A0500 /* NewsModel.xcdatamodeld in Sources */,
+				729155EB17BA179000A6FD66 /* NewsSource.m in Sources */,
+				729155EE17BA183000A6FD66 /* NewsGroup.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -595,6 +611,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		727B033B17BA12EF003A0500 /* NewsModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				727B033C17BA12EF003A0500 /* NewsModel.xcdatamodel */,
+			);
+			currentVersion = 727B033C17BA12EF003A0500 /* NewsModel.xcdatamodel */;
+			path = NewsModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 7208342E17A0288800CEC1E5 /* Project object */;
 }

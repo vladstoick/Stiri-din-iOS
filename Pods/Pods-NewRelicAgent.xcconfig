@@ -1,0 +1,2 @@
+PODS_NEWRELICAGENT_FRAMEWORK_SEARCH_PATHS = "$(PODS_ROOT)/NewRelicAgent/NewRelic_iOS_Agent_1.354"
+PODS_NEWRELICAGENT_OTHER_LDFLAGS = -lz -framework CoreTelephony -framework NewRelicAgent -framework SystemConfiguration

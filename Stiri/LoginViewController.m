@@ -88,7 +88,7 @@ static NSString * const kClientId = @"976584719831.apps.googleusercontent.com";
         [SVProgressHUD show];
 
         [[NSNotificationCenter defaultCenter] removeObserver:self];
-        NSString *token =FBSession.activeSession.accessTokenData;
+        NSString *token = (NSString*)FBSession.activeSession.accessTokenData;
         [[FBRequest requestForMe]
          startWithCompletionHandler:
          ^(FBRequestConnection *connection, NSDictionary<FBGraphUser> *result, NSError *error)

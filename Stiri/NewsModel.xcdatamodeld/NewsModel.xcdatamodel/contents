@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="2061" systemVersion="12E55" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="NewsGroup" representedClassName="NewsGroup" syncable="YES">
+        <attribute name="groupId" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="newsSources" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="NewsSource" inverseName="groupOwner" inverseEntity="NewsSource" syncable="YES"/>
+    </entity>
+    <entity name="NewsSource" representedClassName="NewsSource" syncable="YES">
+        <attribute name="sourceId" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="groupOwner" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="NewsGroup" inverseName="newsSources" inverseEntity="NewsGroup" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="NewsGroup" positionX="-1226" positionY="-196" width="128" height="88"/>
+        <element name="NewsSource" positionX="-1028" positionY="-196" width="128" height="88"/>
+    </elements>
+</model>

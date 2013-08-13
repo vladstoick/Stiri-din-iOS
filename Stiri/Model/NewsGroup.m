@@ -2,14 +2,18 @@
 //  NewsGroup.m
 //  Stiri
 //
-//  Created by Stoica Vlad on 7/24/13.
+//  Created by Vlad Stoica on 8/13/13.
 //  Copyright (c) 2013 Stoica Vlad. All rights reserved.
 //
 
 #import "NewsGroup.h"
+#import "NewsSource.h"
+
 
 @implementation NewsGroup
-@synthesize title;
-@synthesize id;
-@synthesize newsSources;
+
+@dynamic groupId;
+@dynamic title;
+@dynamic newsSources;
+
 @end

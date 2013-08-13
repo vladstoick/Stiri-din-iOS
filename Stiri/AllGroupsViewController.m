@@ -14,17 +14,15 @@
 @interface AllGroupsViewController ()
 
 @property (strong, nonatomic) NewsDataSource *newsDataSource;
-@property (assign, nonatomic) int userId;
+@property (nonatomic) int userId;
 
 @end
 
 @implementation AllGroupsViewController
-@synthesize tableView;
-@synthesize newsDataSource;
-@synthesize userId;
 
-- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    
+- (NewsDataSource *) newsDataSource{
+    if(!_newsDataSource) _newsDataSource = [NewsDataSource newsDataSource];
+    return _newsDataSource;
 }
 
 - (void)viewDidLoad
@@ -33,14 +31,11 @@
     [self.navigationController setNavigationBarHidden:false animated:true];
     [self.navigationItem setHidesBackButton:YES];
     [super setTitle:@"Your Groups"];
-	self.newsDataSource = [[NewsDataSource alloc] init];
     [SVProgressHUD show];
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    userId = [defaults integerForKey:@"user_id"];
-    newsDataSource.userId = userId;
     self.userId = [defaults integerForKey:@"user_id"];
-    self.newsDataSource.userId = userId;
-    NSString *urlString = [NSString stringWithFormat:@"http://stiriromania.eu01.aws.af.cm/user/%d",userId];
+    self.newsDataSource.userId = self.userId;
+    NSString *urlString = [NSString stringWithFormat:@"http://stiriromania.eu01.aws.af.cm/user/%d",self.userId];
     NSURL *url = [NSURL URLWithString:urlString];
     AFHTTPClient *httpClient = [[AFHTTPClient alloc] initWithBaseURL:url];
     [httpClient getPath:@"" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
@@ -48,10 +43,9 @@
         NSDictionary *jsonDictionary = [NSJSONSerialization JSONObjectWithData: [responseStr dataUsingEncoding:NSUTF8StringEncoding]
                                                                        options: NSJSONReadingMutableContainers
                                                                          error: nil];
-        [newsDataSource loadData:jsonDictionary];
-        [SVProgressHUD dismiss];
-        [tableView reloadData];
-        [self.newsDataSource loadData:jsonDictionary];
+        [self.newsDataSource insertGroupsAndNewsSource:jsonDictionary];
+
+        [self.tableView reloadData];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"error recieved : %@",error);
     }];
@@ -64,19 +58,19 @@
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return newsDataSource.groups.count;
+    return self.newsDataSource.allGroups.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableViewLocal cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *simpleTableIdentifier = @"GroupCell";
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
+    UITableViewCell *cell = [tableViewLocal dequeueReusableCellWithIdentifier:simpleTableIdentifier];
     
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:simpleTableIdentifier];
     }
-    NewsGroup *ng = (newsDataSource.groups)[indexPath.row];
+    NewsGroup *ng = (self.newsDataSource.allGroups)[indexPath.row];
     cell.textLabel.text = ng.title;
     return cell;
 }
