@@ -3,7 +3,7 @@ pod 'Facebook-iOS-SDK' , '~> 3.6.0'
 pod 'google-plus-ios-sdk' , '~> 1.3.0'
 pod 'SVProgressHUD', '0.9'
 pod 'NewRelicAgent' , '~>1.354'
-pod 'FMDB' , '~>2.1'
+pod 'ECSlidingViewController', '~> 0.10.0'
 Pod::Spec.new do |s|
   s.name         =  'Facebook-iOS-SDK'
   s.version      =  '3.6.0'
@@ -57,34 +57,4 @@ Pod::Spec.new do |s|
   s.public_header_files = "NewRelic_iOS_Agent_#{s.version}/NewRelicAgent.framework/**/*.h"
   s.vendored_frameworks = "NewRelic_iOS_Agent_#{s.version}/NewRelicAgent.framework"
   s.documentation     = { :appledoc => ['--company-id', 'com.newrelic'] }
-end
-Pod::Spec.new do |s|
-  s.name = 'FMDB'
-  s.version = '2.1'
-  s.summary = 'A Cocoa / Objective-C wrapper around SQLite.'
-  s.homepage = 'https://github.com/ccgus/fmdb'
-  s.license = 'MIT'
-  s.author = { 'August Mueller' => 'gus@flyingmeat.com' }
-  s.source = { :git => 'https://github.com/ccgus/fmdb.git',
-                 :tag => 'v2.1' }
-
-  s.preferred_dependency = 'standard'
-
-  s.subspec 'common' do |ss|
-    ss.source_files = 'src/FM*.{h,m}'
-    ss.exclude_files = 'src/fmdb.m'
-  end
-
-  # use a builtin version of sqlite3
-  s.subspec 'standard' do |ss|
-    ss.library = 'sqlite3'
-    ss.dependency 'FMDB/common'
-  end
-
-  # use a custom built version of sqlite3, with FTS4 enabled
-  s.subspec 'standalone' do |ss|
-    ss.dependency 'sqlite3/fts'
-    ss.dependency 'FMDB/common'
-  end
-
 end

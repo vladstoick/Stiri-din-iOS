@@ -11,6 +11,7 @@
 #import <FacebookSDK/FacebookSDK.h>
 #import <NewRelicAgent/NewRelicAgent.h>
 #import <CoreData/CoreData.h>
+#import "ECSlidingViewController.h"
 @implementation AppDelegate
 @synthesize managedObjectContext = _managedObjectContext;
 @synthesize managedObjectModel = _managedObjectModel;

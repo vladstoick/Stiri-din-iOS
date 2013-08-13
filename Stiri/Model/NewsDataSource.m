@@ -11,7 +11,6 @@
 #import "NewsSource.h"
 #import "SVProgressHud.h"
 #import "AppDelegate.h"
-#import "FMDatabase.h"
 @interface NewsDataSource()
 @property (nonatomic,strong) NSManagedObjectContext* managedObjectContext;
 @end

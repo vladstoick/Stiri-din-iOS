@@ -12,6 +12,9 @@
 #import "SVProgressHud.h"
 #import "NewsGroup.h"
 #import "NewsSourceViewController.h"
+#import "ECSlidingViewController.h"
+#import <QuartzCore/QuartzCore.h>
+#import "MenuViewController.h"
 @interface NewsGroupViewController ()
 @property (strong, nonatomic) NewsDataSource *newsDataSource;
 @property (strong, nonatomic) NSArray *groups;
@@ -32,8 +35,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self.navigationController setNavigationBarHidden:false animated:true];
-    [self.navigationItem setHidesBackButton:YES];
     [super setTitle:@"Grupurile tale"];
     [SVProgressHUD show];
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -54,6 +55,16 @@
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"error recieved : %@",error);
     }];
+    self.view.layer.shadowOpacity = 0.75f;
+    self.view.layer.shadowRadius = 10.0f;
+    self.view.layer.shadowColor = [UIColor blackColor].CGColor;
+    if(![self.slidingViewController.underLeftViewController isKindOfClass:[MenuViewController class]]){
+        MenuViewController *menu = [self.storyboard instantiateViewControllerWithIdentifier:@"Menu"];
+        NSLog(@"%@",menu);
+        self.slidingViewController.underLeftViewController = menu;
+         NSLog(@"%@",self.slidingViewController.underLeftViewController);
+    }
+    [self.view addGestureRecognizer:self.slidingViewController.panGesture];
 }
 
 - (void)didReceiveMemoryWarning
