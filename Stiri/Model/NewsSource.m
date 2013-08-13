@@ -14,6 +14,8 @@
 
 @dynamic sourceId;
 @dynamic title;
+@dynamic sourceDescription;
+@dynamic url;
 @dynamic groupOwner;
 
 @end

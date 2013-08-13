@@ -15,6 +15,8 @@
 
 @property (nonatomic, retain) NSNumber * sourceId;
 @property (nonatomic, retain) NSString * title;
+@property (nonatomic, retain) NSString * sourceDescription;
+@property (nonatomic, retain) NSString * url;
 @property (nonatomic, retain) NewsGroup *groupOwner;
 
 @end

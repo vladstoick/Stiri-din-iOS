@@ -21,17 +21,18 @@
 		7208346317A0288800CEC1E5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7208343B17A0288800CEC1E5 /* Foundation.framework */; };
 		7208346B17A0288800CEC1E5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7208346917A0288800CEC1E5 /* InfoPlist.strings */; };
 		7208346E17A0288800CEC1E5 /* StiriTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7208346D17A0288800CEC1E5 /* StiriTests.m */; };
-		7228957E17A02CF4009C9DCF /* AllGroupsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7228957D17A02CF4009C9DCF /* AllGroupsViewController.m */; };
 		727B033A17BA12CD003A0500 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 727B033917BA12CD003A0500 /* CoreData.framework */; };
-		727B033D17BA12EF003A0500 /* NewsModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 727B033B17BA12EF003A0500 /* NewsModel.xcdatamodeld */; };
-		729155EB17BA179000A6FD66 /* NewsSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 729155EA17BA179000A6FD66 /* NewsSource.m */; };
 		729155EE17BA183000A6FD66 /* NewsGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 729155ED17BA183000A6FD66 /* NewsGroup.m */; };
-		72AD444B17A054DA00074FF2 /* NewsItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 72AD444A17A054DA00074FF2 /* NewsItem.m */; };
-		72AD445417A05A4900074FF2 /* NewsDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 72AD445317A05A4900074FF2 /* NewsDataSource.m */; };
+		7291564A17BA250200A6FD66 /* NewsSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 7291564917BA250200A6FD66 /* NewsSource.m */; };
+		7291565017BA35A200A6FD66 /* NewsItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 7291564F17BA35A200A6FD66 /* NewsItem.m */; };
+		7291565317BA35AA00A6FD66 /* NewsDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 7291565217BA35AA00A6FD66 /* NewsDataSource.m */; };
+		7291565617BA35CF00A6FD66 /* NewsModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7291565417BA35CF00A6FD66 /* NewsModel.xcdatamodeld */; };
+		7291565917BA35FB00A6FD66 /* NewsGroupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7291565817BA35FB00A6FD66 /* NewsGroupViewController.m */; };
+		7291565C17BA363400A6FD66 /* NewsSourceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7291565B17BA363400A6FD66 /* NewsSourceViewController.m */; };
+		7291565F17BA364600A6FD66 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7291565E17BA364600A6FD66 /* LoginViewController.m */; };
 		72B8681B17B3C49F00A871E5 /* LoginWithFacebookNormal.png in Resources */ = {isa = PBXBuildFile; fileRef = 72B8681917B3C49F00A871E5 /* LoginWithFacebookNormal.png */; };
 		72B8681C17B3C49F00A871E5 /* LoginWithFacebookNormal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 72B8681A17B3C49F00A871E5 /* LoginWithFacebookNormal@2x.png */; };
 		72B8682417B3C50100A871E5 /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 72B8682117B3C50100A871E5 /* MainStoryboard_iPhone.storyboard */; };
-		72C5AA8817B2CE05006958EE /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 72C5AA8717B2CE05006958EE /* LoginViewController.m */; };
 		F6ACFD7519D3414A9256BAA2 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 33E65F1F32904CA68E71C0AC /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -67,23 +68,25 @@
 		7208346A17A0288800CEC1E5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		7208346C17A0288800CEC1E5 /* StiriTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StiriTests.h; sourceTree = "<group>"; };
 		7208346D17A0288800CEC1E5 /* StiriTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StiriTests.m; sourceTree = "<group>"; };
-		7228957C17A02CF4009C9DCF /* AllGroupsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllGroupsViewController.h; sourceTree = "<group>"; };
-		7228957D17A02CF4009C9DCF /* AllGroupsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllGroupsViewController.m; sourceTree = "<group>"; };
 		727B033917BA12CD003A0500 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		727B033C17BA12EF003A0500 /* NewsModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = NewsModel.xcdatamodel; sourceTree = "<group>"; };
-		729155E917BA179000A6FD66 /* NewsSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewsSource.h; path = Model/NewsSource.h; sourceTree = "<group>"; };
-		729155EA17BA179000A6FD66 /* NewsSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewsSource.m; path = Model/NewsSource.m; sourceTree = "<group>"; };
 		729155EC17BA183000A6FD66 /* NewsGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewsGroup.h; path = Model/NewsGroup.h; sourceTree = "<group>"; };
 		729155ED17BA183000A6FD66 /* NewsGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewsGroup.m; path = Model/NewsGroup.m; sourceTree = "<group>"; };
-		72AD444917A054DA00074FF2 /* NewsItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsItem.h; sourceTree = "<group>"; };
-		72AD444A17A054DA00074FF2 /* NewsItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsItem.m; sourceTree = "<group>"; };
-		72AD445217A05A4900074FF2 /* NewsDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsDataSource.h; sourceTree = "<group>"; };
-		72AD445317A05A4900074FF2 /* NewsDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsDataSource.m; sourceTree = "<group>"; };
+		7291564817BA250200A6FD66 /* NewsSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewsSource.h; path = Model/NewsSource.h; sourceTree = "<group>"; };
+		7291564917BA250200A6FD66 /* NewsSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewsSource.m; path = Model/NewsSource.m; sourceTree = "<group>"; };
+		7291564E17BA35A200A6FD66 /* NewsItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewsItem.h; path = Model/NewsItem.h; sourceTree = "<group>"; };
+		7291564F17BA35A200A6FD66 /* NewsItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewsItem.m; path = Model/NewsItem.m; sourceTree = "<group>"; };
+		7291565117BA35AA00A6FD66 /* NewsDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewsDataSource.h; path = Model/NewsDataSource.h; sourceTree = "<group>"; };
+		7291565217BA35AA00A6FD66 /* NewsDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewsDataSource.m; path = Model/NewsDataSource.m; sourceTree = "<group>"; };
+		7291565517BA35CF00A6FD66 /* NewsModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = NewsModel.xcdatamodel; sourceTree = "<group>"; };
+		7291565717BA35FB00A6FD66 /* NewsGroupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewsGroupViewController.h; path = Controller/NewsGroupViewController.h; sourceTree = "<group>"; };
+		7291565817BA35FB00A6FD66 /* NewsGroupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewsGroupViewController.m; path = Controller/NewsGroupViewController.m; sourceTree = "<group>"; };
+		7291565A17BA363400A6FD66 /* NewsSourceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewsSourceViewController.h; path = Controller/NewsSourceViewController.h; sourceTree = "<group>"; };
+		7291565B17BA363400A6FD66 /* NewsSourceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewsSourceViewController.m; path = Controller/NewsSourceViewController.m; sourceTree = "<group>"; };
+		7291565D17BA364600A6FD66 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoginViewController.h; path = Controller/LoginViewController.h; sourceTree = "<group>"; };
+		7291565E17BA364600A6FD66 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoginViewController.m; path = Controller/LoginViewController.m; sourceTree = "<group>"; };
 		72B8681917B3C49F00A871E5 /* LoginWithFacebookNormal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LoginWithFacebookNormal.png; sourceTree = "<group>"; };
 		72B8681A17B3C49F00A871E5 /* LoginWithFacebookNormal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LoginWithFacebookNormal@2x.png"; sourceTree = "<group>"; };
 		72B8682217B3C50100A871E5 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
-		72C5AA8617B2CE05006958EE /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
-		72C5AA8717B2CE05006958EE /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -197,10 +200,15 @@
 		729155E217BA173900A6FD66 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				7291565417BA35CF00A6FD66 /* NewsModel.xcdatamodeld */,
+				7291565117BA35AA00A6FD66 /* NewsDataSource.h */,
+				7291565217BA35AA00A6FD66 /* NewsDataSource.m */,
+				7291564E17BA35A200A6FD66 /* NewsItem.h */,
+				7291564F17BA35A200A6FD66 /* NewsItem.m */,
+				7291564817BA250200A6FD66 /* NewsSource.h */,
+				7291564917BA250200A6FD66 /* NewsSource.m */,
 				729155EC17BA183000A6FD66 /* NewsGroup.h */,
 				729155ED17BA183000A6FD66 /* NewsGroup.m */,
-				729155E917BA179000A6FD66 /* NewsSource.h */,
-				729155EA17BA179000A6FD66 /* NewsSource.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -208,10 +216,12 @@
 		72AD444717A054A900074FF2 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				7228957C17A02CF4009C9DCF /* AllGroupsViewController.h */,
-				7228957D17A02CF4009C9DCF /* AllGroupsViewController.m */,
-				72C5AA8617B2CE05006958EE /* LoginViewController.h */,
-				72C5AA8717B2CE05006958EE /* LoginViewController.m */,
+				7291565D17BA364600A6FD66 /* LoginViewController.h */,
+				7291565E17BA364600A6FD66 /* LoginViewController.m */,
+				7291565717BA35FB00A6FD66 /* NewsGroupViewController.h */,
+				7291565817BA35FB00A6FD66 /* NewsGroupViewController.m */,
+				7291565A17BA363400A6FD66 /* NewsSourceViewController.h */,
+				7291565B17BA363400A6FD66 /* NewsSourceViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -219,11 +229,6 @@
 		72AD444817A054B800074FF2 /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				72AD444917A054DA00074FF2 /* NewsItem.h */,
-				72AD444A17A054DA00074FF2 /* NewsItem.m */,
-				72AD445217A05A4900074FF2 /* NewsDataSource.h */,
-				72AD445317A05A4900074FF2 /* NewsDataSource.m */,
-				727B033B17BA12EF003A0500 /* NewsModel.xcdatamodeld */,
 			);
 			name = Data;
 			sourceTree = "<group>";
@@ -405,13 +410,14 @@
 			files = (
 				7208344617A0288800CEC1E5 /* main.m in Sources */,
 				7208344A17A0288800CEC1E5 /* AppDelegate.m in Sources */,
-				7228957E17A02CF4009C9DCF /* AllGroupsViewController.m in Sources */,
-				72AD444B17A054DA00074FF2 /* NewsItem.m in Sources */,
-				72AD445417A05A4900074FF2 /* NewsDataSource.m in Sources */,
-				72C5AA8817B2CE05006958EE /* LoginViewController.m in Sources */,
-				727B033D17BA12EF003A0500 /* NewsModel.xcdatamodeld in Sources */,
-				729155EB17BA179000A6FD66 /* NewsSource.m in Sources */,
 				729155EE17BA183000A6FD66 /* NewsGroup.m in Sources */,
+				7291564A17BA250200A6FD66 /* NewsSource.m in Sources */,
+				7291565017BA35A200A6FD66 /* NewsItem.m in Sources */,
+				7291565317BA35AA00A6FD66 /* NewsDataSource.m in Sources */,
+				7291565617BA35CF00A6FD66 /* NewsModel.xcdatamodeld in Sources */,
+				7291565917BA35FB00A6FD66 /* NewsGroupViewController.m in Sources */,
+				7291565C17BA363400A6FD66 /* NewsSourceViewController.m in Sources */,
+				7291565F17BA364600A6FD66 /* LoginViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -613,13 +619,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		727B033B17BA12EF003A0500 /* NewsModel.xcdatamodeld */ = {
+		7291565417BA35CF00A6FD66 /* NewsModel.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				727B033C17BA12EF003A0500 /* NewsModel.xcdatamodel */,
+				7291565517BA35CF00A6FD66 /* NewsModel.xcdatamodel */,
 			);
-			currentVersion = 727B033C17BA12EF003A0500 /* NewsModel.xcdatamodel */;
-			path = NewsModel.xcdatamodeld;
+			currentVersion = 7291565517BA35CF00A6FD66 /* NewsModel.xcdatamodel */;
+			name = NewsModel.xcdatamodeld;
+			path = Model/NewsModel.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
