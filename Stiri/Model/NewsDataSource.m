@@ -74,23 +74,12 @@ static NewsDataSource *_newsDataSource;
 
 -(void) insertGroupsAndNewsSource:(NSDictionary *)jsonData;
 {
-    NSMutableArray *allGroups = [self.allGroups mutableCopy];
+    [self deleteAllNewsGroupsAndNewsSources];
     NSManagedObjectContext *context = [self managedObjectContext];
     for(NSDictionary* groupJSONOBject in jsonData){
         NSNumber *groupId = [groupJSONOBject valueForKey:@"group_id"];
         NSString *title = [groupJSONOBject valueForKey:@"group_title"];
-        bool existedBefore = false;
-        NewsGroup *newsGroup;
-        for(NewsGroup *ng in allGroups){
-            if([ng.groupId isEqual:groupId]){
-                existedBefore = true;
-                [allGroups removeObject:ng];
-                break;
-            }
-        }
-        if(existedBefore==false){
-            newsGroup = [NSEntityDescription insertNewObjectForEntityForName:@"NewsGroup" inManagedObjectContext:context];
-        }
+        NewsGroup *newsGroup = [NSEntityDescription insertNewObjectForEntityForName:@"NewsGroup" inManagedObjectContext:context];
         newsGroup.groupId = groupId;
         newsGroup.title = title;
         NSDictionary *allSourcesJSONObject = [groupJSONOBject valueForKey:@"group_feeds"];
@@ -100,18 +89,7 @@ static NewsDataSource *_newsDataSource;
             NSString *title = [sourceJSONObject valueForKey:@"title"];
             NSString *sourceDescription = [sourceJSONObject valueForKey:@"description"];
             NSString *url = [sourceJSONObject valueForKey:@"url"];
-            NewsSource *newsSource;
-            bool existedBefore = false;
-            for(NewsSource *ns in newsGroup.newsSources){
-                if([ns.sourceId isEqual:sourceId]){
-                    newsSource = ns;
-                    existedBefore = true;
-                    break;
-                }
-            }
-            if(existedBefore == false){
-                newsSource = [NSEntityDescription insertNewObjectForEntityForName:@"NewsSource" inManagedObjectContext:context];
-            }
+            NewsSource *newsSource = [NSEntityDescription insertNewObjectForEntityForName:@"NewsSource" inManagedObjectContext:context];
             newsSource.groupOwner = newsGroup;
             newsSource.title = title;
             newsSource.url = url;
@@ -124,6 +102,23 @@ static NewsDataSource *_newsDataSource;
         if (![context save:&error]) {
             NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
         }
+    }
+}
+
+//DELETE DATA
+
+- (void) deleteAllNewsGroupsAndNewsSources{
+    NSManagedObjectContext *context = [self managedObjectContext];
+    for( NSManagedObject* group in self.allGroups){
+        [self.managedObjectContext deleteObject:group];
+    }
+    for( NSManagedObject *source in self.allSources){
+        [self.managedObjectContext deleteObject:source];
+    }
+    
+    NSError *error;
+    if (![context save:&error]) {
+        NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
     }
 }
 @end

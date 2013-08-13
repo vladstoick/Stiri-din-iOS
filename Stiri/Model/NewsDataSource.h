@@ -17,7 +17,7 @@
 - (NSArray*) allGroups;
 - (NewsGroup*) getGroupWithId:(NSNumber *) groupId;
 //NEWSOURCE
-- (NSArray*) allSurces;
+- (NSArray*) allSources;
 //INSERTING DATA
 - (void) insertGroupsAndNewsSource: (NSDictionary*) groups;
 
