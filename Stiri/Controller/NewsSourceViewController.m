@@ -70,7 +70,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableViewLocal cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *subtitleTableIdentifier = @"groupTableViewCell";
+    static NSString *subtitleTableIdentifier = @"subltileViewCell";
     
     UITableViewCell *cell = [tableViewLocal dequeueReusableCellWithIdentifier:subtitleTableIdentifier];
     

@@ -68,7 +68,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableViewLocal cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *subtitleTableIdentifier = @"groupTableViewCell";
+    static NSString *subtitleTableIdentifier = @"subtitleViewCell";
     
     UITableViewCell *cell = [tableViewLocal dequeueReusableCellWithIdentifier:subtitleTableIdentifier];
     
@@ -92,6 +92,7 @@
         NewsSourceViewController *destViewController = segue.destinationViewController;
         NewsGroup *selectedNewsGroup = [self.groups objectAtIndex:indexPath.row];
         destViewController.groupId = selectedNewsGroup.groupId;
+        [self.tableView deselectRowAtIndexPath:indexPath animated:false];
     }
 }
 @end
