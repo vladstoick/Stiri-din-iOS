@@ -15,7 +15,6 @@
 #import "ECSlidingViewController.h"
 #import <QuartzCore/QuartzCore.h>
 #import "MenuViewController.h"
-#import "FlatUIKIT.h"
 #define DATA_CHANGED_EVENT @"data_changed"
 @interface NewsGroupViewController ()
 @property (strong, nonatomic) NewsDataSource *newsDataSource;
@@ -46,17 +45,13 @@
         self.slidingViewController.underLeftViewController  = [self.storyboard instantiateViewControllerWithIdentifier:@"Menu"];
     }
     [self.navigationController.view addGestureRecognizer:self.slidingViewController.panGesture];
-    [UIBarButtonItem configureFlatButtonsWithColor:[UIColor peterRiverColor]
-                                  highlightedColor:[UIColor belizeHoleColor]
-                                      cornerRadius:3];
     UIBarButtonItem *barBtnItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addItem:)];
-    UIBarButtonItem *burgerBtnItem = [[UIBarButtonItem alloc]initWithTitle:@"☰" style:UIBarButtonItemStylePlain target:self action:@selector(openMenu:)];
     self.navigationItem.rightBarButtonItem=barBtnItem;
-    self.navigationItem.leftBarButtonItem=burgerBtnItem;
+
 }
 
 - (IBAction)addItem:(id)sender{
-    
+    [self performSegueWithIdentifier:@"showAddTabController" sender:self];
 }
 
 - (IBAction)openMenu:(id)sender{

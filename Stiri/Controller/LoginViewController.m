@@ -15,7 +15,6 @@
 #import <FacebookSDK/FacebookSDK.h>
 #import "InitialViewController.h"
 #import "MenuViewController.h"
-#import "FlatUIKIt.h"
 @interface LoginViewController ()
 
 @end
@@ -51,7 +50,6 @@ static NSString * const kClientId = @"976584719831.apps.googleusercontent.com";
     [super viewDidLoad];
     [[self navigationController] setNavigationBarHidden:YES animated:NO];
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [self.navigationController.navigationBar configureFlatNavigationBarWithColor:[UIColor midnightBlueColor]];
     
     if([defaults integerForKey:@"user_id"]){
         [self performSegueWithIdentifier:@"loginSuccesfulSegue" sender:self];
