@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface NewsSourceViewController : UIViewController
-@property (nonatomic, strong) NSString *groupId;
+@property (nonatomic) NSNumber *groupId;
 @end

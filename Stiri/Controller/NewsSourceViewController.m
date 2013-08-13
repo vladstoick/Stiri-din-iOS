@@ -7,13 +7,20 @@
 //
 
 #import "NewsSourceViewController.h"
-
+#import "NewsGroup.h"
+#import "NewsDataSource.h"
 @interface NewsSourceViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *newsSourceTableView;
-
+@property (strong, nonatomic) NewsDataSource *newsDataSource;
+@property (strong, nonatomic) NewsGroup *newsGroup;
 @end
 
 @implementation NewsSourceViewController
+
+- (NewsDataSource*) newsDataSource{
+    if(!_newsDataSource) _newsDataSource = [NewsDataSource newsDataSource];
+    return _newsDataSource;
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -27,6 +34,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.newsGroup = [self.newsDataSource getGroupWithId:self.groupId];
+    self.title = self.newsGroup.title;
 	// Do any additional setup after loading the view.
 }
 

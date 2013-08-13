@@ -50,6 +50,7 @@
         [self.newsDataSource insertGroupsAndNewsSource:jsonDictionary];
         self.groups = self.newsDataSource.allGroups;
         [self.tableView reloadData];
+        [SVProgressHUD dismiss];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"error recieved : %@",error);
     }];
@@ -91,7 +92,8 @@
     if( [segue.identifier isEqualToString:@"showNewsSourceForGroup"]){
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         NewsSourceViewController *destViewController = segue.destinationViewController;
-        destViewController.groupId = [self.groups objectAtIndex:indexPath.row];
+        NewsGroup *selectedNewsGroup = [self.groups objectAtIndex:indexPath.row];
+        destViewController.groupId = selectedNewsGroup.groupId;
     }
 }
 @end

@@ -7,12 +7,19 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import "NewsGroup.h"
 @interface NewsDataSource : NSObject
 @property (readonly, strong, nonatomic) NSArray *allGroups;
 @property (nonatomic) int userId;
-
+//INITIALIZATION
 + (NewsDataSource*) newsDataSource;
-- (void) insertGroupsAndNewsSource: (NSArray*) groups;
+//NEWSGROUP
 - (NSArray*) allGroups;
+- (NewsGroup*) getGroupWithId:(NSNumber *) groupId;
+//NEWSOURCE
+- (NSArray*) allSurces;
+//INSERTING DATA
+- (void) insertGroupsAndNewsSource: (NSDictionary*) groups;
+
+
 @end

@@ -32,8 +32,8 @@ static NewsDataSource *_newsDataSource;
     }
     return _managedObjectContext;
 }
-//PUBLIC STUFF
 
+//NEWSGROUP
 - (NSArray*) allGroups{
     NSManagedObjectContext *context = [self managedObjectContext];
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
@@ -43,6 +43,21 @@ static NewsDataSource *_newsDataSource;
     NSArray *groups = [context executeFetchRequest:fetchRequest error:nil];
     return groups;
 }
+- (NewsGroup*) getGroupWithId:(NSNumber *) groupId{
+    NSManagedObjectContext *context = [self managedObjectContext];
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"NewsGroup"
+                                              inManagedObjectContext:context];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:[NSString stringWithFormat:@"groupId = %@",groupId]];
+    [fetchRequest setPredicate:predicate];
+    [fetchRequest setEntity:entity];
+    NSError *error;
+    NSArray *results = [context executeFetchRequest:fetchRequest error:&error];
+    return results[0];
+}
+
+//NEWSSOURCE
+
 
 - (NSArray*) allSources{
     NSManagedObjectContext *context = [self managedObjectContext];
@@ -55,6 +70,8 @@ static NewsDataSource *_newsDataSource;
     
 }
 
+//INSERTING DATA
+
 -(void) insertGroupsAndNewsSource:(NSDictionary *)jsonData;
 {
     NSMutableArray *allGroups = [self.allGroups mutableCopy];
@@ -66,8 +83,6 @@ static NewsDataSource *_newsDataSource;
         NewsGroup *newsGroup;
         for(NewsGroup *ng in allGroups){
             if([ng.groupId isEqual:groupId]){
-                newsGroup = ng;
-                newsGroup.title = title;
                 existedBefore = true;
                 [allGroups removeObject:ng];
                 break;
@@ -75,9 +90,9 @@ static NewsDataSource *_newsDataSource;
         }
         if(existedBefore==false){
             newsGroup = [NSEntityDescription insertNewObjectForEntityForName:@"NewsGroup" inManagedObjectContext:context];
-            newsGroup.groupId = groupId;
-            newsGroup.title = title;
         }
+        newsGroup.groupId = groupId;
+        newsGroup.title = title;
         NSDictionary *allSourcesJSONObject = [groupJSONOBject valueForKey:@"group_feeds"];
         NSMutableSet *sourcesForGroup = [[NSMutableSet alloc]init];
         for(NSDictionary *sourceJSONObject in allSourcesJSONObject){
@@ -90,21 +105,18 @@ static NewsDataSource *_newsDataSource;
             for(NewsSource *ns in newsGroup.newsSources){
                 if([ns.sourceId isEqual:sourceId]){
                     newsSource = ns;
-                    newsSource.title = title;
-                    newsSource.url = url;
-                    newsSource.sourceDescription = sourceDescription;
                     existedBefore = true;
                     break;
                 }
             }
             if(existedBefore == false){
                 newsSource = [NSEntityDescription insertNewObjectForEntityForName:@"NewsSource" inManagedObjectContext:context];
-                newsSource.groupOwner = newsGroup;
-                newsSource.title = title;
-                newsSource.sourceDescription = sourceDescription;
-                newsSource.sourceId = sourceId;
-                newsSource.url = url;
             }
+            newsSource.groupOwner = newsGroup;
+            newsSource.title = title;
+            newsSource.url = url;
+            newsSource.sourceId = sourceId;
+            newsSource.sourceDescription = sourceDescription;
             [sourcesForGroup addObject:newsSource];
         }
         newsGroup.newsSources = sourcesForGroup;
@@ -113,7 +125,6 @@ static NewsDataSource *_newsDataSource;
             NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
         }
     }
-    [SVProgressHUD dismiss];
 }
 @end
 
