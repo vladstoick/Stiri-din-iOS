@@ -20,6 +20,7 @@
 @property (strong, nonatomic) NewsDataSource *newsDataSource;
 @property (strong, nonatomic) NSArray *groups;
 @property (strong, nonatomic) UIRefreshControl *refreshControl;
+@property (nonatomic) BOOL isDataLoading;
 @property (nonatomic) int userId;
 @end
 @implementation NewsGroupViewController
@@ -53,6 +54,7 @@
     [super viewDidLoad];
     [super setTitle:@"Grupurile tale"];
     self.navigationItem.hidesBackButton = true;
+    self.isDataLoading = YES;
     [self.refreshControl addTarget:self action:@selector(refresh) forControlEvents:UIControlEventValueChanged];
     [self.tableView addSubview:self.refreshControl];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dataChanged:) name:DATA_CHANGED_EVENT object:nil];
@@ -63,6 +65,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+
     [[self navigationController] setNavigationBarHidden:NO animated:YES];
     [self.slidingViewController setAnchorRightRevealAmount:200.0f];
     self.navigationController.view.layer.shadowOpacity = 0.75f;
@@ -78,10 +81,14 @@
 }
 
 - (void) refresh {
-    [[NewsDataSource newsDataSource]loadData];
+    if(self.isDataLoading == NO){
+        [[NewsDataSource newsDataSource]loadData];
+        self.isDataLoading = YES;
+    }
 }
 
 - (void) dataChanged:(NSNotification*) event{
+    self.isDataLoading=NO;
     [self.tableView reloadData];
     [self.refreshControl endRefreshing];
 }
