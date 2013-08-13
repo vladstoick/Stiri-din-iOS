@@ -2,16 +2,20 @@
 //  NewsItem.h
 //  Stiri
 //
-//  Created by Stoica Vlad on 7/24/13.
+//  Created by Vlad Stoica on 8/13/13.
 //  Copyright (c) 2013 Stoica Vlad. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
+#import <CoreData/CoreData.h>
 
-@interface NewsItem : NSObject
-@property NSString *title;
-@property NSString *description;
-@property NSURL *url;
--(id) initWithTitle:(NSString*) title andDescription:(NSString*) description
-             andUrl: (NSURL*) url;
+@class NewsSource;
+
+@interface NewsItem : NSManagedObject
+
+@property (nonatomic, retain) NSString * title;
+@property (nonatomic, retain) NSString * paperized;
+@property (nonatomic, retain) NSString * url;
+@property (nonatomic, retain) NewsSource *sourceOwner;
+
 @end

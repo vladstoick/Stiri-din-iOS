@@ -8,14 +8,17 @@
 
 #import "NewsSource.h"
 #import "NewsGroup.h"
+#import "NewsItem.h"
 
 
 @implementation NewsSource
 
+@dynamic sourceDescription;
 @dynamic sourceId;
 @dynamic title;
-@dynamic sourceDescription;
 @dynamic url;
+@dynamic isFeedParsed;
 @dynamic groupOwner;
+@dynamic news;
 
 @end

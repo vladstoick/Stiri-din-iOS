@@ -3,19 +3,18 @@ PODS:
   - cdebug (0.1.1)
   - ECSlidingViewController (0.10.0)
   - Facebook-iOS-SDK (3.6.0)
-  - FoundationExtension (0.38):
+  - FoundationExtension (0.39):
     - cdebug (~> 0.1)
     - FoundationExtension/CocoaExtension
     - FoundationExtension/FoundationExtension
     - FoundationExtension/UIKitExtension
-  - FoundationExtension/FoundationExtension (0.38):
+  - FoundationExtension/FoundationExtension (0.39):
     - cdebug (~> 0.1)
-  - FoundationExtension/UIKitExtension (0.38):
+  - FoundationExtension/UIKitExtension (0.39):
     - cdebug (~> 0.1)
     - FoundationExtension/FoundationExtension
   - google-plus-ios-sdk (1.3.0)
   - KLSwitch (1.5)
-  - NewRelicAgent (1.354)
   - SVProgressHUD (0.9)
   - UI7Kit (0.7.9):
     - FoundationExtension (~> 0.38)
@@ -26,7 +25,6 @@ DEPENDENCIES:
   - ECSlidingViewController (~> 0.10.0)
   - Facebook-iOS-SDK (~> 3.6.0)
   - google-plus-ios-sdk (~> 1.3.0)
-  - NewRelicAgent (~> 1.354)
   - SVProgressHUD (= 0.9)
   - UI7Kit
 
@@ -35,10 +33,9 @@ SPEC CHECKSUMS:
   cdebug: 8c2ca6363107205eaf777295736c0ec12ba490bd
   ECSlidingViewController: fc9a9a6564d4a64c0d8c7cf5583d2b9a469ecd04
   Facebook-iOS-SDK: a60c23acea22161609ef6144ffff686e6f133902
-  FoundationExtension: c1b0732650dbe50e4ab4754b34050b7d44952f50
+  FoundationExtension: 12a20cccde3de622ecf712d1db2af33555cd0092
   google-plus-ios-sdk: 38378c4094a72a4fcdd5254c03fdd1813b345fb9
   KLSwitch: 27e07101397ce250acbf6c3a65349cdf69f4bcec
-  NewRelicAgent: 366c693e7f23f3f7b065cd3f23d0d70070f761ed
   SVProgressHUD: 03d4845ec8e64591726428a08236c6a5489d45f8
   UI7Kit: 2061569988c8a5093897235581933af23eb651a6
 

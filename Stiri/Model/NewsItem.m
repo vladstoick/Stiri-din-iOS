@@ -2,22 +2,19 @@
 //  NewsItem.m
 //  Stiri
 //
-//  Created by Stoica Vlad on 7/24/13.
+//  Created by Vlad Stoica on 8/13/13.
 //  Copyright (c) 2013 Stoica Vlad. All rights reserved.
 //
 
 #import "NewsItem.h"
+#import "NewsSource.h"
+
 
 @implementation NewsItem
--(id) initWithTitle:(NSString *)title andDescription:(NSString *)description
-             andUrl:(NSURL *)url{
-    self = [super init];
-    if(self)
-    {
-        self.title=title;
-        self.description=description;
-        self.url=url;
-    }
-    return self;
-}
+
+@dynamic title;
+@dynamic paperized;
+@dynamic url;
+@dynamic sourceOwner;
+
 @end

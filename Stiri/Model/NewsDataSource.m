@@ -8,13 +8,15 @@
 
 #import "NewsDataSource.h"
 #import "NewsGroup.h"
+#import "NewsItem.h"
 #import "NewsSource.h"
 #import "SVProgressHud.h"
 #import "AppDelegate.h"
 #import "AFNetworking.h"
 #define RAILSBASEURL @"http://stiriromania.eu01.aws.af.cm/user/"
+#define PARSEBASEURL @"http://37.139.8.146:3000/?url="
 #define DATA_CHANGED_EVENT @"data_changed"
-
+#define DATA_NEWSOURCE_PARSED @"newssource_loaded"
 @interface NewsDataSource()
 @property (nonatomic,strong) NSManagedObjectContext* managedObjectContext;
 @end
@@ -46,6 +48,23 @@ static NewsDataSource *_newsDataSource;
     return _managedObjectContext;
 }
 
+- (void) parseNewsSource:(NewsSource *) newsSource{
+    NSString *urlString = [NSString stringWithFormat:@"%@%@&feedId=%@",PARSEBASEURL,newsSource.url,newsSource.sourceId];
+    NSURL *url = [NSURL URLWithString:urlString];
+    AFHTTPClient *httpClient = [[AFHTTPClient alloc] initWithBaseURL:url];
+    [httpClient getPath:@"" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSString *responseStr = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+        NSDictionary *jsonDictionary = [NSJSONSerialization JSONObjectWithData: [responseStr dataUsingEncoding:NSUTF8StringEncoding]
+                                                                       options: NSJSONReadingMutableContainers
+                                                                        error: nil];
+        NSArray *articles = [jsonDictionary valueForKey:@"articles"];
+        [self insertNewsItems:articles forNewsSource:newsSource];
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"error recieved : %@",error);
+    }];
+}
+
 - (void) loadData{
     NSString *urlString = [NSString stringWithFormat:@"%@%d",RAILSBASEURL,self.userId];
     NSURL *url = [NSURL URLWithString:urlString];
@@ -59,7 +78,7 @@ static NewsDataSource *_newsDataSource;
         [self insertGroupsAndNewsSource:jsonDictionary];
         [SVProgressHUD dismiss];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"error recieved : %@",error);
+  
     }];
 
 }
@@ -102,6 +121,31 @@ static NewsDataSource *_newsDataSource;
     
 }
 
+
+- (NewsSource *) getNewsSourceWithId:(NSNumber *) sourceId{
+    NSManagedObjectContext *context = [self managedObjectContext];
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"NewsSource"
+                                              inManagedObjectContext:context];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:[NSString stringWithFormat:@"sourceId = %@",sourceId]];
+    [fetchRequest setPredicate:predicate];
+    [fetchRequest setEntity:entity];
+    NSError *error;
+    NSArray *results = [context executeFetchRequest:fetchRequest error:&error];
+    return results[0];
+}
+
+//NEWSITEM
+- (NSArray*) allItems{
+    NSManagedObjectContext *context = [self managedObjectContext];
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"NewsItem"
+                                              inManagedObjectContext:context];
+    [fetchRequest setEntity:entity];
+    NSArray *newsItems = [context executeFetchRequest:fetchRequest error:nil];
+    return newsItems;
+}
+
 //INSERTING DATA
 
 
@@ -128,7 +172,9 @@ static NewsDataSource *_newsDataSource;
             newsSource.url = url;
             newsSource.sourceId = sourceId;
             newsSource.sourceDescription = sourceDescription;
+            newsSource.isFeedParsed=@0;
             [sourcesForGroup addObject:newsSource];
+            [self parseNewsSource:newsSource];
         }
         newsGroup.newsSources = sourcesForGroup;
         NSError *error;
@@ -137,6 +183,33 @@ static NewsDataSource *_newsDataSource;
         }
     }
     [[NSNotificationCenter defaultCenter] postNotificationName:DATA_CHANGED_EVENT object:nil];
+}
+
+- (void) insertNewsItems:(NSArray*) articles forNewsSource:(NewsSource*) newsSource{
+    NSManagedObjectContext *context = [self managedObjectContext];
+    newsSource = [self getNewsSourceWithId:newsSource.sourceId];
+    NSMutableSet *news = [[NSMutableSet alloc]init];
+    for(NSDictionary *articleJSONObject in articles){
+        NSString *url = [articleJSONObject valueForKey:@"url"];
+        NSString *title = [articleJSONObject valueForKey:@"title"];
+        NSString *paperized = [articleJSONObject valueForKey:@"description"];
+        if((NSNull*)paperized == [NSNull null]){
+            paperized=@"Loading";
+        }
+        NewsItem *newsItem = [NSEntityDescription insertNewObjectForEntityForName:@"NewsItem" inManagedObjectContext:context];
+        newsItem.url = url;
+        newsItem.title = title;
+        newsItem.paperized = paperized;
+        [news addObject:newsItem];
+     
+    }
+    newsSource.isFeedParsed = @1;
+    newsSource.news = news;
+    NSError *error;
+    [[NSNotificationCenter defaultCenter] postNotificationName:DATA_NEWSOURCE_PARSED object:nil];
+    if (![context save:&error]) {
+        NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
+    }
 }
 
 //DELETE DATA
@@ -149,7 +222,9 @@ static NewsDataSource *_newsDataSource;
     for( NSManagedObject *source in self.allSources){
         [self.managedObjectContext deleteObject:source];
     }
-    
+    for( NSManagedObject *newsItem in self.allItems){
+        [self.managedObjectContext deleteObject:newsItem];
+    }
     NSError *error;
     if (![context save:&error]) {
         NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);

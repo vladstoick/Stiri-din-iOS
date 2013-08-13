@@ -7,12 +7,36 @@
 //
 
 #import "NewsItemsViewController.h"
-
+#import "NewsSource.h"
+#import "NewsItem.h"
+#import "NewsDataSource.h"
+#import "SVProgressHud.h"
+#define DATA_NEWSOURCE_PARSED @"newssource_loaded"
 @interface NewsItemsViewController ()
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (readonly,nonatomic) NewsSource* newsSource;
+@property (readonly,nonatomic) NSArray* news;
 @end
 
 @implementation NewsItemsViewController
+
+- (NewsSource *) newsSource{
+    NewsSource *localNewsSource = [[NewsDataSource newsDataSource] getNewsSourceWithId:self.sourceId];
+    return localNewsSource;
+}
+
+- (void) checkIfParsed:(NewsSource*) ns{
+    if([ns.isFeedParsed isEqual: @0]){
+        [SVProgressHUD show];
+    } else {
+        [SVProgressHUD dismiss];
+        [self.tableView reloadData];
+    }
+    
+}
+
+- (NSArray *) news{
+    return [self.newsSource.news allObjects];
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -23,16 +47,48 @@
     return self;
 }
 
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self checkIfParsed:self.newsSource];
+    self.title = self.newsSource.title;
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dataChanged:) name:DATA_NEWSOURCE_PARSED object:nil];
 	// Do any additional setup after loading the view.
+}
+
+- (void) dataChanged:(NSNotification *) notification{
+    [self checkIfParsed:self.newsSource];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    return 1;
+}
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return self.news.count;
+}
+
+
+- (UITableViewCell *)tableView:(UITableView *)tableViewLocal cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *subtitleTableIdentifier = @"titleViewCellItem";
+    
+    UITableViewCell *cell = [tableViewLocal dequeueReusableCellWithIdentifier:subtitleTableIdentifier];
+    
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:subtitleTableIdentifier];
+    }
+    NewsItem *ns = (self.news)[indexPath.row];
+    cell.textLabel.text = ns.title;
+
+    return cell;
 }
 
 @end

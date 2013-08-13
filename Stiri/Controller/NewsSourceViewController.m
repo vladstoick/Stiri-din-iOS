@@ -12,34 +12,18 @@
 #import "NewsSource.h"
 #import "NewsDataSource.h"
 @interface NewsSourceViewController ()
-@property (strong, nonatomic) NewsDataSource *newsDataSource;
-@property (strong, nonatomic) NSMutableArray *newsSources;
-@property (strong, nonatomic) NewsGroup *newsGroup;
+@property (readonly,nonatomic) NewsGroup* newsGroup;
+@property (readonly,nonatomic) NSArray* newsSources;
 @end
 
 @implementation NewsSourceViewController
 
-- (NewsDataSource*) newsDataSource{
-    if(!_newsDataSource) _newsDataSource = [NewsDataSource newsDataSource];
-    return _newsDataSource;
-}
-
-- (NSMutableArray*) newsSources{
-    if(!_newsSources) _newsSources = [[NSMutableArray alloc]init];
-    return _newsSources;
-}
-
 - (NewsGroup *) newsGroup{
-    if(!_newsGroup) _newsGroup = [self.newsDataSource getGroupWithId:self.groupId];
-    return _newsGroup;
+    return [[NewsDataSource newsDataSource]getGroupWithId:self.groupId];
 }
 
-
-- (void) syncNewsSourcesWithNewsGroup {
-    [self.newsSources removeAllObjects];
-    for(NewsSource *newsSource in self.newsGroup.newsSources){
-        [self.newsSources addObject:newsSource];
-    }
+- (NSArray *) newsSources{
+    return [self.newsGroup.newsSources allObjects];
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -54,9 +38,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self syncNewsSourcesWithNewsGroup];
     self.title = self.newsGroup.title;
-
     [self.tableView reloadData];
 }
 
@@ -69,6 +51,7 @@
     if([segue.identifier isEqualToString:@"showNewsItemsForNewsSource"]){
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         NewsItemsViewController *destViewController = segue.destinationViewController;
+        
         NewsSource *selectedNewsSource = [self.newsSources objectAtIndex:indexPath.row];
         destViewController.sourceId = selectedNewsSource.sourceId;
         [self.tableView deselectRowAtIndexPath:indexPath animated:false];

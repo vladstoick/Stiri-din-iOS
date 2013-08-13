@@ -19,7 +19,7 @@
 - (NewsGroup*) getGroupWithId:(NSNumber *) groupId;
 //NEWSOURCE
 - (NSArray*) allSources;
-
+- (NewsSource *) getNewsSourceWithId:(NSNumber *) sourceId;
 
 
 @end
