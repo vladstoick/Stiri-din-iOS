@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7206266217BA8EF200455298 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7206266117BA8EF200455298 /* CoreTelephony.framework */; };
 		7208343A17A0288800CEC1E5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7208343917A0288800CEC1E5 /* UIKit.framework */; };
 		7208343C17A0288800CEC1E5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7208343B17A0288800CEC1E5 /* Foundation.framework */; };
 		7208343E17A0288800CEC1E5 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7208343D17A0288800CEC1E5 /* CoreGraphics.framework */; };
@@ -51,6 +52,7 @@
 /* Begin PBXFileReference section */
 		0E217E52A67247C48E4AFB43 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 		33E65F1F32904CA68E71C0AC /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		7206266117BA8EF200455298 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		7208343617A0288800CEC1E5 /* Stiri.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Stiri.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7208343917A0288800CEC1E5 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		7208343B17A0288800CEC1E5 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -100,6 +102,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7206266217BA8EF200455298 /* CoreTelephony.framework in Frameworks */,
 				727B033A17BA12CD003A0500 /* CoreData.framework in Frameworks */,
 				7208343A17A0288800CEC1E5 /* UIKit.framework in Frameworks */,
 				7208343C17A0288800CEC1E5 /* Foundation.framework in Frameworks */,
@@ -124,7 +127,7 @@
 		7208342D17A0288800CEC1E5 = {
 			isa = PBXGroup;
 			children = (
-				727B033917BA12CD003A0500 /* CoreData.framework */,
+				7206266117BA8EF200455298 /* CoreTelephony.framework */,
 				7208343F17A0288800CEC1E5 /* Stiri */,
 				7208346617A0288800CEC1E5 /* StiriTests */,
 				7208343817A0288800CEC1E5 /* Frameworks */,
@@ -145,6 +148,7 @@
 		7208343817A0288800CEC1E5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				727B033917BA12CD003A0500 /* CoreData.framework */,
 				7208343917A0288800CEC1E5 /* UIKit.framework */,
 				7208343B17A0288800CEC1E5 /* Foundation.framework */,
 				7208343D17A0288800CEC1E5 /* CoreGraphics.framework */,

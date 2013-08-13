@@ -10,16 +10,16 @@
 #import "NewsGroup.h"
 @interface NewsDataSource : NSObject
 @property (readonly, strong, nonatomic) NSArray *allGroups;
-@property (nonatomic) int userId;
+@property (nonatomic) NSUInteger userId;
 //INITIALIZATION
 + (NewsDataSource*) newsDataSource;
+- (void) loadData;
 //NEWSGROUP
 - (NSArray*) allGroups;
 - (NewsGroup*) getGroupWithId:(NSNumber *) groupId;
 //NEWSOURCE
 - (NSArray*) allSources;
-//INSERTING DATA
-- (void) insertGroupsAndNewsSource: (NSDictionary*) groups;
+
 
 
 @end

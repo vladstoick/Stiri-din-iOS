@@ -15,6 +15,8 @@
 #import "ECSlidingViewController.h"
 #import <QuartzCore/QuartzCore.h>
 #import "MenuViewController.h"
+#import "FlatUIKIT.h"
+#define DATA_CHANGED_EVENT @"data_changed"
 @interface NewsGroupViewController ()
 @property (strong, nonatomic) NewsDataSource *newsDataSource;
 @property (strong, nonatomic) NSArray *groups;
@@ -28,7 +30,7 @@
 }
 
 - (NSArray *) groups{
-    if(!_groups) _groups = [[NSArray alloc]init];
+    _groups = [self.newsDataSource allGroups];
     return _groups;
 }
 
@@ -36,18 +38,30 @@
 {
     [super viewWillAppear:animated];
     [[self navigationController] setNavigationBarHidden:NO animated:YES];
+    [self.slidingViewController setAnchorRightRevealAmount:200.0f];
     self.navigationController.view.layer.shadowOpacity = 0.75f;
     self.navigationController.view.layer.shadowRadius = 10.0f;
     self.navigationController.view.layer.shadowColor = [UIColor blackColor].CGColor;
     if (![self.slidingViewController.underLeftViewController isKindOfClass:[MenuViewController class]]) {
         self.slidingViewController.underLeftViewController  = [self.storyboard instantiateViewControllerWithIdentifier:@"Menu"];
     }
-
     [self.navigationController.view addGestureRecognizer:self.slidingViewController.panGesture];
-
-    [self.slidingViewController setAnchorRightRevealAmount:280.0f];
+    [UIBarButtonItem configureFlatButtonsWithColor:[UIColor peterRiverColor]
+                                  highlightedColor:[UIColor belizeHoleColor]
+                                      cornerRadius:3];
+    UIBarButtonItem *barBtnItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addItem:)];
+    UIBarButtonItem *burgerBtnItem = [[UIBarButtonItem alloc]initWithTitle:@"☰" style:UIBarButtonItemStylePlain target:self action:@selector(openMenu:)];
+    self.navigationItem.rightBarButtonItem=barBtnItem;
+    self.navigationItem.leftBarButtonItem=burgerBtnItem;
 }
 
+- (IBAction)addItem:(id)sender{
+    
+}
+
+- (IBAction)openMenu:(id)sender{
+    [self.slidingViewController anchorTopViewTo:ECRight];
+}
 
 - (void)viewDidLoad
 {
@@ -55,25 +69,12 @@
     [super setTitle:@"Grupurile tale"];
     self.navigationItem.hidesBackButton = true;
     [SVProgressHUD show];
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    self.userId = [defaults integerForKey:@"user_id"];
-    self.newsDataSource.userId = self.userId;
-    NSString *urlString = [NSString stringWithFormat:@"http://stiriromania.eu01.aws.af.cm/user/%d",self.userId];
-    NSURL *url = [NSURL URLWithString:urlString];
-    AFHTTPClient *httpClient = [[AFHTTPClient alloc] initWithBaseURL:url];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dataChanged:) name:DATA_CHANGED_EVENT object:nil];
+    
+}
 
-    [httpClient getPath:@"" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSString *responseStr = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
-        NSDictionary *jsonDictionary = [NSJSONSerialization JSONObjectWithData: [responseStr dataUsingEncoding:NSUTF8StringEncoding]
-                                                                       options: NSJSONReadingMutableContainers
-                                                                         error: nil];
-        [self.newsDataSource insertGroupsAndNewsSource:jsonDictionary];
-        self.groups = self.newsDataSource.allGroups;
-        [self.tableView reloadData];
-        [SVProgressHUD dismiss];
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"error recieved : %@",error);
-    }];
+- (void) dataChanged:(NSNotification*) event{
+    [self.tableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning
@@ -86,12 +87,10 @@
     return self.groups.count;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableViewLocal cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *subtitleTableIdentifier = @"subtitleViewCell";
-    
-    UITableViewCell *cell = [tableViewLocal dequeueReusableCellWithIdentifier:subtitleTableIdentifier];
-    
+    static NSString *subtitleTableIdentifier = @"subtitleViewCellGroup";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:subtitleTableIdentifier];
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:subtitleTableIdentifier];
     }

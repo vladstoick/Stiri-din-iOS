@@ -11,6 +11,10 @@
 #import "NewsSource.h"
 #import "SVProgressHud.h"
 #import "AppDelegate.h"
+#import "AFNetworking.h"
+#define RAILSBASEURL @"http://stiriromania.eu01.aws.af.cm/user/"
+#define DATA_CHANGED_EVENT @"data_changed"
+
 @interface NewsDataSource()
 @property (nonatomic,strong) NSManagedObjectContext* managedObjectContext;
 @end
@@ -18,9 +22,19 @@
 @implementation NewsDataSource
 //INITALIZATION
 static NewsDataSource *_newsDataSource;
+
+- (NSUInteger) userId{
+    if(_userId == 0 ){
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        _userId = [defaults integerForKey:@"user_id"];
+    }
+    return _userId;
+}
+
 + (NewsDataSource*) newsDataSource{
     if(!_newsDataSource){
         _newsDataSource = [[NewsDataSource alloc] init];
+        [_newsDataSource loadData];
     }
     return _newsDataSource;
 }
@@ -32,6 +46,24 @@ static NewsDataSource *_newsDataSource;
     return _managedObjectContext;
 }
 
+- (void) loadData{
+    NSString *urlString = [NSString stringWithFormat:@"%@%d",RAILSBASEURL,self.userId];
+    NSURL *url = [NSURL URLWithString:urlString];
+    AFHTTPClient *httpClient = [[AFHTTPClient alloc] initWithBaseURL:url];
+    
+    [httpClient getPath:@"" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSString *responseStr = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+        NSDictionary *jsonDictionary = [NSJSONSerialization JSONObjectWithData: [responseStr dataUsingEncoding:NSUTF8StringEncoding]
+                                                                       options: NSJSONReadingMutableContainers
+                                                                         error: nil];
+        [self insertGroupsAndNewsSource:jsonDictionary];
+        [SVProgressHUD dismiss];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"error recieved : %@",error);
+    }];
+
+}
+
 //NEWSGROUP
 - (NSArray*) allGroups{
     NSManagedObjectContext *context = [self managedObjectContext];
@@ -40,6 +72,7 @@ static NewsDataSource *_newsDataSource;
                                               inManagedObjectContext:context];
     [fetchRequest setEntity:entity];
     NSArray *groups = [context executeFetchRequest:fetchRequest error:nil];
+
     return groups;
 }
 - (NewsGroup*) getGroupWithId:(NSNumber *) groupId{
@@ -71,7 +104,8 @@ static NewsDataSource *_newsDataSource;
 
 //INSERTING DATA
 
--(void) insertGroupsAndNewsSource:(NSDictionary *)jsonData;
+
+- (void) insertGroupsAndNewsSource:(NSDictionary *)jsonData;
 {
     [self deleteAllNewsGroupsAndNewsSources];
     NSManagedObjectContext *context = [self managedObjectContext];
@@ -102,6 +136,7 @@ static NewsDataSource *_newsDataSource;
             NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
         }
     }
+    [[NSNotificationCenter defaultCenter] postNotificationName:DATA_CHANGED_EVENT object:nil];
 }
 
 //DELETE DATA
