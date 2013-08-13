@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface NewsSourceViewController : UIViewController
+@interface NewsSourceViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic) NSNumber *groupId;
 @end

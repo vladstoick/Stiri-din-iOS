@@ -8,10 +8,11 @@
 
 #import "NewsSourceViewController.h"
 #import "NewsGroup.h"
+#import "NewsSource.h"
 #import "NewsDataSource.h"
 @interface NewsSourceViewController ()
-@property (weak, nonatomic) IBOutlet UITableView *newsSourceTableView;
 @property (strong, nonatomic) NewsDataSource *newsDataSource;
+@property (strong, nonatomic) NSMutableArray *newsSources;
 @property (strong, nonatomic) NewsGroup *newsGroup;
 @end
 
@@ -20,6 +21,24 @@
 - (NewsDataSource*) newsDataSource{
     if(!_newsDataSource) _newsDataSource = [NewsDataSource newsDataSource];
     return _newsDataSource;
+}
+
+- (NSMutableArray*) newsSources{
+    if(!_newsSources) _newsSources = [[NSMutableArray alloc]init];
+    return _newsSources;
+}
+
+- (NewsGroup *) newsGroup{
+    if(!_newsGroup) _newsGroup = [self.newsDataSource getGroupWithId:self.groupId];
+    return _newsGroup;
+}
+
+
+- (void) syncNewsSourcesWithNewsGroup {
+    [self.newsSources removeAllObjects];
+    for(NewsSource *newsSource in self.newsGroup.newsSources){
+        [self.newsSources addObject:newsSource];
+    }
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -34,15 +53,34 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.newsGroup = [self.newsDataSource getGroupWithId:self.groupId];
+    [self syncNewsSourcesWithNewsGroup];
     self.title = self.newsGroup.title;
-	// Do any additional setup after loading the view.
+    [self.tableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return self.newsSources.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableViewLocal cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *subtitleTableIdentifier = @"groupTableViewCell";
+    
+    UITableViewCell *cell = [tableViewLocal dequeueReusableCellWithIdentifier:subtitleTableIdentifier];
+    
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:subtitleTableIdentifier];
+    }
+    NewsSource *ns = (self.newsSources)[indexPath.row];
+    cell.textLabel.text = ns.title;
+    cell.detailTextLabel.text = ns.sourceDescription;
+    return cell;
 }
 
 @end

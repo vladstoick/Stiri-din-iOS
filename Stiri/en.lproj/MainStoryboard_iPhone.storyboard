@@ -36,7 +36,7 @@
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <connections>
-                                            <segue destination="v6h-p6-dj1" kind="push" identifier="showNewsSourceForGroup" id="DdW-JD-uXR"/>
+                                            <segue destination="ooX-Ng-sbA" kind="push" identifier="showNewsSourceForGroup" id="PyA-uU-lLc"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -64,56 +64,37 @@
             <point key="canvasLocation" x="1118" y="105"/>
         </scene>
         <!--News Source View Controller-->
-        <scene sceneID="0nz-Q7-FTk">
+        <scene sceneID="K7D-sh-6B8">
             <objects>
-                <viewController id="v6h-p6-dj1" customClass="NewsSourceViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="U8F-3B-9Ls">
+                <viewController id="ooX-Ng-sbA" customClass="NewsSourceViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="VJg-tc-smV">
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="s4P-EW-lMS">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="8tK-cG-Djc">
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="sourceTableViewCell" textLabel="bgs-73-Yb3" detailTextLabel="a8d-qg-aHh" style="IBUITableViewCellStyleSubtitle" id="zum-fn-bGP">
-                                        <rect key="frame" x="0.0" y="22" width="320" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bgs-73-Yb3">
-                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                </label>
-                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a8d-qg-aHh">
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <color key="textColor" red="0.50196078431372548" green="0.50196078431372548" blue="0.50196078431372548" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                </label>
-                                            </subviews>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        </view>
-                                    </tableViewCell>
-                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="ooX-Ng-sbA" id="YWj-ce-HFe"/>
+                                    <outlet property="delegate" destination="ooX-Ng-sbA" id="Q2s-bp-Xnx"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="s4P-EW-lMS" firstAttribute="leading" secondItem="U8F-3B-9Ls" secondAttribute="leading" type="default" id="B13-wQ-pAE"/>
-                            <constraint firstItem="s4P-EW-lMS" firstAttribute="top" secondItem="U8F-3B-9Ls" secondAttribute="top" type="default" id="eHU-gm-5Xk"/>
-                            <constraint firstItem="s4P-EW-lMS" firstAttribute="bottom" secondItem="U8F-3B-9Ls" secondAttribute="bottom" type="default" id="ibO-lu-hle"/>
-                            <constraint firstItem="s4P-EW-lMS" firstAttribute="trailing" secondItem="U8F-3B-9Ls" secondAttribute="trailing" type="default" id="zPz-Xq-sJt"/>
+                            <constraint firstItem="8tK-cG-Djc" firstAttribute="bottom" secondItem="VJg-tc-smV" secondAttribute="bottom" type="default" id="9LB-C9-nsO"/>
+                            <constraint firstItem="8tK-cG-Djc" firstAttribute="leading" secondItem="VJg-tc-smV" secondAttribute="leading" type="default" id="Y9I-hW-rVR"/>
+                            <constraint firstItem="8tK-cG-Djc" firstAttribute="trailing" secondItem="VJg-tc-smV" secondAttribute="trailing" type="default" id="d7t-bP-1PI"/>
+                            <constraint firstItem="8tK-cG-Djc" firstAttribute="top" secondItem="VJg-tc-smV" secondAttribute="top" type="default" id="fcu-mU-QQZ"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="NVH-4o-eP1"/>
+                    <navigationItem key="navigationItem" id="Hbf-Gd-Hdw"/>
                     <connections>
-                        <outlet property="newsSourceTableView" destination="s4P-EW-lMS" id="4Xi-40-ayF"/>
+                        <outlet property="tableView" destination="8tK-cG-Djc" id="dF0-Cp-MRb"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ZLM-vD-rEf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="heM-ce-aJr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1601" y="111"/>
+            <point key="canvasLocation" x="1598" y="105"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="hml-Dq-Qvq">
@@ -227,7 +208,7 @@
         <class className="NewsSourceViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/NewsSourceViewController.h"/>
             <relationships>
-                <relationship kind="outlet" name="newsSourceTableView" candidateClass="UITableView"/>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
             </relationships>
         </class>
     </classes>

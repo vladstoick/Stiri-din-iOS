@@ -34,7 +34,7 @@
     [super viewDidLoad];
     [self.navigationController setNavigationBarHidden:false animated:true];
     [self.navigationItem setHidesBackButton:YES];
-    [super setTitle:@"Your Groups"];
+    [super setTitle:@"Grupurile tale"];
     [SVProgressHUD show];
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     self.userId = [defaults integerForKey:@"user_id"];
@@ -64,9 +64,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return self.groups.count;
-
 }
-
 
 - (UITableViewCell *)tableView:(UITableView *)tableViewLocal cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
