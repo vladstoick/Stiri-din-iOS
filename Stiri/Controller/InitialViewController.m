@@ -26,7 +26,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.topViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"LoginView"];
+    self.topViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"Main"];
+
 	// Do any additional setup after loading the view.
 }
 

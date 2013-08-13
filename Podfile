@@ -1,9 +1,10 @@
+pod 'ECSlidingViewController', '~> 0.10.0'
 pod 'AFNetworking', '~> 1.3'
 pod 'Facebook-iOS-SDK' , '~> 3.6.0'
 pod 'google-plus-ios-sdk' , '~> 1.3.0'
 pod 'SVProgressHUD', '0.9'
 pod 'NewRelicAgent' , '~>1.354'
-pod 'ECSlidingViewController', '~> 0.10.0'
+
 Pod::Spec.new do |s|
   s.name         =  'Facebook-iOS-SDK'
   s.version      =  '3.6.0'
@@ -56,5 +57,4 @@ Pod::Spec.new do |s|
   s.preserve_paths      = "NewRelic_iOS_Agent_#{s.version}/*.framework"  
   s.public_header_files = "NewRelic_iOS_Agent_#{s.version}/NewRelicAgent.framework/**/*.h"
   s.vendored_frameworks = "NewRelic_iOS_Agent_#{s.version}/NewRelicAgent.framework"
-  s.documentation     = { :appledoc => ['--company-id', 'com.newrelic'] }
 end

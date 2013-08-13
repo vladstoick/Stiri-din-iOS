@@ -13,7 +13,7 @@
 #import "SVProgressHUD.h"
 #import "AppDelegate.h"
 #import <FacebookSDK/FacebookSDK.h>
-#import "ECSlidingViewController.h"
+#import "InitialViewController.h"
 #import "MenuViewController.h"
 @interface LoginViewController ()
 
@@ -49,24 +49,14 @@ static NSString * const kClientId = @"976584719831.apps.googleusercontent.com";
 {
     [super viewDidLoad];
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-//    if([defaults integerForKey:@"user_id"])
-//        [self performSegueWithIdentifier:@"loginSuccesfulSegue" sender:self];
+    if([defaults integerForKey:@"user_id"])
+        [self performSegueWithIdentifier:@"loginSuccesfulSegue" sender:self];
     GPPSignIn *signIn = [GPPSignIn sharedInstance];
     signIn.clientID = kClientId;
     signIn.scopes = @[kGTLAuthScopePlusLogin];
     signIn.shouldFetchGoogleUserID = true;
     signIn.shouldFetchGoogleUserEmail = true;
     signIn.delegate = self;
-    self.view.layer.shadowOpacity = 0.75f;
-    self.view.layer.shadowRadius = 10.0f;
-    self.view.layer.shadowColor = [UIColor blackColor].CGColor;
-    if(![self.slidingViewController.underLeftViewController isKindOfClass:[MenuViewController class]]){
-        MenuViewController *menu = [self.storyboard instantiateViewControllerWithIdentifier:@"Menu"];
-        NSLog(@"%@",menu);
-        self.slidingViewController.underLeftViewController = menu;
-        NSLog(@"%@",self.slidingViewController.underLeftViewController);
-    }
-    [self.view addGestureRecognizer:self.slidingViewController.panGesture];
 
 }
 
@@ -141,7 +131,7 @@ static NSString * const kClientId = @"976584719831.apps.googleusercontent.com";
         NSNumber *userServerId = [jsonDictionary valueForKey:@"id"];
         [defaults setValue:userServerId forKey:@"user_id"];
         [SVProgressHUD dismiss];
-//        [self performSegueWithIdentifier:@"loginSuccesfulSegue" sender:self];
+        [self performSegueWithIdentifier:@"loginSuccesfulSegue" sender:self];
         NSLog(@"Request Successful, response '%@'", responseStr);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"[HTTPClient Error]: %@", error.localizedDescription);
