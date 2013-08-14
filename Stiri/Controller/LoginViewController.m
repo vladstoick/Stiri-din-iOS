@@ -12,7 +12,6 @@
 #import "AFNetworking.h"
 #import "SVProgressHUD.h"
 #import "AppDelegate.h"
-#import <FacebookSDK/FacebookSDK.h>
 #import "InitialViewController.h"
 #import "MenuViewController.h"
 @interface LoginViewController ()
@@ -48,18 +47,18 @@ static NSString * const kClientId = @"976584719831.apps.googleusercontent.com";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [[self navigationController] setNavigationBarHidden:YES animated:NO];
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    
+    self.navigationItem.hidesBackButton = YES;
     if([defaults integerForKey:@"user_id"]){
         [self performSegueWithIdentifier:@"loginSuccesfulSegue" sender:self];
+    } else{
+        GPPSignIn *signIn = [GPPSignIn sharedInstance];
+        signIn.clientID = kClientId;
+        signIn.scopes = @[kGTLAuthScopePlusLogin];
+        signIn.shouldFetchGoogleUserID = true;
+        signIn.shouldFetchGoogleUserEmail = true;
+        signIn.delegate = self;
     }
-    GPPSignIn *signIn = [GPPSignIn sharedInstance];
-    signIn.clientID = kClientId;
-    signIn.scopes = @[kGTLAuthScopePlusLogin];
-    signIn.shouldFetchGoogleUserID = true;
-    signIn.shouldFetchGoogleUserEmail = true;
-    signIn.delegate = self;
 
 }
 
@@ -91,10 +90,11 @@ static NSString * const kClientId = @"976584719831.apps.googleusercontent.com";
     AppDelegate* appDelegate = [UIApplication sharedApplication].delegate;
     [appDelegate openActiveSessionWithLoginUI:YES];
 }
-- (void)sessionStateChanged:(NSNotification*)notification
+- (void)loginViewShowingLoggedInUser:(FBLoginView *)loginView
 {
     NSLog(@"sessionStateChanged: in NHOCLoginVC");
-    if (FBSession.activeSession.isOpen) {
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    if (FBSession.activeSession.isOpen && ![defaults integerForKey:@"user_id"]) {
         [SVProgressHUD show];
 
         [[NSNotificationCenter defaultCenter] removeObserver:self];
@@ -132,8 +132,12 @@ static NSString * const kClientId = @"976584719831.apps.googleusercontent.com";
                                                                          error: nil];
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         NSNumber *userServerId = [jsonDictionary valueForKey:@"id"];
+        if([userServerId isEqual: @0]){
+            return;
+        }
         [defaults setValue:userServerId forKey:@"user_id"];
         [SVProgressHUD dismiss];
+        
         [self performSegueWithIdentifier:@"loginSuccesfulSegue" sender:self];
         NSLog(@"Request Successful, response '%@'", responseStr);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {

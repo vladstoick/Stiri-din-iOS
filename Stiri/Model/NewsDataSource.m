@@ -130,7 +130,7 @@ static NewsDataSource *_newsDataSource;
     [fetchRequest setEntity:entity];
     NSError *error;
     NSArray *results = [context executeFetchRequest:fetchRequest error:&error];
-    return results[0];
+    return [results lastObject];
 }
 
 //NEWSITEM

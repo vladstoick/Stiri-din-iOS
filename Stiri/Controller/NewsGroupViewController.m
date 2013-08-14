@@ -9,7 +9,6 @@
 #import "NewsGroupViewController.h"
 #import "NewsDataSource.h"
 #import "AFNetworking.h"
-#import "SVProgressHud.h"
 #import "NewsGroup.h"
 #import "NewsSourceViewController.h"
 #import "ECSlidingViewController.h"
