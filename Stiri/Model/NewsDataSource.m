@@ -7,9 +7,6 @@
 //
 
 #import "NewsDataSource.h"
-#import "NewsGroup.h"
-#import "NewsItem.h"
-#import "NewsSource.h"
 #import "AppDelegate.h"
 #import "AFNetworking.h"
 #define RAILSBASEURL @"http://stiriromania.eu01.aws.af.cm/user/"
@@ -102,7 +99,7 @@ static NewsDataSource *_newsDataSource;
     [fetchRequest setEntity:entity];
     NSError *error;
     NSArray *results = [context executeFetchRequest:fetchRequest error:&error];
-    return results[0];
+    return [results lastObject];
 }
 
 //NEWSSOURCE
@@ -142,6 +139,20 @@ static NewsDataSource *_newsDataSource;
     [fetchRequest setEntity:entity];
     NSArray *newsItems = [context executeFetchRequest:fetchRequest error:nil];
     return newsItems;
+}
+
+
+- (NewsItem*) getNewsItemWithUrl:(NSString *) url fromSourceWithId:(NSNumber *) sourceId{
+    NSManagedObjectContext *context = [self managedObjectContext];
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc]init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"NewsItem" inManagedObjectContext:context];
+    NSString *query = [NSString stringWithFormat:@"url = '%@'",url];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:query];
+    [fetchRequest setPredicate:predicate];
+    [fetchRequest setEntity:entity];
+    NSError *error;
+    NSArray *results = [context executeFetchRequest:fetchRequest error:&error];
+    return [results lastObject];
 }
 
 //INSERTING DATA
@@ -209,7 +220,6 @@ static NewsDataSource *_newsDataSource;
         NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
     }
 }
-
 //DELETE DATA
 
 - (void) deleteAllNewsGroupsAndNewsSources{
@@ -228,5 +238,6 @@ static NewsDataSource *_newsDataSource;
         NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
     }
 }
+
 @end
 

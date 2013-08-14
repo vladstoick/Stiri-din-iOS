@@ -44,11 +44,10 @@
 		72B5D32B17BB66950026766C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 72B5D32D17BB66950026766C /* Localizable.strings */; };
 		72B5D33517BB6DF50026766C /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 72B5D33317BB6DF50026766C /* logo.png */; };
 		72B5D33617BB6DF50026766C /* logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 72B5D33417BB6DF50026766C /* logo@2x.png */; };
-		72B8681B17B3C49F00A871E5 /* LoginWithFacebookNormal.png in Resources */ = {isa = PBXBuildFile; fileRef = 72B8681917B3C49F00A871E5 /* LoginWithFacebookNormal.png */; };
-		72B8681C17B3C49F00A871E5 /* LoginWithFacebookNormal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 72B8681A17B3C49F00A871E5 /* LoginWithFacebookNormal@2x.png */; };
 		72B8682417B3C50100A871E5 /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 72B8682117B3C50100A871E5 /* MainStoryboard_iPhone.storyboard */; };
 		72CB3B8717BB82F800D599CA /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 72CB3B8617BB82F800D599CA /* icon.png */; };
 		72CB3B8917BB83C100D599CA /* iconretina.png in Resources */ = {isa = PBXBuildFile; fileRef = 72CB3B8817BB83C100D599CA /* iconretina.png */; };
+		72CB3B8C17BBA21200D599CA /* NewsItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 72CB3B8B17BBA21200D599CA /* NewsItemViewController.m */; };
 		F6ACFD7519D3414A9256BAA2 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 33E65F1F32904CA68E71C0AC /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -123,11 +122,11 @@
 		72B5D32E17BB66C10026766C /* ro-RO */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "ro-RO"; path = "ro-RO.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		72B5D33317BB6DF50026766C /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = logo.png; path = Assets/logo.png; sourceTree = "<group>"; };
 		72B5D33417BB6DF50026766C /* logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "logo@2x.png"; path = "Assets/logo@2x.png"; sourceTree = "<group>"; };
-		72B8681917B3C49F00A871E5 /* LoginWithFacebookNormal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LoginWithFacebookNormal.png; sourceTree = "<group>"; };
-		72B8681A17B3C49F00A871E5 /* LoginWithFacebookNormal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LoginWithFacebookNormal@2x.png"; sourceTree = "<group>"; };
 		72B8682217B3C50100A871E5 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
 		72CB3B8617BB82F800D599CA /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		72CB3B8817BB83C100D599CA /* iconretina.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iconretina.png; sourceTree = "<group>"; };
+		72CB3B8A17BBA21200D599CA /* NewsItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewsItemViewController.h; path = Controller/NewsItemViewController.h; sourceTree = "<group>"; };
+		72CB3B8B17BBA21200D599CA /* NewsItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewsItemViewController.m; path = Controller/NewsItemViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -189,6 +188,8 @@
 				7291565B17BA363400A6FD66 /* NewsSourceViewController.m */,
 				7206267817BAAA8F00455298 /* NewsItemsViewController.h */,
 				7206267917BAAA8F00455298 /* NewsItemsViewController.m */,
+				72CB3B8A17BBA21200D599CA /* NewsItemViewController.h */,
+				72CB3B8B17BBA21200D599CA /* NewsItemViewController.m */,
 			);
 			name = DataControllers;
 			sourceTree = "<group>";
@@ -333,8 +334,6 @@
 				72B5D33417BB6DF50026766C /* logo@2x.png */,
 				7206267317BAA2C300455298 /* recommended_tab_bar_icon.png */,
 				7206267117BAA25100455298 /* manual_tab_bar_icon.png */,
-				72B8681917B3C49F00A871E5 /* LoginWithFacebookNormal.png */,
-				72B8681A17B3C49F00A871E5 /* LoginWithFacebookNormal@2x.png */,
 			);
 			name = Assets;
 			sourceTree = "<group>";
@@ -418,8 +417,6 @@
 				7208344C17A0288800CEC1E5 /* Default.png in Resources */,
 				7208344E17A0288800CEC1E5 /* Default@2x.png in Resources */,
 				7208345017A0288800CEC1E5 /* Default-568h@2x.png in Resources */,
-				72B8681B17B3C49F00A871E5 /* LoginWithFacebookNormal.png in Resources */,
-				72B8681C17B3C49F00A871E5 /* LoginWithFacebookNormal@2x.png in Resources */,
 				72B8682417B3C50100A871E5 /* MainStoryboard_iPhone.storyboard in Resources */,
 				7206267217BAA25100455298 /* manual_tab_bar_icon.png in Resources */,
 				7206267417BAA2C300455298 /* recommended_tab_bar_icon.png in Resources */,
@@ -520,6 +517,7 @@
 				7206268917BAB2DD00455298 /* NewsGroup.m in Sources */,
 				7206268F17BAB2DE00455298 /* NewsItem.m in Sources */,
 				7206269217BAC51F00455298 /* NewsSource.m in Sources */,
+				72CB3B8C17BBA21200D599CA /* NewsItemViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -7,6 +7,7 @@
 //
 
 #import "NewsItemsViewController.h"
+#import "NewsItemViewController.h"
 #import "NewsSource.h"
 #import "NewsItem.h"
 #import "NewsDataSource.h"
@@ -91,4 +92,15 @@
     return cell;
 }
 
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if([segue.identifier isEqualToString:@"openNewsItem"]){
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        NewsItemViewController *destViewController = segue.destinationViewController;
+        
+        NewsItem *selectedNewsItem = [self.news objectAtIndex:indexPath.row];
+        destViewController.sourceId = self.newsSource.sourceId;
+        destViewController.currentNewsItemUrl = selectedNewsItem.url;
+        [self.tableView deselectRowAtIndexPath:indexPath animated:false];
+    }
+}
 @end

@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 #import "NewsGroup.h"
+#import "NewsItem.h"    
+#import "NewsSource.h"
 @interface NewsDataSource : NSObject
 @property (readonly, strong, nonatomic) NSArray *allGroups;
 @property (nonatomic) NSUInteger userId;
@@ -20,6 +22,8 @@
 //NEWSOURCE
 - (NSArray*) allSources;
 - (NewsSource *) getNewsSourceWithId:(NSNumber *) sourceId;
-
+//NewsItem
+- (NSArray*) allItems;
+- (NewsItem*) getNewsItemWithUrl:(NSString *) url fromSourceWithId:(NSNumber *) sourceId;
 
 @end
