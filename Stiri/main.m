@@ -7,12 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <UI7Kit/UI7Kit.h>
 #import "AppDelegate.h"
 
 int main(int argc, char *argv[])
 {
-    [UI7Kit patchIfNeeded];
+//    [UI7Kit patchIfNeeded];
     @autoreleasepool {
         return UIApplicationMain(argc, argv, nil, NSStringFromClass([AppDelegate class]));
     }
