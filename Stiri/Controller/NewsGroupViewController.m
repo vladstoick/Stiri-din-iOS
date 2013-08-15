@@ -58,8 +58,12 @@
     [self.refreshControl addTarget:self action:@selector(refresh) forControlEvents:UIControlEventValueChanged];
     [self.tableView addSubview:self.refreshControl];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dataChanged:) name:DATA_CHANGED_EVENT object:nil];
-    [self.tableView setContentOffset:CGPointMake(0, -self.refreshControl.frame.size.height) animated:YES];
-    [self.refreshControl beginRefreshing];
+    if(self.newsDataSource.isDataLoaded == NO){
+        [self.tableView setContentOffset:CGPointMake(0, -self.refreshControl.frame.size.height) animated:YES];
+        [self.refreshControl beginRefreshing];
+    }
+            
+
 }
 
 - (void)viewWillAppear:(BOOL)animated

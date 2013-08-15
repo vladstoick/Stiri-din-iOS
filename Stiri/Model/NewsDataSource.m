@@ -62,6 +62,7 @@ static NewsDataSource *_newsDataSource;
 }
 
 - (void) loadData{
+    self.isDataLoaded = NO;
     NSString *urlString = [NSString stringWithFormat:@"%@%d",RAILSBASEURL,self.userId];
     NSURL *url = [NSURL URLWithString:urlString];
     AFHTTPClient *httpClient = [[AFHTTPClient alloc] initWithBaseURL:url];
@@ -72,6 +73,7 @@ static NewsDataSource *_newsDataSource;
                                                                        options: NSJSONReadingMutableContainers
                                                                          error: nil];
         [self insertGroupsAndNewsSource:jsonDictionary];
+        self.isDataLoaded = YES;
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
   
     }];

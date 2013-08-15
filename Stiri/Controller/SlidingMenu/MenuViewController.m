@@ -10,6 +10,7 @@
 
 @interface MenuViewController ()
 @property NSArray *menuItems;
+@property NSArray *sectionTitles;
 @property NSMutableArray *allMenuItems;
 @property NSArray* newsItems;
 @property NSArray* settings;
@@ -20,8 +21,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.newsItems = @[@"Stirile tale",@"Search"];
-    self.settings = @[@"Setari",@"Logout"];
+    self.newsItems = @[@{@"Your news":@"Main"},@{@"Search":@"Search"}];
+    self.settings = @[@{@"Settings":@"Settings"},@{@"Logout":@"Logout"}];
+    self.sectionTitles = @[@"News",@"Settings"];
     self.menuItems = @[self.newsItems,self.settings];
     self.allMenuItems = [self.newsItems mutableCopy];
     [self.allMenuItems addObjectsFromArray:self.settings];
@@ -41,13 +43,12 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    NSArray *currentSection = [self.menuItems objectAtIndex:section];
-    return currentSection.count;
+    return [[self.menuItems objectAtIndex:section] count];
 }
 
 - (NSString*) tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
-    if(section == 0) return @"Stiri";
-    return @"Setari";
+    return [self.sectionTitles objectAtIndex:section];
+    return nil;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableViewLocal cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -60,10 +61,24 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:subtitleTableIdentifier];
     }
     NSArray *menuItemsForCurrentSection = [self.menuItems objectAtIndex:indexPath.section];
-    NSString *menuItem = [menuItemsForCurrentSection objectAtIndex:indexPath.row];
-    cell.textLabel.text = menuItem;
+    NSDictionary *menuItem = [menuItemsForCurrentSection objectAtIndex:indexPath.row];
+    cell.textLabel.text = [[menuItem allKeys]lastObject];
     return cell;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    NSArray *menuItemsForCurrentSection = [self.menuItems objectAtIndex:indexPath.section];
+    NSDictionary *menuItem = [menuItemsForCurrentSection objectAtIndex:indexPath.row];
+    NSString *identifier = [[menuItem allValues]lastObject];
+    
+    UIViewController *newTopViewController = [self.storyboard instantiateViewControllerWithIdentifier:identifier];
+    
+    [self.slidingViewController anchorTopViewOffScreenTo:ECRight animations:nil onComplete:^{
+        CGRect frame = self.slidingViewController.topViewController.view.frame;
+        self.slidingViewController.topViewController = newTopViewController;
+        self.slidingViewController.topViewController.view.frame = frame;
+        [self.slidingViewController resetTopView];
+    }];
+}
 
 @end
