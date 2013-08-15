@@ -52,7 +52,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [super setTitle:@"Grupurile tale"];
     self.navigationItem.hidesBackButton = true;
     self.isDataLoading = YES;
     [self.refreshControl addTarget:self action:@selector(refresh) forControlEvents:UIControlEventValueChanged];
@@ -133,9 +132,9 @@
     NewsGroup *ng = (self.groups)[indexPath.row];
     cell.textLabel.text = ng.title;
     NSUInteger numberOfNewSources = ng.newsSources.count;
-    NSString *surseDeStiriString = [NSString stringWithFormat:@"%d surse de stiri",numberOfNewSources];
+    NSString *surseDeStiriString = [NSString stringWithFormat:@"%d news sources",numberOfNewSources];
     if(numberOfNewSources == 1 ){
-        surseDeStiriString = [NSString stringWithFormat:@"o sursă de știri"];
+        surseDeStiriString = [NSString stringWithFormat:@"one news source"];
     }
     cell.detailTextLabel.text = surseDeStiriString;
     return cell;

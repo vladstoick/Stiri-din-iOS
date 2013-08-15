@@ -71,7 +71,7 @@
         [self.webView loadRequest:[NSURLRequest requestWithURL:url]];
         self.isInOptimalMode = NO;
     } else {
-        button.title = @"Browser";
+        button.title = @"Standard";
         [self.webView loadHTMLString:[self stylePaperize] baseURL:nil];
     }
 

@@ -40,6 +40,7 @@ install_resource()
   esac
 }
 install_resource "Facebook-iOS-SDK/src/FBUserSettingsViewResources.bundle"
+install_resource "RETableViewManager/RETableViewManager/RETableViewManager.bundle"
 install_resource "SVProgressHUD/SVProgressHUD/SVProgressHUD.bundle"
 install_resource "google-plus-ios-sdk/google-plus-ios-sdk-1.3.0/GooglePlus.bundle"
 
