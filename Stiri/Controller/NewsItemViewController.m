@@ -23,9 +23,10 @@
 }
 
 - (NSString *) stylePaperize {
-    NSString *beg = @"<body style=\"font-family:HelveticaNeue\" align=\"justify\">";
-    NSString *end = @"</body";
-    NSString *result = [[beg stringByAppendingString:self.currentNewsItem.paperized] stringByAppendingString:end];
+    NSString *beg = @"<body style=\"font-family:Helvetica\" >";
+    NSString *title = [NSString stringWithFormat:@"<div style=\"font-size:21px;font-weight:bold; \">%@</br></br></div><div align=\"justify\">",self.currentNewsItem.title];
+    NSString *end = @"</div></body>";
+    NSString *result = [[[beg stringByAppendingString:title] stringByAppendingString:self.currentNewsItem.paperized] stringByAppendingString:end];
     return result;
 }
 
@@ -45,7 +46,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.title = self.currentNewsItem.title;
+    self.title = @"News from";
     [self.webView loadHTMLString:[self stylePaperize] baseURL:nil];
 	// Do any additional setup after loading the view.
 }

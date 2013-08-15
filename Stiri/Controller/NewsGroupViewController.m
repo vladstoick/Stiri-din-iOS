@@ -120,6 +120,14 @@
     }
     UIView *drawerView = [[UIView alloc] initWithFrame:cell.frame];
     drawerView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"dark_dotted"]];
+    UIButton *deleteButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    deleteButton.frame = CGRectMake(15, 10, cell.frame.size.width/2-30 , cell.frame.size.height-20);
+    [deleteButton setTitle:@"Delete" forState:UIControlStateNormal];
+    UIButton *renameButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [renameButton setTitle:@"Rename" forState:UIControlStateNormal];
+    renameButton.frame = CGRectMake(cell.frame.size.width/2 + 15, 10, cell.frame.size.width/2-30, cell.frame.size.height-20);
+    [drawerView addSubview:renameButton];
+    [drawerView addSubview:deleteButton];
     cell.drawerView = drawerView;
     cell.directionMask =  HHPanningTableViewCellDirectionLeft;
     NewsGroup *ng = (self.groups)[indexPath.row];
