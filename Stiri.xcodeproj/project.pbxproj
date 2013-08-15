@@ -16,7 +16,6 @@
 		7206267F17BAAEA500455298 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7206267E17BAAEA500455298 /* SystemConfiguration.framework */; };
 		7206268117BAAEB500455298 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7206268017BAAEB500455298 /* libz.dylib */; };
 		7206268917BAB2DD00455298 /* NewsGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 7206268817BAB2DD00455298 /* NewsGroup.m */; };
-		7206268F17BAB2DE00455298 /* NewsItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 7206268E17BAB2DE00455298 /* NewsItem.m */; };
 		7206269217BAC51F00455298 /* NewsSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 7206269117BAC51F00455298 /* NewsSource.m */; };
 		7208343A17A0288800CEC1E5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7208343917A0288800CEC1E5 /* UIKit.framework */; };
 		7208343C17A0288800CEC1E5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7208343B17A0288800CEC1E5 /* Foundation.framework */; };
@@ -48,6 +47,7 @@
 		7291565F17BA364600A6FD66 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7291565E17BA364600A6FD66 /* LoginViewController.m */; };
 		7291566217BA595800A6FD66 /* InitialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7291566117BA595800A6FD66 /* InitialViewController.m */; };
 		7291566917BA5DE900A6FD66 /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7291566817BA5DE900A6FD66 /* MenuViewController.m */; };
+		7295BB4217BD026D005CD637 /* NewsItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 7295BB4117BD026D005CD637 /* NewsItem.m */; };
 		72B5D32B17BB66950026766C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 72B5D32D17BB66950026766C /* Localizable.strings */; };
 		72B8682417B3C50100A871E5 /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 72B8682117B3C50100A871E5 /* MainStoryboard_iPhone.storyboard */; };
 		72CB3B8717BB82F800D599CA /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 72CB3B8617BB82F800D599CA /* icon.png */; };
@@ -82,8 +82,6 @@
 		7206268017BAAEB500455298 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		7206268717BAB2DD00455298 /* NewsGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewsGroup.h; path = Model/NewsGroup.h; sourceTree = "<group>"; };
 		7206268817BAB2DD00455298 /* NewsGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewsGroup.m; path = Model/NewsGroup.m; sourceTree = "<group>"; };
-		7206268D17BAB2DE00455298 /* NewsItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewsItem.h; path = Model/NewsItem.h; sourceTree = "<group>"; };
-		7206268E17BAB2DE00455298 /* NewsItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewsItem.m; path = Model/NewsItem.m; sourceTree = "<group>"; };
 		7206269017BAC51E00455298 /* NewsSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewsSource.h; path = Model/NewsSource.h; sourceTree = "<group>"; };
 		7206269117BAC51F00455298 /* NewsSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewsSource.m; path = Model/NewsSource.m; sourceTree = "<group>"; };
 		7208343617A0288800CEC1E5 /* Stiri.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Stiri.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -130,6 +128,8 @@
 		7291566117BA595800A6FD66 /* InitialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InitialViewController.m; path = Controller/InitialViewController.m; sourceTree = "<group>"; };
 		7291566717BA5DE900A6FD66 /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MenuViewController.h; path = Controller/SlidingMenu/MenuViewController.h; sourceTree = "<group>"; };
 		7291566817BA5DE900A6FD66 /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MenuViewController.m; path = Controller/SlidingMenu/MenuViewController.m; sourceTree = "<group>"; };
+		7295BB4017BD026D005CD637 /* NewsItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewsItem.h; path = Model/NewsItem.h; sourceTree = "<group>"; };
+		7295BB4117BD026D005CD637 /* NewsItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewsItem.m; path = Model/NewsItem.m; sourceTree = "<group>"; };
 		72B5D32817BB660F0026766C /* ro-RO */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = "ro-RO"; path = "ro-RO.lproj/MainStoryboard_iPhone.storyboard"; sourceTree = "<group>"; };
 		72B5D32917BB660F0026766C /* ro-RO */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "ro-RO"; path = "ro-RO.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		72B5D32A17BB660F0026766C /* ro-RO */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "ro-RO"; path = "ro-RO.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
@@ -311,10 +311,10 @@
 			isa = PBXGroup;
 			children = (
 				7291565417BA35CF00A6FD66 /* NewsModel.xcdatamodeld */,
+				7295BB4017BD026D005CD637 /* NewsItem.h */,
+				7295BB4117BD026D005CD637 /* NewsItem.m */,
 				7206269017BAC51E00455298 /* NewsSource.h */,
 				7206269117BAC51F00455298 /* NewsSource.m */,
-				7206268D17BAB2DE00455298 /* NewsItem.h */,
-				7206268E17BAB2DE00455298 /* NewsItem.m */,
 				7206268717BAB2DD00455298 /* NewsGroup.h */,
 				7206268817BAB2DD00455298 /* NewsGroup.m */,
 				7291565117BA35AA00A6FD66 /* NewsDataSource.h */,
@@ -546,12 +546,12 @@
 				7206267717BAA2FA00455298 /* AddNewsSourceManuallyViewController.m in Sources */,
 				7206267A17BAAA8F00455298 /* NewsItemsViewController.m in Sources */,
 				7206268917BAB2DD00455298 /* NewsGroup.m in Sources */,
-				7206268F17BAB2DE00455298 /* NewsItem.m in Sources */,
 				7206269217BAC51F00455298 /* NewsSource.m in Sources */,
 				72CB3B8C17BBA21200D599CA /* NewsItemViewController.m in Sources */,
 				7272DB4317BCC5D100286E9A /* HHDirectionPanGestureRecognizer.m in Sources */,
 				7272DB4417BCC5D100286E9A /* HHInnerShadowView.m in Sources */,
 				7272DB4517BCC5D100286E9A /* HHPanningTableViewCell.m in Sources */,
+				7295BB4217BD026D005CD637 /* NewsItem.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -684,7 +684,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Stiri/Stiri-Prefix.pch";
 				INFOPLIST_FILE = "Stiri/Stiri-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
@@ -703,7 +703,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Stiri/Stiri-Prefix.pch";
 				INFOPLIST_FILE = "Stiri/Stiri-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
