@@ -7,6 +7,7 @@
 //
 
 #import "NewsGroupViewController.h"
+#import "HHPanningTableViewCell.h"
 #import "NewsDataSource.h"
 #import "AFNetworking.h"
 #import "NewsGroup.h"
@@ -102,13 +103,21 @@
     return self.groups.count;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [self performSegueWithIdentifier:@"showNewsSourceForGroup" sender:self];
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *subtitleTableIdentifier = @"subtitleViewCellGroup";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:subtitleTableIdentifier];
+    static NSString *subtitleTableIdentifier = @"panningCell";
+    HHPanningTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:subtitleTableIdentifier];
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:subtitleTableIdentifier];
+        cell = [[HHPanningTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:subtitleTableIdentifier];
     }
+    UIView *drawerView = [[UIView alloc] initWithFrame:cell.frame];
+    drawerView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"dark_dotted"]];
+    cell.drawerView = drawerView;
+    cell.directionMask =  HHPanningTableViewCellDirectionLeft;
     NewsGroup *ng = (self.groups)[indexPath.row];
     cell.textLabel.text = ng.title;
     NSUInteger numberOfNewSources = ng.newsSources.count;

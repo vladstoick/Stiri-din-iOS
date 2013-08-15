@@ -11,6 +11,7 @@
 #import "NewsDataSource.h"
 @interface NewsItemViewController ()
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
+@property (weak, nonatomic) IBOutlet UITextView *titleView;
 @property (readonly, nonatomic) NewsItem *currentNewsItem;
 @property (readonly, nonatomic) NewsSource *newsSource;
 @end
@@ -19,6 +20,13 @@
 
 - (NewsItem *) currentNewsItem{
     return [[NewsDataSource newsDataSource] getNewsItemWithUrl:self.currentNewsItemUrl fromSourceWithId:self.sourceId];
+}
+
+- (NSString *) stylePaperize {
+    NSString *beg = @"<body style=\"font-family:HelveticaNeue\" align=\"justify\">";
+    NSString *end = @"</body";
+    NSString *result = [[beg stringByAppendingString:self.currentNewsItem.paperized] stringByAppendingString:end];
+    return result;
 }
 
 - (NewsSource*) newsSource{
@@ -37,8 +45,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.title = self.newsSource.title;
-    [self.webView loadHTMLString:self.currentNewsItem.paperized baseURL:nil];
+    self.title = self.currentNewsItem.title;
+    [self.webView loadHTMLString:[self stylePaperize] baseURL:nil];
 	// Do any additional setup after loading the view.
 }
 

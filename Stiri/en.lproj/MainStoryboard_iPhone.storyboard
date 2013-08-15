@@ -46,34 +46,10 @@
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Tqz-Tw-J0r">
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="subtitleViewCellGroup" textLabel="qud-yh-AFL" detailTextLabel="VdJ-ei-Ady" style="IBUITableViewCellStyleSubtitle" id="odH-ZT-JmD">
-                                        <rect key="frame" x="0.0" y="22" width="320" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qud-yh-AFL">
-                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="18"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                </label>
-                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VdJ-ei-Ady">
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <color key="textColor" red="0.50196078431372548" green="0.50196078431372548" blue="0.50196078431372548" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                </label>
-                                            </subviews>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        </view>
-                                        <connections>
-                                            <segue destination="ooX-Ng-sbA" kind="push" identifier="showNewsSourceForGroup" id="PyA-uU-lLc"/>
-                                        </connections>
-                                    </tableViewCell>
-                                </prototypes>
+                                <sections/>
                                 <connections>
                                     <outlet property="dataSource" destination="CBJ-JQ-w2e" id="K5x-ft-DqH"/>
+                                    <outlet property="delegate" destination="CBJ-JQ-w2e" id="5eB-Ik-N56"/>
                                 </connections>
                             </tableView>
                         </subviews>
@@ -108,6 +84,7 @@
                     <connections>
                         <outlet property="tableView" destination="Tqz-Tw-J0r" id="kll-5g-2PC"/>
                         <segue destination="ceo-2c-FHC" kind="push" identifier="showAddTabController" id="5VP-3L-QR5"/>
+                        <segue destination="ooX-Ng-sbA" kind="push" identifier="showNewsSourceForGroup" id="0SQ-vW-dLL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nsS-ON-Dg2" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -235,21 +212,21 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tmx-A5-mXp">
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iIy-vc-vgr">
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </webView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="tmx-A5-mXp" firstAttribute="trailing" secondItem="c8R-sF-6vR" secondAttribute="trailing" type="default" id="ZJ2-RE-y9z"/>
-                            <constraint firstItem="tmx-A5-mXp" firstAttribute="leading" secondItem="c8R-sF-6vR" secondAttribute="leading" type="default" id="Zls-u0-gZ4"/>
-                            <constraint firstItem="tmx-A5-mXp" firstAttribute="bottom" secondItem="c8R-sF-6vR" secondAttribute="bottom" type="default" id="bEh-Li-dAd"/>
-                            <constraint firstItem="tmx-A5-mXp" firstAttribute="top" secondItem="c8R-sF-6vR" secondAttribute="top" type="default" id="lTr-Dz-mpw"/>
+                            <constraint firstItem="iIy-vc-vgr" firstAttribute="top" secondItem="c8R-sF-6vR" secondAttribute="top" type="default" id="CIk-jI-mTd"/>
+                            <constraint firstItem="iIy-vc-vgr" firstAttribute="leading" secondItem="c8R-sF-6vR" secondAttribute="leading" type="default" id="eBe-ci-6eU"/>
+                            <constraint firstItem="iIy-vc-vgr" firstAttribute="trailing" secondItem="c8R-sF-6vR" secondAttribute="trailing" type="default" id="spY-eR-cGG"/>
+                            <constraint firstItem="iIy-vc-vgr" firstAttribute="bottom" secondItem="c8R-sF-6vR" secondAttribute="bottom" type="default" id="yFn-Mg-Q4V"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Pba-01-PLK"/>
                     <connections>
-                        <outlet property="webView" destination="tmx-A5-mXp" id="ZNE-xx-63z"/>
+                        <outlet property="webView" destination="iIy-vc-vgr" id="ahZ-G8-srk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yNA-Gr-rTv" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -483,6 +460,7 @@
         <class className="NewsItemViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/NewsItemViewController.h"/>
             <relationships>
+                <relationship kind="outlet" name="titleView" candidateClass="UITextView"/>
                 <relationship kind="outlet" name="webView" candidateClass="UIWebView"/>
             </relationships>
         </class>
