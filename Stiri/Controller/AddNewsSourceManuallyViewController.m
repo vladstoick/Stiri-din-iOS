@@ -37,12 +37,13 @@
 {
     [super viewDidLoad];
     __typeof (&*self) __weak weakSelf = self;
+//    self.tabBarController.navigationItem
     self.allGroups = [[NewsDataSource newsDataSource] allGroups];
     self.manager = [[RETableViewManager alloc]initWithTableView:self.tableView];
     self.section = [RETableViewSection sectionWithHeaderTitle:@"Information about the feed"];
-    self.feedTitle = [RETextItem itemWithTitle:@"Title" value:@"" placeholder:@"The title of the feed"];
-    self.feedDescription = [RETextItem itemWithTitle:@"Description" value:@"" placeholder:@"The description of the feed"];
-    self.feedUrl = [RETextItem itemWithTitle:@"RSS" value:@"" placeholder:@"The rss adress of the feed"];
+    self.feedTitle = [RETextItem itemWithTitle:@"Title" value:@"gsp" placeholder:@"The title of the feed"];
+    self.feedDescription = [RETextItem itemWithTitle:@"Description" value:@"asfsa" placeholder:@"The description of the feed"];
+    self.feedUrl = [RETextItem itemWithTitle:@"RSS" value:@"http://www.gsp.ro/rss.xml" placeholder:@"The rss adress of the feed"];
     [self.section addItem:self.feedTitle];
     [self.section addItem:self.feedDescription];
     [self.section addItem:self.feedUrl];
@@ -85,7 +86,7 @@
     }];
     [self.manager addSection:self.section];
     [self.section addItem:self.newsGroup];
-    self.addNewsGroupName = [RETextItem itemWithTitle:@"Group name" value:@"" placeholder:@"The name of the new group"];
+    self.addNewsGroupName = [RETextItem itemWithTitle:@"Group name" value:@"Sport" placeholder:@"The name of the new group"];
 
     [self.section addItem:self.addNewsGroupName];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(selectedGroup:) name:selected_group object:nil];
@@ -105,6 +106,16 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (IBAction)donePressed:(id)sender {
+    NSString* sourceTitle = self.feedTitle.value;
+    NSString* sourceDescription = self.feedDescription.value;
+    NSString* sourceUrl = self.feedUrl.value;
+    NSString* addGroupName = self.addNewsGroupName.value;
+    if([self.newsGroup.value isEqual: @"New Group"]){
+        [[NewsDataSource newsDataSource] addNewsSourceWithTitle:sourceTitle andDescription:sourceDescription andUrl:sourceUrl inNewGroupWithName:addGroupName];
+    }
 }
 
 @end

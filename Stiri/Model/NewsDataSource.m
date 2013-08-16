@@ -83,6 +83,32 @@ static NewsDataSource *_newsDataSource;
 }
 
 //NEWSGROUP
+
+- (void) addNewsSourceWithTitle:(NSString*) sourceTitle andDescription:(NSString*) sourceDescription andUrl:(NSString*) sourceUrl inNewGroupWithName:(NSString* ) groupTitle{
+    NSString *urlString = [NSString stringWithFormat:@"%@%d",RAILSBASEURL,self.userId];
+    NSDictionary *params = @{@"title": groupTitle};
+    AFHTTPClient *httpClient = [[AFHTTPClient alloc]initWithBaseURL:[NSURL URLWithString:urlString]];
+    [httpClient postPath:@"" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSString *responseStr = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+        NSDictionary *jsonDictionary = [NSJSONSerialization JSONObjectWithData: [responseStr dataUsingEncoding:NSUTF8StringEncoding]
+                                                                       options: NSJSONReadingMutableContainers
+                                                                         error: nil];
+        NSManagedObjectContext *context = [self managedObjectContext];
+        NewsGroup *newsGroup = [NSEntityDescription insertNewObjectForEntityForName:@"NewsGroup" inManagedObjectContext:context];
+        newsGroup.groupId = [jsonDictionary valueForKey:@"group_id"];
+        newsGroup.title = groupTitle;
+        NSError *error;
+        if (![context save:&error]) {
+            NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
+        } else {
+            [self addNewsSourceWithTitle:sourceTitle andDescription:sourceDescription andUrl:sourceUrl inNewsGroup:newsGroup];
+        }
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+    }];
+}
+
 - (NSArray*) allGroups{
     NSManagedObjectContext *context = [self managedObjectContext];
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
@@ -108,6 +134,38 @@ static NewsDataSource *_newsDataSource;
 
 //NEWSSOURCE
 
+- (void) addNewsSourceWithTitle:(NSString*) sourceTitle andDescription:(NSString*) sourceDescription andUrl:(NSString*) sourceUrl inNewsGroup:(NewsGroup* ) newsGroup{
+    NSString *urlString = [NSString stringWithFormat:@"%@%d/%@",RAILSBASEURL,self.userId,newsGroup.groupId];
+    NSDictionary *params = @{@"title": sourceTitle,
+                             @"url": sourceUrl,
+                             @"description": sourceDescription};
+    AFHTTPClient *httpClient = [[AFHTTPClient alloc]initWithBaseURL:[NSURL URLWithString:urlString]];
+    [httpClient postPath:@"" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSString *responseStr = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+        NSDictionary *jsonDictionary = [NSJSONSerialization JSONObjectWithData: [responseStr dataUsingEncoding:NSUTF8StringEncoding]
+                                                                       options: NSJSONReadingMutableContainers
+                                                                         error: nil];
+        NSManagedObjectContext *context = [self managedObjectContext];
+        NewsSource *newsSource = [NSEntityDescription insertNewObjectForEntityForName:@"NewsSource" inManagedObjectContext:context];
+        NewsGroup *ng = [self getGroupWithId:newsGroup.groupId];
+        NSMutableSet *set = [ng.newsSources mutableCopy];
+        newsSource.title = sourceTitle;
+        newsSource.sourceDescription = sourceDescription;
+        newsSource.url = sourceUrl;
+        newsSource.sourceId = [jsonDictionary valueForKey:@"feed_id"];
+        newsSource.groupOwner = ng;
+        [set addObject:newsSource];
+        ng.newsSources = set;
+        NSError *error;
+        if (![context save:&error]) {
+            NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
+        } else {
+              [[NSNotificationCenter defaultCenter] postNotificationName:DATA_CHANGED_EVENT object:nil];
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+    }];
+}
 
 - (NSArray*) allSources{
     NSManagedObjectContext *context = [self managedObjectContext];

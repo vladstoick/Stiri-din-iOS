@@ -130,11 +130,7 @@
 		7291566817BA5DE900A6FD66 /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MenuViewController.m; path = Controller/SlidingMenu/MenuViewController.m; sourceTree = "<group>"; };
 		7295BB4017BD026D005CD637 /* NewsItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewsItem.h; path = Model/NewsItem.h; sourceTree = "<group>"; };
 		7295BB4117BD026D005CD637 /* NewsItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewsItem.m; path = Model/NewsItem.m; sourceTree = "<group>"; };
-		72B5D32817BB660F0026766C /* ro-RO */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = "ro-RO"; path = "ro-RO.lproj/MainStoryboard_iPhone.storyboard"; sourceTree = "<group>"; };
-		72B5D32917BB660F0026766C /* ro-RO */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "ro-RO"; path = "ro-RO.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
-		72B5D32A17BB660F0026766C /* ro-RO */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "ro-RO"; path = "ro-RO.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		72B5D32C17BB66950026766C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		72B5D32E17BB66C10026766C /* ro-RO */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "ro-RO"; path = "ro-RO.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		72B8682217B3C50100A871E5 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
 		72CB3B8617BB82F800D599CA /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon.png; path = ../icon.png; sourceTree = "<group>"; };
 		72CB3B8817BB83C100D599CA /* iconretina.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = iconretina.png; path = ../iconretina.png; sourceTree = "<group>"; };
@@ -570,7 +566,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				7208344317A0288800CEC1E5 /* en */,
-				72B5D32917BB660F0026766C /* ro-RO */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -579,7 +574,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				7208346A17A0288800CEC1E5 /* en */,
-				72B5D32A17BB660F0026766C /* ro-RO */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -588,7 +582,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				72B5D32C17BB66950026766C /* en */,
-				72B5D32E17BB66C10026766C /* ro-RO */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -597,7 +590,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				72B8682217B3C50100A871E5 /* en */,
-				72B5D32817BB660F0026766C /* ro-RO */,
 			);
 			name = MainStoryboard_iPhone.storyboard;
 			path = en.lproj;

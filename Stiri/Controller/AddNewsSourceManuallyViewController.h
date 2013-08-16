@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface AddNewsSourceManuallyViewController : UIViewController
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
+- (IBAction)donePressed:(id)sender;
 
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 @end

@@ -14,30 +14,43 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="455"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="0xG-pd-uyk">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="Myr-fl-Xco">
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                                <connections>
-                                    <outlet property="dataSource" destination="8sM-nI-Wg5" id="cE9-cQ-IMy"/>
-                                    <outlet property="delegate" destination="8sM-nI-Wg5" id="zXb-mG-XpC"/>
-                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="0xG-pd-uyk" firstAttribute="bottom" secondItem="9Gi-We-u42" secondAttribute="bottom" type="default" id="2jU-Yw-tCR"/>
-                            <constraint firstItem="0xG-pd-uyk" firstAttribute="trailing" secondItem="9Gi-We-u42" secondAttribute="trailing" type="default" id="RnZ-Ly-PJ1"/>
-                            <constraint firstItem="0xG-pd-uyk" firstAttribute="top" secondItem="9Gi-We-u42" secondAttribute="top" type="default" id="Y9K-Nd-r3H"/>
-                            <constraint firstItem="0xG-pd-uyk" firstAttribute="leading" secondItem="9Gi-We-u42" secondAttribute="leading" type="default" id="vff-f1-iMA"/>
+                            <constraint firstItem="Myr-fl-Xco" firstAttribute="trailing" secondItem="9Gi-We-u42" secondAttribute="trailing" type="default" id="LTQ-L5-OjF"/>
+                            <constraint firstItem="Myr-fl-Xco" firstAttribute="top" secondItem="9Gi-We-u42" secondAttribute="top" type="default" id="Rpy-He-iMz"/>
+                            <constraint firstItem="Myr-fl-Xco" firstAttribute="leading" secondItem="9Gi-We-u42" secondAttribute="leading" type="default" id="j5Y-Hc-MH1"/>
+                            <constraint firstItem="Myr-fl-Xco" firstAttribute="bottom" secondItem="9Gi-We-u42" secondAttribute="bottom" type="default" id="sdT-wQ-y6i"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Manual" image="manual_tab_bar_icon.png" id="qPl-2c-ahc"/>
+                    <navigationItem key="navigationItem" title="Add" id="IZR-9b-nPt">
+                        <barButtonItem key="leftBarButtonItem" style="plain" id="8mE-KZ-b0m">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="RkH-nu-oFl">
+                                <rect key="frame" x="5" y="0.0" width="71" height="45"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="18"/>
+                                <state key="normal">
+                                    <color key="titleColor" red="0.19607843137254902" green="0.30980392156862746" blue="0.52156862745098043" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="svI-Sz-1JG">
+                            <connections>
+                                <action selector="donePressed:" destination="8sM-nI-Wg5" id="XQy-dT-6fH"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
-                        <outlet property="tableView" destination="0xG-pd-uyk" id="lsu-Bk-Wzq"/>
+                        <outlet property="tableView" destination="Myr-fl-Xco" id="95f-5A-IKu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zm2-M5-AJq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3684" y="1247"/>
+            <point key="canvasLocation" x="4210" y="1247"/>
         </scene>
         <!--Add News Source Manually View Controller - Recommended-->
         <scene sceneID="fja-St-Tdx">
@@ -49,7 +62,7 @@
                         <subviews>
                             <navigationBar contentMode="scaleToFill" barStyle="blackOpaque" translatesAutoresizingMaskIntoConstraints="NO" id="9JI-Q6-fcH">
                                 <items>
-                                    <navigationItem title="Recommended" id="kSv-Qd-3X0"/>
+                                    <navigationItem title="gfhh" id="kSv-Qd-3X0"/>
                                 </items>
                             </navigationBar>
                         </subviews>
@@ -66,7 +79,7 @@
             </objects>
             <point key="canvasLocation" x="3677" y="528"/>
         </scene>
-        <!--News Group View Controller-->
+        <!--News Group View Controller - Your Groups-->
         <scene sceneID="eyk-1f-IQn">
             <objects>
                 <viewController id="CBJ-JQ-w2e" customClass="NewsGroupViewController" sceneMemberID="viewController">
@@ -91,7 +104,7 @@
                             <constraint firstItem="Tqz-Tw-J0r" firstAttribute="trailing" secondItem="tN0-qW-HDZ" secondAttribute="trailing" type="default" id="rWY-bk-hte"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="ce1-Wk-I1N">
+                    <navigationItem key="navigationItem" title="Your Groups" id="ce1-Wk-I1N">
                         <barButtonItem key="leftBarButtonItem" style="plain" id="wkS-XP-bsh">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="gth-Ie-a4Q">
                                 <rect key="frame" x="5" y="4" width="35" height="36"/>
@@ -113,7 +126,7 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="tableView" destination="Tqz-Tw-J0r" id="kll-5g-2PC"/>
-                        <segue destination="ceo-2c-FHC" kind="push" identifier="showAddTabController" id="5VP-3L-QR5"/>
+                        <segue destination="ceo-2c-FHC" kind="modal" identifier="showAddTabController" modalTransitionStyle="coverVertical" id="5VP-3L-QR5"/>
                         <segue destination="ooX-Ng-sbA" kind="push" identifier="showNewsSourceForGroup" id="0SQ-vW-dLL"/>
                     </connections>
                 </viewController>
@@ -442,24 +455,44 @@
             </objects>
             <point key="canvasLocation" x="1509" y="112"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--Tab Bar Controller - Add-->
         <scene sceneID="ld1-PS-toD">
             <objects>
                 <tabBarController id="ceo-2c-FHC" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" id="eq4-gm-TwY"/>
+                    <navigationItem key="navigationItem" title="Add" id="eq4-gm-TwY"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="zPM-WF-zAh">
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
-                        <segue destination="8sM-nI-Wg5" kind="relationship" relationship="viewControllers" id="GzG-rX-9ZT"/>
+                        <segue destination="fYp-aE-IF7" kind="relationship" relationship="viewControllers" id="GzG-rX-9ZT"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Cyj-6w-5sm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3083" y="528"/>
+        </scene>
+        <!--Navigation Controller - Manual-->
+        <scene sceneID="2Qx-xY-IeT">
+            <objects>
+                <navigationController id="fYp-aE-IF7" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Manual" image="manual_tab_bar_icon.png" id="qPl-2c-ahc"/>
+                    <toolbarItems/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="blackOpaque" prompted="NO"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="blackOpaque" id="pQY-Rp-hQ8">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="8sM-nI-Wg5" kind="relationship" relationship="rootViewController" id="shX-IL-MaW"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UzW-hf-w4m" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3684" y="1247"/>
         </scene>
     </scenes>
     <resources>
@@ -471,6 +504,7 @@
         <class className="AddNewsSourceManuallyViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/AddNewsSourceManuallyViewController.h"/>
             <relationships>
+                <relationship kind="action" name="donePressed:"/>
                 <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
             </relationships>
         </class>
