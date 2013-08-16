@@ -48,7 +48,7 @@
     [self.section addItem:self.feedUrl];
     [self.manager addSection:self.section];
     self.section = [RETableViewSection sectionWithHeaderTitle:@"Information about the group"];
-    self.newsGroup = [RERadioItem itemWithTitle:@"Radio" value:@"New Group" selectionHandler:^(RERadioItem *item) {
+    self.newsGroup = [RERadioItem itemWithTitle:@"Group" value:@"New Group" selectionHandler:^(RERadioItem *item) {
         [item deselectRowAnimated:YES]; // same as [weakSelf.tableView deselectRowAtIndexPath:item.indexPath animated:YES];
         
         // Generate sample options

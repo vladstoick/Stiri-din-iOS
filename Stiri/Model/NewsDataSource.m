@@ -74,8 +74,10 @@ static NewsDataSource *_newsDataSource;
                                                                          error: nil];
         [self insertGroupsAndNewsSource:jsonDictionary];
         self.isDataLoaded = YES;
+        [[NSNotificationCenter defaultCenter] postNotificationName:DATA_CHANGED_EVENT object:nil];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-  
+        self.isDataLoaded = YES;
+        [[NSNotificationCenter defaultCenter] postNotificationName:DATA_CHANGED_EVENT object:nil];
     }];
 
 }
@@ -193,7 +195,6 @@ static NewsDataSource *_newsDataSource;
             NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
         }
     }
-    [[NSNotificationCenter defaultCenter] postNotificationName:DATA_CHANGED_EVENT object:nil];
 }
 
 - (void) insertNewsItems:(NSArray*) articles forNewsSource:(NewsSource*) newsSource{

@@ -79,7 +79,7 @@ static NSString * const kClientId = @"976584719831.apps.googleusercontent.com";
         NSString *token = [auth.parameters valueForKey:@"id_token"];
         NSLog(@"Received error %@ and auth object %@",
               [GPPSignIn sharedInstance].userID , auth);
-        [self authWithServerToken:token andUserId:userId withType:@"g+"];
+        [self authWithServerToken:token andUserId:userId withType:@"gp"];
     }
     
 }
@@ -123,8 +123,9 @@ static NSString * const kClientId = @"976584719831.apps.googleusercontent.com";
     NSString *urlString =[NSString stringWithFormat:@"http://stiriromania.eu01.aws.af.cm/"];
     NSURL *url = [NSURL URLWithString:urlString];
     AFHTTPClient *httpClient = [[AFHTTPClient alloc] initWithBaseURL:url];
-    NSDictionary *params = @{@"fbaccount": userId,
-                             @"fbtoken": token};
+    NSDictionary *params = @{@"account": userId,
+                             @"token": token,
+                             @"type": type};
     [httpClient postPath:@"/user/login" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSString *responseStr = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
         NSDictionary *jsonDictionary = [NSJSONSerialization JSONObjectWithData: [responseStr dataUsingEncoding:NSUTF8StringEncoding]

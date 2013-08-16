@@ -249,7 +249,6 @@
 				7272DB3A17BCC5B700286E9A /* Manual Framework */,
 				729155E217BA173900A6FD66 /* Model */,
 				72B8681D17B3C4A400A871E5 /* Assets */,
-				72AD444817A054B800074FF2 /* Data */,
 				72AD444717A054A900074FF2 /* Controllers */,
 				7208344817A0288800CEC1E5 /* AppDelegate.h */,
 				7208344917A0288800CEC1E5 /* AppDelegate.m */,
@@ -343,13 +342,6 @@
 				7206267D17BAABEB00455298 /* DataControllers */,
 			);
 			name = Controllers;
-			sourceTree = "<group>";
-		};
-		72AD444817A054B800074FF2 /* Data */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Data;
 			sourceTree = "<group>";
 		};
 		72B8681D17B3C4A400A871E5 /* Assets */ = {
