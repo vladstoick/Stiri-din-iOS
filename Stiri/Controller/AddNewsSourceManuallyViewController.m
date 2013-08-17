@@ -41,8 +41,6 @@
     self.allGroups = [[NewsDataSource newsDataSource] allGroups];
     self.manager = [[RETableViewManager alloc]initWithTableView:self.tableView];
     self.section = [RETableViewSection sectionWithHeaderTitle:@"Information about the feed"];
-    self.feedTitle = [RETextItem itemWithTitle:@"Title" value:@"gsp" placeholder:@"The title of the feed"];
-    self.feedDescription = [RETextItem itemWithTitle:@"Description" value:@"asfsa" placeholder:@"The description of the feed"];
     self.feedUrl = [RETextItem itemWithTitle:@"RSS" value:@"http://www.gsp.ro/rss.xml" placeholder:@"The rss adress of the feed"];
     [self.section addItem:self.feedTitle];
     [self.section addItem:self.feedDescription];
@@ -96,7 +94,7 @@
 - (void) selectedGroup:(NSNotification*) notificaiton{
     [self.section removeAllItems];
     [self.section addItem:self.newsGroup];
-    if(self.newsGroup.value == @"New Group"){
+    if([self.newsGroup.value isEqual: @"New Group"]){
         [self.section addItem:self.addNewsGroupName];
     }
     [self.section reloadSectionWithAnimation:UITableViewRowAnimationAutomatic];

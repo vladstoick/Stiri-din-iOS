@@ -70,11 +70,10 @@
     UITableViewCell *cell = [tableViewLocal dequeueReusableCellWithIdentifier:subtitleTableIdentifier];
     
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:subtitleTableIdentifier];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:subtitleTableIdentifier];
     }
     NewsSource *ns = (self.newsSources)[indexPath.row];
     cell.textLabel.text = ns.title;
-    cell.detailTextLabel.text = ns.sourceDescription;
     return cell;
 }
 
