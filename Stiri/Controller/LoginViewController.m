@@ -93,8 +93,7 @@ static NSString * const kClientId = @"976584719831.apps.googleusercontent.com";
 }
 - (void)loginViewShowingLoggedInUser:(FBLoginView *)loginView
 {
-    NSLog(@"sessionStateChanged: in NHOCLoginVC");
-        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     if (FBSession.activeSession.isOpen && ![defaults integerForKey:@"user_id"]) {
         [SVProgressHUD show];
 

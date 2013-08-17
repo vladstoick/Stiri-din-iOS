@@ -47,6 +47,7 @@
 		728661D317BFAF4200AA13D3 /* squairy_light@2X.png in Resources */ = {isa = PBXBuildFile; fileRef = 728661D117BFAF4200AA13D3 /* squairy_light@2X.png */; };
 		728661D617BFAF5000AA13D3 /* tweed_@2X.png in Resources */ = {isa = PBXBuildFile; fileRef = 728661D417BFAF5000AA13D3 /* tweed_@2X.png */; };
 		728661D717BFAF5000AA13D3 /* tweed.png in Resources */ = {isa = PBXBuildFile; fileRef = 728661D517BFAF5000AA13D3 /* tweed.png */; };
+		728661DA17BFD21E00AA13D3 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 728661D917BFD21E00AA13D3 /* SearchViewController.m */; };
 		7291565317BA35AA00A6FD66 /* NewsDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 7291565217BA35AA00A6FD66 /* NewsDataSource.m */; };
 		7291565617BA35CF00A6FD66 /* NewsModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7291565417BA35CF00A6FD66 /* NewsModel.xcdatamodeld */; };
 		7291565917BA35FB00A6FD66 /* NewsGroupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7291565817BA35FB00A6FD66 /* NewsGroupViewController.m */; };
@@ -133,6 +134,8 @@
 		728661D117BFAF4200AA13D3 /* squairy_light@2X.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "squairy_light@2X.png"; path = "Assets/squairy_light@2X.png"; sourceTree = "<group>"; };
 		728661D417BFAF5000AA13D3 /* tweed_@2X.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tweed_@2X.png"; sourceTree = "<group>"; };
 		728661D517BFAF5000AA13D3 /* tweed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tweed.png; sourceTree = "<group>"; };
+		728661D817BFD21E00AA13D3 /* SearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SearchViewController.h; path = Controller/SearchViewController.h; sourceTree = "<group>"; };
+		728661D917BFD21E00AA13D3 /* SearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SearchViewController.m; path = Controller/SearchViewController.m; sourceTree = "<group>"; };
 		7291565117BA35AA00A6FD66 /* NewsDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewsDataSource.h; path = Model/NewsDataSource.h; sourceTree = "<group>"; };
 		7291565217BA35AA00A6FD66 /* NewsDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewsDataSource.m; path = Model/NewsDataSource.m; sourceTree = "<group>"; };
 		7291565517BA35CF00A6FD66 /* NewsModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = NewsModel.xcdatamodel; sourceTree = "<group>"; };
@@ -207,6 +210,8 @@
 			children = (
 				7291565D17BA364600A6FD66 /* LoginViewController.h */,
 				7291565E17BA364600A6FD66 /* LoginViewController.m */,
+				728661D817BFD21E00AA13D3 /* SearchViewController.h */,
+				728661D917BFD21E00AA13D3 /* SearchViewController.m */,
 			);
 			name = Other;
 			sourceTree = "<group>";
@@ -584,6 +589,7 @@
 				7272DB4517BCC5D100286E9A /* HHPanningTableViewCell.m in Sources */,
 				7295BB4217BD026D005CD637 /* NewsItem.m in Sources */,
 				7282833017BF7AB2006DEE19 /* NewsSource.m in Sources */,
+				728661DA17BFD21E00AA13D3 /* SearchViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

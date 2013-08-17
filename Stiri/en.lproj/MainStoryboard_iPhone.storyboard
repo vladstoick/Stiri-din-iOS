@@ -71,7 +71,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zm2-M5-AJq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4210" y="1247"/>
+            <point key="canvasLocation" x="4736" y="1247"/>
         </scene>
         <!--Add News Source Manually View Controller - Recommended-->
         <scene sceneID="fja-St-Tdx">
@@ -98,7 +98,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="N3D-yC-tBC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3677" y="528"/>
+            <point key="canvasLocation" x="4203" y="528"/>
         </scene>
         <!--News Group View Controller - Your Groups-->
         <scene sceneID="eyk-1f-IQn">
@@ -497,6 +497,40 @@
             </objects>
             <point key="canvasLocation" x="1509" y="112"/>
         </scene>
+        <!--Search View Controller - Search-->
+        <scene sceneID="liF-oq-XF3">
+            <objects>
+                <viewController storyboardIdentifier="" id="0XF-dB-knG" customClass="SearchViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="emm-yb-eRH">
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Search" id="mEy-JK-KBj">
+                        <barButtonItem key="leftBarButtonItem" id="REc-mC-b3H">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="38a-eE-cAg">
+                                <rect key="frame" x="5" y="3" width="35" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-UltraLight" family="Helvetica Neue" pointSize="20"/>
+                                <state key="normal" title="☰">
+                                    <color key="titleColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="menuButtonPressed:" destination="0XF-dB-knG" eventType="touchUpInside" id="vGf-Uh-QuK"/>
+                                    <action selector="openMenu:" destination="CBJ-JQ-w2e" eventType="touchUpInside" id="plh-CR-zbh"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4aB-aY-hJm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1987" y="720"/>
+        </scene>
         <!--Tab Bar Controller - Add-->
         <scene sceneID="ld1-PS-toD">
             <objects>
@@ -515,7 +549,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Cyj-6w-5sm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3083" y="528"/>
+            <point key="canvasLocation" x="3609" y="528"/>
         </scene>
         <!--Navigation Controller - Manual-->
         <scene sceneID="2Qx-xY-IeT">
@@ -535,7 +569,25 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UzW-hf-w4m" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3684" y="1247"/>
+            <point key="canvasLocation" x="4210" y="1247"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="uAe-6b-OWK">
+            <objects>
+                <navigationController storyboardIdentifier="Search" useStoryboardIdentifierAsRestorationIdentifier="YES" id="c9H-da-TXb" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="As3-w4-xAs">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="0XF-dB-knG" kind="relationship" relationship="rootViewController" id="jN5-lx-zDT"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Dbr-9u-LaW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1499" y="720"/>
         </scene>
     </scenes>
     <resources>
@@ -586,8 +638,6 @@
         <class className="NewsGroupViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/NewsGroupViewController.h"/>
             <relationships>
-                <relationship kind="action" name="addItem:"/>
-                <relationship kind="action" name="openMenu:"/>
                 <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
             </relationships>
         </class>
@@ -609,6 +659,9 @@
             <relationships>
                 <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
             </relationships>
+        </class>
+        <class className="SearchViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SearchViewController.h"/>
         </class>
     </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
