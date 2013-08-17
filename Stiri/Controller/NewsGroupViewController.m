@@ -78,8 +78,6 @@
         self.slidingViewController.underLeftViewController  = [self.storyboard instantiateViewControllerWithIdentifier:@"Menu"];
     }
     [self.navigationController.view addGestureRecognizer:self.slidingViewController.panGesture];
-    UIBarButtonItem *barBtnItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addItem:)];
-    self.navigationItem.rightBarButtonItem=barBtnItem;
     
 }
 

@@ -9,6 +9,7 @@
 #import "NewsDataSource.h"
 #import "AppDelegate.h"
 #import "AFNetworking.h"
+#define ADD_ENDED @"add_ended"
 #define RAILSBASEURL @"http://stiriromania.eu01.aws.af.cm/user/"
 #define PARSEBASEURL @"http://37.139.8.146:3000/?url="
 #define DATA_CHANGED_EVENT @"data_changed"
@@ -84,7 +85,7 @@ static NewsDataSource *_newsDataSource;
 
 //NEWSGROUP
 
-- (void) addNewsSourceWithTitle:(NSString*) sourceTitle andDescription:(NSString*) sourceDescription andUrl:(NSString*) sourceUrl inNewGroupWithName:(NSString* ) groupTitle{
+- (void) addNewsSourceWithUrl:(NSString*) sourceUrl inNewGroupWithName:(NSString* ) groupTitle{
     NSString *urlString = [NSString stringWithFormat:@"%@%d",RAILSBASEURL,self.userId];
     NSDictionary *params = @{@"title": groupTitle};
     AFHTTPClient *httpClient = [[AFHTTPClient alloc]initWithBaseURL:[NSURL URLWithString:urlString]];
@@ -101,7 +102,7 @@ static NewsDataSource *_newsDataSource;
         if (![context save:&error]) {
             NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
         } else {
-            [self addNewsSourceWithTitle:sourceTitle andDescription:sourceDescription andUrl:sourceUrl inNewsGroup:newsGroup];
+            [self addNewsSourceWithUrl:sourceUrl inNewsGroup:newsGroup];
         }
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -134,11 +135,9 @@ static NewsDataSource *_newsDataSource;
 
 //NEWSSOURCE
 
-- (void) addNewsSourceWithTitle:(NSString*) sourceTitle andDescription:(NSString*) sourceDescription andUrl:(NSString*) sourceUrl inNewsGroup:(NewsGroup* ) newsGroup{
+- (void) addNewsSourceWithUrl:(NSString*) sourceUrl inNewsGroup:(NewsGroup* ) newsGroup{
     NSString *urlString = [NSString stringWithFormat:@"%@%d/%@",RAILSBASEURL,self.userId,newsGroup.groupId];
-    NSDictionary *params = @{@"title": sourceTitle,
-                             @"url": sourceUrl,
-                             @"description": sourceDescription};
+    NSDictionary *params = @{@"url": sourceUrl};
     AFHTTPClient *httpClient = [[AFHTTPClient alloc]initWithBaseURL:[NSURL URLWithString:urlString]];
     [httpClient postPath:@"" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSString *responseStr = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
@@ -149,7 +148,7 @@ static NewsDataSource *_newsDataSource;
         NewsSource *newsSource = [NSEntityDescription insertNewObjectForEntityForName:@"NewsSource" inManagedObjectContext:context];
         NewsGroup *ng = [self getGroupWithId:newsGroup.groupId];
         NSMutableSet *set = [ng.newsSources mutableCopy];
-        newsSource.title = sourceTitle;
+        newsSource.title = [jsonDictionary valueForKey:@"title"];
         newsSource.url = sourceUrl;
         newsSource.sourceId = [jsonDictionary valueForKey:@"feed_id"];
         newsSource.groupOwner = ng;
@@ -159,7 +158,9 @@ static NewsDataSource *_newsDataSource;
         if (![context save:&error]) {
             NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
         } else {
-              [[NSNotificationCenter defaultCenter] postNotificationName:DATA_CHANGED_EVENT object:nil];
+            [[NSNotificationCenter defaultCenter] postNotificationName:DATA_CHANGED_EVENT object:nil];
+            [[NSNotificationCenter defaultCenter] postNotificationName:ADD_ENDED object:nil];
+        
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         

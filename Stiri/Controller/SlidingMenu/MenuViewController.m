@@ -9,6 +9,7 @@
 #import "MenuViewController.h"
 
 @interface MenuViewController ()
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property NSArray *menuItems;
 @property NSArray *sectionTitles;
 @property NSMutableArray *allMenuItems;
@@ -21,14 +22,19 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.tableView.backgroundColor =    [UIColor colorWithPatternImage:[UIImage imageNamed:@"squairy_light.png"]];
     self.newsItems = @[@{@"Your news":@"Main"},@{@"Search":@"Search"}];
     self.settings = @[@{@"Settings":@"Settings"},@{@"Logout":@"Logout"}];
     self.sectionTitles = @[@"News",@"Settings"];
     self.menuItems = @[self.newsItems,self.settings];
     self.allMenuItems = [self.newsItems mutableCopy];
     [self.allMenuItems addObjectsFromArray:self.settings];
-    [self.slidingViewController setAnchorRightRevealAmount:280.0f];
+    NSIndexPath *indexPath = [NSIndexPath indexPathForItem:0 inSection:0];
+
+    [self.tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:0];
+    [self.slidingViewController setAnchorRightRevealAmount:220.0f];
     self.slidingViewController.underLeftWidthLayout = ECFullWidth;
+    
 
 }
 
@@ -46,6 +52,22 @@
     return [[self.menuItems objectAtIndex:section] count];
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    return 26.0;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    UIView *headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 280, 26)];
+    headerView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"tweed.png"]];
+    UILabel *sectionTitle = [[UILabel alloc] initWithFrame:CGRectMake(10,2,250,22)];
+    sectionTitle.opaque = true;
+    sectionTitle.backgroundColor = [UIColor clearColor];
+    sectionTitle.textColor = [UIColor whiteColor];
+    sectionTitle.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:16.0];
+    sectionTitle.text = [self tableView:tableView titleForHeaderInSection:section];
+    [headerView addSubview:sectionTitle];
+    return headerView;
+}
 - (NSString*) tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
     return [self.sectionTitles objectAtIndex:section];
     return nil;
@@ -63,6 +85,7 @@
     NSArray *menuItemsForCurrentSection = [self.menuItems objectAtIndex:indexPath.section];
     NSDictionary *menuItem = [menuItemsForCurrentSection objectAtIndex:indexPath.row];
     cell.textLabel.text = [[menuItem allKeys]lastObject];
+    cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:18.0];
     return cell;
 }
 

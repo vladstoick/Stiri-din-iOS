@@ -18,11 +18,11 @@
 + (NewsDataSource*) newsDataSource;
 - (void) loadData;
 //NEWSGROUP
-- (void) addNewsSourceWithTitle:(NSString*) sourceTitle andDescription:(NSString*) sourceDescription andUrl:(NSString*) sourceUrl inNewGroupWithName:(NSString* ) groupTitle;
+- (void) addNewsSourceWithUrl:(NSString*) url inNewGroupWithName:(NSString* ) groupTitle;
 - (NSArray*) allGroups;
 - (NewsGroup*) getGroupWithId:(NSNumber *) groupId;
 //NEWSOURCE
-- (void) addNewsSourceWithTitle:(NSString*) sourceTitle andDescription:(NSString*) sourceDescription andUrl:(NSString*) sourceUrl inNewsGroup:(NewsGroup* ) newsGroup;
+- (void) addNewsSourceWithUrl:(NSString*) sourceUrl inNewsGroup:(NewsGroup* ) newsGroup;
 - (NSArray*) allSources;
 - (NewsSource *) getNewsSourceWithId:(NSNumber *) sourceId;
 //NewsItem

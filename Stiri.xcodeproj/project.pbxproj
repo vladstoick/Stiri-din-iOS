@@ -43,6 +43,10 @@
 		7282832B17BF79DA006DEE19 /* navbar_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7282832917BF79DA006DEE19 /* navbar_bg@2x.png */; };
 		7282832D17BF7A90006DEE19 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7282832C17BF7A90006DEE19 /* Social.framework */; };
 		7282833017BF7AB2006DEE19 /* NewsSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 7282832F17BF7AB2006DEE19 /* NewsSource.m */; };
+		728661D217BFAF4200AA13D3 /* squairy_light.png in Resources */ = {isa = PBXBuildFile; fileRef = 728661D017BFAF4200AA13D3 /* squairy_light.png */; };
+		728661D317BFAF4200AA13D3 /* squairy_light@2X.png in Resources */ = {isa = PBXBuildFile; fileRef = 728661D117BFAF4200AA13D3 /* squairy_light@2X.png */; };
+		728661D617BFAF5000AA13D3 /* tweed_@2X.png in Resources */ = {isa = PBXBuildFile; fileRef = 728661D417BFAF5000AA13D3 /* tweed_@2X.png */; };
+		728661D717BFAF5000AA13D3 /* tweed.png in Resources */ = {isa = PBXBuildFile; fileRef = 728661D517BFAF5000AA13D3 /* tweed.png */; };
 		7291565317BA35AA00A6FD66 /* NewsDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 7291565217BA35AA00A6FD66 /* NewsDataSource.m */; };
 		7291565617BA35CF00A6FD66 /* NewsModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7291565417BA35CF00A6FD66 /* NewsModel.xcdatamodeld */; };
 		7291565917BA35FB00A6FD66 /* NewsGroupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7291565817BA35FB00A6FD66 /* NewsGroupViewController.m */; };
@@ -125,6 +129,10 @@
 		7282832C17BF7A90006DEE19 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		7282832E17BF7AB2006DEE19 /* NewsSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewsSource.h; path = Model/NewsSource.h; sourceTree = "<group>"; };
 		7282832F17BF7AB2006DEE19 /* NewsSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewsSource.m; path = Model/NewsSource.m; sourceTree = "<group>"; };
+		728661D017BFAF4200AA13D3 /* squairy_light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = squairy_light.png; path = Assets/squairy_light.png; sourceTree = "<group>"; };
+		728661D117BFAF4200AA13D3 /* squairy_light@2X.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "squairy_light@2X.png"; path = "Assets/squairy_light@2X.png"; sourceTree = "<group>"; };
+		728661D417BFAF5000AA13D3 /* tweed_@2X.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tweed_@2X.png"; sourceTree = "<group>"; };
+		728661D517BFAF5000AA13D3 /* tweed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tweed.png; sourceTree = "<group>"; };
 		7291565117BA35AA00A6FD66 /* NewsDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewsDataSource.h; path = Model/NewsDataSource.h; sourceTree = "<group>"; };
 		7291565217BA35AA00A6FD66 /* NewsDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewsDataSource.m; path = Model/NewsDataSource.m; sourceTree = "<group>"; };
 		7291565517BA35CF00A6FD66 /* NewsModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = NewsModel.xcdatamodel; sourceTree = "<group>"; };
@@ -359,6 +367,10 @@
 		72B8681D17B3C4A400A871E5 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				728661D417BFAF5000AA13D3 /* tweed_@2X.png */,
+				728661D517BFAF5000AA13D3 /* tweed.png */,
+				728661D017BFAF4200AA13D3 /* squairy_light.png */,
+				728661D117BFAF4200AA13D3 /* squairy_light@2X.png */,
 				72EEB31F17BF8AF90059469B /* rename_button.png */,
 				72EEB32017BF8AF90059469B /* rename_button@2x.png */,
 				72EEB31B17BF881C0059469B /* delete_button.png */,
@@ -472,6 +484,10 @@
 				72EEB31E17BF881C0059469B /* delete_button@2x.png in Resources */,
 				72EEB32117BF8AF90059469B /* rename_button.png in Resources */,
 				72EEB32217BF8AF90059469B /* rename_button@2x.png in Resources */,
+				728661D217BFAF4200AA13D3 /* squairy_light.png in Resources */,
+				728661D317BFAF4200AA13D3 /* squairy_light@2X.png in Resources */,
+				728661D617BFAF5000AA13D3 /* tweed_@2X.png in Resources */,
+				728661D717BFAF5000AA13D3 /* tweed.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

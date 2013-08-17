@@ -47,6 +47,7 @@ static NSString * const kClientId = @"976584719831.apps.googleusercontent.com";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.view.backgroundColor =    [UIColor colorWithPatternImage:[UIImage imageNamed:@"squairy_light.png"]];
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     self.navigationItem.hidesBackButton = YES;
     if([defaults integerForKey:@"user_id"]){

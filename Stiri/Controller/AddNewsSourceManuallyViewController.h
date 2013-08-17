@@ -10,6 +10,7 @@
 
 @interface AddNewsSourceManuallyViewController : UIViewController
 - (IBAction)donePressed:(id)sender;
+- (IBAction)cancelPressed:(id)sender;
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @end

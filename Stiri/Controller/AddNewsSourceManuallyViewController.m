@@ -10,12 +10,12 @@
 #import "RETableViewOptionsController.h"
 #import "RETableViewManager.h"
 #import "NewsDataSource.h"
+#import "SVProgressHud.h"
+#define ADD_ENDED @"add_ended"
 #define selected_group @"selected_group"
 @interface AddNewsSourceManuallyViewController ()
 @property (strong, nonatomic) RETableViewSection *section;
 @property (strong, nonatomic) RETableViewManager *manager;
-@property (strong, nonatomic) RETextItem *feedTitle;
-@property (strong, nonatomic) RETextItem *feedDescription;
 @property (strong, nonatomic) RETextItem *feedUrl;
 @property (strong, nonatomic) RERadioItem *newsGroup;
 @property (strong, nonatomic) RETextItem *addNewsGroupName;
@@ -40,25 +40,15 @@
 //    self.tabBarController.navigationItem
     self.allGroups = [[NewsDataSource newsDataSource] allGroups];
     self.manager = [[RETableViewManager alloc]initWithTableView:self.tableView];
-    self.section = [RETableViewSection sectionWithHeaderTitle:@"Information about the feed"];
+    self.section = [RETableViewSection sectionWithHeaderTitle:@""];
     self.feedUrl = [RETextItem itemWithTitle:@"RSS" value:@"http://www.gsp.ro/rss.xml" placeholder:@"The rss adress of the feed"];
-    [self.section addItem:self.feedTitle];
-    [self.section addItem:self.feedDescription];
     [self.section addItem:self.feedUrl];
-    [self.manager addSection:self.section];
-    self.section = [RETableViewSection sectionWithHeaderTitle:@"Information about the group"];
     self.newsGroup = [RERadioItem itemWithTitle:@"Group" value:@"New Group" selectionHandler:^(RERadioItem *item) {
-        [item deselectRowAnimated:YES]; // same as [weakSelf.tableView deselectRowAtIndexPath:item.indexPath animated:YES];
-        
-        // Generate sample options
-        //
+        [item deselectRowAnimated:YES];
         NSMutableArray *options = [[NSMutableArray alloc] init];
         [options addObject:@"New Group"];
         for (NewsGroup *ng in weakSelf.allGroups)
             [options addObject:ng.title];
-        
-        // Present options controller
-        //
         RETableViewOptionsController *optionsController = [[RETableViewOptionsController alloc] initWithItem:item options:options multipleChoice:NO completionHandler:^{
             NSNumber *selectedGroup = @1;
             if(item.indexPath.row == 0){
@@ -68,31 +58,26 @@
             [[NSNotificationCenter defaultCenter] postNotificationName:selected_group object:selectedGroup];
             [item reloadRowWithAnimation:UITableViewRowAnimationNone];
         }];
-        
-        // Adjust styles
-        //
         optionsController.delegate = self;
         optionsController.style = self.section.style;
         if (weakSelf.tableView.backgroundView == nil) {
             optionsController.tableView.backgroundColor = weakSelf.tableView.backgroundColor;
             optionsController.tableView.backgroundView = nil;
         }
-        
-        // Push the options controller
-        //
         [weakSelf.navigationController pushViewController:optionsController animated:YES];
     }];
-    [self.manager addSection:self.section];
     [self.section addItem:self.newsGroup];
     self.addNewsGroupName = [RETextItem itemWithTitle:@"Group name" value:@"Sport" placeholder:@"The name of the new group"];
-
     [self.section addItem:self.addNewsGroupName];
+        [self.manager addSection:self.section];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(addEnded:) name:ADD_ENDED object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(selectedGroup:) name:selected_group object:nil];
 	// Do any additional setup after loading the view.
 }
 
 - (void) selectedGroup:(NSNotification*) notificaiton{
     [self.section removeAllItems];
+    [self.section addItem:self.feedUrl];
     [self.section addItem:self.newsGroup];
     if([self.newsGroup.value isEqual: @"New Group"]){
         [self.section addItem:self.addNewsGroupName];
@@ -107,13 +92,23 @@
 }
 
 - (IBAction)donePressed:(id)sender {
-    NSString* sourceTitle = self.feedTitle.value;
-    NSString* sourceDescription = self.feedDescription.value;
     NSString* sourceUrl = self.feedUrl.value;
     NSString* addGroupName = self.addNewsGroupName.value;
     if([self.newsGroup.value isEqual: @"New Group"]){
-        [[NewsDataSource newsDataSource] addNewsSourceWithTitle:sourceTitle andDescription:sourceDescription andUrl:sourceUrl inNewGroupWithName:addGroupName];
+        [[NewsDataSource newsDataSource] addNewsSourceWithUrl:sourceUrl inNewGroupWithName:addGroupName];
+        
     }
+    [SVProgressHUD showWithStatus:@"Adding"];
 }
+
+- (IBAction)cancelPressed:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void) addEnded:(NSNotification*) notification{
+    [SVProgressHUD showSuccessWithStatus:@"Succes"];
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 
 @end
