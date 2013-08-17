@@ -7,6 +7,7 @@
 //
 
 #import "NewsGroupViewController.h"
+#import "SVProgressHud.h"
 #import "HHPanningTableViewCell.h"
 #import "NewsDataSource.h"
 #import "AFNetworking.h"
@@ -16,8 +17,11 @@
 #import <QuartzCore/QuartzCore.h>
 #import "MenuViewController.h"
 #define DATA_CHANGED_EVENT @"data_changed"
-@interface NewsGroupViewController ()
-@property (strong, nonatomic) NewsDataSource *newsDataSource;
+#define DELETE_END @"delete_ended"
+#define DELETE_SUCCES @"delete_succes"
+#define DELETE_FAIL @"delete_fail"
+@interface NewsGroupViewController () <UIAlertViewDelegate>
+@property (strong, nonatomic) NSIndexPath *swipedCell;
 @property (strong, nonatomic) NSArray *groups;
 @property (strong, nonatomic) UIRefreshControl *refreshControl;
 @property (nonatomic) BOOL isDataLoading;
@@ -30,13 +34,8 @@
     return _refreshControl;
 }
 
-- (NewsDataSource *) newsDataSource{
-    if(!_newsDataSource) _newsDataSource = [NewsDataSource newsDataSource];
-    return _newsDataSource;
-}
-
 - (NSArray *) groups{
-    _groups = [self.newsDataSource allGroups];
+    _groups = [[NewsDataSource newsDataSource] allGroups];
     return _groups;
 }
 
@@ -57,7 +56,8 @@
     [self.refreshControl addTarget:self action:@selector(refresh) forControlEvents:UIControlEventValueChanged];
     [self.tableView addSubview:self.refreshControl];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dataChanged:) name:DATA_CHANGED_EVENT object:nil];
-    if(self.newsDataSource.isDataLoaded == NO){
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deleteMessage:) name:DELETE_END object:nil];
+    if([NewsDataSource newsDataSource].isDataLoaded == NO){
         [self.tableView setContentOffset:CGPointMake(0, -self.refreshControl.frame.size.height) animated:YES];
         [self.refreshControl beginRefreshing];
     }
@@ -77,6 +77,7 @@
     if (![self.slidingViewController.underLeftViewController isKindOfClass:[MenuViewController class]]) {
         self.slidingViewController.underLeftViewController  = [self.storyboard instantiateViewControllerWithIdentifier:@"Menu"];
     }
+    
     [self.navigationController.view addGestureRecognizer:self.slidingViewController.panGesture];
     
 }
@@ -103,6 +104,32 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+//DELETE AND RENAME
+- (IBAction)shouldDeleteGroup:(id)sender{
+    CGPoint buttonPosition = [sender convertPoint:CGPointZero toView:self.tableView];
+    self.swipedCell = [self.tableView indexPathForRowAtPoint:buttonPosition];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Warning" message:@"You can't undo this operation" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"OK", nil];
+    [alert show];
+}
+
+- (void) deleteMessage:(NSNotification*) event{
+    if([event.object isEqual: DELETE_SUCCES]){
+        [SVProgressHUD showSuccessWithStatus:@"Deleted"];
+        [self.tableView reloadData];
+    }
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if([alertView.title isEqualToString:@"Warning"]){
+        [[NewsDataSource newsDataSource] deleteNewsGroup:[self.groups objectAtIndex:self.swipedCell.row]];
+        [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeBlack];
+    }
+}
+
+
+//TALBE VIEW
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return self.groups.count;
@@ -124,6 +151,7 @@
     UIButton *deleteButton = [UIButton buttonWithType:UIButtonTypeCustom];
     deleteButton.frame = CGRectMake( (cell.frame.size.width/2 - 102)/2  , 10, 102, 24);
     [deleteButton setBackgroundImage:[UIImage imageNamed:@"delete_button.png"] forState:UIControlStateNormal];
+    [deleteButton addTarget:self action:@selector(shouldDeleteGroup:) forControlEvents:UIControlEventTouchDown];
     UIButton *renameButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [renameButton setBackgroundImage:[UIImage imageNamed:@"rename_button.png"] forState:UIControlStateNormal];
     renameButton.frame = CGRectMake(cell.frame.size.width/2 + (cell.frame.size.width/2 - 102)/2 , 10 , 102, 24);

@@ -18,6 +18,7 @@
 + (NewsDataSource*) newsDataSource;
 - (void) loadData;
 //NEWSGROUP
+- (void) deleteNewsGroup:(NewsGroup*) newsGroup;
 - (void) addNewsSourceWithUrl:(NSString*) url inNewGroupWithName:(NSString* ) groupTitle;
 - (NSArray*) allGroups;
 - (NewsGroup*) getGroupWithId:(NSNumber *) groupId;

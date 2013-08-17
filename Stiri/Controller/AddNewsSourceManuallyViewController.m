@@ -106,7 +106,7 @@
         }
         [[NewsDataSource newsDataSource] addNewsSourceWithUrl:sourceUrl inNewsGroup:newsGroup];
     }
-    [SVProgressHUD showWithStatus:@"Adding"];
+    [SVProgressHUD showWithStatus:@"Adding" maskType:SVProgressHUDMaskTypeBlack];
 }
 
 - (IBAction)cancelPressed:(id)sender {

@@ -9,7 +9,12 @@
 #import "NewsDataSource.h"
 #import "AppDelegate.h"
 #import "AFNetworking.h"
+#define DELETE_END @"delete_ended"
+#define DELETE_SUCCES @"delete_succes"
+#define DELETE_FAIL @"delete_fail"
 #define ADD_ENDED @"add_ended"
+#define ADD_FAIL @"add_fail";
+#define ADD_SUCCES @"add_succes";
 #define RAILSBASEURL @"http://stiriromania.eu01.aws.af.cm/user/"
 #define PARSEBASEURL @"http://37.139.8.146:3000/?url="
 #define DATA_CHANGED_EVENT @"data_changed"
@@ -78,12 +83,25 @@ static NewsDataSource *_newsDataSource;
         [[NSNotificationCenter defaultCenter] postNotificationName:DATA_CHANGED_EVENT object:nil];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         self.isDataLoaded = YES;
-        [[NSNotificationCenter defaultCenter] postNotificationName:DATA_CHANGED_EVENT object:nil];
+
     }];
 
 }
 
 //NEWSGROUP
+
+- (void) deleteNewsGroup:(NewsGroup *)newsGroup{
+    NSString *urlString = [NSString stringWithFormat:@"%@%d",RAILSBASEURL,self.userId];
+    AFHTTPClient *httpClient = [[AFHTTPClient alloc] initWithBaseURL:[NSURL URLWithString:urlString]];
+    [httpClient deletePath:[NSString stringWithFormat:@"%@",newsGroup.groupId] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSManagedObjectContext *context = [self managedObjectContext];
+        [context deleteObject:newsGroup];
+                [[NSNotificationCenter defaultCenter] postNotificationName:DELETE_END  object:DELETE_SUCCES];
+        [[NSNotificationCenter defaultCenter] postNotificationName:DELETE_SUCCES object:nil];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:DELETE_END object:DELETE_FAIL];
+    }];
+}
 
 - (void) addNewsSourceWithUrl:(NSString*) sourceUrl inNewGroupWithName:(NSString* ) groupTitle{
     NSString *urlString = [NSString stringWithFormat:@"%@%d",RAILSBASEURL,self.userId];

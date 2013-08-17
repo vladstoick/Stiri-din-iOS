@@ -504,7 +504,21 @@
                     <view key="view" contentMode="scaleToFill" id="emm-yb-eRH">
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="myu-EJ-Z9O">
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="0XF-dB-knG" id="IgP-3S-kkg"/>
+                                </connections>
+                            </searchBar>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="myu-EJ-Z9O" firstAttribute="top" secondItem="emm-yb-eRH" secondAttribute="top" type="default" id="Lun-S7-4is"/>
+                            <constraint firstItem="myu-EJ-Z9O" firstAttribute="leading" secondItem="emm-yb-eRH" secondAttribute="leading" type="default" id="XDC-nP-NIl"/>
+                            <constraint firstItem="myu-EJ-Z9O" firstAttribute="trailing" secondItem="emm-yb-eRH" secondAttribute="trailing" type="default" id="uGD-jH-p8H"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Search" id="mEy-JK-KBj">
                         <barButtonItem key="leftBarButtonItem" id="REc-mC-b3H">
@@ -526,8 +540,20 @@
                             </button>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="searchDisplayController" destination="031-14-bMl" id="5ID-0N-cCI"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4aB-aY-hJm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="031-14-bMl">
+                    <connections>
+                        <outlet property="delegate" destination="0XF-dB-knG" id="h1P-DM-7j1"/>
+                        <outlet property="searchBar" destination="myu-EJ-Z9O" id="niD-FO-Z2A"/>
+                        <outlet property="searchContentsController" destination="0XF-dB-knG" id="nJo-tv-vKK"/>
+                        <outlet property="searchResultsDataSource" destination="0XF-dB-knG" id="Ece-Vd-vbf"/>
+                        <outlet property="searchResultsDelegate" destination="0XF-dB-knG" id="t7w-SU-fwR"/>
+                    </connections>
+                </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="1987" y="720"/>
         </scene>
@@ -576,7 +602,8 @@
             <objects>
                 <navigationController storyboardIdentifier="Search" useStoryboardIdentifierAsRestorationIdentifier="YES" id="c9H-da-TXb" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="As3-w4-xAs">
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="blackOpaque"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="blackOpaque" id="As3-w4-xAs">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
