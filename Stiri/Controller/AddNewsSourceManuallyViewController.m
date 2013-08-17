@@ -96,7 +96,15 @@
     NSString* addGroupName = self.addNewsGroupName.value;
     if([self.newsGroup.value isEqual: @"New Group"]){
         [[NewsDataSource newsDataSource] addNewsSourceWithUrl:sourceUrl inNewGroupWithName:addGroupName];
-        
+    } else {
+        NewsGroup *newsGroup;
+        for(NewsGroup* ng in self.allGroups){
+            if([ng.title isEqualToString:self.newsGroup.value]){
+                newsGroup = ng;
+                break;
+            }
+        }
+        [[NewsDataSource newsDataSource] addNewsSourceWithUrl:sourceUrl inNewsGroup:newsGroup];
     }
     [SVProgressHUD showWithStatus:@"Adding"];
 }
