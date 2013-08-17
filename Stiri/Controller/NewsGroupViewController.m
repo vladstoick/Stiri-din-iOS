@@ -81,6 +81,10 @@
     
 }
 
+- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation{
+    [self.tableView reloadData];
+}
+
 - (void) refresh {
     if(self.isDataLoading == NO){
         [[NewsDataSource newsDataSource]loadData];
@@ -118,11 +122,11 @@
     UIView *drawerView = [[UIView alloc] initWithFrame:cell.frame];
     drawerView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"dark_dotted"]];
     UIButton *deleteButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    deleteButton.frame = CGRectMake(15, 5, 145, 34);
+    deleteButton.frame = CGRectMake( (cell.frame.size.width/2 - 102)/2  , 10, 102, 24);
     [deleteButton setBackgroundImage:[UIImage imageNamed:@"delete_button.png"] forState:UIControlStateNormal];
     UIButton *renameButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [renameButton setBackgroundImage:[UIImage imageNamed:@"rename_button.png"] forState:UIControlStateNormal];
-    renameButton.frame = CGRectMake(cell.frame.size.width/2 , 5, 145, 34);
+    renameButton.frame = CGRectMake(cell.frame.size.width/2 + (cell.frame.size.width/2 - 102)/2 , 10 , 102, 24);
     [drawerView addSubview:renameButton];
     [drawerView addSubview:deleteButton];
     cell.drawerView = drawerView;
