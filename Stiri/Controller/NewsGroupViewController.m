@@ -129,12 +129,14 @@
     cell.directionMask =  HHPanningTableViewCellDirectionLeft;
     NewsGroup *ng = (self.groups)[indexPath.row];
     cell.textLabel.text = ng.title;
+    cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue-CondensedBold" size:18.0];
     NSUInteger numberOfNewSources = ng.newsSources.count;
     NSString *surseDeStiriString = [NSString stringWithFormat:@"%d news sources",numberOfNewSources];
     if(numberOfNewSources == 1 ){
         surseDeStiriString = [NSString stringWithFormat:@"one news source"];
     }
     cell.detailTextLabel.text = surseDeStiriString;
+    cell.detailTextLabel.font = [UIFont fontWithName:@"HelveticaNeue-LightItalic" size:14.0];
     return cell;
 }
 
