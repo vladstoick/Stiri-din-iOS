@@ -117,6 +117,8 @@
     if([event.object isEqual: DELETE_SUCCES]){
         [SVProgressHUD showSuccessWithStatus:@"Deleted"];
         [self.tableView reloadData];
+    } else {
+        [SVProgressHUD showErrorWithStatus:@"Failed"];
     }
 }
 

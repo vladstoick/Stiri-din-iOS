@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface NewsItemViewController : UIViewController
+@property (weak, nonatomic) IBOutlet UIToolbar *toolBar;
 @property (strong, nonatomic) NSString* currentNewsItemUrl;
 @property (strong, nonatomic) NSNumber* sourceId;
 @end

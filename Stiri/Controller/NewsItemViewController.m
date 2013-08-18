@@ -49,6 +49,7 @@
 {
     [super viewDidLoad];
     self.title = @"News from";
+    [self.toolBar setBackgroundImage:[UIImage imageNamed:@"navbar_bg.png"] forToolbarPosition:UIToolbarPositionBottom barMetrics:UIBarMetricsDefault];
     [self.webView loadHTMLString:[self stylePaperize] baseURL:nil];
 	// Do any additional setup after loading the view.
 }
