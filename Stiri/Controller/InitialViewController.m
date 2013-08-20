@@ -7,7 +7,7 @@
 //
 
 #import "InitialViewController.h"
-
+#import "MMDrawerController.h"
 @interface InitialViewController ()
 
 @end
@@ -18,6 +18,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
+
         // Custom initialization
     }
     return self;
@@ -26,8 +27,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.topViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"Main"];
-
+    UIViewController *topViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"Main"];
+    UIViewController *menuViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"Menu"];
+    self.centerViewController = topViewController;
+    self.leftDrawerViewController = menuViewController;
+    self.openDrawerGestureModeMask = MMOpenDrawerGestureModeBezelPanningCenterView;
+    self.closeDrawerGestureModeMask = MMOpenDrawerGestureModeAll;
 	// Do any additional setup after loading the view.
 }
 

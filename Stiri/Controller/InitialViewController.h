@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ECSlidingViewController.h"
-@interface InitialViewController : ECSlidingViewController
-
+#import "MMDrawerController.h"
+@interface InitialViewController : MMDrawerController
 @end

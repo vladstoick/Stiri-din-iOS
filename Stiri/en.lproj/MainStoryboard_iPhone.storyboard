@@ -638,9 +638,6 @@
                 <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
             </relationships>
         </class>
-        <class className="ECSlidingViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ECSlidingViewController.h"/>
-        </class>
         <class className="FBLoginView" superclassName="UIView">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/FBLoginView.h"/>
             <relationships>
@@ -650,7 +647,7 @@
         <class className="GPPSignInButton" superclassName="UIButton">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/GPPSignInButton.h"/>
         </class>
-        <class className="InitialViewController" superclassName="ECSlidingViewController">
+        <class className="InitialViewController" superclassName="MMDrawerController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/InitialViewController.h"/>
         </class>
         <class className="LoginViewController" superclassName="UIViewController">
@@ -659,6 +656,9 @@
                 <relationship kind="action" name="loginWithFacebook:"/>
                 <relationship kind="outlet" name="signInButton" candidateClass="GPPSignInButton"/>
             </relationships>
+        </class>
+        <class className="MMDrawerController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MMDrawerController.h"/>
         </class>
         <class className="MenuViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/MenuViewController.h"/>
@@ -672,14 +672,15 @@
         <class className="NewsGroupViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/NewsGroupViewController.h"/>
             <relationships>
+                <relationship kind="action" name="addItem:"/>
+                <relationship kind="action" name="openMenu:"/>
+                <relationship kind="action" name="shouldDeleteGroup:"/>
                 <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
             </relationships>
         </class>
         <class className="NewsItemViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/NewsItemViewController.h"/>
             <relationships>
-                <relationship kind="action" name="browserButtonClicked:"/>
-                <relationship kind="action" name="shareButtonClicked:"/>
                 <relationship kind="outlet" name="titleView" candidateClass="UITextView"/>
                 <relationship kind="outlet" name="toolBar" candidateClass="UIToolbar"/>
                 <relationship kind="outlet" name="webView" candidateClass="UIWebView"/>

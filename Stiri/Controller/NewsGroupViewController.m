@@ -13,9 +13,8 @@
 #import "AFNetworking.h"
 #import "NewsGroup.h"
 #import "NewsSourceViewController.h"
-#import "ECSlidingViewController.h"
+#import "UIViewController+MMDrawerController.h"
 #import <QuartzCore/QuartzCore.h>
-#import "MenuViewController.h"
 #define DATA_CHANGED_EVENT @"data_changed"
 #define DELETE_END @"delete_ended"
 #define DELETE_SUCCES @"delete_succes"
@@ -45,7 +44,11 @@
 }
 
 - (IBAction)openMenu:(id)sender{
-    [self.slidingViewController anchorTopViewTo:ECRight];
+    if([self.mm_drawerController openSide] == nil){
+        [self.mm_drawerController openDrawerSide:MMDrawerSideLeft animated:YES completion:nil];
+    } else {
+        [self.mm_drawerController closeDrawerAnimated:YES completion:nil];
+    }
 }
 
 - (void)viewDidLoad
@@ -70,15 +73,6 @@
     [super viewWillAppear:animated];
 
     [[self navigationController] setNavigationBarHidden:NO animated:YES];
-    [self.slidingViewController setAnchorRightRevealAmount:200.0f];
-    self.navigationController.view.layer.shadowOpacity = 0.75f;
-    self.navigationController.view.layer.shadowRadius = 10.0f;
-    self.navigationController.view.layer.shadowColor = [UIColor blackColor].CGColor;
-    if (![self.slidingViewController.underLeftViewController isKindOfClass:[MenuViewController class]]) {
-        self.slidingViewController.underLeftViewController  = [self.storyboard instantiateViewControllerWithIdentifier:@"Menu"];
-    }
-    
-    [self.navigationController.view addGestureRecognizer:self.slidingViewController.panGesture];
     
 }
 

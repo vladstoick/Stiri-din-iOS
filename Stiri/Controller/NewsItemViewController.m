@@ -60,7 +60,7 @@
     // Dispose of any resources that can be recreated.
 }
 - (IBAction)shareButtonClicked:(id)sender {
-    NSArray *activity_elements = @[[NSString stringWithFormat:@"%@ via News from ( available for iOS, Android and WP8 ) ", self.currentNewsItem.url ]];
+    NSArray *activity_elements = @[[NSString stringWithFormat:@"%@ via News from", self.currentNewsItem.url ]];
     UIActivityViewController *uiActivityViewController = [[UIActivityViewController alloc] initWithActivityItems:activity_elements applicationActivities:nil];
     [self presentViewController:uiActivityViewController animated:YES completion:nil];
 }
