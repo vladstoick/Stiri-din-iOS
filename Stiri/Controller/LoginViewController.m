@@ -39,10 +39,6 @@ static NSString * const kClientId = @"976584719831.apps.googleusercontent.com";
 }
 
 
-- (IBAction)revealMenu:(id)sender
-{
-    [self.slidingViewController anchorTopViewTo:ECRight];
-}
 
 - (void)viewDidLoad
 {

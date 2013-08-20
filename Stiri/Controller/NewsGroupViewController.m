@@ -44,10 +44,11 @@
 }
 
 - (IBAction)openMenu:(id)sender{
-    if([self.mm_drawerController openSide] == nil){
-        [self.mm_drawerController openDrawerSide:MMDrawerSideLeft animated:YES completion:nil];
-    } else {
+    if([self.mm_drawerController openSide] == MMDrawerSideLeft){
         [self.mm_drawerController closeDrawerAnimated:YES completion:nil];
+
+    } else {
+        [self.mm_drawerController openDrawerSide:MMDrawerSideLeft animated:YES completion:nil];
     }
 }
 

@@ -7,7 +7,7 @@
 //
 
 #import "MenuViewController.h"
-
+#import "UIViewController+MMDrawerController.h"
 @interface MenuViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property NSArray *menuItems;
@@ -32,9 +32,7 @@
     NSIndexPath *indexPath = [NSIndexPath indexPathForItem:0 inSection:0];
 
     [self.tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:0];
-    [self.slidingViewController setAnchorRightRevealAmount:220.0f];
-    self.slidingViewController.underLeftWidthLayout = ECFullWidth;
-    
+   
 
 }
 
@@ -93,15 +91,11 @@
     NSArray *menuItemsForCurrentSection = [self.menuItems objectAtIndex:indexPath.section];
     NSDictionary *menuItem = [menuItemsForCurrentSection objectAtIndex:indexPath.row];
     NSString *identifier = [[menuItem allValues]lastObject];
-    
-    UIViewController *newTopViewController = [self.storyboard instantiateViewControllerWithIdentifier:identifier];
-    
-    [self.slidingViewController anchorTopViewOffScreenTo:ECRight animations:nil onComplete:^{
-        CGRect frame = self.slidingViewController.topViewController.view.frame;
-        self.slidingViewController.topViewController = newTopViewController;
-        self.slidingViewController.topViewController.view.frame = frame;
-        [self.slidingViewController resetTopView];
+    [self.mm_drawerController closeDrawerAnimated:YES completion:^(BOOL finished) {
+        UIViewController *newTopViewController = [self.storyboard instantiateViewControllerWithIdentifier:identifier];
+        self.mm_drawerController.centerViewController = newTopViewController;
     }];
+    
 }
 
 @end

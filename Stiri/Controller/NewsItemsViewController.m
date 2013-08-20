@@ -27,7 +27,7 @@
 
 - (void) checkIfParsed:(NewsSource*) ns{
     if([ns.isFeedParsed isEqual: @0]){
-        [SVProgressHUD show];
+        [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeBlack];
     } else {
         [SVProgressHUD dismiss];
         [self.tableView reloadData];

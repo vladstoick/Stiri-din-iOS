@@ -33,6 +33,7 @@
     self.leftDrawerViewController = menuViewController;
     self.openDrawerGestureModeMask = MMOpenDrawerGestureModeBezelPanningCenterView;
     self.closeDrawerGestureModeMask = MMOpenDrawerGestureModeAll;
+    self.maximumLeftDrawerWidth = 200.0f;
 	// Do any additional setup after loading the view.
 }
 
