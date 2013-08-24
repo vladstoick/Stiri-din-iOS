@@ -13,15 +13,10 @@
 @property (nonatomic) BOOL isInOptimalMode;
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
 @property (weak, nonatomic) IBOutlet UITextView *titleView;
-@property (readonly, nonatomic) NewsItem *currentNewsItem;
-@property (readonly, nonatomic) NewsSource *newsSource;
 @end
 
 @implementation NewsItemViewController
 
-- (NewsItem *) currentNewsItem{
-    return [[NewsDataSource newsDataSource] getNewsItemWithUrl:self.currentNewsItemUrl fromSourceWithId:self.sourceId];
-}
 
 - (NSString *) stylePaperize {
     NSString *beg = @"<body style=\"font-family:Helvetica\" >";
@@ -30,10 +25,6 @@
     NSString *result = [[[beg stringByAppendingString:title] stringByAppendingString:self.currentNewsItem.paperized] stringByAppendingString:end];
     self.isInOptimalMode = YES;
     return result;
-}
-
-- (NewsSource*) newsSource{
-    return [[NewsDataSource newsDataSource] getNewsSourceWithId:self.sourceId];
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil

@@ -7,7 +7,7 @@
 //
 
 #import "NewsItemsViewController.h"
-#import "NewsItemViewController.h"
+#import "PageNewsItemsViewController.h"
 #import "NewsSource.h"
 #import "NewsItem.h"
 #import "NewsDataSource.h"
@@ -130,8 +130,7 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if([segue.identifier isEqualToString:@"openNewsItem"]){
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        NewsItemViewController *destViewController = segue.destinationViewController;
-        
+        PageNewsItemsViewController *destViewController = segue.destinationViewController;
         NewsItem *selectedNewsItem = [self.news objectAtIndex:indexPath.row];
         destViewController.sourceId = self.newsSource.sourceId;
         destViewController.currentNewsItemUrl = selectedNewsItem.url;

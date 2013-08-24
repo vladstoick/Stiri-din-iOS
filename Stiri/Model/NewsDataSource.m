@@ -266,7 +266,6 @@ static NewsDataSource *_newsDataSource;
         for (NSDictionary *sourceJSONObject in allSourcesJSONObject) {
             NSNumber *sourceId = [sourceJSONObject valueForKey:@"id"];
             NSString *title = [sourceJSONObject valueForKey:@"title"];
-            NSString *sourceDescription = [sourceJSONObject valueForKey:@"description"];
             NSString *url = [sourceJSONObject valueForKey:@"url"];
             NewsSource *newsSource = [NSEntityDescription insertNewObjectForEntityForName:@"NewsSource"
                                                                    inManagedObjectContext:context];

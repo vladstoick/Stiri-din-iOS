@@ -61,6 +61,7 @@
 		72CB3B8717BB82F800D599CA /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 72CB3B8617BB82F800D599CA /* icon.png */; };
 		72CB3B8917BB83C100D599CA /* iconretina.png in Resources */ = {isa = PBXBuildFile; fileRef = 72CB3B8817BB83C100D599CA /* iconretina.png */; };
 		72CB3B8C17BBA21200D599CA /* NewsItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 72CB3B8B17BBA21200D599CA /* NewsItemViewController.m */; };
+		72DE090D17C93F390065C0D9 /* PageNewsItemsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 72DE090C17C93F390065C0D9 /* PageNewsItemsViewController.m */; };
 		72EEB31D17BF881C0059469B /* delete_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 72EEB31B17BF881C0059469B /* delete_button.png */; };
 		72EEB31E17BF881C0059469B /* delete_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 72EEB31C17BF881C0059469B /* delete_button@2x.png */; };
 		72EEB32117BF8AF90059469B /* rename_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 72EEB31F17BF8AF90059469B /* rename_button.png */; };
@@ -159,6 +160,8 @@
 		72CB3B8817BB83C100D599CA /* iconretina.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = iconretina.png; path = ../iconretina.png; sourceTree = "<group>"; };
 		72CB3B8A17BBA21200D599CA /* NewsItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewsItemViewController.h; path = Controller/NewsItemViewController.h; sourceTree = "<group>"; };
 		72CB3B8B17BBA21200D599CA /* NewsItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewsItemViewController.m; path = Controller/NewsItemViewController.m; sourceTree = "<group>"; };
+		72DE090B17C93F390065C0D9 /* PageNewsItemsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageNewsItemsViewController.h; sourceTree = "<group>"; };
+		72DE090C17C93F390065C0D9 /* PageNewsItemsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageNewsItemsViewController.m; sourceTree = "<group>"; };
 		72EEB31B17BF881C0059469B /* delete_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = delete_button.png; path = Assets/delete_button.png; sourceTree = "<group>"; };
 		72EEB31C17BF881C0059469B /* delete_button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "delete_button@2x.png"; path = "Assets/delete_button@2x.png"; sourceTree = "<group>"; };
 		72EEB31F17BF8AF90059469B /* rename_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = rename_button.png; path = Assets/rename_button.png; sourceTree = "<group>"; };
@@ -231,6 +234,8 @@
 				7206267917BAAA8F00455298 /* NewsItemsViewController.m */,
 				72CB3B8A17BBA21200D599CA /* NewsItemViewController.h */,
 				72CB3B8B17BBA21200D599CA /* NewsItemViewController.m */,
+				72DE090B17C93F390065C0D9 /* PageNewsItemsViewController.h */,
+				72DE090C17C93F390065C0D9 /* PageNewsItemsViewController.m */,
 			);
 			name = DataControllers;
 			sourceTree = "<group>";
@@ -598,6 +603,7 @@
 				7295BB4217BD026D005CD637 /* NewsItem.m in Sources */,
 				7282833017BF7AB2006DEE19 /* NewsSource.m in Sources */,
 				728661DA17BFD21E00AA13D3 /* SearchViewController.m in Sources */,
+				72DE090D17C93F390065C0D9 /* PageNewsItemsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

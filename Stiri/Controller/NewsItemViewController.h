@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "NewsItem.h"
 @interface NewsItemViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UIToolbar *toolBar;
-@property (strong, nonatomic) NSString* currentNewsItemUrl;
-@property (strong, nonatomic) NSNumber* sourceId;
+@property (strong, nonatomic) NewsItem *currentNewsItem;
+@property (nonatomic) NSUInteger index;
 @end
