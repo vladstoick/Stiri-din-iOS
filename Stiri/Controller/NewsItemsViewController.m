@@ -116,14 +116,14 @@
 
     CGFloat titleHeight = [newsItem.title sizeWithFont:titleFont
                                constrainedToSize:size
-                                   lineBreakMode:NSLineBreakByCharWrapping].height+10;
+                                   lineBreakMode:NSLineBreakByCharWrapping].height;
     NSString *pubDate = [NSDateFormatter localizedStringFromDate:newsItem.pubDate
                                                        dateStyle:NSDateFormatterShortStyle
                                                        timeStyle:NSDateFormatterShortStyle];
     UIFont *subtitleFont = [UIFont fontWithName:@"HelveticaNeue-LightItalic" size:10];
     CGFloat subtitleHeight = [pubDate sizeWithFont:subtitleFont
-                                 constrainedToSize:size lineBreakMode:NSLineBreakByCharWrapping].height + 10 ;
-    return titleHeight + subtitleHeight;
+                                 constrainedToSize:size lineBreakMode:NSLineBreakByCharWrapping].height;
+    return titleHeight + subtitleHeight + 20;
 
 }
 
