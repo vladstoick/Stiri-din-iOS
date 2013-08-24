@@ -1,24 +1,31 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="2061" systemVersion="12E55" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0"
+       lastSavedToolsVersion="2061" systemVersion="12E55" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic"
+       iOSVersion="Automatic">
     <entity name="NewsGroup" representedClassName="NewsGroup" syncable="YES">
         <attribute name="groupId" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="newsSources" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="NewsSource" inverseName="groupOwner" inverseEntity="NewsSource" syncable="YES"/>
+        <relationship name="newsSources" optional="YES" toMany="YES" deletionRule="Nullify"
+                      destinationEntity="NewsSource" inverseName="groupOwner" inverseEntity="NewsSource"
+                      syncable="YES"/>
     </entity>
     <entity name="NewsItem" representedClassName="NewsItem" syncable="YES">
         <attribute name="paperized" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="pubDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="sourceOwner" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="NewsSource" inverseName="news" inverseEntity="NewsSource" syncable="YES"/>
+        <relationship name="sourceOwner" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify"
+                      destinationEntity="NewsSource" inverseName="news" inverseEntity="NewsSource" syncable="YES"/>
     </entity>
     <entity name="NewsSource" representedClassName="NewsSource" syncable="YES">
         <attribute name="isFeedParsed" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="sourceId" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="groupOwner" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="NewsGroup" inverseName="newsSources" inverseEntity="NewsGroup" syncable="YES"/>
-        <relationship name="news" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="NewsItem" inverseName="sourceOwner" inverseEntity="NewsItem" syncable="YES"/>
+        <relationship name="groupOwner" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify"
+                      destinationEntity="NewsGroup" inverseName="newsSources" inverseEntity="NewsGroup" syncable="YES"/>
+        <relationship name="news" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="NewsItem"
+                      inverseName="sourceOwner" inverseEntity="NewsItem" syncable="YES"/>
     </entity>
     <elements>
         <element name="NewsGroup" positionX="-1226" positionY="-216" width="128" height="88"/>

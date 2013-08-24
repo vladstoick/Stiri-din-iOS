@@ -10,24 +10,36 @@
 #import "NewsGroup.h"
 #import "NewsItem.h"    
 #import "NewsSource.h"
+
 @interface NewsDataSource : NSObject
-@property (nonatomic) BOOL isDataLoaded;
-@property (readonly, strong, nonatomic) NSArray *allGroups;
-@property (nonatomic) NSUInteger userId;
+@property(nonatomic) BOOL isDataLoaded;
+@property(readonly, strong, nonatomic) NSArray *allGroups;
+@property(nonatomic) NSUInteger userId;
+
 //INITIALIZATION
-+ (NewsDataSource*) newsDataSource;
-- (void) loadData;
++ (NewsDataSource *)newsDataSource;
+
+- (void)loadData;
+
 //NEWSGROUP
-- (void) deleteNewsGroup:(NewsGroup*) newsGroup;
-- (void) addNewsSourceWithUrl:(NSString*) url inNewGroupWithName:(NSString* ) groupTitle;
-- (NSArray*) allGroups;
-- (NewsGroup*) getGroupWithId:(NSNumber *) groupId;
+- (void)deleteNewsGroup:(NewsGroup *)newsGroup;
+
+- (void)addNewsSourceWithUrl:(NSString *)url inNewGroupWithName:(NSString *)groupTitle;
+
+- (NSArray *)allGroups;
+
+- (NewsGroup *)getGroupWithId:(NSNumber *)groupId;
+
 //NEWSOURCE
-- (void) addNewsSourceWithUrl:(NSString*) sourceUrl inNewsGroup:(NewsGroup* ) newsGroup;
-- (NSArray*) allSources;
-- (NewsSource *) getNewsSourceWithId:(NSNumber *) sourceId;
+- (void)addNewsSourceWithUrl:(NSString *)sourceUrl inNewsGroup:(NewsGroup *)newsGroup;
+
+- (NSArray *)allSources;
+
+- (NewsSource *)getNewsSourceWithId:(NSNumber *)sourceId;
+
 //NewsItem
-- (NSArray*) allItems;
-- (NewsItem*) getNewsItemWithUrl:(NSString *) url fromSourceWithId:(NSNumber *) sourceId;
+- (NSArray *)allItems;
+
+- (NewsItem *)getNewsItemWithUrl:(NSString *)url fromSourceWithId:(NSNumber *)sourceId;
 
 @end

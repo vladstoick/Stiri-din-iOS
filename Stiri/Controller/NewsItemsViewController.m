@@ -36,7 +36,13 @@
 }
 
 - (NSArray *) news{
-    return [self.newsSource.news allObjects];
+    NSMutableArray *array = [[self.newsSource.news allObjects] mutableCopy];
+    [array sortUsingComparator:^NSComparisonResult(id a, id b) {
+        NSDate *first = [(NewsItem*)a pubDate];
+        NSDate *second = [(NewsItem*)b pubDate];
+        return [second compare:first];
+    }];
+    return array;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -54,7 +60,8 @@
     [super viewDidLoad];
     [self checkIfParsed:self.newsSource];
     self.title = self.newsSource.title;
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dataChanged:) name:DATA_NEWSOURCE_PARSED object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dataChanged:)
+                                                 name:DATA_NEWSOURCE_PARSED object:nil];
 	// Do any additional setup after loading the view.
 }
 
@@ -84,21 +91,40 @@
     UITableViewCell *cell = [tableViewLocal dequeueReusableCellWithIdentifier:subtitleTableIdentifier];
     
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:subtitleTableIdentifier];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle
+                                      reuseIdentifier:subtitleTableIdentifier];
     }
-    NewsItem *ns = (self.news)[indexPath.row];
-    UIFont *font = [UIFont fontWithName:@"HelveticaNeue-Light" size:17];
-    cell.textLabel.text = ns.title;
-    cell.textLabel.font = font;
-    cell.textLabel.numberOfLines = 0;
+    NewsItem *newsItem = (self.news)[indexPath.row];
+    UIFont *titleFont = [UIFont fontWithName:@"HelveticaNeue-Light" size:17];
+    cell.textLabel.text = newsItem.title;
+    cell.textLabel.font = titleFont;
+    cell.textLabel.numberOfLines = 3;
+    UIFont *subtitleFont = [UIFont fontWithName:@"HelveticaNeue-LightItalic" size:10];
+    cell.detailTextLabel.font = subtitleFont;
+    cell.detailTextLabel.text = [NSDateFormatter localizedStringFromDate:newsItem.pubDate
+                                                               dateStyle:NSDateFormatterShortStyle
+                                                               timeStyle:NSDateFormatterShortStyle];
+
+
     return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    NewsItem *ns = (self.news)[indexPath.row];
+    NewsItem *newsItem = (self.news)[indexPath.row];
     CGSize size = CGSizeMake(320, 1000);
-    UIFont *font = [UIFont fontWithName:@"HelveticaNeue-Light" size:17];
-    return [ns.title sizeWithFont:font constrainedToSize:size lineBreakMode:NSLineBreakByCharWrapping].height+10;
+    UIFont *titleFont = [UIFont fontWithName:@"HelveticaNeue-Light" size:17];
+
+    CGFloat titleHeight = [newsItem.title sizeWithFont:titleFont
+                               constrainedToSize:size
+                                   lineBreakMode:NSLineBreakByCharWrapping].height+10;
+    NSString *pubDate = [NSDateFormatter localizedStringFromDate:newsItem.pubDate
+                                                       dateStyle:NSDateFormatterShortStyle
+                                                       timeStyle:NSDateFormatterShortStyle];
+    UIFont *subtitleFont = [UIFont fontWithName:@"HelveticaNeue-LightItalic" size:10];
+    CGFloat subtitleHeight = [pubDate sizeWithFont:subtitleFont
+                                 constrainedToSize:size lineBreakMode:NSLineBreakByCharWrapping].height + 10 ;
+    return titleHeight + subtitleHeight;
+
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{

@@ -13,16 +13,19 @@
 
 @interface NewsGroup : NSManagedObject
 
-@property (nonatomic, retain) NSNumber * groupId;
-@property (nonatomic, retain) NSString * title;
-@property (nonatomic, retain) NSSet *newsSources;
+@property(nonatomic, retain) NSNumber *groupId;
+@property(nonatomic, retain) NSString *title;
+@property(nonatomic, retain) NSSet *newsSources;
 @end
 
 @interface NewsGroup (CoreDataGeneratedAccessors)
 
 - (void)addNewsSourcesObject:(NewsSource *)value;
+
 - (void)removeNewsSourcesObject:(NewsSource *)value;
+
 - (void)addNewsSources:(NSSet *)values;
+
 - (void)removeNewsSources:(NSSet *)values;
 
 @end

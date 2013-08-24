@@ -19,69 +19,75 @@
 #define PARSEBASEURL @"http://37.139.8.146:3000/?url="
 #define DATA_CHANGED_EVENT @"data_changed"
 #define DATA_NEWSOURCE_PARSED @"newssource_loaded"
-@interface NewsDataSource()
-@property (nonatomic,strong) NSManagedObjectContext* managedObjectContext;
+
+@interface NewsDataSource ()
+@property(nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 @end
 
 @implementation NewsDataSource
 //INITALIZATION
 static NewsDataSource *_newsDataSource;
 
-- (NSUInteger) userId{
-    if(_userId == 0 ){
+- (NSUInteger)userId {
+    if (_userId == 0) {
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         _userId = [defaults integerForKey:@"user_id"];
     }
     return _userId;
 }
 
-+ (NewsDataSource*) newsDataSource{
-    if(!_newsDataSource){
++ (NewsDataSource *)newsDataSource {
+    if (!_newsDataSource) {
         _newsDataSource = [[NewsDataSource alloc] init];
         [_newsDataSource loadData];
     }
     return _newsDataSource;
 }
--(NSManagedObjectContext *) managedObjectContext{
-    if(!_managedObjectContext){
-        AppDelegate *appDelegate = [[UIApplication sharedApplication]delegate];
+
+- (NSManagedObjectContext *)managedObjectContext {
+    if (!_managedObjectContext) {
+        AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
         _managedObjectContext = appDelegate.managedObjectContext;
     }
     return _managedObjectContext;
 }
 
-- (void) parseNewsSource:(NewsSource *) newsSource{
-    NSString *urlString = [NSString stringWithFormat:@"%@%@&feedId=%@",PARSEBASEURL,newsSource.url,newsSource.sourceId];
+- (void)parseNewsSource:(NewsSource *)newsSource {
+    NSString *urlString = [NSString stringWithFormat:@"%@%@&feedId=%@", PARSEBASEURL,
+                                                     newsSource.url, newsSource.sourceId];
     NSURL *url = [NSURL URLWithString:urlString];
     AFHTTPClient *httpClient = [[AFHTTPClient alloc] initWithBaseURL:url];
-    [httpClient getPath:@"" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [httpClient getPath:@"" parameters:nil
+                success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSString *responseStr = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
-        NSDictionary *jsonDictionary = [NSJSONSerialization JSONObjectWithData: [responseStr dataUsingEncoding:NSUTF8StringEncoding]
-                                                                       options: NSJSONReadingMutableContainers
-                                                                        error: nil];
+        NSDictionary *jsonDictionary;
+        jsonDictionary = [NSJSONSerialization JSONObjectWithData:[responseStr dataUsingEncoding:NSUTF8StringEncoding]
+                                                         options:NSJSONReadingMutableContainers
+                                                           error:nil];
         NSArray *articles = [jsonDictionary valueForKey:@"articles"];
         [self insertNewsItems:articles forNewsSource:newsSource];
-        
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"error recieved : %@",error);
+
+    }         failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"error recieved : %@", error);
     }];
 }
 
-- (void) loadData{
+- (void)loadData {
     self.isDataLoaded = NO;
-    NSString *urlString = [NSString stringWithFormat:@"%@%d",RAILSBASEURL,self.userId];
+    NSString *urlString = [NSString stringWithFormat:@"%@%d", RAILSBASEURL, self.userId];
     NSURL *url = [NSURL URLWithString:urlString];
     AFHTTPClient *httpClient = [[AFHTTPClient alloc] initWithBaseURL:url];
-    
+
     [httpClient getPath:@"" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSString *responseStr = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
-        NSDictionary *jsonDictionary = [NSJSONSerialization JSONObjectWithData: [responseStr dataUsingEncoding:NSUTF8StringEncoding]
-                                                                       options: NSJSONReadingMutableContainers
-                                                                         error: nil];
+        NSDictionary *jsonDictionary;
+        jsonDictionary = [NSJSONSerialization JSONObjectWithData:[responseStr dataUsingEncoding:NSUTF8StringEncoding]
+                                                         options:NSJSONReadingMutableContainers
+                                                           error:nil];
         [self insertGroupsAndNewsSource:jsonDictionary];
         self.isDataLoaded = YES;
         [[NSNotificationCenter defaultCenter] postNotificationName:DATA_CHANGED_EVENT object:nil];
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    }           failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         self.isDataLoaded = YES;
 
     }];
@@ -90,30 +96,33 @@ static NewsDataSource *_newsDataSource;
 
 //NEWSGROUP
 
-- (void) deleteNewsGroup:(NewsGroup *)newsGroup{
-    NSString *urlString = [NSString stringWithFormat:@"%@%d",RAILSBASEURL,self.userId];
+- (void)deleteNewsGroup:(NewsGroup *)newsGroup {
+    NSString *urlString = [NSString stringWithFormat:@"%@%d", RAILSBASEURL, self.userId];
     AFHTTPClient *httpClient = [[AFHTTPClient alloc] initWithBaseURL:[NSURL URLWithString:urlString]];
-    [httpClient deletePath:[NSString stringWithFormat:@"%@",newsGroup.groupId] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSManagedObjectContext *context = [self managedObjectContext];
-        [context deleteObject:newsGroup];
+    [httpClient deletePath:[NSString stringWithFormat:@"%@", newsGroup.groupId] parameters:nil
+            success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                NSManagedObjectContext *context = [self managedObjectContext];
+                [context deleteObject:newsGroup];
                 [[NSNotificationCenter defaultCenter] postNotificationName:DELETE_END  object:DELETE_SUCCES];
-        [[NSNotificationCenter defaultCenter] postNotificationName:DELETE_SUCCES object:nil];
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        [[NSNotificationCenter defaultCenter] postNotificationName:DELETE_END object:DELETE_FAIL];
+                [[NSNotificationCenter defaultCenter] postNotificationName:DELETE_SUCCES object:nil];
+            } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                [[NSNotificationCenter defaultCenter] postNotificationName:DELETE_END object:DELETE_FAIL];
     }];
 }
 
-- (void) addNewsSourceWithUrl:(NSString*) sourceUrl inNewGroupWithName:(NSString* ) groupTitle{
-    NSString *urlString = [NSString stringWithFormat:@"%@%d",RAILSBASEURL,self.userId];
-    NSDictionary *params = @{@"title": groupTitle};
-    AFHTTPClient *httpClient = [[AFHTTPClient alloc]initWithBaseURL:[NSURL URLWithString:urlString]];
+- (void)addNewsSourceWithUrl:(NSString *)sourceUrl inNewGroupWithName:(NSString *)groupTitle {
+    NSString *urlString = [NSString stringWithFormat:@"%@%d", RAILSBASEURL, self.userId];
+    NSDictionary *params = @{@"title" : groupTitle};
+    AFHTTPClient *httpClient = [[AFHTTPClient alloc] initWithBaseURL:[NSURL URLWithString:urlString]];
     [httpClient postPath:@"" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSString *responseStr = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
-        NSDictionary *jsonDictionary = [NSJSONSerialization JSONObjectWithData: [responseStr dataUsingEncoding:NSUTF8StringEncoding]
-                                                                       options: NSJSONReadingMutableContainers
-                                                                         error: nil];
+        NSDictionary *jsonDictionary;
+        jsonDictionary = [NSJSONSerialization JSONObjectWithData:[responseStr dataUsingEncoding:NSUTF8StringEncoding]
+                                                                           options:NSJSONReadingMutableContainers
+                                                                             error:nil];
         NSManagedObjectContext *context = [self managedObjectContext];
-        NewsGroup *newsGroup = [NSEntityDescription insertNewObjectForEntityForName:@"NewsGroup" inManagedObjectContext:context];
+        NewsGroup *newsGroup = [NSEntityDescription insertNewObjectForEntityForName:@"NewsGroup"
+                                                             inManagedObjectContext:context];
         newsGroup.groupId = [jsonDictionary valueForKey:@"group_id"];
         newsGroup.title = groupTitle;
         NSError *error;
@@ -122,13 +131,13 @@ static NewsDataSource *_newsDataSource;
         } else {
             [self addNewsSourceWithUrl:sourceUrl inNewsGroup:newsGroup];
         }
-        
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        
+
+    }            failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+
     }];
 }
 
-- (NSArray*) allGroups{
+- (NSArray *)allGroups {
     NSManagedObjectContext *context = [self managedObjectContext];
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"NewsGroup"
@@ -138,12 +147,13 @@ static NewsDataSource *_newsDataSource;
 
     return groups;
 }
-- (NewsGroup*) getGroupWithId:(NSNumber *) groupId{
+
+- (NewsGroup *)getGroupWithId:(NSNumber *)groupId {
     NSManagedObjectContext *context = [self managedObjectContext];
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"NewsGroup"
                                               inManagedObjectContext:context];
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:[NSString stringWithFormat:@"groupId = %@",groupId]];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:[NSString stringWithFormat:@"groupId = %@", groupId]];
     [fetchRequest setPredicate:predicate];
     [fetchRequest setEntity:entity];
     NSError *error;
@@ -153,17 +163,20 @@ static NewsDataSource *_newsDataSource;
 
 //NEWSSOURCE
 
-- (void) addNewsSourceWithUrl:(NSString*) sourceUrl inNewsGroup:(NewsGroup* ) newsGroup{
-    NSString *urlString = [NSString stringWithFormat:@"%@%d/%@",RAILSBASEURL,self.userId,newsGroup.groupId];
-    NSDictionary *params = @{@"url": sourceUrl};
-    AFHTTPClient *httpClient = [[AFHTTPClient alloc]initWithBaseURL:[NSURL URLWithString:urlString]];
+- (void)addNewsSourceWithUrl:(NSString *)sourceUrl inNewsGroup:(NewsGroup *)newsGroup {
+    NSString *urlString = [NSString stringWithFormat:@"%@%d/%@", RAILSBASEURL, self.userId, newsGroup.groupId];
+    NSDictionary *params = @{@"url" : sourceUrl};
+    AFHTTPClient *httpClient = [[AFHTTPClient alloc] initWithBaseURL:[NSURL URLWithString:urlString]];
     [httpClient postPath:@"" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSString *responseStr = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
-        NSDictionary *jsonDictionary = [NSJSONSerialization JSONObjectWithData: [responseStr dataUsingEncoding:NSUTF8StringEncoding]
-                                                                       options: NSJSONReadingMutableContainers
-                                                                         error: nil];
+        NSDictionary *jsonDictionary;
+        jsonDictionary = [NSJSONSerialization JSONObjectWithData:[responseStr dataUsingEncoding:NSUTF8StringEncoding]
+                                                                           options:NSJSONReadingMutableContainers
+                                                                             error:nil];
         NSManagedObjectContext *context = [self managedObjectContext];
-        NewsSource *newsSource = [NSEntityDescription insertNewObjectForEntityForName:@"NewsSource" inManagedObjectContext:context];
+
+        NewsSource *newsSource = [NSEntityDescription insertNewObjectForEntityForName:@"NewsSource"
+                                                               inManagedObjectContext:context];
         NewsGroup *ng = [self getGroupWithId:newsGroup.groupId];
         NSMutableSet *set = [ng.newsSources mutableCopy];
         newsSource.title = [jsonDictionary valueForKey:@"title"];
@@ -178,14 +191,14 @@ static NewsDataSource *_newsDataSource;
         } else {
             [[NSNotificationCenter defaultCenter] postNotificationName:DATA_CHANGED_EVENT object:nil];
             [[NSNotificationCenter defaultCenter] postNotificationName:ADD_ENDED object:nil];
-        
+
         }
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        
+    }            failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+
     }];
 }
 
-- (NSArray*) allSources{
+- (NSArray *)allSources {
     NSManagedObjectContext *context = [self managedObjectContext];
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"NewsSource"
@@ -193,16 +206,16 @@ static NewsDataSource *_newsDataSource;
     [fetchRequest setEntity:entity];
     NSArray *sources = [context executeFetchRequest:fetchRequest error:nil];
     return sources;
-    
+
 }
 
 
-- (NewsSource *) getNewsSourceWithId:(NSNumber *) sourceId{
+- (NewsSource *)getNewsSourceWithId:(NSNumber *)sourceId {
     NSManagedObjectContext *context = [self managedObjectContext];
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"NewsSource"
                                               inManagedObjectContext:context];
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:[NSString stringWithFormat:@"sourceId = %@",sourceId]];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:[NSString stringWithFormat:@"sourceId = %@", sourceId]];
     [fetchRequest setPredicate:predicate];
     [fetchRequest setEntity:entity];
     NSError *error;
@@ -211,7 +224,7 @@ static NewsDataSource *_newsDataSource;
 }
 
 //NEWSITEM
-- (NSArray*) allItems{
+- (NSArray *)allItems {
     NSManagedObjectContext *context = [self managedObjectContext];
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"NewsItem"
@@ -222,11 +235,11 @@ static NewsDataSource *_newsDataSource;
 }
 
 
-- (NewsItem*) getNewsItemWithUrl:(NSString *) url fromSourceWithId:(NSNumber *) sourceId{
+- (NewsItem *)getNewsItemWithUrl:(NSString *)url fromSourceWithId:(NSNumber *)sourceId {
     NSManagedObjectContext *context = [self managedObjectContext];
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc]init];
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"NewsItem" inManagedObjectContext:context];
-    NSString *query = [NSString stringWithFormat:@"url = '%@'",url];
+    NSString *query = [NSString stringWithFormat:@"url = '%@'", url];
     NSPredicate *predicate = [NSPredicate predicateWithFormat:query];
     [fetchRequest setPredicate:predicate];
     [fetchRequest setEntity:entity];
@@ -238,29 +251,30 @@ static NewsDataSource *_newsDataSource;
 //INSERTING DATA
 
 
-- (void) insertGroupsAndNewsSource:(NSDictionary *)jsonData;
-{
+- (void)insertGroupsAndNewsSource:(NSDictionary *)jsonData; {
     [self deleteAllNewsGroupsAndNewsSources];
     NSManagedObjectContext *context = [self managedObjectContext];
-    for(NSDictionary* groupJSONOBject in jsonData){
+    for (NSDictionary *groupJSONOBject in jsonData) {
         NSNumber *groupId = [groupJSONOBject valueForKey:@"group_id"];
         NSString *title = [groupJSONOBject valueForKey:@"group_title"];
-        NewsGroup *newsGroup = [NSEntityDescription insertNewObjectForEntityForName:@"NewsGroup" inManagedObjectContext:context];
+        NewsGroup *newsGroup = [NSEntityDescription insertNewObjectForEntityForName:@"NewsGroup"
+                                                             inManagedObjectContext:context];
         newsGroup.groupId = groupId;
         newsGroup.title = title;
         NSDictionary *allSourcesJSONObject = [groupJSONOBject valueForKey:@"group_feeds"];
-        NSMutableSet *sourcesForGroup = [[NSMutableSet alloc]init];
-        for(NSDictionary *sourceJSONObject in allSourcesJSONObject){
+        NSMutableSet *sourcesForGroup = [[NSMutableSet alloc] init];
+        for (NSDictionary *sourceJSONObject in allSourcesJSONObject) {
             NSNumber *sourceId = [sourceJSONObject valueForKey:@"id"];
             NSString *title = [sourceJSONObject valueForKey:@"title"];
             NSString *sourceDescription = [sourceJSONObject valueForKey:@"description"];
             NSString *url = [sourceJSONObject valueForKey:@"url"];
-            NewsSource *newsSource = [NSEntityDescription insertNewObjectForEntityForName:@"NewsSource" inManagedObjectContext:context];
+            NewsSource *newsSource = [NSEntityDescription insertNewObjectForEntityForName:@"NewsSource"
+                                                                   inManagedObjectContext:context];
             newsSource.groupOwner = newsGroup;
             newsSource.title = title;
             newsSource.url = url;
             newsSource.sourceId = sourceId;
-            newsSource.isFeedParsed=@0;
+            newsSource.isFeedParsed = @0;
             [sourcesForGroup addObject:newsSource];
             [self parseNewsSource:newsSource];
         }
@@ -272,23 +286,27 @@ static NewsDataSource *_newsDataSource;
     }
 }
 
-- (void) insertNewsItems:(NSArray*) articles forNewsSource:(NewsSource*) newsSource{
+- (void)insertNewsItems:(NSArray *)articles forNewsSource:(NewsSource *)newsSource {
     NSManagedObjectContext *context = [self managedObjectContext];
     newsSource = [self getNewsSourceWithId:newsSource.sourceId];
-    NSMutableSet *news = [[NSMutableSet alloc]init];
-    for(NSDictionary *articleJSONObject in articles){
+    NSMutableSet *news = [[NSMutableSet alloc] init];
+    for (NSDictionary *articleJSONObject in articles) {
         NSString *url = [articleJSONObject valueForKey:@"url"];
         NSString *title = [articleJSONObject valueForKey:@"title"];
-        NSString *paperized = [articleJSONObject valueForKey:@"description"];
-        if((NSNull*)paperized == [NSNull null]){
-            paperized=@"Loading";
+        NSString *paperized = [articleJSONObject valueForKey:@"text"];
+        NSNumber *dateMS = [articleJSONObject valueForKey:@"date"];
+        NSDate *date = [[NSDate alloc] initWithTimeIntervalSince1970:[dateMS longLongValue]/1000];
+        if ((NSNull *) paperized == [NSNull null]) {
+            paperized = @"Loading";
         }
-        NewsItem *newsItem = [NSEntityDescription insertNewObjectForEntityForName:@"NewsItem" inManagedObjectContext:context];
+        NewsItem *newsItem = [NSEntityDescription insertNewObjectForEntityForName:@"NewsItem"
+                                                           inManagedObjectContext:context];
+        newsItem.pubDate = date;
         newsItem.url = url;
         newsItem.title = title;
         newsItem.paperized = paperized;
         [news addObject:newsItem];
-     
+
     }
     newsSource.isFeedParsed = @1;
     newsSource.news = news;
@@ -300,15 +318,15 @@ static NewsDataSource *_newsDataSource;
 }
 //DELETE DATA
 
-- (void) deleteAllNewsGroupsAndNewsSources{
+- (void)deleteAllNewsGroupsAndNewsSources {
     NSManagedObjectContext *context = [self managedObjectContext];
-    for( NSManagedObject* group in self.allGroups){
+    for (NSManagedObject *group in self.allGroups) {
         [self.managedObjectContext deleteObject:group];
     }
-    for( NSManagedObject *source in self.allSources){
+    for (NSManagedObject *source in self.allSources) {
         [self.managedObjectContext deleteObject:source];
     }
-    for( NSManagedObject *newsItem in self.allItems){
+    for (NSManagedObject *newsItem in self.allItems) {
         [self.managedObjectContext deleteObject:newsItem];
     }
     NSError *error;

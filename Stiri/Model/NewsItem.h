@@ -13,10 +13,10 @@
 
 @interface NewsItem : NSManagedObject
 
-@property (nonatomic, retain) NSString * paperized;
-@property (nonatomic, retain) NSString * title;
-@property (nonatomic, retain) NSString * url;
-@property (nonatomic, retain) NSDate * pubDate;
-@property (nonatomic, retain) NewsSource *sourceOwner;
+@property(nonatomic, retain) NSString *paperized;
+@property(nonatomic, retain) NSString *title;
+@property(nonatomic, retain) NSString *url;
+@property(nonatomic, retain) NSDate *pubDate;
+@property(nonatomic, retain) NewsSource *sourceOwner;
 
 @end
