@@ -87,9 +87,18 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:subtitleTableIdentifier];
     }
     NewsItem *ns = (self.news)[indexPath.row];
+    UIFont *font = [UIFont fontWithName:@"HelveticaNeue-Light" size:17];
     cell.textLabel.text = ns.title;
-
+    cell.textLabel.font = font;
+    cell.textLabel.numberOfLines = 0;
     return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    NewsItem *ns = (self.news)[indexPath.row];
+    CGSize size = CGSizeMake(320, 1000);
+    UIFont *font = [UIFont fontWithName:@"HelveticaNeue-Light" size:17];
+    return [ns.title sizeWithFont:font constrainedToSize:size lineBreakMode:NSLineBreakByCharWrapping].height+10;
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{

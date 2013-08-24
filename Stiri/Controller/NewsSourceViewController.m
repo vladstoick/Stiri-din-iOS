@@ -74,6 +74,7 @@
     }
     NewsSource *ns = (self.newsSources)[indexPath.row];
     cell.textLabel.text = ns.title;
+    cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue-CondensedBold" size:20.0];
     return cell;
 }
 
