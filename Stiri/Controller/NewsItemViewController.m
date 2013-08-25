@@ -19,8 +19,8 @@
 
 
 - (NSString *) stylePaperize {
-    NSString *beg = @"<body style=\"font-family:Helvetica\" >";
-    NSString *title = [NSString stringWithFormat:@"<div style=\"font-size:21px;font-weight:bold; \">%@</br></br></div><div align=\"justify\">",self.currentNewsItem.title];
+    NSString *beg = @"<body style=\"font-family:HelveticaNeue\" >";
+    NSString *title = [NSString stringWithFormat:@"<div style=\"font-size:21px;font-weight:bold; \">%@</br></br></div><div align=\"justify\" style=\"font-size:16px;\">",self.currentNewsItem.title];
     NSString *end = @"</div></body>";
     NSString *result = [[[beg stringByAppendingString:title] stringByAppendingString:self.currentNewsItem.paperized] stringByAppendingString:end];
     self.isInOptimalMode = YES;
