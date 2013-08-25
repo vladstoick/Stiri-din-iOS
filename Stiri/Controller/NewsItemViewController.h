@@ -11,5 +11,5 @@
 @interface NewsItemViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UIToolbar *toolBar;
 @property (strong, nonatomic) NewsItem *currentNewsItem;
-@property (nonatomic) NSUInteger index;
+@property (nonatomic) NSInteger index;
 @end

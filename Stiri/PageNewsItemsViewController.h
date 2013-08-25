@@ -10,6 +10,6 @@
 #import "NewsSource.h"
 #import "NewsItem.h"
 @interface PageNewsItemsViewController : UIViewController
-@property (strong, nonatomic) NSString* currentNewsItemUrl;
-@property (strong, nonatomic) NSNumber* sourceId;
+@property (nonatomic) NSInteger newsIndex;
+@property (strong, nonatomic) NSArray* news;
 @end

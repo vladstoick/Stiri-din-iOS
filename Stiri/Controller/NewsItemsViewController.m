@@ -132,8 +132,8 @@
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         PageNewsItemsViewController *destViewController = segue.destinationViewController;
         NewsItem *selectedNewsItem = [self.news objectAtIndex:indexPath.row];
-        destViewController.sourceId = self.newsSource.sourceId;
-        destViewController.currentNewsItemUrl = selectedNewsItem.url;
+        destViewController.news = self.news;
+        destViewController.newsIndex = indexPath.row;
         [self.tableView deselectRowAtIndexPath:indexPath animated:false];
     }
 }

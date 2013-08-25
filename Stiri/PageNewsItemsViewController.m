@@ -11,7 +11,6 @@
 #import "NewsDataSource.h"
 @interface PageNewsItemsViewController () <UIPageViewControllerDataSource>
 @property (strong, nonatomic) UIPageViewController *pageController;
-@property (strong, nonatomic) NewsSource *newsSource;
 @end
 
 @implementation PageNewsItemsViewController 
@@ -24,26 +23,25 @@
     }
     return self;
 }
-
-- (NewsSource*) newsSource{
-    if(!_newsSource)
-        _newsSource = [[NewsDataSource newsDataSource] getNewsSourceWithId:self.sourceId];
-    return _newsSource;
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
-    self.pageController = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
+    self.pageController = [[UIPageViewController alloc]
+            initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll
+              navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal
+                            options:nil];
     
     self.pageController.dataSource = self;
     CGRect frame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height+44);
     [[self.pageController view] setFrame:frame];
-    NewsItemViewController *initialViewController = [self viewControllerAtIndex:0];
+    NewsItemViewController *initialViewController = [self viewControllerAtIndex:self.newsIndex];
     NSArray *viewControllers = [NSArray arrayWithObject:initialViewController];
     
-    [self.pageController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
+    [self.pageController setViewControllers:viewControllers
+                                  direction:UIPageViewControllerNavigationDirectionForward
+                                   animated:NO
+                                 completion:nil];
     
     [self addChildViewController:self.pageController];
     [[self view] addSubview:[self.pageController view]];
@@ -58,15 +56,17 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (UIViewController*) pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(UIViewController *)viewController{
+- (UIViewController*) pageViewController:(UIPageViewController *)pageViewController
+       viewControllerAfterViewController:(UIViewController *)viewController{
     NewsItemViewController *currentViewController = (NewsItemViewController*) viewController;
-    if(currentViewController.index == self.newsSource.news.count -1 ){
+    if(currentViewController.index == self.news.count -1 ){
         return nil;
     }
     return [self viewControllerAtIndex:currentViewController.index+1];
 }
 
-- (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(UIViewController *)viewController{
+- (UIViewController *)pageViewController:(UIPageViewController *)pageViewController
+      viewControllerBeforeViewController:(UIViewController *)viewController{
     NewsItemViewController *currentViewController = (NewsItemViewController*) viewController;
     if(currentViewController.index == 0){
         return nil;
@@ -76,17 +76,18 @@
 
 - (NSInteger)presentationCountForPageViewController:(UIPageViewController *)pageViewController {
     // The number of items reflected in the page indicator.
-    return self.newsSource.news.count;
+    return self.news.count;
 }
 
 - (NSInteger)presentationIndexForPageViewController:(UIPageViewController *)pageViewController {
     // The selected item reflected in the page indicator.
-    return 0;
+    return self.newsIndex;
 }
 
 - (NewsItemViewController*) viewControllerAtIndex:(NSUInteger) index{
-    NewsItemViewController *newsItemViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"newsItemViewController"];
-    NSArray *news = [self.newsSource.news allObjects];
+    NewsItemViewController *newsItemViewController;
+    newsItemViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"newsItemViewController"];
+    NSArray *news = self.news;
     newsItemViewController.index = index;
     newsItemViewController.currentNewsItem = [news objectAtIndex:index];
     return newsItemViewController;

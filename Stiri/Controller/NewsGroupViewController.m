@@ -59,8 +59,13 @@
     self.isDataLoading = YES;
     [self.refreshControl addTarget:self action:@selector(refresh) forControlEvents:UIControlEventValueChanged];
     [self.tableView addSubview:self.refreshControl];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dataChanged:) name:DATA_CHANGED_EVENT object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deleteMessage:) name:DELETE_END object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(dataChanged:)
+                                                 name:DATA_CHANGED_EVENT object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(deleteMessage:)
+                                                 name:DELETE_END
+                                               object:nil];
     if([NewsDataSource newsDataSource].isDataLoaded == NO){
         [self.tableView setContentOffset:CGPointMake(0, -self.refreshControl.frame.size.height) animated:YES];
         [self.refreshControl beginRefreshing];
@@ -104,7 +109,11 @@
 - (IBAction)shouldDeleteGroup:(id)sender{
     CGPoint buttonPosition = [sender convertPoint:CGPointZero toView:self.tableView];
     self.swipedCell = [self.tableView indexPathForRowAtPoint:buttonPosition];
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Warning" message:@"You can't undo this operation" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"OK", nil];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Warning"
+                                                    message:@"You can't undo this operation"
+                                                   delegate:self
+                                          cancelButtonTitle:@"Cancel"
+                                          otherButtonTitles:@"OK", nil];
     [alert show];
 }
 
@@ -141,7 +150,8 @@
     static NSString *subtitleTableIdentifier = @"panningCell";
     HHPanningTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:subtitleTableIdentifier];
     if (cell == nil) {
-        cell = [[HHPanningTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:subtitleTableIdentifier];
+        cell = [[HHPanningTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle
+                                             reuseIdentifier:subtitleTableIdentifier];
     }
     UIView *drawerView = [[UIView alloc] initWithFrame:cell.frame];
     drawerView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"dark_dotted"]];
