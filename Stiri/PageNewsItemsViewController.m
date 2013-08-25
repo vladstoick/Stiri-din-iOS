@@ -9,69 +9,77 @@
 #import "PageNewsItemsViewController.h"
 #import "NewsItemViewController.h"
 #import "NewsDataSource.h"
-@interface PageNewsItemsViewController () <UIPageViewControllerDataSource>
-@property (strong, nonatomic) UIPageViewController *pageController;
+
+@interface PageNewsItemsViewController () <UIPageViewControllerDataSource, UIPageViewControllerDelegate>
+@property(strong, nonatomic) UIPageViewController *pageController;
 @end
 
-@implementation PageNewsItemsViewController 
+@implementation PageNewsItemsViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
     }
     return self;
 }
-- (void)viewDidLoad
-{
+
+- (void)viewDidLoad {
     [super viewDidLoad];
-    
+
     self.pageController = [[UIPageViewController alloc]
             initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll
               navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal
                             options:nil];
-    
+
     self.pageController.dataSource = self;
-    CGRect frame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height+44);
+    self.pageController.delegate = self;
+    CGRect frame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height + 44);
     [[self.pageController view] setFrame:frame];
+    [[NewsDataSource newsDataSource] makeNewsItemRead:[self newsItemAtIndex:self.newsIndex]];
     NewsItemViewController *initialViewController = [self viewControllerAtIndex:self.newsIndex];
     NSArray *viewControllers = [NSArray arrayWithObject:initialViewController];
-    
+
     [self.pageController setViewControllers:viewControllers
                                   direction:UIPageViewControllerNavigationDirectionForward
                                    animated:NO
                                  completion:nil];
-    
+
     [self addChildViewController:self.pageController];
     [[self view] addSubview:[self.pageController view]];
     [self.pageController didMoveToParentViewController:self];
-    
+
     // Do any additional setup after loading the view.
 }
 
-- (void)didReceiveMemoryWarning
-{
+- (void)pageViewController:(UIPageViewController *)pageViewController
+        didFinishAnimating:(BOOL)finished
+   previousViewControllers:(NSArray *)previousViewControllers
+       transitionCompleted:(BOOL)completed {
+
+}
+
+- (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
-- (UIViewController*) pageViewController:(UIPageViewController *)pageViewController
-       viewControllerAfterViewController:(UIViewController *)viewController{
-    NewsItemViewController *currentViewController = (NewsItemViewController*) viewController;
-    if(currentViewController.index == self.news.count -1 ){
+- (UIViewController *)pageViewController:(UIPageViewController *)pageViewController
+       viewControllerAfterViewController:(UIViewController *)viewController {
+    NewsItemViewController *currentViewController = (NewsItemViewController *) viewController;
+    if (currentViewController.index == self.news.count - 1) {
         return nil;
     }
-    return [self viewControllerAtIndex:currentViewController.index+1];
+    return [self viewControllerAtIndex:currentViewController.index + 1];
 }
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController
-      viewControllerBeforeViewController:(UIViewController *)viewController{
-    NewsItemViewController *currentViewController = (NewsItemViewController*) viewController;
-    if(currentViewController.index == 0){
+      viewControllerBeforeViewController:(UIViewController *)viewController {
+    NewsItemViewController *currentViewController = (NewsItemViewController *) viewController;
+    if (currentViewController.index == 0) {
         return nil;
     }
-    return [self viewControllerAtIndex:currentViewController.index - 1 ];
+    return [self viewControllerAtIndex:currentViewController.index - 1];
 }
 
 - (NSInteger)presentationCountForPageViewController:(UIPageViewController *)pageViewController {
@@ -84,12 +92,16 @@
     return self.newsIndex;
 }
 
-- (NewsItemViewController*) viewControllerAtIndex:(NSUInteger) index{
+- (NewsItem*)newsItemAtIndex:(NSUInteger) index{
+    NSArray *news = self.news;
+    return [news objectAtIndex:index];
+}
+
+- (NewsItemViewController *)viewControllerAtIndex:(NSUInteger)index {
     NewsItemViewController *newsItemViewController;
     newsItemViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"newsItemViewController"];
-    NSArray *news = self.news;
     newsItemViewController.index = index;
-    newsItemViewController.currentNewsItem = [news objectAtIndex:index];
+    newsItemViewController.currentNewsItem = [self newsItemAtIndex:index];
     return newsItemViewController;
 }
 @end

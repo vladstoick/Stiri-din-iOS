@@ -42,4 +42,6 @@
 
 - (NewsItem *)getNewsItemWithUrl:(NSString *)url fromSourceWithId:(NSNumber *)sourceId;
 
+- (void) makeNewsItemRead:(NewsItem *) newsItem;
+
 @end

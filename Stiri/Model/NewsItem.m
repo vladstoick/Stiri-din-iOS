@@ -2,7 +2,7 @@
 //  NewsItem.m
 //  Stiri
 //
-//  Created by Vlad Stoica on 8/15/13.
+//  Created by Vlad Stoica on 8/25/13.
 //  Copyright (c) 2013 Stoica Vlad. All rights reserved.
 //
 
@@ -13,9 +13,11 @@
 @implementation NewsItem
 
 @dynamic paperized;
+@dynamic pubDate;
 @dynamic title;
 @dynamic url;
-@dynamic pubDate;
+@dynamic isRead;
+@dynamic newsId;
 @dynamic sourceOwner;
 
 @end
