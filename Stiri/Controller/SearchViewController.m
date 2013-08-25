@@ -7,7 +7,6 @@
 //
 
 #import "SearchViewController.h"
-#import "ECSlidingViewController.h"
 #import "MenuViewController.h"
 @interface SearchViewController ()
 
@@ -36,7 +35,6 @@
     // Dispose of any resources that can be recreated.
 }
 - (IBAction)menuButtonPressed:(id)sender {
-    [self.slidingViewController anchorTopViewTo:ECRight];
 }
 
 @end
