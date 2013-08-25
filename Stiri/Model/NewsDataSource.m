@@ -108,6 +108,7 @@ static NewsDataSource *_newsDataSource;
 }
 
 - (void)loadUnreadNews {
+    [self.unreadNews removeAllObjects];
     NSString *urlstring = [NSString stringWithFormat:@"%@%D", UNREADNEWSURL , self.userId];
     NSURL *url = [NSURL URLWithString:urlstring];
     AFHTTPClient *afhttpClient = [[AFHTTPClient alloc] initWithBaseURL:url];

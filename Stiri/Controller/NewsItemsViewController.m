@@ -67,6 +67,10 @@
     return self;
 }
 
+- (void)viewWillAppear:(BOOL)animated{
+    [self.tableView reloadData];
+        [self updateNews];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -133,7 +137,12 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NewsItem *newsItem = (self.unreadNews)[indexPath.row];
+    NewsItem *newsItem;
+    if(indexPath.section == 0){
+        newsItem = (self.unreadNews)[indexPath.row];
+    } else {
+        newsItem = (self.readNews)[indexPath.row];
+    }
     CGSize size = CGSizeMake(320, 1000);
     UIFont *titleFont = [UIFont fontWithName:@"HelveticaNeue-Light" size:17];
 
@@ -155,10 +164,8 @@
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         PageNewsItemsViewController *destViewController = segue.destinationViewController;
         if(indexPath.section == 0){
-            NewsItem *selectedNewsItem = [self.unreadNews objectAtIndex:indexPath.row];
             destViewController.news = self.unreadNews;
         } else {
-            NewsItem *selectedNewsItem = [self.readNews objectAtIndex:indexPath.row];
             destViewController.news = self.readNews;
         }
         destViewController.newsIndex = indexPath.row;
