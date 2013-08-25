@@ -68,8 +68,8 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated{
+    [self updateNews];
     [self.tableView reloadData];
-        [self updateNews];
 }
 
 - (void)viewDidLoad {
