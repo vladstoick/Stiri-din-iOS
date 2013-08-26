@@ -347,6 +347,7 @@ static NewsDataSource *_newsDataSource;
         NSString *url = [articleJSONObject valueForKey:@"url"];
         NSString *title = [articleJSONObject valueForKey:@"title"];
         NSString *paperized = [articleJSONObject valueForKey:@"text"];
+        NSString *imageUrl = [articleJSONObject valueForKey:@"image"];
         NSNumber *dateMS = [articleJSONObject valueForKey:@"date"];
         NSDate *date = [[NSDate alloc] initWithTimeIntervalSince1970:[dateMS longLongValue] / 1000];
         if ((NSNull *) paperized == [NSNull null]) {
@@ -364,6 +365,7 @@ static NewsDataSource *_newsDataSource;
         newsItem.url = url;
         newsItem.title = title;
         newsItem.paperized = paperized;
+        newsItem.imageUrl = imageUrl;
         [news addObject:newsItem];
 
     }

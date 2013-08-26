@@ -6,6 +6,7 @@
         <relationship name="newsSources" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="NewsSource" inverseName="groupOwner" inverseEntity="NewsSource" syncable="YES"/>
     </entity>
     <entity name="NewsItem" representedClassName="NewsItem" syncable="YES">
+        <attribute name="imageUrl" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="isRead" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="newsId" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="paperized" optional="YES" attributeType="String" syncable="YES"/>
@@ -24,7 +25,7 @@
     </entity>
     <elements>
         <element name="NewsGroup" positionX="-1226" positionY="-216" width="128" height="88"/>
-        <element name="NewsItem" positionX="-765" positionY="-216" width="128" height="150"/>
+        <element name="NewsItem" positionX="-765" positionY="-216" width="128" height="165"/>
         <element name="NewsSource" positionX="-992" positionY="-184" width="128" height="135"/>
     </elements>
 </model>
