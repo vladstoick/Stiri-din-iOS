@@ -56,9 +56,11 @@
         didFinishAnimating:(BOOL)finished
    previousViewControllers:(NSArray *)previousViewControllers
        transitionCompleted:(BOOL)completed {
-   NewsItemViewController *currentViewController = (self.pageController.viewControllers)[0];
-   NSInteger index = currentViewController.index;
-   [[NewsDataSource newsDataSource] makeNewsItemRead: [self newsItemAtIndex:(NSUInteger)index]];
+    if (completed == YES) {
+        NewsItemViewController *currentViewController = (self.pageController.viewControllers)[0];
+        NSInteger index = currentViewController.index;
+        [[NewsDataSource newsDataSource] makeNewsItemRead:[self newsItemAtIndex:(NSUInteger) index]];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -95,7 +97,7 @@
     return self.newsIndex;
 }
 
-- (NewsItem*)newsItemAtIndex:(NSUInteger) index{
+- (NewsItem *)newsItemAtIndex:(NSUInteger)index {
     NSArray *news = self.news;
     return [news objectAtIndex:index];
 }
