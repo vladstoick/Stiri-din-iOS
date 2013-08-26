@@ -56,13 +56,16 @@
         didFinishAnimating:(BOOL)finished
    previousViewControllers:(NSArray *)previousViewControllers
        transitionCompleted:(BOOL)completed {
-
+   NewsItemViewController *currentViewController = (self.pageController.viewControllers)[0];
+   NSInteger index = currentViewController.index;
+   [[NewsDataSource newsDataSource] makeNewsItemRead: [self newsItemAtIndex:(NSUInteger)index]];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController
        viewControllerAfterViewController:(UIViewController *)viewController {

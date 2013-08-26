@@ -282,7 +282,7 @@ static NewsDataSource *_newsDataSource;
         NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
     }
     [httpClient postPath:@"" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"Made News read");
+        NSLog(@"Made News read %@" , newsItem.url);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"%@",error);
     }];
