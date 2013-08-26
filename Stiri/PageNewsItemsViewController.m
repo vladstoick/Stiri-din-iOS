@@ -97,12 +97,12 @@
     return self.newsIndex;
 }
 
-- (NewsItem *)newsItemAtIndex:(NSUInteger)index {
+- (NewsItem *)newsItemAtIndex:(NSInteger)index {
     NSArray *news = self.news;
-    return [news objectAtIndex:index];
+    return [news objectAtIndex:(NSUInteger)index];
 }
 
-- (NewsItemViewController *)viewControllerAtIndex:(NSUInteger)index {
+- (NewsItemViewController *)viewControllerAtIndex:(NSInteger)index {
     NewsItemViewController *newsItemViewController;
     newsItemViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"newsItemViewController"];
     newsItemViewController.index = index;
