@@ -16,7 +16,7 @@
 #define ADD_ENDED @"add_ended"
 #define ADD_FAIL @"add_fail";
 #define ADD_SUCCES @"add_succes";
-#define RAILSBASEURL @"http://stiriromania.eu01.aws.af.cm/user/"
+#define RAILSBASEURL @"http://37.139.26.80/user/"
 #define PARSEBASEURL @"http://37.139.8.146:3000/?url="
 #define UNREADNEWSURL @"http://37.139.8.146:4000/unread/"
 #define READNEWSURL @"http://37.139.8.146:4000/read/"
@@ -365,6 +365,9 @@ static NewsDataSource *_newsDataSource;
         newsItem.url = url;
         newsItem.title = title;
         newsItem.paperized = paperized;
+        if((NSNull*) imageUrl == [NSNull null]){
+            imageUrl=@"";
+        }
         newsItem.imageUrl = imageUrl;
         [news addObject:newsItem];
 
