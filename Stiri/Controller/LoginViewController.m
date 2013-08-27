@@ -8,12 +8,10 @@
 
 #import "LoginViewController.h"
 #import <GoogleOpenSource/GoogleOpenSource.h>
-#import <GooglePlus/GooglePlus.h>
 #import "AFNetworking.h"
 #import "SVProgressHUD.h"
 #import "AppDelegate.h"
-#import "InitialViewController.h"
-#import "MenuViewController.h"
+#import "UIViewController+MMDrawerController.h"
 @interface LoginViewController ()
 
 @end
@@ -43,6 +41,8 @@ static NSString * const kClientId = @"976584719831.apps.googleusercontent.com";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.mm_drawerController.shouldStretchDrawer = NO;
+    self.mm_drawerController.openDrawerGestureModeMask = nil;
     self.view.backgroundColor =    [UIColor colorWithPatternImage:[UIImage imageNamed:@"squairy_light.png"]];
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     self.navigationItem.hidesBackButton = YES;

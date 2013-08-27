@@ -56,6 +56,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.mm_drawerController.openDrawerGestureModeMask = MMCloseDrawerGestureModeBezelPanningCenterView;
     self.navigationItem.hidesBackButton = true;
     self.isDataLoading = YES;
     [self.refreshControl addTarget:self action:@selector(refresh) forControlEvents:UIControlEventValueChanged];
