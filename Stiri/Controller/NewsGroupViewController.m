@@ -14,12 +14,13 @@
 #import "NewsGroup.h"
 #import "NewsSourceViewController.h"
 #import "UIViewController+MMDrawerController.h"
+#import "SIAlertView.h"
 #import <QuartzCore/QuartzCore.h>
 #define DATA_CHANGED_EVENT @"data_changed"
 #define DELETE_END @"delete_ended"
 #define DELETE_SUCCES @"delete_succes"
 #define DELETE_FAIL @"delete_fail"
-@interface NewsGroupViewController () <UIAlertViewDelegate>
+@interface NewsGroupViewController ()
 @property (strong, nonatomic) NSIndexPath *swipedCell;
 @property (strong, nonatomic) NSArray *groups;
 @property (strong, nonatomic) UIRefreshControl *refreshControl;
@@ -108,12 +109,13 @@
 - (IBAction)shouldDeleteGroup:(id)sender{
     CGPoint buttonPosition = [sender convertPoint:CGPointZero toView:self.tableView];
     self.swipedCell = [self.tableView indexPathForRowAtPoint:buttonPosition];
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Warning"
-                                                    message:@"You can't undo this operation"
-                                                   delegate:self
-                                          cancelButtonTitle:@"Cancel"
-                                          otherButtonTitles:@"OK", nil];
-    [alert show];
+    SIAlertView *alertView = [[SIAlertView alloc] initWithTitle:@"Delete group" andMessage:@"Are you sure?"];
+    [alertView addButtonWithTitle:@"Yes" type:SIAlertViewButtonTypeDestructive handler:^(SIAlertView *alertView) {
+        [[NewsDataSource newsDataSource] deleteNewsGroup:[self.groups objectAtIndex:self.swipedCell.row]];
+        [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeBlack];
+    }];
+    [alertView addButtonWithTitle:@"Cancel" type:SIAlertViewButtonTypeCancel handler:nil];
+    [alertView show];
 }
 
 - (void) deleteMessage:(NSNotification*) event{
@@ -125,12 +127,6 @@
     }
 }
 
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
-    if([alertView.title isEqualToString:@"Warning"]){
-        [[NewsDataSource newsDataSource] deleteNewsGroup:[self.groups objectAtIndex:self.swipedCell.row]];
-        [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeBlack];
-    }
-}
 
 
 //TALBE VIEW

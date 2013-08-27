@@ -1,4 +1,5 @@
 platform :ios, '6.0'
+pod 'SIAlertView'
 pod 'MMDrawerController', '~> 0.4.0'
 pod 'RETableViewManager', '~> 1.1.2'
 pod 'AFNetworking', '~> 1.3'
