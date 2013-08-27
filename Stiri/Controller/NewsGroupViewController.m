@@ -68,6 +68,7 @@
                                                  name:DELETE_END
                                                object:nil];
     if([NewsDataSource newsDataSource].isDataLoaded == NO){
+        [[NewsDataSource newsDataSource] loadData];
         [self.tableView setContentOffset:CGPointMake(0, -self.refreshControl.frame.size.height) animated:YES];
         [self.refreshControl beginRefreshing];
     }
@@ -109,12 +110,14 @@
 - (IBAction)shouldDeleteGroup:(id)sender{
     CGPoint buttonPosition = [sender convertPoint:CGPointZero toView:self.tableView];
     self.swipedCell = [self.tableView indexPathForRowAtPoint:buttonPosition];
-    SIAlertView *alertView = [[SIAlertView alloc] initWithTitle:@"Delete group" andMessage:@"Are you sure?"];
-    [alertView addButtonWithTitle:@"Yes" type:SIAlertViewButtonTypeDestructive handler:^(SIAlertView *alertView) {
+    SIAlertView *alertView = [[SIAlertView alloc] initWithTitle:@"Delete group"
+                                                     andMessage:@"You can't undo this operation"];
+    [alertView addButtonWithTitle:@"Cancel" type:SIAlertViewButtonTypeCancel handler:nil];
+    [alertView addButtonWithTitle:@"OK" type:SIAlertViewButtonTypeDestructive handler:^(SIAlertView *alertView) {
         [[NewsDataSource newsDataSource] deleteNewsGroup:[self.groups objectAtIndex:self.swipedCell.row]];
         [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeBlack];
     }];
-    [alertView addButtonWithTitle:@"Cancel" type:SIAlertViewButtonTypeCancel handler:nil];
+    alertView.transitionStyle = SIAlertViewTransitionStyleDropDown;
     [alertView show];
 }
 

@@ -6,9 +6,12 @@
 //  Copyright (c) 2013 Stoica Vlad. All rights reserved.
 //
 
+#import <SVProgressHUD/SVProgressHUD.h>
 #import "MenuViewController.h"
 #import "UIViewController+MMDrawerController.h"
 #import "AllNewsItemsViewController.h"
+#import "FBSession.h"
+#import "NewsDataSource.h"
 
 @interface MenuViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -94,7 +97,19 @@
     NSDictionary *menuItem = [menuItemsForCurrentSection objectAtIndex:indexPath.row];
     NSString *identifier = [[menuItem allValues]lastObject];
     [self.mm_drawerController closeDrawerAnimated:YES completion:^(BOOL finished) {
-        UIViewController *newTopViewController = [self.storyboard instantiateViewControllerWithIdentifier:identifier];
+        NSString *finalIdentfier = identifier;
+        if(identifier==@"Logout"){
+            [SVProgressHUD show];
+            finalIdentfier=@"Main";
+            [FBSession.activeSession closeAndClearTokenInformation];
+            [[NewsDataSource newsDataSource] deleteAllNewsGroupsAndNewsSources];
+            [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"user_id"];
+            [SVProgressHUD dismiss];
+            NSIndexPath *mainIndexPath = [NSIndexPath indexPathForItem:0 inSection:0];
+            [self.tableView selectRowAtIndexPath:mainIndexPath animated:NO scrollPosition:0];
+
+        }
+        UIViewController *newTopViewController = [self.storyboard instantiateViewControllerWithIdentifier:finalIdentfier];
         self.mm_drawerController.centerViewController = newTopViewController;       
     }];
     

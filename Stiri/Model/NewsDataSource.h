@@ -44,4 +44,8 @@
 
 - (void) makeNewsItemRead:(NewsItem *) newsItem;
 
+//DELETE DATA
+
+- (void)deleteAllNewsGroupsAndNewsSources;
+
 @end

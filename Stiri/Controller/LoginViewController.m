@@ -134,7 +134,6 @@ static NSString * const kClientId = @"976584719831.apps.googleusercontent.com";
         }
         [defaults setValue:userServerId forKey:@"user_id"];
         [SVProgressHUD dismiss];
-        
         [self performSegueWithIdentifier:@"loginSuccesfulSegue" sender:self];
         NSLog(@"Request Successful, response '%@'", responseStr);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {

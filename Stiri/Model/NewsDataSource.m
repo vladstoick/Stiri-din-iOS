@@ -41,6 +41,7 @@ static NewsDataSource *_newsDataSource;
     if (_userId == 0) {
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         _userId = [defaults integerForKey:@"user_id"];
+        [_newsDataSource loadData];
     }
     return _userId;
 }
@@ -48,7 +49,7 @@ static NewsDataSource *_newsDataSource;
 + (NewsDataSource *)newsDataSource {
     if (!_newsDataSource) {
         _newsDataSource = [[NewsDataSource alloc] init];
-        [_newsDataSource loadData];
+
     }
     return _newsDataSource;
 }
@@ -383,6 +384,7 @@ static NewsDataSource *_newsDataSource;
 //DELETE DATA
 
 - (void)deleteAllNewsGroupsAndNewsSources {
+    self.isDataLoaded = NO;
     NSManagedObjectContext *context = [self managedObjectContext];
     for (NSManagedObject *group in self.allGroups) {
         [self.managedObjectContext deleteObject:group];
