@@ -12,6 +12,7 @@
 #import "AllNewsItemsViewController.h"
 #import "FBSession.h"
 #import "NewsDataSource.h"
+#import <GooglePlus/GooglePlus.h>
 
 @interface MenuViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -102,6 +103,7 @@
             [SVProgressHUD show];
             finalIdentfier=@"Main";
             [FBSession.activeSession closeAndClearTokenInformation];
+            [[GPPSignIn sharedInstance] signOut];
             [[NewsDataSource newsDataSource] deleteAllNewsGroupsAndNewsSources];
             [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"user_id"];
             [SVProgressHUD dismiss];

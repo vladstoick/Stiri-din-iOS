@@ -41,7 +41,6 @@ static NewsDataSource *_newsDataSource;
     if (_userId == 0) {
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         _userId = [defaults integerForKey:@"user_id"];
-        [_newsDataSource loadData];
     }
     return _userId;
 }
