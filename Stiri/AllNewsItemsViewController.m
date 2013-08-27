@@ -1,51 +1,38 @@
 //
-//  NewsItemsViewController.m
+//  AllNewsItemsViewController.m
 //  Stiri
 //
-//  Created by Vlad Stoica on 8/13/13.
+//  Created by Vlad Stoica on 8/27/13.
 //  Copyright (c) 2013 Stoica Vlad. All rights reserved.
 //
 
-#import "NewsItemsViewController.h"
-#import "PageNewsItemsViewController.h"
-#import "NewsSource.h"
+#import "AllNewsItemsViewController.h"
 #import "NewsItem.h"
+#import "PageNewsItemsViewController.h"
 #import "NewsDataSource.h"
-#import "SVProgressHud.h"
-
-#define DATA_NEWSOURCE_PARSED @"newssource_loaded"
-
-@interface NewsItemsViewController ()
-@property(readonly, nonatomic) NewsSource *newsSource;
-@property(strong, nonatomic) NSArray *unreadNews;
-@property(strong, nonatomic) NSArray *readNews;
+#import "UIViewController+MMDrawerController.h"
+@interface AllNewsItemsViewController ()
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (strong, nonatomic) NSArray *unreadNews;
+@property (strong, nonatomic) NSArray *readNews;
 @end
 
-@implementation NewsItemsViewController
+@implementation AllNewsItemsViewController
 
-- (NewsSource *)newsSource {
-    NewsSource *localNewsSource = [[NewsDataSource newsDataSource] getNewsSourceWithId:self.sourceId];
-    return localNewsSource;
-}
 
-- (void)checkIfParsed:(NewsSource *)ns {
-    [self updateNews];
-    if ([ns.isFeedParsed isEqual:@0]) {
-        [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeBlack];
-    } else {
-        [SVProgressHUD dismiss];
-        [self.tableView reloadData];
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        // Custom initialization
     }
-
+    return self;
 }
 
 - (void) updateNews {
     NSMutableArray *array;
-    if(self.isShowingAllNews==NO){
-        array = [[self.newsSource.news allObjects] mutableCopy];
-    } else {
-        array = [[[NewsDataSource newsDataSource] allNews] mutableCopy];
-    }
+    array = [[[NewsDataSource newsDataSource] allNews] mutableCopy];
     [array sortUsingComparator:^NSComparisonResult(id a, id b) {
         NSDate *first = [(NewsItem *) a pubDate];
         NSDate *second = [(NewsItem *) b pubDate];
@@ -62,42 +49,22 @@
     }
     self.unreadNews = unreadNews;
     self.readNews = readNews;
+    [self.tableView reloadData];
 }
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    [self setTitle:@"All news"];
+    [self updateNews];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
     [self updateNews];
-    [self.tableView reloadData];
 }
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    if(self.isShowingAllNews == NO){
-        [self checkIfParsed:self.newsSource];
-        self.title = self.newsSource.title;
-    }
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dataChanged:)
-                                                 name:DATA_NEWSOURCE_PARSED object:nil];
-    // Do any additional setup after loading the view.
-}
-
-- (void)dataChanged:(NSNotification *)notification {
-    if(self.isShowingAllNews == NO){
-        [self checkIfParsed:self.newsSource];
-    } else {
-        [self updateNews];
-        [self.tableView reloadData];
-    }
-}
-
-- (void)didReceiveMemoryWarning {
+- (void)didReceiveMemoryWarning
+{
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
@@ -183,5 +150,14 @@
         destViewController.newsIndex = indexPath.row;
         [self.tableView deselectRowAtIndexPath:indexPath animated:false];
     }
+}
+
+- (IBAction)menuClicked:(id)sender {
+    if([self.mm_drawerController openSide] == MMDrawerSideLeft){
+        [self.mm_drawerController closeDrawerAnimated:YES completion:nil];
+    } else {
+        [self.mm_drawerController openDrawerSide:MMDrawerSideLeft animated:YES completion:nil];
+    }
+    
 }
 @end

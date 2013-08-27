@@ -116,7 +116,7 @@ static NSString * const kClientId = @"976584719831.apps.googleusercontent.com";
 //server communication
 
 -(void) authWithServerToken: (NSString*) token andUserId: (NSString*) userId withType:(NSString*) type{
-    NSString *urlString =[NSString stringWithFormat:@"http://stiriromania.eu01.aws.af.cm/"];
+    NSString *urlString =[NSString stringWithFormat:@"http://37.139.26.80/"];
     NSURL *url = [NSURL URLWithString:urlString];
     AFHTTPClient *httpClient = [[AFHTTPClient alloc] initWithBaseURL:url];
     NSDictionary *params = @{@"account": userId,
@@ -138,7 +138,7 @@ static NSString * const kClientId = @"976584719831.apps.googleusercontent.com";
         [self performSegueWithIdentifier:@"loginSuccesfulSegue" sender:self];
         NSLog(@"Request Successful, response '%@'", responseStr);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"[HTTPClient Error]: %@", error.localizedDescription);
+        NSLog(@"[HTTPClient Error]: %@", error);
     }];
 }
 @end

@@ -260,7 +260,7 @@ static NewsDataSource *_newsDataSource;
 }
 
 //NEWSITEM
-- (NSArray *)allItems {
+- (NSArray *)allNews {
     NSManagedObjectContext *context = [self managedObjectContext];
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"NewsItem"
@@ -390,7 +390,7 @@ static NewsDataSource *_newsDataSource;
     for (NSManagedObject *source in self.allSources) {
         [self.managedObjectContext deleteObject:source];
     }
-    for (NSManagedObject *newsItem in self.allItems) {
+    for (NSManagedObject *newsItem in self.allNews) {
         [self.managedObjectContext deleteObject:newsItem];
     }
     NSError *error;

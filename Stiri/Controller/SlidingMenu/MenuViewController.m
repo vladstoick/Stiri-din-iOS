@@ -8,6 +8,8 @@
 
 #import "MenuViewController.h"
 #import "UIViewController+MMDrawerController.h"
+#import "AllNewsItemsViewController.h"
+
 @interface MenuViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property NSArray *menuItems;
@@ -23,7 +25,7 @@
 {
     [super viewDidLoad];
     self.tableView.backgroundColor =    [UIColor colorWithPatternImage:[UIImage imageNamed:@"squairy_light.png"]];
-    self.newsItems = @[@{@"Your news":@"Main"},@{@"Search":@"Search"}];
+    self.newsItems = @[@{@"Your groups":@"Main"},@{@"All News":@"AllNewsItems"},@{@"Search":@"Search"}];
     self.settings = @[@{@"Settings":@"Settings"},@{@"Logout":@"Logout"}];
     self.sectionTitles = @[@"News",@"Settings"];
     self.menuItems = @[self.newsItems,self.settings];
@@ -93,7 +95,7 @@
     NSString *identifier = [[menuItem allValues]lastObject];
     [self.mm_drawerController closeDrawerAnimated:YES completion:^(BOOL finished) {
         UIViewController *newTopViewController = [self.storyboard instantiateViewControllerWithIdentifier:identifier];
-        self.mm_drawerController.centerViewController = newTopViewController;
+        self.mm_drawerController.centerViewController = newTopViewController;       
     }];
     
 }

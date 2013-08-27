@@ -77,7 +77,6 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-
     [[self navigationController] setNavigationBarHidden:NO animated:YES];
     
 }
@@ -138,7 +137,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.groups.count + 1 ;
+    return self.groups.count;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -153,48 +152,40 @@
         cell = [[HHPanningTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle
                                              reuseIdentifier:subtitleTableIdentifier];
     }
+    UIView *drawerView = [[UIView alloc] initWithFrame:cell.frame];
+    drawerView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"dark_dotted"]];
+    UIButton *deleteButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    deleteButton.frame = CGRectMake( (cell.frame.size.width/2 - 102)/2  , 10, 102, 24);
+    [deleteButton setBackgroundImage:[UIImage imageNamed:@"delete_button.png"] forState:UIControlStateNormal];
+    [deleteButton addTarget:self action:@selector(shouldDeleteGroup:) forControlEvents:UIControlEventTouchDown];
+    UIButton *renameButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [renameButton setBackgroundImage:[UIImage imageNamed:@"rename_button.png"] forState:UIControlStateNormal];
+    renameButton.frame = CGRectMake(cell.frame.size.width/2 + (cell.frame.size.width/2 - 102)/2 , 10 , 102, 24);
+    [drawerView addSubview:renameButton];
+    [drawerView addSubview:deleteButton];
+    cell.drawerView = drawerView;
+    cell.directionMask =  HHPanningTableViewCellDirectionLeft;
+    NewsGroup *ng = (self.groups)[indexPath.row];
+    cell.textLabel.text = ng.title;
+    cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue-CondensedBold" size:18.0];
+    NSUInteger numberOfNewSources = ng.newsSources.count;
+    NSString *surseDeStiriString = [NSString stringWithFormat:@"%d news sources",numberOfNewSources];
+    if(numberOfNewSources == 1 ){
+        surseDeStiriString = [NSString stringWithFormat:@"one news source"];
+    }
+    cell.detailTextLabel.text = surseDeStiriString;
+    cell.detailTextLabel.font = [UIFont fontWithName:@"HelveticaNeue-LightItalic" size:14.0];
 
-    if(indexPath.row > 0 ){
-        UIView *drawerView = [[UIView alloc] initWithFrame:cell.frame];
-        drawerView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"dark_dotted"]];
-        UIButton *deleteButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        deleteButton.frame = CGRectMake( (cell.frame.size.width/2 - 102)/2  , 10, 102, 24);
-        [deleteButton setBackgroundImage:[UIImage imageNamed:@"delete_button.png"] forState:UIControlStateNormal];
-        [deleteButton addTarget:self action:@selector(shouldDeleteGroup:) forControlEvents:UIControlEventTouchDown];
-        UIButton *renameButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [renameButton setBackgroundImage:[UIImage imageNamed:@"rename_button.png"] forState:UIControlStateNormal];
-        renameButton.frame = CGRectMake(cell.frame.size.width/2 + (cell.frame.size.width/2 - 102)/2 , 10 , 102, 24);
-        [drawerView addSubview:renameButton];
-        [drawerView addSubview:deleteButton];
-        cell.drawerView = drawerView;
-        cell.directionMask =  HHPanningTableViewCellDirectionLeft;
-        NewsGroup *ng = (self.groups)[indexPath.row-1];
-        cell.textLabel.text = ng.title;
-        cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue-CondensedBold" size:18.0];
-        NSUInteger numberOfNewSources = ng.newsSources.count;
-        NSString *surseDeStiriString = [NSString stringWithFormat:@"%d news sources",numberOfNewSources];
-        if(numberOfNewSources == 1 ){
-            surseDeStiriString = [NSString stringWithFormat:@"one news source"];
-        }
-        cell.detailTextLabel.text = surseDeStiriString;
-        cell.detailTextLabel.font = [UIFont fontWithName:@"HelveticaNeue-LightItalic" size:14.0];
-    }
-    else {
-        cell.directionMask = nil;
-        cell.textLabel.text = @"All news";
-    }
     return cell;
 }
 
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if( [segue.identifier isEqualToString:@"showNewsSourceForGroup"]){
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        if(indexPath > 0){
-            NewsSourceViewController *destViewController = segue.destinationViewController;
-            NewsGroup *selectedNewsGroup = [self.groups objectAtIndex:indexPath.row];
-            destViewController.groupId = selectedNewsGroup.groupId;
-            [self.tableView deselectRowAtIndexPath:indexPath animated:false];
-        }
+        NewsSourceViewController *destViewController = segue.destinationViewController;
+        NewsGroup *selectedNewsGroup = [self.groups objectAtIndex:indexPath.row];
+        destViewController.groupId = selectedNewsGroup.groupId;
+        [self.tableView deselectRowAtIndexPath:indexPath animated:false];
     }
 }
 @end

@@ -48,6 +48,7 @@
 		728661D617BFAF5000AA13D3 /* tweed_@2X.png in Resources */ = {isa = PBXBuildFile; fileRef = 728661D417BFAF5000AA13D3 /* tweed_@2X.png */; };
 		728661D717BFAF5000AA13D3 /* tweed.png in Resources */ = {isa = PBXBuildFile; fileRef = 728661D517BFAF5000AA13D3 /* tweed.png */; };
 		728661DA17BFD21E00AA13D3 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 728661D917BFD21E00AA13D3 /* SearchViewController.m */; };
+		728CB33A17CC930100F4BA49 /* AllNewsItemsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 728CB33917CC930100F4BA49 /* AllNewsItemsViewController.m */; };
 		7291565317BA35AA00A6FD66 /* NewsDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 7291565217BA35AA00A6FD66 /* NewsDataSource.m */; };
 		7291565617BA35CF00A6FD66 /* NewsModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7291565417BA35CF00A6FD66 /* NewsModel.xcdatamodeld */; };
 		7291565917BA35FB00A6FD66 /* NewsGroupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7291565817BA35FB00A6FD66 /* NewsGroupViewController.m */; };
@@ -139,6 +140,8 @@
 		728661D517BFAF5000AA13D3 /* tweed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tweed.png; sourceTree = "<group>"; };
 		728661D817BFD21E00AA13D3 /* SearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SearchViewController.h; path = Controller/SearchViewController.h; sourceTree = "<group>"; };
 		728661D917BFD21E00AA13D3 /* SearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SearchViewController.m; path = Controller/SearchViewController.m; sourceTree = "<group>"; };
+		728CB33817CC930100F4BA49 /* AllNewsItemsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllNewsItemsViewController.h; sourceTree = "<group>"; };
+		728CB33917CC930100F4BA49 /* AllNewsItemsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllNewsItemsViewController.m; sourceTree = "<group>"; };
 		7291565117BA35AA00A6FD66 /* NewsDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewsDataSource.h; path = Model/NewsDataSource.h; sourceTree = "<group>"; };
 		7291565217BA35AA00A6FD66 /* NewsDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewsDataSource.m; path = Model/NewsDataSource.m; sourceTree = "<group>"; };
 		7291565517BA35CF00A6FD66 /* NewsModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = NewsModel.xcdatamodel; sourceTree = "<group>"; };
@@ -236,6 +239,8 @@
 				72CB3B8B17BBA21200D599CA /* NewsItemViewController.m */,
 				72DE090B17C93F390065C0D9 /* PageNewsItemsViewController.h */,
 				72DE090C17C93F390065C0D9 /* PageNewsItemsViewController.m */,
+				728CB33817CC930100F4BA49 /* AllNewsItemsViewController.h */,
+				728CB33917CC930100F4BA49 /* AllNewsItemsViewController.m */,
 			);
 			name = DataControllers;
 			sourceTree = "<group>";
@@ -604,6 +609,7 @@
 				728661DA17BFD21E00AA13D3 /* SearchViewController.m in Sources */,
 				72DE090D17C93F390065C0D9 /* PageNewsItemsViewController.m in Sources */,
 				72FF80D517CB5D0B007207D0 /* NewsItem.m in Sources */,
+				728CB33A17CC930100F4BA49 /* AllNewsItemsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

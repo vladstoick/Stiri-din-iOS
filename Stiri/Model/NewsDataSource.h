@@ -38,7 +38,7 @@
 - (NewsSource *)getNewsSourceWithId:(NSNumber *)sourceId;
 
 //NewsItem
-- (NSArray *)allItems;
+- (NSArray *)allNews;
 
 - (NewsItem *)getNewsItemWithUrl:(NSString *)url fromSourceWithId:(NSNumber *)sourceId;
 
