@@ -6,6 +6,7 @@
 //  Copyright (c) 2013 Stoica Vlad. All rights reserved.
 //
 
+#import <MMDrawerController/UIViewController+MMDrawerController.h>
 #import "InitialViewController.h"
 #import "MMDrawerController.h"
 @interface InitialViewController ()
