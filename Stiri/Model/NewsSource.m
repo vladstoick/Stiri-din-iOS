@@ -2,7 +2,7 @@
 //  NewsSource.m
 //  Stiri
 //
-//  Created by Vlad Stoica on 8/17/13.
+//  Created by Vlad Stoica on 8/28/13.
 //  Copyright (c) 2013 Stoica Vlad. All rights reserved.
 //
 
@@ -17,6 +17,7 @@
 @dynamic sourceId;
 @dynamic title;
 @dynamic url;
+@dynamic lastTimeUpdated;
 @dynamic groupOwner;
 @dynamic news;
 

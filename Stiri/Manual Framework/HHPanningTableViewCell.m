@@ -558,7 +558,7 @@ static HHPanningTableViewCellDirection HHOppositeDirection(HHPanningTableViewCel
 		CGRect cellBounds = [cellView bounds];
         CGRect containerFrame = [containerView frame];
 
-        containerFrame.size.height = cellBounds.size.height;
+         containerFrame.size.height = cellBounds.size.height - 1.0f;
         containerFrame.size.width = cellBounds.size.width;
 
 		if (self.drawerRevealed) {
@@ -614,7 +614,7 @@ static HHPanningTableViewCellDirection HHOppositeDirection(HHPanningTableViewCel
 			continue;
 		}
 
-		[containerView insertSubview:subview atIndex:0];
+		[containerView sendSubviewToBack:subview];
 	}
 
 	[drawerView setFrame:[cellView bounds]];

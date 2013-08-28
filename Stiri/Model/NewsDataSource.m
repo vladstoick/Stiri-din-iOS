@@ -17,7 +17,7 @@
 #define ADD_FAIL @"add_fail";
 #define ADD_SUCCES @"add_succes";
 #define RAILSBASEURL @"http://37.139.26.80/user/"
-#define PARSEBASEURL @"http://37.139.8.146:3000/?url="
+#define PARSEBASEURL @"http://37.139.8.146:3000/?feedId="
 #define UNREADNEWSURL @"http://37.139.8.146:4000/unread/"
 #define READNEWSURL @"http://37.139.8.146:4000/read/"
 #define DATA_CHANGED_EVENT @"data_changed"
@@ -35,7 +35,7 @@
 //2. loadUnreadNews is called
 //3. Once loadUnreadNews process is finished loadGroupsAndSources is called
 //4. Once loadGroupsAndSources is finished insertGroupsAndNewsSource is called
-//5. Finally parseNewsSource is called
+//5. parseNewsSource is called for each NewsSource - > after that news are inserted;
 - (void)loadData {
     self.isDataLoaded = NO;
     
@@ -109,7 +109,6 @@
         }
         newsGroup.title = title;
         NSDictionary *allSourcesJSONObject = [groupJSONOBject valueForKey:@"group_feeds"];
-        NSMutableSet *sourcesForGroup = [[NSMutableSet alloc] init];
         for (NSDictionary *sourceJSONObject in allSourcesJSONObject) {
             NewsSource *newsSource;
             NSNumber *sourceId = [sourceJSONObject valueForKey:@"id"];
@@ -120,19 +119,21 @@
                     if([ns.sourceId isEqualToNumber:sourceId]){
                         newsSource = ns;
                         [newsSources removeObject:ns];
+                        newsSource.isFeedParsed = @0;
                         break;
                     }
                 }
+            } else {
+                newsSource = [NSEntityDescription insertNewObjectForEntityForName:@"NewsSource"
+                                                                   inManagedObjectContext:context];
+                newsSource.groupOwner = newsGroup;
+                newsSource.title = title;
+                newsSource.url = url;
+                newsSource.sourceId = sourceId;
+                newsSource.isFeedParsed = @0;
+                [newsGroup addNewsSourcesObject:newsSource];
             }
             
-            newsSource = [NSEntityDescription insertNewObjectForEntityForName:@"NewsSource"
-                                                                   inManagedObjectContext:context];
-            newsSource.groupOwner = newsGroup;
-            newsSource.title = title;
-            newsSource.url = url;
-            newsSource.sourceId = sourceId;
-            newsSource.isFeedParsed = @0;
-            [sourcesForGroup addObject:newsSource];
             [self parseNewsSource:newsSource];
         }
         if(newsSources){
@@ -140,7 +141,6 @@
                 [context deleteObject:ns];
             }
         }
-        newsGroup.newsSources = sourcesForGroup;
         
     }
     for (NewsGroup* newsGroup in allGroups){
@@ -153,8 +153,10 @@
 }
 
 - (void)parseNewsSource:(NewsSource *)newsSource {
-    NSString *urlString = [NSString stringWithFormat:@"%@%@&feedId=%@", PARSEBASEURL,
-                           newsSource.url, newsSource.sourceId];
+    NSString *urlString = [NSString stringWithFormat:@"%@%@", PARSEBASEURL, newsSource.sourceId];
+    if(![newsSource.lastTimeUpdated isEqualToNumber:@0]){
+        urlString = [urlString stringByAppendingString:[NSString stringWithFormat:@"&date=%@",newsSource.lastTimeUpdated]];
+    }
     NSURL *url = [NSURL URLWithString:urlString];
     AFHTTPClient *httpClient = [[AFHTTPClient alloc] initWithBaseURL:url];
     [httpClient getPath:@"" parameters:nil
@@ -170,6 +172,53 @@
                 } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                     NSLog(@"error recieved : %@", error);
                 }];
+}
+
+- (void)insertNewsItems:(NSArray *)articles forNewsSource:(NewsSource *)newsSource {
+    NSManagedObjectContext *context = [self managedObjectContext];
+    newsSource = [self getNewsSourceWithId:newsSource.sourceId];
+    newsSource.lastTimeUpdated = @0;
+    NSMutableSet *news = [[NSMutableSet alloc] init];
+    for (NSDictionary *articleJSONObject in articles) {
+        NSNumber *newsId = [articleJSONObject valueForKey:@"id"];
+        NSString *url = [articleJSONObject valueForKey:@"url"];
+        NSString *title = [articleJSONObject valueForKey:@"title"];
+        NSString *paperized = [articleJSONObject valueForKey:@"text"];
+        NSString *imageUrl = [articleJSONObject valueForKey:@"image"];
+        NSNumber *dateMS = [articleJSONObject valueForKey:@"date"];
+        NSDate *date = [[NSDate alloc] initWithTimeIntervalSince1970:[dateMS longLongValue] / 1000];
+        if([newsSource.lastTimeUpdated isEqualToNumber:@0]){
+            newsSource.lastTimeUpdated = dateMS;
+        }
+        if ((NSNull *) paperized == [NSNull null]) {
+            paperized = @"Loading";
+        }
+        NewsItem *newsItem = [NSEntityDescription insertNewObjectForEntityForName:@"NewsItem"
+                                                           inManagedObjectContext:context];
+        newsItem.pubDate = date;
+        newsItem.newsId = newsId;
+        if([self.unreadNews containsObject:newsId]){
+            newsItem.isRead = @0;
+        } else {
+            newsItem.isRead = @1;
+        }
+        newsItem.url = url;
+        newsItem.title = title;
+        newsItem.paperized = paperized;
+        if((NSNull*) imageUrl == [NSNull null]){
+            imageUrl=@"";
+        }
+        newsItem.imageUrl = imageUrl;
+        [news addObject:newsItem];
+        
+    }
+    newsSource.isFeedParsed = @1;
+    [newsSource addNews:news];
+    NSError *error;
+    [[NSNotificationCenter defaultCenter] postNotificationName:DATA_NEWSOURCE_PARSED object:nil];
+    if (![context save:&error]) {
+        NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
+    }
 }
 
 
@@ -380,54 +429,6 @@ static NewsDataSource *_newsDataSource;
     NSError *error;
     NSArray *results = [context executeFetchRequest:fetchRequest error:&error];
     return [results lastObject];
-}
-
-//INSERTING DATA
-
-
-
-
-- (void)insertNewsItems:(NSArray *)articles forNewsSource:(NewsSource *)newsSource {
-    NSManagedObjectContext *context = [self managedObjectContext];
-    newsSource = [self getNewsSourceWithId:newsSource.sourceId];
-    NSMutableSet *news = [[NSMutableSet alloc] init];
-    for (NSDictionary *articleJSONObject in articles) {
-        NSNumber *newsId = [articleJSONObject valueForKey:@"id"];
-        NSString *url = [articleJSONObject valueForKey:@"url"];
-        NSString *title = [articleJSONObject valueForKey:@"title"];
-        NSString *paperized = [articleJSONObject valueForKey:@"text"];
-        NSString *imageUrl = [articleJSONObject valueForKey:@"image"];
-        NSNumber *dateMS = [articleJSONObject valueForKey:@"date"];
-        NSDate *date = [[NSDate alloc] initWithTimeIntervalSince1970:[dateMS longLongValue] / 1000];
-        if ((NSNull *) paperized == [NSNull null]) {
-            paperized = @"Loading";
-        }
-        NewsItem *newsItem = [NSEntityDescription insertNewObjectForEntityForName:@"NewsItem"
-                                                           inManagedObjectContext:context];
-        newsItem.pubDate = date;
-        newsItem.newsId = newsId;
-        if([self.unreadNews containsObject:newsId]){
-            newsItem.isRead = @0;
-        } else {
-            newsItem.isRead = @1;
-        }
-        newsItem.url = url;
-        newsItem.title = title;
-        newsItem.paperized = paperized;
-        if((NSNull*) imageUrl == [NSNull null]){
-            imageUrl=@"";
-        }
-        newsItem.imageUrl = imageUrl;
-        [news addObject:newsItem];
-
-    }
-    newsSource.isFeedParsed = @1;
-    newsSource.news = news;
-    NSError *error;
-    [[NSNotificationCenter defaultCenter] postNotificationName:DATA_NEWSOURCE_PARSED object:nil];
-    if (![context save:&error]) {
-        NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
-    }
 }
 //DELETE DATA
 
