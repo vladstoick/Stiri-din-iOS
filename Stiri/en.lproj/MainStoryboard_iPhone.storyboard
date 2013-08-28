@@ -368,7 +368,7 @@
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="News from" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="imR-Zf-TIv">
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="33" id="Osg-8d-4Tj"/>
+                                    <constraint firstAttribute="height" constant="33" type="user" id="P7M-4N-wWk"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBold" family="Helvetica Neue" pointSize="38"/>
                                 <nil key="highlightedColor"/>
@@ -411,11 +411,8 @@
                             <constraint firstItem="8nq-7K-Roe" firstAttribute="top" secondItem="imR-Zf-TIv" secondAttribute="bottom" constant="8" type="user" id="F9D-ya-3Ry"/>
                             <constraint firstItem="c3O-28-2JJ" firstAttribute="top" secondItem="ePC-5z-AUW" secondAttribute="top" type="user" id="Fo8-lh-icU"/>
                             <constraint firstItem="imR-Zf-TIv" firstAttribute="top" secondItem="c3O-28-2JJ" secondAttribute="bottom" constant="4" type="user" id="FoK-nv-p6g"/>
-                            <constraint firstItem="OMc-j8-rTk" firstAttribute="top" secondItem="vZb-fA-fhw" secondAttribute="bottom" constant="8" symbolic="YES" type="user" id="Jyv-P3-4cI"/>
-                            <constraint firstAttribute="bottom" secondItem="OMc-j8-rTk" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="Tm9-Gz-8E3"/>
-                            <constraint firstItem="zB9-69-Bbp" firstAttribute="centerX" secondItem="vZb-fA-fhw" secondAttribute="centerX" type="default" id="XsF-GE-njM"/>
-                            <constraint firstItem="vZb-fA-fhw" firstAttribute="top" secondItem="zB9-69-Bbp" secondAttribute="bottom" constant="8" type="user" id="b1Y-3x-pj5"/>
-                            <constraint firstItem="vZb-fA-fhw" firstAttribute="top" secondItem="zB9-69-Bbp" secondAttribute="bottom" constant="8" symbolic="YES" type="user" id="b3K-ph-Q9N"/>
+                            <constraint firstItem="OMc-j8-rTk" firstAttribute="centerX" secondItem="vZb-fA-fhw" secondAttribute="centerX" type="default" id="OVG-Te-oTP"/>
+                            <constraint firstItem="vZb-fA-fhw" firstAttribute="top" secondItem="zB9-69-Bbp" secondAttribute="bottom" constant="8" symbolic="YES" type="user" id="cSt-Xw-TaS"/>
                             <constraint firstItem="imR-Zf-TIv" firstAttribute="trailing" secondItem="ePC-5z-AUW" secondAttribute="trailing" type="user" id="czb-7i-288"/>
                             <constraint firstItem="imR-Zf-TIv" firstAttribute="leading" secondItem="ePC-5z-AUW" secondAttribute="leading" type="default" id="eQH-jb-ZnW"/>
                             <constraint firstItem="8nq-7K-Roe" firstAttribute="top" secondItem="imR-Zf-TIv" secondAttribute="bottom" constant="8" symbolic="YES" type="user" id="el4-IJ-tBJ"/>
@@ -423,13 +420,13 @@
                             <constraint firstItem="imR-Zf-TIv" firstAttribute="centerX" secondItem="c3O-28-2JJ" secondAttribute="centerX" type="user" id="iGt-Ci-3ix"/>
                             <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="OMc-j8-rTk" secondAttribute="bottom" constant="20" type="user" id="iql-8k-ctB"/>
                             <constraint firstItem="c3O-28-2JJ" firstAttribute="top" secondItem="ePC-5z-AUW" secondAttribute="top" type="user" id="jXE-Z3-atW"/>
+                            <constraint firstItem="OMc-j8-rTk" firstAttribute="top" secondItem="vZb-fA-fhw" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="kO4-e9-RVq"/>
                             <constraint firstItem="zB9-69-Bbp" firstAttribute="trailing" secondItem="OMc-j8-rTk" secondAttribute="trailing" type="default" id="nY3-b9-Suk"/>
                             <constraint firstItem="8nq-7K-Roe" firstAttribute="centerX" secondItem="zB9-69-Bbp" secondAttribute="centerX" type="default" id="pF2-L9-r2k"/>
-                            <constraint firstItem="OMc-j8-rTk" firstAttribute="top" secondItem="vZb-fA-fhw" secondAttribute="bottom" constant="8" type="user" id="pG0-xZ-ojf"/>
+                            <constraint firstItem="zB9-69-Bbp" firstAttribute="top" secondItem="8nq-7K-Roe" secondAttribute="bottom" constant="8" symbolic="YES" type="user" id="vGi-Bd-rax"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Login" id="7Tj-Hd-5Ue"/>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <connections>
