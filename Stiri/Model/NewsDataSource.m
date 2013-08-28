@@ -131,6 +131,7 @@
                 newsSource.url = url;
                 newsSource.sourceId = sourceId;
                 newsSource.isFeedParsed = @0;
+                newsSource.lastTimeUpdated = @0;
                 [newsGroup addNewsSourcesObject:newsSource];
             }
             
@@ -177,7 +178,8 @@
 - (void)insertNewsItems:(NSArray *)articles forNewsSource:(NewsSource *)newsSource {
     NSManagedObjectContext *context = [self managedObjectContext];
     newsSource = [self getNewsSourceWithId:newsSource.sourceId];
-    newsSource.lastTimeUpdated = @0;
+    if(articles.count!=0)
+        newsSource.lastTimeUpdated = @0;
     NSMutableSet *news = [[NSMutableSet alloc] init];
     for (NSDictionary *articleJSONObject in articles) {
         NSNumber *newsId = [articleJSONObject valueForKey:@"id"];
