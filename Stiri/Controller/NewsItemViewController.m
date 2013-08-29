@@ -21,11 +21,9 @@
 - (NSString *) stylePaperize {
     NSString *beg = @"<body style=\"font-family:HelveticaNeue\" >";
     NSString *title = [NSString stringWithFormat:@"<div style=\"font-size:21px;font-weight:bold; \">%@</br></div><div align=\"justify\" style=\"font-size:16px;\">",self.currentNewsItem.title];
-    NSString *imageString =[NSString stringWithFormat:@"<img src=\"%@\" style=\"width:305px;margin:0 auto;\" \\>",self.currentNewsItem.imageUrl];
     NSString *end = @"</div></body>";
     NSString *begAndTitle = [beg stringByAppendingString:title];
-    NSString *begAndTitleAndImage = [begAndTitle stringByAppendingString:imageString];
-    NSString *result = [[begAndTitleAndImage stringByAppendingString:self.currentNewsItem.paperized] stringByAppendingString:end];
+    NSString *result = [[begAndTitle stringByAppendingString:self.currentNewsItem.paperized] stringByAppendingString:end];
     self.isInOptimalMode = YES;
     return result;
 }

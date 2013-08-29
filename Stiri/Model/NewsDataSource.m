@@ -307,7 +307,6 @@ static NewsDataSource *_newsDataSource;
                                               inManagedObjectContext:context];
     [fetchRequest setEntity:entity];
     NSArray *groups = [context executeFetchRequest:fetchRequest error:nil];
-
     return groups;
 }
 
@@ -350,7 +349,6 @@ static NewsDataSource *_newsDataSource;
         newsSource.groupOwner = ng;
         [set addObject:newsSource];
         ng.newsSources = set;
- 
         NSError *error;
         if (![context save:&error]) {
             NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
@@ -403,6 +401,9 @@ static NewsDataSource *_newsDataSource;
 }
 
 - (void) makeNewsItemRead:(NewsItem *) newsItem{
+    if([newsItem.isRead isEqualToNumber:@1]){
+        return;
+    }
     NSString *urlString = [NSString stringWithFormat:@"%@%d/%@", READNEWSURL, self.userId, newsItem.newsId];
     NSURL *url = [NSURL URLWithString:urlString];
     AFHTTPClient *httpClient = [[AFHTTPClient alloc] initWithBaseURL:url];
