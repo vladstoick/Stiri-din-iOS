@@ -473,6 +473,11 @@
 			attributes = {
 				LastUpgradeCheck = 0460;
 				ORGANIZATIONNAME = "Stoica Vlad";
+				TargetAttributes = {
+					7208343517A0288800CEC1E5 = {
+						DevelopmentTeam = MQ8JA8H9EG;
+					};
+				};
 			};
 			buildConfigurationList = 7208343117A0288800CEC1E5 /* Build configuration list for PBXProject "Stiri" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -694,7 +699,8 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Alexandru Stoica (W2JH5CS6B6)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Alexandru Stoica (MQ8JA8H9EG)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Alexandru Stoica (MQ8JA8H9EG)";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -709,7 +715,8 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				ONLY_ACTIVE_ARCH = YES;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "5F13814E-83FF-445B-A23D-C97350260EC3";
+				PROVISIONING_PROFILE = "ECF5DBA3-7D64-4072-B41B-7BFEBE0E2632";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "ECF5DBA3-7D64-4072-B41B-7BFEBE0E2632";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -727,7 +734,8 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Alexandru Stoica (W2JH5CS6B6)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Alexandru Stoica (MQ8JA8H9EG)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Alexandru Stoica (MQ8JA8H9EG)";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -735,7 +743,8 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "5F13814E-83FF-445B-A23D-C97350260EC3";
+				PROVISIONING_PROFILE = "ECF5DBA3-7D64-4072-B41B-7BFEBE0E2632";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "ECF5DBA3-7D64-4072-B41B-7BFEBE0E2632";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -746,6 +755,8 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 0E217E52A67247C48E4AFB43 /* Pods.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -756,6 +767,7 @@
 				INFOPLIST_FILE = "Stiri/Stiri-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "\"${PROJECT_DIR}/Pods\"/**";
 				WRAPPER_EXTENSION = app;
@@ -766,6 +778,8 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 0E217E52A67247C48E4AFB43 /* Pods.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -776,6 +790,7 @@
 				INFOPLIST_FILE = "Stiri/Stiri-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "\"${PROJECT_DIR}/Pods\"/**";
 				WRAPPER_EXTENSION = app;

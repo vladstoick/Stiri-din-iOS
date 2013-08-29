@@ -9,7 +9,7 @@
 #import "NewsDataSource.h"
 #import "AppDelegate.h"
 #import "AFNetworking.h"
-
+#define SEARCH_END @"search_ended"
 #define DELETE_END @"delete_ended"
 #define DELETE_SUCCES @"delete_succes"
 #define DELETE_FAIL @"delete_fail"
@@ -20,6 +20,7 @@
 #define PARSEBASEURL @"http://37.139.8.146:3000/?feedId="
 #define UNREADNEWSURL @"http://37.139.8.146:4000/unread/"
 #define READNEWSURL @"http://37.139.8.146:4000/read/"
+#define SEARCHBASEURL @"http://37.139.8.146:8983/solr/collection1/select?rows=20&wt=json&q=description:"
 #define DATA_CHANGED_EVENT @"data_changed"
 #define DATA_NEWSOURCE_PARSED @"newssource_loaded"
 
@@ -433,7 +434,7 @@ static NewsDataSource *_newsDataSource;
     NSArray *results = [context executeFetchRequest:fetchRequest error:&error];
     return [results lastObject];
 }
-//DELETE DATA
+//RESET DATA
 
 - (void)deleteAllNewsGroupsAndNewsSources {
     self.isDataLoaded = NO;
@@ -451,6 +452,35 @@ static NewsDataSource *_newsDataSource;
     if (![context save:&error]) {
         NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
     }
+}
+
+//SEARCH
+
+- (void)searchOnlineText:(NSString *)search{
+    NSString *urlString = [NSString stringWithFormat:@"%@%@",SEARCHBASEURL,search];
+    NSLog(@"%@",urlString);
+    AFHTTPClient *httpClient = [[AFHTTPClient alloc] initWithBaseURL:[NSURL URLWithString:urlString]];
+    [httpClient getPath:@"" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSString *responseStr = [[NSString alloc] initWithData:responseObject
+                                                      encoding:NSUTF8StringEncoding];
+        NSDictionary *json;
+        json = [NSJSONSerialization JSONObjectWithData:[responseStr dataUsingEncoding:NSUTF8StringEncoding]
+                                                         options:NSJSONReadingMutableContainers
+                                                           error:nil];
+        NSDictionary *response = [json valueForKey:@"response"];
+        NSDictionary *results = [response valueForKey:@"docs"];
+        NSMutableArray *searchParsed = [[NSMutableArray alloc] init];
+        for(NSDictionary *newsResult in results){
+            NewsItem *ni = [NSEntityDescription insertNewObjectForEntityForName:@"NewsItem" inManagedObjectContext:[self managedObjectContext]];
+            ni.title = [newsResult valueForKey:@"title"];
+            ni.url = [newsResult valueForKey:@"url"];
+            [searchParsed addObject:ni];
+//            [[self managedObjectContext] deleteObject:ni];
+        }
+        [[NSNotificationCenter defaultCenter] postNotificationName:SEARCH_END object:searchParsed];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+    }];
 }
 
 @end

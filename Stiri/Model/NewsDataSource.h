@@ -44,8 +44,11 @@
 
 - (void) makeNewsItemRead:(NewsItem *) newsItem;
 
-//DELETE DATA
+//RESET DATA
 
 - (void)deleteAllNewsGroupsAndNewsSources;
 
+//SEARCH
+
+- (void)searchOnlineText:(NSString*) search;
 @end

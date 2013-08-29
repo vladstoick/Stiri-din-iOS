@@ -42,7 +42,7 @@ static NSString * const kClientId = @"976584719831.apps.googleusercontent.com";
 {
     [super viewDidLoad];
     self.mm_drawerController.shouldStretchDrawer = NO;
-    self.mm_drawerController.openDrawerGestureModeMask = nil;
+    self.mm_drawerController.openDrawerGestureModeMask = MMDrawerOpenCenterInteractionModeNone;
     self.view.backgroundColor =    [UIColor colorWithPatternImage:[UIImage imageNamed:@"squairy_light.png"]];
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     self.navigationItem.hidesBackButton = YES;

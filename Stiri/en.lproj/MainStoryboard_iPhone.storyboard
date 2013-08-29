@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12E55" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="3iI-Bg-fZl">
     <dependencies>
-        <deployment defaultVersion="1552" identifier="iOS"/>
         <development version="4600" identifier="xcode"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
@@ -255,7 +254,7 @@
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </label>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" image="button-destructive.png" translatesAutoresizingMaskIntoConstraints="NO" id="V3i-mU-0FJ">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="V3i-mU-0FJ">
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="80" type="user" id="LuT-U0-7Se"/>
                                                         <constraint firstAttribute="height" constant="80" id="hA5-eX-JsE"/>
@@ -557,9 +556,13 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="myu-EJ-Z9O">
+                            <searchBar contentMode="redraw" barStyle="blackOpaque" placeholder="Enter the title" showsScopeBar="YES" translatesAutoresizingMaskIntoConstraints="NO" id="myu-EJ-Z9O">
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <scopeButtonTitles>
+                                    <string>Online</string>
+                                    <string>Local</string>
+                                </scopeButtonTitles>
                                 <connections>
                                     <outlet property="delegate" destination="0XF-dB-knG" id="IgP-3S-kkg"/>
                                 </connections>
@@ -593,7 +596,8 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="searchDisplayController" destination="031-14-bMl" id="5ID-0N-cCI"/>
+                        <outlet property="searchBar" destination="myu-EJ-Z9O" id="3Xy-0u-FXa"/>
+                        <outlet property="searchDisplayController" destination="EIQ-Nh-6yn" id="i0f-Uj-gZk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4aB-aY-hJm" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -604,6 +608,14 @@
                         <outlet property="searchContentsController" destination="0XF-dB-knG" id="nJo-tv-vKK"/>
                         <outlet property="searchResultsDataSource" destination="0XF-dB-knG" id="Ece-Vd-vbf"/>
                         <outlet property="searchResultsDelegate" destination="0XF-dB-knG" id="t7w-SU-fwR"/>
+                    </connections>
+                </searchDisplayController>
+                <searchDisplayController id="EIQ-Nh-6yn">
+                    <connections>
+                        <outlet property="delegate" destination="0XF-dB-knG" id="QIq-2r-dvl"/>
+                        <outlet property="searchContentsController" destination="0XF-dB-knG" id="m3w-6Y-Eds"/>
+                        <outlet property="searchResultsDataSource" destination="0XF-dB-knG" id="xU7-KM-Hil"/>
+                        <outlet property="searchResultsDelegate" destination="0XF-dB-knG" id="M2u-2n-2b5"/>
                     </connections>
                 </searchDisplayController>
             </objects>
@@ -769,7 +781,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="button-destructive.png" width="7" height="7"/>
         <image name="logo.png" width="140" height="140"/>
         <image name="manual_tab_bar_icon.png" width="40" height="40"/>
         <image name="recommended_tab_bar_icon.png" width="40" height="40"/>
@@ -857,6 +868,10 @@
         </class>
         <class className="SearchViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SearchViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="menuButtonPressed:"/>
+                <relationship kind="outlet" name="searchBar" candidateClass="UISearchBar"/>
+            </relationships>
         </class>
     </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
