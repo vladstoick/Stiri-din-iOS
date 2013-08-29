@@ -12,9 +12,9 @@
 #import "NewsItem.h"
 #import "NewsDataSource.h"
 #import "SVProgressHud.h"
-
+#import "NewsItemCell.h"
 #define DATA_NEWSOURCE_PARSED @"newssource_loaded"
-
+#import "UIImageView+AFNetworking.h"
 @interface NewsItemsViewController ()
 @property(readonly, nonatomic) NewsSource *newsSource;
 @property(strong, nonatomic) NSArray *unreadNews;
@@ -119,58 +119,27 @@
 }
 
 
-- (UITableViewCell *)tableView:(UITableView *)tableViewLocal cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (NewsItemCell *)tableView:(UITableView *)tableViewLocal cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *subtitleTableIdentifier = @"titleViewCellItem";
-
-    UITableViewCell *cell = [tableViewLocal dequeueReusableCellWithIdentifier:subtitleTableIdentifier];
-
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle
-                                      reuseIdentifier:subtitleTableIdentifier];
-    }
+    NewsItemCell *cell = [tableViewLocal dequeueReusableCellWithIdentifier:subtitleTableIdentifier];
     NewsItem *newsItem;
     if(indexPath.section == 0) {
         newsItem = (self.unreadNews)[indexPath.row];
     } else {
         newsItem = (self.readNews)[indexPath.row];
     }
-    UIFont *titleFont = [UIFont fontWithName:@"HelveticaNeue-Light" size:17];
-    cell.textLabel.text = newsItem.title;
-    cell.textLabel.font = titleFont;
-    cell.textLabel.numberOfLines = 3;
-    UIFont *subtitleFont = [UIFont fontWithName:@"HelveticaNeue-LightItalic" size:10];
-    cell.detailTextLabel.font = subtitleFont;
-    cell.detailTextLabel.text = [NSDateFormatter localizedStringFromDate:newsItem.pubDate
+    cell.titleLabel.text = newsItem.title;
+    cell.dateLabel.text = [NSDateFormatter localizedStringFromDate:newsItem.pubDate
                                                                dateStyle:NSDateFormatterShortStyle
                                                                timeStyle:NSDateFormatterShortStyle];
-
-
+    [cell.articleImageView setImageWithURL:[NSURL URLWithString:newsItem.imageUrl]];
+    //    [cell.imageView setImageWithURLRequest:request placeholderImage:nil success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
+//        
+//    } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
+//        
+//    }]
     return cell;
 }
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NewsItem *newsItem;
-    if(indexPath.section == 0){
-        newsItem = (self.unreadNews)[indexPath.row];
-    } else {
-        newsItem = (self.readNews)[indexPath.row];
-    }
-    CGSize size = CGSizeMake(320, 1000);
-    UIFont *titleFont = [UIFont fontWithName:@"HelveticaNeue-Light" size:17];
-
-    CGFloat titleHeight = [newsItem.title sizeWithFont:titleFont
-                                     constrainedToSize:size
-                                         lineBreakMode:NSLineBreakByCharWrapping].height;
-    NSString *pubDate = [NSDateFormatter localizedStringFromDate:newsItem.pubDate
-                                                       dateStyle:NSDateFormatterShortStyle
-                                                       timeStyle:NSDateFormatterShortStyle];
-    UIFont *subtitleFont = [UIFont fontWithName:@"HelveticaNeue-LightItalic" size:10];
-    CGFloat subtitleHeight = [pubDate sizeWithFont:subtitleFont
-                                 constrainedToSize:size lineBreakMode:NSLineBreakByCharWrapping].height;
-    return titleHeight + subtitleHeight + 20;
-
-}
-
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"openNewsItem"]) {
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
