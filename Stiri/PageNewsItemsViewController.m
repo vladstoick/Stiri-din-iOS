@@ -9,7 +9,7 @@
 #import "PageNewsItemsViewController.h"
 #import "NewsItemViewController.h"
 #import "NewsDataSource.h"
-
+#import "TSMiniWebBrowser.h"
 @interface PageNewsItemsViewController () <UIPageViewControllerDataSource, UIPageViewControllerDelegate>
 @property(strong, nonatomic) UIPageViewController *pageController;
 @end
@@ -27,7 +27,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationController.toolbarHidden = NO;
-    [self.navigationController.toolbar setBackgroundImage:[UIImage imageNamed:@"navbar_bg.png"] forToolbarPosition:UIToolbarPositionBottom barMetrics:UIBarMetricsDefault];
+
     self.pageController = [[UIPageViewController alloc]
             initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll
               navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal
@@ -110,4 +110,20 @@
     newsItemViewController.currentNewsItem = [self newsItemAtIndex:index];
     return newsItemViewController;
 }
+
+//BUTTONS
+
+- (IBAction)share:(id)sender {
+    NewsItemViewController *currentViewController = (self.pageController.viewControllers)[0];
+    NSArray *activity_elements = @[[NSString stringWithFormat:@"%@ via News from", currentViewController.currentNewsItem.url]];
+    UIActivityViewController *uiActivityViewController = [[UIActivityViewController alloc] initWithActivityItems:activity_elements applicationActivities:nil];
+    [self presentViewController:uiActivityViewController animated:YES completion:nil];
+}
+- (IBAction)openInBrowser:(id)sender {
+    NewsItemViewController *currentViewController = (self.pageController.viewControllers)[0];
+    NSURL *url = [NSURL URLWithString:currentViewController.currentNewsItem.url];
+    TSMiniWebBrowser *webBrowser = [[TSMiniWebBrowser alloc] initWithUrl:url];
+    [self.navigationController pushViewController:webBrowser animated:YES];   
+}
+
 @end

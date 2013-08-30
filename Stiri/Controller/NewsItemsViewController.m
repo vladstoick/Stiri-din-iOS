@@ -75,11 +75,12 @@
 - (void)viewWillAppear:(BOOL)animated{
     [self updateNews];
     [self.tableView reloadData];
+    [self.navigationController setToolbarHidden:YES animated:YES];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    
     if(self.isShowingAllNews == NO){
         [self checkIfParsed:self.newsSource];
         self.title = self.newsSource.title;

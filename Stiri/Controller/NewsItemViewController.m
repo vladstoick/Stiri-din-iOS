@@ -42,11 +42,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.title = @"News from";
     [self.webView loadHTMLString:[self stylePaperize] baseURL:nil];
-
-
-    
 }
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType{
@@ -63,26 +59,6 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-- (IBAction)shareButtonClicked:(id)sender {
-    NSArray *activity_elements = @[[NSString stringWithFormat:@"%@ via News from", self.currentNewsItem.url ]];
-    UIActivityViewController *uiActivityViewController = [[UIActivityViewController alloc] initWithActivityItems:activity_elements applicationActivities:nil];
-    [self presentViewController:uiActivityViewController animated:YES completion:nil];
-}
-- (IBAction)browserButtonClicked:(id)sender {
-    UIBarButtonItem *button = sender;
-    if(self.isInOptimalMode == YES) {
-        button.title = @"Optimal";
-        NSURL *url = [NSURL URLWithString:self.currentNewsItem.url];
-        TSMiniWebBrowser *webBrowser = [[TSMiniWebBrowser alloc] initWithUrl:url];
-        [self.navigationController pushViewController:webBrowser animated:YES];
-//        [self.webView loadRequest:[NSURLRequest requestWithURL:url]];
-        self.isInOptimalMode = NO;
-    } else {
-        button.title = @"Standard";
-        [self.webView loadHTMLString:[self stylePaperize] baseURL:nil];
-    }
-
 }
 
 @end
