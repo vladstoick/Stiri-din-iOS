@@ -1,0 +1,6 @@
+[submodule "myApp/vendor/MagicalRecord"]
+	path = myApp/vendor/MagicalRecord
+	url = https://github.com/magicalpanda/MagicalRecord.git
+[submodule "Manual Framework/MagicalRecord"]
+	path = Manual Framework/MagicalRecord
+	url = https://github.com/magicalpanda/MagicalRecord.git
