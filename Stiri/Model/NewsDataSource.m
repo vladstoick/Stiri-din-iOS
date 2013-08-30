@@ -169,6 +169,7 @@
                                                                      options:NSJSONReadingMutableContainers
                                                                        error:nil];
                     NSArray *articles = [jsonDictionary valueForKey:@"articles"];
+                    NSLog(@"%@",urlString);
                     [self insertNewsItems:articles forNewsSource:newsSource];
                     
                 } failure:^(AFHTTPRequestOperation *operation, NSError *error) {

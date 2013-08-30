@@ -58,6 +58,14 @@
 
 }
 
+- (BOOL)searchBarShouldEndEditing:(UISearchBar *)searchBar
+{
+    self.searchBar.showsScopeBar = YES;
+    [self.searchBar sizeToFit];
+    self.tableView.tableHeaderView = self.searchBar;
+    return YES;
+}
+
 //TABLE VIEW
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     self.tableView = tableView;
