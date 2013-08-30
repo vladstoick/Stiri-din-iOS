@@ -13,7 +13,7 @@
 #define SEARCH_END @"search_ended"
 @interface SearchViewController ()
 @property NSArray *searchResults;
-@property UITableView *tableView;
+@property UITableView *tableViewSearch;
 @end
 
 @implementation SearchViewController
@@ -31,12 +31,14 @@
 {
     [super viewDidLoad];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(searchRecived:) name:SEARCH_END object:nil];
+    self.searchBar.showsScopeBar = NO;
+    [self.searchBar sizeToFit];
 	// Do any additional setup after loading the view.
 }
 
 - (void) searchRecived:(NSNotification*) notification{
     self.searchResults = notification.object;
-        [self.tableView reloadData];
+    [self.tableViewSearch reloadData];
 }
 
 - (void)didReceiveMemoryWarning
@@ -53,22 +55,30 @@
     }
 }
 //SEARCH
-- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
-    [[NewsDataSource newsDataSource] searchOnlineText:searchText];
-
-}
-
-- (BOOL)searchBarShouldEndEditing:(UISearchBar *)searchBar
+- (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
 {
-    self.searchBar.showsScopeBar = YES;
-    [self.searchBar sizeToFit];
-    self.tableView.tableHeaderView = self.searchBar;
+    [[NewsDataSource newsDataSource] searchOnlineText:searchString];
     return YES;
 }
 
+- (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchScope:(NSInteger)searchOption
+{
+    return YES;
+}
+
+//- (BOOL)searchBarShouldEndEditing:(UISearchBar *)searchBar
+//{
+//    self.searchBar.showsScopeBar = YES;
+//    [self.searchBar sizeToFit];
+//    self.tableView.tableHeaderView = self.searchBar;
+//    return YES;
+//}
+
 //TABLE VIEW
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    self.tableView = tableView;
+    if(self.tableView != tableView){
+        self.tableViewSearch = tableView;
+    }
     if(self.searchResults == nil) return 0;
     return self.searchResults.count;
 }
