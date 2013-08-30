@@ -9,6 +9,7 @@
 #import "NewsItemViewController.h"
 #import "NewsSource.h"
 #import "NewsDataSource.h"
+#import "TSMiniWebBrowser/TSMiniWebBrowser.h"
 @interface NewsItemViewController ()
 @property (nonatomic) BOOL isInOptimalMode;
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
@@ -61,7 +62,9 @@
     if(self.isInOptimalMode == YES) {
         button.title = @"Optimal";
         NSURL *url = [NSURL URLWithString:self.currentNewsItem.url];
-        [self.webView loadRequest:[NSURLRequest requestWithURL:url]];
+        TSMiniWebBrowser *webBrowser = [[TSMiniWebBrowser alloc] initWithUrl:url];
+        [self.navigationController pushViewController:webBrowser animated:YES];
+//        [self.webView loadRequest:[NSURLRequest requestWithURL:url]];
         self.isInOptimalMode = NO;
     } else {
         button.title = @"Standard";

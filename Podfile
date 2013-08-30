@@ -6,6 +6,7 @@ pod 'AFNetworking', '~> 1.3'
 pod 'Facebook-iOS-SDK' , '~> 3.6.0'
 pod 'google-plus-ios-sdk' , '~> 1.3.0'
 pod 'SVProgressHUD', '0.9'
+pod 'TSMiniWebBrowser'
 Pod::Spec.new do |s|
   s.name         =  'Facebook-iOS-SDK'
   s.version      =  '3.6.0'

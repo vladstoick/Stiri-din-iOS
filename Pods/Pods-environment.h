@@ -72,6 +72,12 @@
 #define COCOAPODS_VERSION_MINOR_SVProgressHUD 9
 #define COCOAPODS_VERSION_PATCH_SVProgressHUD 0
 
+// TSMiniWebBrowser
+#define COCOAPODS_POD_AVAILABLE_TSMiniWebBrowser
+#define COCOAPODS_VERSION_MAJOR_TSMiniWebBrowser 1
+#define COCOAPODS_VERSION_MINOR_TSMiniWebBrowser 0
+#define COCOAPODS_VERSION_PATCH_TSMiniWebBrowser 1
+
 // google-plus-ios-sdk
 #define COCOAPODS_POD_AVAILABLE_google_plus_ios_sdk
 #define COCOAPODS_VERSION_MAJOR_google_plus_ios_sdk 1

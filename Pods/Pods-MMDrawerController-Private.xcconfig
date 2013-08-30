@@ -1,5 +1,5 @@
 #include "Pods-MMDrawerController.xcconfig"
 GCC_PREPROCESSOR_DEFINITIONS = COCOAPODS=1
-HEADER_SEARCH_PATHS = "${PODS_ROOT}/BuildHeaders" "${PODS_ROOT}/BuildHeaders/MMDrawerController" "${PODS_ROOT}/Headers" "${PODS_ROOT}/Headers/AFNetworking" "${PODS_ROOT}/Headers/Facebook-iOS-SDK" "${PODS_ROOT}/Headers/Facebook-iOS-SDK/FacebookSDK" "${PODS_ROOT}/Headers/MMDrawerController" "${PODS_ROOT}/Headers/REFormattedNumberField" "${PODS_ROOT}/Headers/RETableViewManager" "${PODS_ROOT}/Headers/SIAlertView" "${PODS_ROOT}/Headers/SVProgressHUD" "${PODS_ROOT}/Headers/google-plus-ios-sdk"
+HEADER_SEARCH_PATHS = "${PODS_ROOT}/BuildHeaders" "${PODS_ROOT}/BuildHeaders/MMDrawerController" "${PODS_ROOT}/Headers" "${PODS_ROOT}/Headers/AFNetworking" "${PODS_ROOT}/Headers/Facebook-iOS-SDK" "${PODS_ROOT}/Headers/Facebook-iOS-SDK/FacebookSDK" "${PODS_ROOT}/Headers/MMDrawerController" "${PODS_ROOT}/Headers/REFormattedNumberField" "${PODS_ROOT}/Headers/RETableViewManager" "${PODS_ROOT}/Headers/SIAlertView" "${PODS_ROOT}/Headers/SVProgressHUD" "${PODS_ROOT}/Headers/TSMiniWebBrowser" "${PODS_ROOT}/Headers/google-plus-ios-sdk"
 OTHER_LDFLAGS = -ObjC ${PODS_MMDRAWERCONTROLLER_OTHER_LDFLAGS}
 PODS_ROOT = ${SRCROOT}
