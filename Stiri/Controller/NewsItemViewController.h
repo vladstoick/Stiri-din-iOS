@@ -8,8 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "NewsItem.h"
-@interface NewsItemViewController : UIViewController
-@property (weak, nonatomic) IBOutlet UIToolbar *toolBar;
+@interface NewsItemViewController : UIViewController <UIWebViewDelegate>
 @property (strong, nonatomic) NewsItem *currentNewsItem;
 @property (nonatomic) NSInteger index;
 @end

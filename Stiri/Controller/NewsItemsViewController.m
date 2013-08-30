@@ -79,6 +79,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
     if(self.isShowingAllNews == NO){
         [self checkIfParsed:self.newsSource];
         self.title = self.newsSource.title;

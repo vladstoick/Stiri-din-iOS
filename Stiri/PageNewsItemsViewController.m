@@ -26,7 +26,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    self.navigationController.toolbarHidden = NO;
+    [self.navigationController.toolbar setBackgroundImage:[UIImage imageNamed:@"navbar_bg.png"] forToolbarPosition:UIToolbarPositionBottom barMetrics:UIBarMetricsDefault];
     self.pageController = [[UIPageViewController alloc]
             initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll
               navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal

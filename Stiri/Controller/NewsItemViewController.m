@@ -20,8 +20,9 @@
 
 
 - (NSString *) stylePaperize {
-    NSString *beg = @"<body style=\"font-family:HelveticaNeue\" >";
-    NSString *title = [NSString stringWithFormat:@"<div style=\"font-size:21px;font-weight:bold; \">%@</br></div><div align=\"justify\" style=\"font-size:16px;\">",self.currentNewsItem.title];
+    NSString *beg = @"<meta name=\"viewport\" content=\"width=320px; initial-scale=1.0; minimum-scale=1.0;\"/><body style=\"font-family:HelveticaNeue\" style='width:300px' >";
+    NSString *title = [NSString stringWithFormat:@"<div style=\"font-size:21px;font-weight:bold; \">%@</br></div><div align=\"justify\" style=\"font-size:16px;width: auto; \">",self.currentNewsItem.title];
+    self.currentNewsItem.paperized = [self.currentNewsItem.paperized stringByReplacingOccurrencesOfString:@"<img " withString:@"<img style='width:305' "];
     NSString *end = @"</div></body>";
     NSString *begAndTitle = [beg stringByAppendingString:title];
     NSString *result = [[begAndTitle stringByAppendingString:self.currentNewsItem.paperized] stringByAppendingString:end];
@@ -42,9 +43,20 @@
 {
     [super viewDidLoad];
     self.title = @"News from";
-    [self.toolBar setBackgroundImage:[UIImage imageNamed:@"navbar_bg.png"] forToolbarPosition:UIToolbarPositionBottom barMetrics:UIBarMetricsDefault];
     [self.webView loadHTMLString:[self stylePaperize] baseURL:nil];
-	// Do any additional setup after loading the view.
+
+
+    
+}
+
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType{
+    return NO;
+}
+
+- (void)webViewDidFinishLoad:(UIWebView *)webView{
+    self.webView.frame = self.view.bounds;
+    [self.webView sizeToFit];
+    [self.webView.scrollView sizeThatFits:self.view.bounds.size];
 }
 
 - (void)didReceiveMemoryWarning
