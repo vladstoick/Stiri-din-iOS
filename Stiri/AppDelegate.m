@@ -68,12 +68,10 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     [NewRelicAgent startWithApplicationToken:@"AAda1a6278e5ef8e4349079aa07d6b5039aaa395a0"];
+    [MagicalRecord setupAutoMigratingCoreDataStack];
     [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"navbar_bg.png"] forBarMetrics:UIBarMetricsDefault];
-
     [[UINavigationBar appearance] setTitleTextAttributes:@{UITextAttributeFont: [UIFont fontWithName:@"HelveticaNeue-CondensedBold" size:20.0]}];
     [[UIToolbar appearance] setBackgroundImage:[UIImage imageNamed:@"navbar_bg.png"] forToolbarPosition:UIToolbarPositionBottom barMetrics:UIBarMetricsDefault];
-//    [[UIToolbar appearance] set:[UIColor colorWithPatternImage:[UIImage imageNamed:@"dark_dotted.png"]]];
-//    [[UIToolbar appearance] set]
     return YES;
     
 }
