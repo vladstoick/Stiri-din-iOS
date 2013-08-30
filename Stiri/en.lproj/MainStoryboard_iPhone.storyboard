@@ -231,16 +231,16 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="78" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Dxg-4W-Veg">
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="titleViewCellItem" rowHeight="78" id="1Zn-3k-I0N" customClass="NewsItemCell">
-                                        <rect key="frame" x="0.0" y="22" width="320" height="78"/>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="titleViewCellItem" rowHeight="80" id="1Zn-3k-I0N" customClass="NewsItemCell">
+                                        <rect key="frame" x="0.0" y="22" width="320" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="300" height="77"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="79"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Title" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="193" translatesAutoresizingMaskIntoConstraints="NO" id="KdH-0Y-VuI">
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Title" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="212" translatesAutoresizingMaskIntoConstraints="NO" id="KdH-0Y-VuI">
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="193" id="78h-7c-O76"/>
+                                                        <constraint firstAttribute="width" constant="212" id="4NH-Qi-Ckr"/>
                                                         <constraint firstAttribute="height" constant="43" type="user" id="VWJ-ib-aRL"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
@@ -257,20 +257,20 @@
                                                 </label>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="V3i-mU-0FJ">
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="80" type="user" id="LuT-U0-7Se"/>
-                                                        <constraint firstAttribute="height" constant="80" id="hA5-eX-JsE"/>
+                                                        <constraint firstAttribute="width" constant="78" id="WNE-eo-fCu"/>
+                                                        <constraint firstAttribute="height" constant="78" id="pIv-6o-VNI"/>
                                                     </constraints>
                                                 </imageView>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <constraints>
-                                            <constraint firstItem="KdH-0Y-VuI" firstAttribute="leading" secondItem="V3i-mU-0FJ" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="Bod-xB-bbc"/>
+                                            <constraint firstAttribute="trailing" secondItem="KdH-0Y-VuI" secondAttribute="trailing" constant="20" type="default" id="CUc-nf-9hi"/>
                                             <constraint firstItem="V3i-mU-0FJ" firstAttribute="leading" secondItem="1Zn-3k-I0N" secondAttribute="leading" type="default" id="L2g-P7-mnE"/>
-                                            <constraint firstItem="tmL-2x-tb5" firstAttribute="leading" secondItem="V3i-mU-0FJ" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="M6N-hR-bSX"/>
                                             <constraint firstItem="KdH-0Y-VuI" firstAttribute="top" secondItem="1Zn-3k-I0N" secondAttribute="top" constant="6" type="user" id="OvQ-M5-U4l"/>
                                             <constraint firstItem="V3i-mU-0FJ" firstAttribute="top" secondItem="1Zn-3k-I0N" secondAttribute="top" type="default" id="Qq0-Sh-aVS"/>
-                                            <constraint firstItem="tmL-2x-tb5" firstAttribute="top" secondItem="KdH-0Y-VuI" secondAttribute="bottom" constant="8" symbolic="YES" type="user" id="ox2-2v-iA2"/>
+                                            <constraint firstItem="tmL-2x-tb5" firstAttribute="leading" secondItem="KdH-0Y-VuI" secondAttribute="leading" type="default" id="aec-vl-p5O"/>
+                                            <constraint firstAttribute="bottom" secondItem="tmL-2x-tb5" secondAttribute="bottom" constant="1" id="ke2-Zd-ZVR"/>
                                             <constraint firstAttribute="trailing" secondItem="tmL-2x-tb5" secondAttribute="trailing" constant="20" type="default" id="yyx-P9-oIB"/>
                                         </constraints>
                                         <connections>
@@ -647,6 +647,7 @@
                         <outlet property="searchBar" destination="3to-F2-GsR" id="74b-eF-Q3t"/>
                         <outlet property="searchDisplayController" destination="Twb-oM-5x0" id="Nlb-ww-oYz"/>
                         <outlet property="tableView" destination="BAb-X5-C9O" id="NOR-3o-SSS"/>
+                        <segue destination="1JA-rq-pip" kind="push" identifier="showSearchResults" id="mLW-p9-2B7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4aB-aY-hJm" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -676,7 +677,7 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="1987" y="720"/>
+            <point key="canvasLocation" x="3695" y="-1487"/>
         </scene>
         <!--Tab Bar Controller - Add-->
         <scene sceneID="ld1-PS-toD">
@@ -735,7 +736,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Dbr-9u-LaW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1499" y="720"/>
+            <point key="canvasLocation" x="3283" y="-1487"/>
         </scene>
         <!--All News Items View Controller-->
         <scene sceneID="1Ud-Wg-9Qm">
@@ -864,9 +865,6 @@
                 <relationship kind="outlet" name="delegate"/>
             </relationships>
         </class>
-        <class className="GPPSignInButton" superclassName="UIButton">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/GPPSignInButton.h"/>
-        </class>
         <class className="InitialViewController" superclassName="MMDrawerController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/InitialViewController.h"/>
         </class>
@@ -929,7 +927,6 @@
         <class className="SearchViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SearchViewController.h"/>
             <relationships>
-                <relationship kind="action" name="menuButtonPressed:"/>
                 <relationship kind="outlet" name="searchBar" candidateClass="UISearchBar"/>
                 <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
             </relationships>
