@@ -35,7 +35,7 @@
 
     self.pageController.dataSource = self;
     self.pageController.delegate = self;
-    CGRect frame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height + 44);
+    CGRect frame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height+36);
     [[self.pageController view] setFrame:frame];
     [[NewsDataSource newsDataSource] makeNewsItemRead:[self newsItemAtIndex:self.newsIndex]];
     NewsItemViewController *initialViewController = [self viewControllerAtIndex:self.newsIndex];

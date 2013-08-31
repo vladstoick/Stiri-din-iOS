@@ -11,7 +11,6 @@
 #import "NewsDataSource.h"
 #import "TSMiniWebBrowser/TSMiniWebBrowser.h"
 @interface NewsItemViewController ()
-@property (nonatomic) BOOL isInOptimalMode;
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
 @property (weak, nonatomic) IBOutlet UITextView *titleView;
 @end
@@ -26,7 +25,6 @@
     NSString *end = @"</div></body>";
     NSString *begAndTitle = [beg stringByAppendingString:title];
     NSString *result = [[begAndTitle stringByAppendingString:self.currentNewsItem.paperized] stringByAppendingString:end];
-    self.isInOptimalMode = YES;
     return result;
 }
 
@@ -49,11 +47,6 @@
     return NO;
 }
 
-- (void)webViewDidFinishLoad:(UIWebView *)webView{
-    self.webView.frame = self.view.bounds;
-    [self.webView sizeToFit];
-    [self.webView.scrollView sizeThatFits:self.view.bounds.size];
-}
 
 - (void)didReceiveMemoryWarning
 {
