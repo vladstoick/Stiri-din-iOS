@@ -44,6 +44,7 @@
 
 - (void) makeNewsItemRead:(NewsItem *) newsItem;
 
+- (NSArray *) unreadNewsItems;
 //RESET DATA
 
 - (void)deleteAllNewsGroupsAndNewsSources;

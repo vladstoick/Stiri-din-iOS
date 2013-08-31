@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface AddNewsSourceManuallyViewController : UIViewController
+#import "RETableViewManager/RETableViewManager.h"
+@interface AddNewsSourceManuallyViewController : UIViewController <RETableViewManagerDelegate>
 - (IBAction)donePressed:(id)sender;
 - (IBAction)cancelPressed:(id)sender;
 

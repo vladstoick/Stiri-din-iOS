@@ -322,6 +322,7 @@ static NewsDataSource *_newsDataSource;
     return [NewsItem MR_findAll];
 }
 
+
 - (void) makeNewsItemRead:(NewsItem *) newsItem{
     if([newsItem.isRead isEqualToNumber:@1]){
         return;
@@ -340,6 +341,10 @@ static NewsDataSource *_newsDataSource;
 
 - (NewsItem *)getNewsItemWithUrl:(NSString *)url fromSourceWithId:(NSNumber *)sourceId {
     return [[NewsItem MR_findByAttribute:@"url" withValue:url] lastObject];
+}
+
+- (NSArray*) unreadNewsItems{
+    return [NewsItem MR_findByAttribute:@"isRead" withValue:@0 andOrderBy:@"pubDate" ascending:NO];
 }
 //RESET DATA
 

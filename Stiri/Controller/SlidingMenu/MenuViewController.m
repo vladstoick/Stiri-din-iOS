@@ -29,7 +29,7 @@
 {
     [super viewDidLoad];
     self.tableView.backgroundColor =    [UIColor colorWithPatternImage:[UIImage imageNamed:@"squairy_light.png"]];
-    self.newsItems = @[@{@"Your groups":@"Main"},@{@"All News":@"AllNewsItems"},@{@"Search":@"Search"}];
+    self.newsItems = @[@{@"Your groups":@"Main"},@{@"Unread News":@"AllNewsItems"},@{@"Search":@"Search"}];
     self.settings = @[@{@"Settings":@"Settings"},@{@"Logout":@"Logout"}];
     self.sectionTitles = @[@"News",@"Settings"];
     self.menuItems = @[self.newsItems,self.settings];
@@ -99,7 +99,7 @@
     NSString *identifier = [[menuItem allValues]lastObject];
     [self.mm_drawerController closeDrawerAnimated:YES completion:^(BOOL finished) {
         NSString *finalIdentfier = identifier;
-        if(identifier==@"Logout"){
+        if([identifier isEqualToString:@"Logout"]){
             [SVProgressHUD show];
             finalIdentfier=@"Main";
             [FBSession.activeSession closeAndClearTokenInformation];

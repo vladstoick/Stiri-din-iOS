@@ -31,31 +31,14 @@
 }
 
 - (void) updateNews {
-    NSMutableArray *array;
-    array = [[[NewsDataSource newsDataSource] allNews] mutableCopy];
-    [array sortUsingComparator:^NSComparisonResult(id a, id b) {
-        NSDate *first = [(NewsItem *) a pubDate];
-        NSDate *second = [(NewsItem *) b pubDate];
-        return [second compare:first];
-    }];
-    NSMutableArray *unreadNews = [[NSMutableArray alloc] init];
-    NSMutableArray *readNews = [[NSMutableArray alloc]init];
-    for(NewsItem *newsItem in array){
-        if([newsItem.isRead isEqualToNumber:@0]){
-            [unreadNews addObject:newsItem];
-        } else {
-            [readNews addObject:newsItem];
-        }
-    }
-    self.unreadNews = unreadNews;
-    self.readNews = readNews;
+    self.unreadNews = [[NewsDataSource newsDataSource] unreadNewsItems];
     [self.tableView reloadData];
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self setTitle:@"All news"];
+    [self setTitle:@"Unread news"];
     [self updateNews];
 }
 
@@ -69,20 +52,9 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 2;
-}
-
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    if (section == 0) {
-        return @"Unread News";
-    }
-    return @"Old news";
-}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if (section == 0) return self.unreadNews.count;
-    return self.readNews.count;
+    return self.unreadNews.count;
 }
 
 
@@ -96,11 +68,7 @@
                                       reuseIdentifier:subtitleTableIdentifier];
     }
     NewsItem *newsItem;
-    if(indexPath.section == 0) {
-        newsItem = (self.unreadNews)[indexPath.row];
-    } else {
-        newsItem = (self.readNews)[indexPath.row];
-    }
+    newsItem = (self.unreadNews)[indexPath.row];
     UIFont *titleFont = [UIFont fontWithName:@"HelveticaNeue-Light" size:17];
     cell.textLabel.text = newsItem.title;
     cell.textLabel.font = titleFont;
