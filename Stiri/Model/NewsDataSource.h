@@ -49,6 +49,8 @@
 
 - (void)deleteAllNewsGroupsAndNewsSources;
 
+- (void)logout;
+
 //SEARCH
 
 - (void)searchOnlineText:(NSString*) search;

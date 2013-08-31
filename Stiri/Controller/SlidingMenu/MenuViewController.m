@@ -104,7 +104,7 @@
             finalIdentfier=@"Main";
             [FBSession.activeSession closeAndClearTokenInformation];
             [[GPPSignIn sharedInstance] signOut];
-            [[NewsDataSource newsDataSource] deleteAllNewsGroupsAndNewsSources];
+            [[NewsDataSource newsDataSource] logout];
             [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"user_id"];
             [SVProgressHUD dismiss];
             NSIndexPath *mainIndexPath = [NSIndexPath indexPathForItem:0 inSection:0];

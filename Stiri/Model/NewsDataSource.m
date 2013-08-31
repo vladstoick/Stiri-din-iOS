@@ -6,6 +6,7 @@
 //  Copyright (c) 2013 Stoica Vlad. All rights reserved.
 //
 #import "CoreData+MagicalRecord.h"
+#import "NSManagedObject+MagicalRecord.h"
 #import "NewsDataSource.h"
 #import "AppDelegate.h"
 #import "AFNetworking.h"
@@ -85,6 +86,7 @@
 }
 
 - (void)insertGroupsAndNewsSource:(NSDictionary *)jsonData; {
+    NSManagedObjectContext *context = [NSManagedObjectContext MR_defaultContext];
     NSMutableArray *allGroups = [[self allGroups] mutableCopy];
     for (NSDictionary *groupJSONOBject in jsonData) {
         NSNumber *groupId = [groupJSONOBject valueForKey:@"group_id"];
@@ -100,7 +102,7 @@
             }
         }
         if(newsGroup == nil){
-            newsGroup = [NewsGroup MR_createEntity];
+            newsGroup = [NewsGroup MR_createInContext:context];
             newsGroup.groupId = groupId;
         }
         newsGroup.title = title;
@@ -120,7 +122,7 @@
                     }
                 }
             } else {
-                newsSource = [NewsSource MR_createEntity];
+                newsSource = [NewsSource MR_createInContext:context];
                 newsSource.groupOwner = newsGroup;
                 newsSource.title = title;
                 newsSource.url = url;
@@ -134,14 +136,15 @@
         }
         if(newsSources){
             for(NewsSource* ns in newsSources){
-                [ns MR_deleteEntity];
+                [ns MR_deleteInContext:context];
             }
         }
         
     }
     for (NewsGroup* newsGroup in allGroups){
-        [newsGroup MR_deleteEntity];
+        [newsGroup MR_deleteInContext:context];
     }
+    [[NSManagedObjectContext MR_defaultContext] saveToPersistentStoreAndWait];
 }
 
 - (void)parseNewsSource:(NewsSource *)newsSource {
@@ -168,11 +171,11 @@
 }
 
 - (void)insertNewsItems:(NSArray *)articles forNewsSource:(NewsSource *)newsSource {
+    NSManagedObjectContext *context = [NSManagedObjectContext defaultContext];
     newsSource = [self getNewsSourceWithId:newsSource.sourceId];
-    if(articles.count!=0)
-        newsSource.lastTimeUpdated = @0;
+    newsSource.lastTimeUpdated = @0;   
     NSMutableSet *news = [[NSMutableSet alloc] init];
-    for (NSDictionary *articleJSONObject in articles) {
+    for (NSDictionary *articleJSONObject in [articles reverseObjectEnumerator]) {
         NSNumber *newsId = [articleJSONObject valueForKey:@"id"];
         NSString *url = [articleJSONObject valueForKey:@"url"];
         NSString *title = [articleJSONObject valueForKey:@"title"];
@@ -180,13 +183,16 @@
         NSString *imageUrl = [articleJSONObject valueForKey:@"image"];
         NSNumber *dateMS = [articleJSONObject valueForKey:@"date"];
         NSDate *date = [[NSDate alloc] initWithTimeIntervalSince1970:[dateMS longLongValue] / 1000];
-        if([newsSource.lastTimeUpdated isEqualToNumber:@0]){
+        if([newsSource.lastTimeUpdated compare:dateMS] == NSOrderedDescending){
+            break;
+        }
+        if([newsSource.lastTimeUpdated compare:dateMS] == NSOrderedAscending){
             newsSource.lastTimeUpdated = dateMS;
         }
         if ((NSNull *) paperized == [NSNull null]) {
             paperized = @"Loading";
         }
-        NewsItem *newsItem = [NewsItem MR_createEntity];
+        NewsItem *newsItem = [NewsItem MR_createInContext:context];
         newsItem.pubDate = date;
         newsItem.newsId = newsId;
         if([self.unreadNews containsObject:newsId]){
@@ -204,6 +210,7 @@
         [news addObject:newsItem];
         
     }
+    NSLog(@"Added : %iu news for newsSource :  %@",[news allObjects].count, newsSource.sourceId);
     newsSource.isFeedParsed = @1;
     [newsSource addNews:news];
     [[NSNotificationCenter defaultCenter] postNotificationName:DATA_NEWSOURCE_PARSED object:nil];
@@ -279,6 +286,7 @@ static NewsDataSource *_newsDataSource;
 //NEWSSOURCE
 
 - (void)addNewsSourceWithUrl:(NSString *)sourceUrl inNewsGroup:(NewsGroup *)newsGroup {
+    NSManagedObjectContext *context = [NSManagedObjectContext defaultContext];
     NSString *urlString = [NSString stringWithFormat:@"%@%d/%@", RAILSBASEURL, self.userId, newsGroup.groupId];
     NSDictionary *params = @{@"url" : sourceUrl};
     AFHTTPClient *httpClient = [[AFHTTPClient alloc] initWithBaseURL:[NSURL URLWithString:urlString]];
@@ -290,7 +298,7 @@ static NewsDataSource *_newsDataSource;
         jsonDictionary = [NSJSONSerialization JSONObjectWithData:[responseStr dataUsingEncoding:NSUTF8StringEncoding]
                                                          options:NSJSONReadingMutableContainers
                                                            error:nil];
-        NewsSource *newsSource = [NewsSource MR_createEntity];
+        NewsSource *newsSource = [NewsSource MR_createInContext:context];
         NewsGroup *ng = [self getGroupWithId:newsGroup.groupId];
         NSMutableSet *set = [ng.newsSources mutableCopy];
         newsSource.title = [jsonDictionary valueForKey:@"title"];
@@ -330,7 +338,6 @@ static NewsDataSource *_newsDataSource;
     NSString *urlString = [NSString stringWithFormat:@"%@%d/%@", READNEWSURL, self.userId, newsItem.newsId];
     NSURL *url = [NSURL URLWithString:urlString];
     AFHTTPClient *httpClient = [[AFHTTPClient alloc] initWithBaseURL:url];
-    newsItem = [self getNewsItemWithUrl:newsItem.url fromSourceWithId:newsItem.sourceOwner.sourceId];
     newsItem.isRead = @1;
     [httpClient postPath:@"" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"Made News read %@" , newsItem.url);
@@ -348,11 +355,19 @@ static NewsDataSource *_newsDataSource;
 }
 //RESET DATA
 
+- (void) logout {
+    self.userId = 0;
+    [self deleteAllNewsGroupsAndNewsSources];
+}
+
 - (void)deleteAllNewsGroupsAndNewsSources {
     self.isDataLoaded = NO;
-    [NewsGroup MR_truncateAll];
-    [NewsSource MR_truncateAll];
-    [NewsItem MR_truncateAll];
+    NSManagedObjectContext *context = [NSManagedObjectContext defaultContext];
+    [NewsGroup MR_truncateAllInContext:context];
+    [NewsSource MR_truncateAllInContext:context];
+    [NewsItem MR_truncateAllInContext:context];
+    [context MR_saveToPersistentStoreAndWait];
+
 }
 
 //SEARCH
