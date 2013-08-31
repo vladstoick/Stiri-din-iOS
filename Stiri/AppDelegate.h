@@ -10,5 +10,6 @@
 #import "NewsDataSource.h"
 #define FB_SESSION_CHANGE_NOTIFICATION @"FBSessionChangeNotification"
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
+@property (strong, nonatomic) UIWindow *window;
 - (void) openActiveSessionWithLoginUI:(BOOL)allowLoginUI;
 @end
