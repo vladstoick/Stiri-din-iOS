@@ -13,7 +13,6 @@
 
 @interface NewsDataSource : NSObject
 @property(nonatomic) BOOL isDataLoaded;
-@property(readonly, strong, nonatomic) NSArray *allGroups;
 @property(nonatomic) NSUInteger userId;
 
 //INITIALIZATION

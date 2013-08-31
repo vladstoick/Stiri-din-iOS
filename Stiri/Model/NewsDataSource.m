@@ -5,18 +5,13 @@
 //  Created by Stoica Vlad on 7/24/13.
 //  Copyright (c) 2013 Stoica Vlad. All rights reserved.
 //
-#import "CoreData+MagicalRecord.h"
-#import "NSManagedObject+MagicalRecord.h"
 #import "NewsDataSource.h"
-#import "AppDelegate.h"
 #import "AFNetworking.h"
 #define SEARCH_END @"search_ended"
 #define DELETE_END @"delete_ended"
 #define DELETE_SUCCES @"delete_succes"
 #define DELETE_FAIL @"delete_fail"
 #define ADD_ENDED @"add_ended"
-#define ADD_FAIL @"add_fail";
-#define ADD_SUCCES @"add_succes";
 #define RAILSBASEURL @"http://37.139.26.80/user/"
 #define PARSEBASEURL @"http://37.139.8.146:3000/?feedId="
 #define UNREADNEWSURL @"http://37.139.8.146:4000/unread/"

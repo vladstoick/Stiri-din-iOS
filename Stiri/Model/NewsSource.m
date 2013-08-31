@@ -7,9 +7,6 @@
 //
 
 #import "NewsSource.h"
-#import "NewsGroup.h"
-#import "NewsItem.h"
-
 
 @implementation NewsSource
 

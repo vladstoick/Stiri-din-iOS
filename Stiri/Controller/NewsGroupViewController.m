@@ -25,7 +25,6 @@
 @property (strong, nonatomic) NSArray *groups;
 @property (strong, nonatomic) UIRefreshControl *refreshControl;
 @property (nonatomic) BOOL isDataLoading;
-@property (nonatomic) int userId;
 @end
 @implementation NewsGroupViewController
 
@@ -56,7 +55,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.mm_drawerController.openDrawerGestureModeMask = MMCloseDrawerGestureModeBezelPanningCenterView;
+    self.mm_drawerController.openDrawerGestureModeMask = MMOpenDrawerGestureModeBezelPanningCenterView;
 
     self.navigationItem.hidesBackButton = true;
     self.isDataLoading = YES;

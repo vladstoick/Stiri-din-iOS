@@ -17,7 +17,7 @@
 @end
 
 @implementation LoginViewController
-@synthesize signInButton;
+
 static NSString * const kClientId = @"976584719831.apps.googleusercontent.com";
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -71,7 +71,7 @@ static NSString * const kClientId = @"976584719831.apps.googleusercontent.com";
                    error: (NSError *) error
 {
     if(!error){
-        [SVProgressHUD showWithStatus:@"Logging in"];
+        [SVProgressHUD showWithStatus:[NSString stringWithFormat:NSLocalizedString(@"Logging in", nil)]];
         NSString *userId = [GPPSignIn sharedInstance].userID;
         NSString *token = [auth.parameters valueForKey:@"id_token"];
         NSLog(@"Received error %@ and auth object %@",
@@ -91,7 +91,7 @@ static NSString * const kClientId = @"976584719831.apps.googleusercontent.com";
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     if (FBSession.activeSession.isOpen && ![defaults integerForKey:@"user_id"]) {
-        [SVProgressHUD show];
+        [SVProgressHUD showWithStatus:[NSString stringWithFormat:NSLocalizedString(@"Logging in", nil)]];
 
         [[NSNotificationCenter defaultCenter] removeObserver:self];
         NSString *token = (NSString*)FBSession.activeSession.accessTokenData;

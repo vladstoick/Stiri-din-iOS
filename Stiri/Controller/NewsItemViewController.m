@@ -12,7 +12,6 @@
 #import "TSMiniWebBrowser/TSMiniWebBrowser.h"
 @interface NewsItemViewController ()
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
-@property (weak, nonatomic) IBOutlet UITextView *titleView;
 @end
 
 @implementation NewsItemViewController

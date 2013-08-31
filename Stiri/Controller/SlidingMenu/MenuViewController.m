@@ -37,7 +37,7 @@
     [self.allMenuItems addObjectsFromArray:self.settings];
     NSIndexPath *indexPath = [NSIndexPath indexPathForItem:0 inSection:0];
 
-    [self.tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:0];
+    [self.tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionTop];
    
 
 }
@@ -74,7 +74,6 @@
 }
 - (NSString*) tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
     return [self.sectionTitles objectAtIndex:section];
-    return nil;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableViewLocal cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -108,7 +107,7 @@
             [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"user_id"];
             [SVProgressHUD dismiss];
             NSIndexPath *mainIndexPath = [NSIndexPath indexPathForItem:0 inSection:0];
-            [self.tableView selectRowAtIndexPath:mainIndexPath animated:NO scrollPosition:0];
+            [self.tableView selectRowAtIndexPath:mainIndexPath animated:NO scrollPosition:UITableViewScrollPositionTop];
 
         }
         UIViewController *newTopViewController = [self.storyboard instantiateViewControllerWithIdentifier:finalIdentfier];
