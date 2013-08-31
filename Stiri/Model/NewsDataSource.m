@@ -144,7 +144,7 @@
     for (NewsGroup* newsGroup in allGroups){
         [newsGroup MR_deleteInContext:context];
     }
-    [[NSManagedObjectContext MR_defaultContext] saveToPersistentStoreAndWait];
+    [[NSManagedObjectContext MR_defaultContext] saveToPersistentStoreWithCompletion:nil];
 }
 
 - (void)parseNewsSource:(NewsSource *)newsSource {
@@ -208,7 +208,7 @@
         [news addObject:newsItem];
         
     }
-    [[NSManagedObjectContext MR_defaultContext] saveToPersistentStoreAndWait];
+    [[NSManagedObjectContext MR_defaultContext] saveToPersistentStoreWithCompletion:nil];
     NSLog(@"Added : %iu news for newsSource :  %@",[news allObjects].count, newsSource.sourceId);
     newsSource.isFeedParsed = @1;
     [newsSource addNews:news];
