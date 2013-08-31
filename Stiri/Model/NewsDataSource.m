@@ -162,7 +162,6 @@
                                                                      options:NSJSONReadingMutableContainers
                                                                        error:nil];
                     NSArray *articles = [jsonDictionary valueForKey:@"articles"];
-                    NSLog(@"%@",urlString);
                     [self insertNewsItems:articles forNewsSource:newsSource];
                     
                 } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -173,7 +172,6 @@
 - (void)insertNewsItems:(NSArray *)articles forNewsSource:(NewsSource *)newsSource {
     NSManagedObjectContext *context = [NSManagedObjectContext defaultContext];
     newsSource = [self getNewsSourceWithId:newsSource.sourceId];
-    newsSource.lastTimeUpdated = @0;   
     NSMutableSet *news = [[NSMutableSet alloc] init];
     for (NSDictionary *articleJSONObject in [articles reverseObjectEnumerator]) {
         NSNumber *newsId = [articleJSONObject valueForKey:@"id"];
@@ -210,6 +208,7 @@
         [news addObject:newsItem];
         
     }
+    [[NSManagedObjectContext MR_defaultContext] saveToPersistentStoreAndWait];
     NSLog(@"Added : %iu news for newsSource :  %@",[news allObjects].count, newsSource.sourceId);
     newsSource.isFeedParsed = @1;
     [newsSource addNews:news];
