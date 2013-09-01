@@ -135,7 +135,11 @@
     cell.dateLabel.text = [NSDateFormatter localizedStringFromDate:newsItem.pubDate
                                                                dateStyle:NSDateFormatterShortStyle
                                                                timeStyle:NSDateFormatterShortStyle];
-    [cell.articleImageView setImageWithURL:[NSURL URLWithString:newsItem.imageUrl]];
+    if([newsItem.imageUrl isEqualToString:@""]){
+        [cell.articleImageView setImage:nil];
+    } else {
+        [cell.articleImageView setImageWithURL:[NSURL URLWithString:newsItem.imageUrl] placeholderImage:[UIImage imageNamed:@"blankimg.png"]];
+    }
     return cell;
 }
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {

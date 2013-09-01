@@ -52,6 +52,8 @@
 		7291565F17BA364600A6FD66 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7291565E17BA364600A6FD66 /* LoginViewController.m */; };
 		7291566217BA595800A6FD66 /* InitialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7291566117BA595800A6FD66 /* InitialViewController.m */; };
 		7291566917BA5DE900A6FD66 /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7291566817BA5DE900A6FD66 /* MenuViewController.m */; };
+		7296D95E17D32E9900E05075 /* blankimg.png in Resources */ = {isa = PBXBuildFile; fileRef = 7296D95C17D32E9900E05075 /* blankimg.png */; };
+		7296D95F17D32E9900E05075 /* blankimg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7296D95D17D32E9900E05075 /* blankimg@2x.png */; };
 		729FE39117D247EC00A5A653 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 729FE39017D247EC00A5A653 /* Localizable.strings */; };
 		729FE49A17D24D8E00A5A653 /* HHDirectionPanGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 729FE45817D24D8E00A5A653 /* HHDirectionPanGestureRecognizer.m */; };
 		729FE49B17D24D8E00A5A653 /* HHInnerShadowView.m in Sources */ = {isa = PBXBuildFile; fileRef = 729FE45A17D24D8E00A5A653 /* HHInnerShadowView.m */; };
@@ -175,6 +177,8 @@
 		7291566117BA595800A6FD66 /* InitialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InitialViewController.m; path = Controller/InitialViewController.m; sourceTree = "<group>"; };
 		7291566717BA5DE900A6FD66 /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MenuViewController.h; path = Controller/SlidingMenu/MenuViewController.h; sourceTree = "<group>"; };
 		7291566817BA5DE900A6FD66 /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MenuViewController.m; path = Controller/SlidingMenu/MenuViewController.m; sourceTree = "<group>"; };
+		7296D95C17D32E9900E05075 /* blankimg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = blankimg.png; path = Assets/blankimg.png; sourceTree = "<group>"; };
+		7296D95D17D32E9900E05075 /* blankimg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "blankimg@2x.png"; path = "Assets/blankimg@2x.png"; sourceTree = "<group>"; };
 		729FE39017D247EC00A5A653 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = INt/Localizable.strings; sourceTree = "<group>"; };
 		729FE45717D24D8E00A5A653 /* HHDirectionPanGestureRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HHDirectionPanGestureRecognizer.h; sourceTree = "<group>"; };
 		729FE45817D24D8E00A5A653 /* HHDirectionPanGestureRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HHDirectionPanGestureRecognizer.m; sourceTree = "<group>"; };
@@ -588,6 +592,8 @@
 		72B8681D17B3C4A400A871E5 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				7296D95C17D32E9900E05075 /* blankimg.png */,
+				7296D95D17D32E9900E05075 /* blankimg@2x.png */,
 				72F48EA417C0052900F9BB56 /* noisy_net_@2X.png */,
 				72F48EA517C0052900F9BB56 /* noisy_net.png */,
 				728661D417BFAF5000AA13D3 /* tweed_@2X.png */,
@@ -719,6 +725,8 @@
 				72F48EA617C0052900F9BB56 /* noisy_net_@2X.png in Resources */,
 				72F48EA717C0052900F9BB56 /* noisy_net.png in Resources */,
 				729FE39117D247EC00A5A653 /* Localizable.strings in Resources */,
+				7296D95E17D32E9900E05075 /* blankimg.png in Resources */,
+				7296D95F17D32E9900E05075 /* blankimg@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
