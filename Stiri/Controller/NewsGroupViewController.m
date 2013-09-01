@@ -34,7 +34,7 @@
 }
 
 - (NSArray *) groups{
-    if(!_groups) return nil;
+    if(!_groups) _groups = [[NewsDataSource newsDataSource] allGroups];
     return _groups;
 }
 
