@@ -10,11 +10,12 @@
 #import "NewsItem.h"
 #import "PageNewsItemsViewController.h"
 #import "NewsDataSource.h"
+#import "NewsItemCell.h"
+#import "UIImageView+AFNetworking.h"
 #import "UIViewController+MMDrawerController.h"
 @interface AllNewsItemsViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSArray *unreadNews;
-@property (strong, nonatomic) NSArray *readNews;
 @end
 
 @implementation AllNewsItemsViewController
@@ -57,64 +58,32 @@
     return self.unreadNews.count;
 }
 
-
-- (UITableViewCell *)tableView:(UITableView *)tableViewLocal cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *subtitleTableIdentifier = @"titleViewCellItem";
-
-    UITableViewCell *cell = [tableViewLocal dequeueReusableCellWithIdentifier:subtitleTableIdentifier];
-
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle
-                                      reuseIdentifier:subtitleTableIdentifier];
-    }
+- (NewsItemCell *)tableView:(UITableView *)tableViewLocal cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    static NSString *unreadNews = @"unreadNews";
+    NewsItemCell *cell = [tableViewLocal dequeueReusableCellWithIdentifier:unreadNews];
     NewsItem *newsItem;
     newsItem = (self.unreadNews)[indexPath.row];
-    UIFont *titleFont = [UIFont fontWithName:@"HelveticaNeue-Light" size:17];
-    cell.textLabel.text = newsItem.title;
-    cell.textLabel.font = titleFont;
-    cell.textLabel.numberOfLines = 3;
-    UIFont *subtitleFont = [UIFont fontWithName:@"HelveticaNeue-LightItalic" size:10];
-    cell.detailTextLabel.font = subtitleFont;
-    cell.detailTextLabel.text = [NSDateFormatter localizedStringFromDate:newsItem.pubDate
-                                                               dateStyle:NSDateFormatterShortStyle
-                                                               timeStyle:NSDateFormatterShortStyle];
-
-
+    cell.titleLabel.text = newsItem.title;
+    cell.dateLabel.text = [NSDateFormatter localizedStringFromDate:newsItem.pubDate
+                                                         dateStyle:NSDateFormatterShortStyle
+                                                         timeStyle:NSDateFormatterShortStyle];
+    if([newsItem.imageUrl isEqualToString:@""]){
+        [cell.articleImageView setImage:nil];
+    } else {
+        [cell.articleImageView setImageWithURL:[NSURL URLWithString:newsItem.imageUrl] placeholderImage:[UIImage imageNamed:@"blankimg.png"]];
+    }
     return cell;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NewsItem *newsItem;
-    if(indexPath.section == 0){
-        newsItem = (self.unreadNews)[indexPath.row];
-    } else {
-        newsItem = (self.readNews)[indexPath.row];
-    }
-    CGSize size = CGSizeMake(320, 1000);
-    UIFont *titleFont = [UIFont fontWithName:@"HelveticaNeue-Light" size:17];
-
-    CGFloat titleHeight = [newsItem.title sizeWithFont:titleFont
-                                     constrainedToSize:size
-                                         lineBreakMode:NSLineBreakByCharWrapping].height;
-    NSString *pubDate = [NSDateFormatter localizedStringFromDate:newsItem.pubDate
-                                                       dateStyle:NSDateFormatterShortStyle
-                                                       timeStyle:NSDateFormatterShortStyle];
-    UIFont *subtitleFont = [UIFont fontWithName:@"HelveticaNeue-LightItalic" size:10];
-    CGFloat subtitleHeight = [pubDate sizeWithFont:subtitleFont
-                                 constrainedToSize:size lineBreakMode:NSLineBreakByCharWrapping].height;
-    return titleHeight + subtitleHeight + 20;
-
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 80.0;
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"openNewsItem"]) {
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         PageNewsItemsViewController *destViewController = segue.destinationViewController;
-        if(indexPath.section == 0){
-            destViewController.news = self.unreadNews;
-        } else {
-            destViewController.news = self.readNews;
-        }
+        destViewController.news = self.unreadNews;
         destViewController.newsIndex = indexPath.row;
         [self.tableView deselectRowAtIndexPath:indexPath animated:false];
     }
