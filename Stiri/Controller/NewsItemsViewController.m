@@ -96,6 +96,7 @@
     } else {
         [self updateNews];
         [self.tableView reloadData];
+
     }
 }
 
@@ -135,11 +136,6 @@
                                                                dateStyle:NSDateFormatterShortStyle
                                                                timeStyle:NSDateFormatterShortStyle];
     [cell.articleImageView setImageWithURL:[NSURL URLWithString:newsItem.imageUrl]];
-    //    [cell.imageView setImageWithURLRequest:request placeholderImage:nil success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
-//        
-//    } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
-//        
-//    }]
     return cell;
 }
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {

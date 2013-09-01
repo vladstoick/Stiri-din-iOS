@@ -11,6 +11,7 @@
 #import "NewsGroup.h"
 #import "NewsSource.h"
 #import "NewsDataSource.h"
+#import "UIImageView+AFNetworking.h"
 @interface NewsSourceViewController ()
 @property (readonly,nonatomic) NewsGroup* newsGroup;
 @property (readonly,nonatomic) NSArray* newsSources;
@@ -71,9 +72,15 @@
     UITableViewCell *cell = [tableViewLocal dequeueReusableCellWithIdentifier:subtitleTableIdentifier];
     
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:subtitleTableIdentifier];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault  reuseIdentifier:subtitleTableIdentifier];
     }
     NewsSource *ns = (self.newsSources)[indexPath.row];
+    if([ns.imageUrl isEqualToString:@""]){
+        [cell.imageView setImage:nil];
+    } else {
+        [cell.imageView setImageWithURL:[NSURL URLWithString:ns.imageUrl]];
+    }
+    
     cell.textLabel.text = ns.title;
     cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue-CondensedBold" size:20.0];
     return cell;

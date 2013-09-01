@@ -107,6 +107,7 @@
             NSNumber *sourceId = [sourceJSONObject valueForKey:@"id"];
             NSString *title = [sourceJSONObject valueForKey:@"title"];
             NSString *url = [sourceJSONObject valueForKey:@"url"];
+            NSString *imageUrl = [sourceJSONObject valueForKey:@"image"];
             if(newsSources){
                 for(NewsSource* ns in newsSources){
                     if([ns.sourceId isEqualToNumber:sourceId]){
@@ -117,6 +118,7 @@
                     }
                 }
             } else {
+
                 newsSource = [NewsSource MR_createInContext:context];
                 newsSource.groupOwner = newsGroup;
                 newsSource.title = title;
@@ -126,7 +128,11 @@
                 newsSource.lastTimeUpdated = @0;
                 [newsGroup addNewsSourcesObject:newsSource];
             }
-            
+            if( (NSNull*) imageUrl == [NSNull null]){
+                newsSource.imageUrl = @"";
+            } else {
+                newsSource.imageUrl = imageUrl;
+            }
             [self parseNewsSource:newsSource];
         }
         if(newsSources){

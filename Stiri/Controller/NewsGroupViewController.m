@@ -34,7 +34,7 @@
 }
 
 - (NSArray *) groups{
-    _groups = [[NewsDataSource newsDataSource] allGroups];
+    if(!_groups) return nil;
     return _groups;
 }
 
@@ -97,6 +97,7 @@
 
 - (void) dataChanged:(NSNotification*) event{
     self.isDataLoading=NO;
+    self.groups = [[NewsDataSource newsDataSource] allGroups];
     [self.tableView reloadData];
     [self.refreshControl endRefreshing];
 }
@@ -182,6 +183,7 @@
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if( [segue.identifier isEqualToString:@"showNewsSourceForGroup"]){
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        NSLog(@"%ul",indexPath.row);
         NewsSourceViewController *destViewController = segue.destinationViewController;
         NewsGroup *selectedNewsGroup = [self.groups objectAtIndex:indexPath.row];
         destViewController.groupId = selectedNewsGroup.groupId;

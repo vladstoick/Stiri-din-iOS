@@ -31,7 +31,6 @@
 		7208346B17A0288800CEC1E5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7208346917A0288800CEC1E5 /* InfoPlist.strings */; };
 		7208346E17A0288800CEC1E5 /* StiriTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7208346D17A0288800CEC1E5 /* StiriTests.m */; };
 		7218012117CF498200386B12 /* NewsItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7218012017CF498200386B12 /* NewsItemCell.m */; };
-		723444DD17CE4900003762F2 /* NewsSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 723444DC17CE4900003762F2 /* NewsSource.m */; };
 		7272DB3417BCC45F00286E9A /* dark_dotted.png in Resources */ = {isa = PBXBuildFile; fileRef = 7272DB3217BCC45F00286E9A /* dark_dotted.png */; };
 		7272DB3517BCC45F00286E9A /* dark_dotted@2X.png in Resources */ = {isa = PBXBuildFile; fileRef = 7272DB3317BCC45F00286E9A /* dark_dotted@2X.png */; };
 		7272DB3817BCC47A00286E9A /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 7272DB3617BCC47A00286E9A /* logo.png */; };
@@ -83,7 +82,7 @@
 		729FE4B417D24D8E00A5A653 /* MagicalRecord+Setup.m in Sources */ = {isa = PBXBuildFile; fileRef = 729FE49217D24D8E00A5A653 /* MagicalRecord+Setup.m */; };
 		729FE4B517D24D8E00A5A653 /* MagicalRecord+ShorthandSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 729FE49417D24D8E00A5A653 /* MagicalRecord+ShorthandSupport.m */; };
 		729FE4B617D24D8E00A5A653 /* MagicalRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 729FE49617D24D8E00A5A653 /* MagicalRecord.m */; };
-		729FE4B717D24D8E00A5A653 /* NewRelicAgent.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 729FE49917D24D8E00A5A653 /* NewRelicAgent.framework */; };
+		729FE50417D2576C00A5A653 /* NewsSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 729FE50317D2576C00A5A653 /* NewsSource.m */; };
 		72B5D32B17BB66950026766C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 72B5D32D17BB66950026766C /* Localizable.strings */; };
 		72B8682417B3C50100A871E5 /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 72B8682117B3C50100A871E5 /* MainStoryboard_iPhone.storyboard */; };
 		72CB3B8717BB82F800D599CA /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 72CB3B8617BB82F800D599CA /* icon.png */; };
@@ -147,8 +146,6 @@
 		7208346D17A0288800CEC1E5 /* StiriTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StiriTests.m; sourceTree = "<group>"; };
 		7218011F17CF498200386B12 /* NewsItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewsItemCell.h; path = Views/NewsItemCell.h; sourceTree = "<group>"; };
 		7218012017CF498200386B12 /* NewsItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewsItemCell.m; path = Views/NewsItemCell.m; sourceTree = "<group>"; };
-		723444DB17CE4900003762F2 /* NewsSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewsSource.h; path = Model/NewsSource.h; sourceTree = "<group>"; };
-		723444DC17CE4900003762F2 /* NewsSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewsSource.m; path = Model/NewsSource.m; sourceTree = "<group>"; };
 		7272DB3217BCC45F00286E9A /* dark_dotted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dark_dotted.png; sourceTree = "<group>"; };
 		7272DB3317BCC45F00286E9A /* dark_dotted@2X.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dark_dotted@2X.png"; sourceTree = "<group>"; };
 		7272DB3617BCC47A00286E9A /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = logo.png; path = Assets/logo.png; sourceTree = "<group>"; };
@@ -239,7 +236,8 @@
 		729FE49617D24D8E00A5A653 /* MagicalRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MagicalRecord.m; sourceTree = "<group>"; };
 		729FE49717D24D8E00A5A653 /* MagicalRecordShorthand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MagicalRecordShorthand.h; sourceTree = "<group>"; };
 		729FE49817D24D8E00A5A653 /* CoreData+MagicalRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CoreData+MagicalRecord.h"; sourceTree = "<group>"; };
-		729FE49917D24D8E00A5A653 /* NewRelicAgent.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = NewRelicAgent.framework; sourceTree = "<group>"; };
+		729FE50217D2576C00A5A653 /* NewsSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewsSource.h; path = Model/NewsSource.h; sourceTree = "<group>"; };
+		729FE50317D2576C00A5A653 /* NewsSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewsSource.m; path = Model/NewsSource.m; sourceTree = "<group>"; };
 		72B5D32C17BB66950026766C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		72B8682217B3C50100A871E5 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
 		72CB3B8617BB82F800D599CA /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon.png; path = ../icon.png; sourceTree = "<group>"; };
@@ -272,7 +270,6 @@
 				7208343C17A0288800CEC1E5 /* Foundation.framework in Frameworks */,
 				7208343E17A0288800CEC1E5 /* CoreGraphics.framework in Frameworks */,
 				F6ACFD7519D3414A9256BAA2 /* libPods.a in Frameworks */,
-				729FE4B717D24D8E00A5A653 /* NewRelicAgent.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -431,9 +428,9 @@
 			children = (
 				72FF80D317CB5D0B007207D0 /* NewsItem.h */,
 				72FF80D417CB5D0B007207D0 /* NewsItem.m */,
-				723444DB17CE4900003762F2 /* NewsSource.h */,
-				723444DC17CE4900003762F2 /* NewsSource.m */,
 				7291565417BA35CF00A6FD66 /* NewsModel.xcdatamodeld */,
+				729FE50217D2576C00A5A653 /* NewsSource.h */,
+				729FE50317D2576C00A5A653 /* NewsSource.m */,
 				7206268717BAB2DD00455298 /* NewsGroup.h */,
 				7206268817BAB2DD00455298 /* NewsGroup.m */,
 				7291565117BA35AA00A6FD66 /* NewsDataSource.h */,
@@ -471,7 +468,6 @@
 				729FE45B17D24D8E00A5A653 /* HHPanningTableViewCell.h */,
 				729FE45C17D24D8E00A5A653 /* HHPanningTableViewCell.m */,
 				729FE45D17D24D8E00A5A653 /* MagicalRecord */,
-				729FE49917D24D8E00A5A653 /* NewRelicAgent.framework */,
 			);
 			path = "Manual Framework";
 			sourceTree = "<group>";
@@ -818,7 +814,6 @@
 				72DE090D17C93F390065C0D9 /* PageNewsItemsViewController.m in Sources */,
 				72FF80D517CB5D0B007207D0 /* NewsItem.m in Sources */,
 				728CB33A17CC930100F4BA49 /* AllNewsItemsViewController.m in Sources */,
-				723444DD17CE4900003762F2 /* NewsSource.m in Sources */,
 				7218012117CF498200386B12 /* NewsItemCell.m in Sources */,
 				729FE49A17D24D8E00A5A653 /* HHDirectionPanGestureRecognizer.m in Sources */,
 				729FE49B17D24D8E00A5A653 /* HHInnerShadowView.m in Sources */,
@@ -849,6 +844,7 @@
 				729FE4B417D24D8E00A5A653 /* MagicalRecord+Setup.m in Sources */,
 				729FE4B517D24D8E00A5A653 /* MagicalRecord+ShorthandSupport.m in Sources */,
 				729FE4B617D24D8E00A5A653 /* MagicalRecord.m in Sources */,
+				729FE50417D2576C00A5A653 /* NewsSource.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
