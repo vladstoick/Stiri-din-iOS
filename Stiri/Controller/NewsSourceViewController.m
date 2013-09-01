@@ -76,7 +76,7 @@
     }
     NewsSource *ns = (self.newsSources)[indexPath.row];
     if([ns.imageUrl isEqualToString:@""]){
-        [cell.imageView setImage:nil];
+        [cell.imageView setImage:[UIImage imageNamed:@"blankimg.png"]];
     } else {
         [cell.imageView setImageWithURL:[NSURL URLWithString:ns.imageUrl]];
     }
