@@ -250,6 +250,7 @@ static NewsDataSource *_newsDataSource;
     [httpClient deletePath:[NSString stringWithFormat:@"%@", newsGroup.groupId] parameters:nil
             success:^(AFHTTPRequestOperation *operation, id responseObject) {
                 [newsGroup MR_deleteEntity];
+                [[NSManagedObjectContext MR_defaultContext] saveToPersistentStoreWithCompletion:nil];
                 [[NSNotificationCenter defaultCenter] postNotificationName:DELETE_END  object:DELETE_SUCCES];
                 [[NSNotificationCenter defaultCenter] postNotificationName:DELETE_SUCCES object:nil];
             } failure:^(AFHTTPRequestOperation *operation, NSError *error) {

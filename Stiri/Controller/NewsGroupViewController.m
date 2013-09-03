@@ -126,6 +126,7 @@
 - (void) deleteMessage:(NSNotification*) event{
     if([event.object isEqual: DELETE_SUCCES]){
         [SVProgressHUD showSuccessWithStatus:@"Deleted"];
+        self.groups = [[NewsDataSource newsDataSource] allGroups];
         [self.tableView reloadData];
     } else {
         [SVProgressHUD showErrorWithStatus:@"Failed"];
