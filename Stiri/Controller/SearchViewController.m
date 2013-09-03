@@ -16,6 +16,7 @@
 @property NSArray *searchResults;
 @property UITableView *tableViewSearch;
 @property UIActivityIndicatorView *spinner;
+@property NSInteger size;
 @end
 
 @implementation SearchViewController
@@ -62,10 +63,8 @@
 - (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
 {
     [[NewsDataSource newsDataSource] searchOnlineText:searchString];
-    self.searchResults = [[NSArray alloc] init];
+    self.searchResults = nil;
     [self.tableViewSearch reloadData];
-    [self.tableViewSearch addSubview:self.spinner];
-    [self.spinner startAnimating];
     return YES;
 }
 
@@ -74,30 +73,47 @@
     return YES;
 }
 
+//- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
+//    return self.spinner;
+//}
+
 //TABLE VIEW
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+
     if(self.tableView != tableView){
         self.tableViewSearch = tableView;
     }
-    if(self.searchResults == nil) return 0;
-    return self.searchResults.count;
+    self.size = 1 + self.searchResults.count;
+    return self.size;
 }
 
-- (NewsItemCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
     static NSString *searchResultsTableIdentifier = @"searchResultsCell";
     
     NewsItemCell *cell = [self.tableView dequeueReusableCellWithIdentifier:searchResultsTableIdentifier];
-    NewsItem *newsItem = [self.searchResults objectAtIndex:indexPath.row];
-    cell.titleLabel.text = newsItem.title;
-    NSString *dateString = [NSDateFormatter localizedStringFromDate:newsItem.pubDate
+    if(indexPath.row<self.size-1){
+        NewsItem *newsItem = [self.searchResults objectAtIndex:indexPath.row];
+        cell.titleLabel.text = newsItem.title;
+        NSString *dateString = [NSDateFormatter localizedStringFromDate:newsItem.pubDate
                                                           dateStyle:NSDateFormatterShortStyle
                                                           timeStyle:NSDateFormatterShortStyle];
-    cell.dateLabel.text = dateString;
+        cell.dateLabel.text = dateString;
+
+    } else {
+        cell.titleLabel.text = @"";
+        cell.dateLabel.text = @"";
+        [cell addSubview:self.spinner];
+        [self.spinner startAnimating];
+    }
     return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 78.0;
+    if(indexPath.row<self.size-1){
+        return 78.0;
+    }
+    return 40.0;
 }
 
 @end
