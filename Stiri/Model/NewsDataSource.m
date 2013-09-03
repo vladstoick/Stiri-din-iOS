@@ -395,7 +395,7 @@ static NewsDataSource *_newsDataSource;
 //SEARCH
 
 - (void)searchOnlineText:(NSString *)search fromIndex:(NSInteger) startPosition{
-    NSString *urlString = [NSString stringWithFormat:@"http://37.139.8.146:8983/solr/collection1/select?start=%u&rows=20&wt=json&indent=true&fl=title,content,image,last_modified&sort=last_modified+desc&q=content:%@",startPosition,search];
+    NSString *urlString = [NSString stringWithFormat:@"http://37.139.8.146:8983/solr/collection1/select?start=%u&rows=10&wt=json&indent=true&fl=title,content,image,last_modified&sort=last_modified+desc&q=content:%@",startPosition,search];
     NSLog(@"%@",urlString);
     AFHTTPClient *httpClient = [[AFHTTPClient alloc] initWithBaseURL:[NSURL URLWithString:urlString]];
     [httpClient getPath:@"" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
@@ -422,7 +422,7 @@ static NewsDataSource *_newsDataSource;
             ni.url = [newsResult valueForKey:@"url"];
             [searchParsed addObject:ni];
         }
-        BOOL dataIsLeft = (startPosition+20 < [resultsFound integerValue]);
+        BOOL dataIsLeft = (startPosition+10 < [resultsFound integerValue]);
         [self.searchResultDelegate recievedSearchResults:searchParsed withDataLeft:dataIsLeft];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         
