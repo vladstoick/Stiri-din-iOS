@@ -15,6 +15,7 @@
 @interface SearchViewController ()
 @property NSArray *searchResults;
 @property UITableView *tableViewSearch;
+@property UIActivityIndicatorView *spinner;
 @end
 
 @implementation SearchViewController
@@ -34,10 +35,12 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(searchRecived:) name:SEARCH_END object:nil];
     self.searchBar.showsScopeBar = NO;
     [self.searchBar sizeToFit];
-	// Do any additional setup after loading the view.
+    self.spinner = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    self.spinner.center = CGPointMake( self.view.bounds.size.width/2 , 20);
 }
 
 - (void) searchRecived:(NSNotification*) notification{
+    [self.spinner stopAnimating];
     self.searchResults = notification.object;
     [self.tableViewSearch reloadData];
 }
@@ -59,6 +62,10 @@
 - (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
 {
     [[NewsDataSource newsDataSource] searchOnlineText:searchString];
+    self.searchResults = [[NSArray alloc] init];
+    [self.tableViewSearch reloadData];
+    [self.tableViewSearch addSubview:self.spinner];
+    [self.spinner startAnimating];
     return YES;
 }
 
