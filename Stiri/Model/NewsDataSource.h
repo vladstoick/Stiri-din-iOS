@@ -23,11 +23,14 @@
 //NEWSGROUP
 - (void)deleteNewsGroup:(NewsGroup *)newsGroup;
 
+- (void)renameNewsGroup:(NewsGroup *)newsGroup withNewName:(NSString*) title;
+
 - (void)addNewsSourceWithUrl:(NSString *)url inNewGroupWithName:(NSString *)groupTitle;
 
 - (NSArray *)allGroups;
 
 - (NewsGroup *)getGroupWithId:(NSNumber *)groupId;
+
 
 //NEWSOURCE
 - (void)addNewsSourceWithUrl:(NSString *)sourceUrl inNewsGroup:(NewsGroup *)newsGroup;

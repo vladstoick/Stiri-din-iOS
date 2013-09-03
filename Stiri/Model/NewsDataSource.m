@@ -12,6 +12,9 @@
 #define DELETE_END @"delete_ended"
 #define DELETE_SUCCES @"delete_succes"
 #define DELETE_FAIL @"delete_fail"
+#define RENAME_END @"rename_ended"
+#define RENAME_SUCCES @"rename_succes"
+#define RENAME_FAIL @"rename_fail"
 #define ADD_ENDED @"add_ended"
 #define RAILSBASEURL @"http://37.139.26.80/user/"
 #define PARSEBASEURL @"http://37.139.8.146:3000/?feedId="
@@ -243,6 +246,24 @@ static NewsDataSource *_newsDataSource;
 }
 
 //NEWSGROUP
+
+- (void)renameNewsGroup:(NewsGroup *)newsGroup withNewName:(NSString *)title{
+    NSString *urlString = [NSString stringWithFormat:@"%@%d/%@",RAILSBASEURL,self.userId,newsGroup.groupId];
+    NSURL *url = [NSURL URLWithString:urlString];
+    NSDictionary *params = @{@"title" : title};
+    AFHTTPClient *httpCient = [[AFHTTPClient alloc] initWithBaseURL:url];
+    [httpCient putPath:@""
+             parameters:params
+                success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        newsGroup.title = title;
+        [[NSManagedObjectContext MR_defaultContext] saveToPersistentStoreWithCompletion:nil];
+        [[NSNotificationCenter defaultCenter] postNotificationName:RENAME_END  object:RENAME_SUCCES];
+        
+    }
+                failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+       [[NSNotificationCenter defaultCenter] postNotificationName:RENAME_END object:RENAME_FAIL];
+    }];
+}
 
 - (void)deleteNewsGroup:(NewsGroup *)newsGroup {
     NSString *urlString = [NSString stringWithFormat:@"%@%d", RAILSBASEURL, self.userId];

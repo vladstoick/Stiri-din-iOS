@@ -20,6 +20,9 @@
 #define DELETE_END @"delete_ended"
 #define DELETE_SUCCES @"delete_succes"
 #define DELETE_FAIL @"delete_fail"
+#define RENAME_END @"rename_ended"
+#define RENAME_SUCCES @"rename_succes"
+#define RENAME_FAIL @"rename_fail"
 @interface NewsGroupViewController ()
 @property (strong, nonatomic) NSIndexPath *swipedCell;
 @property (strong, nonatomic) NSArray *groups;
@@ -67,6 +70,10 @@
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(deleteMessage:)
                                                  name:DELETE_END
+                                               object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(renameMessage:)
+                                                 name:RENAME_END
                                                object:nil];
     if([NewsDataSource newsDataSource].isDataLoaded == NO){
         [[NewsDataSource newsDataSource] loadData];
@@ -152,8 +159,10 @@
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     NSString *title = [alertView buttonTitleAtIndex:buttonIndex];
+        NSString *text = [[alertView textFieldAtIndex:0] text];
     if([title isEqualToString:@"Rename"]){
-        
+        [[NewsDataSource newsDataSource] renameNewsGroup:[self.groups objectAtIndex:self.swipedCell.row] withNewName:text];
+        [SVProgressHUD showWithStatus:@"Renaming" maskType:SVProgressHUDMaskTypeBlack];
     } else {
         HHPanningTableViewCell *cell = (HHPanningTableViewCell*)[self.tableView cellForRowAtIndexPath:self.swipedCell];
         [cell setDrawerRevealed:NO animated:YES];
@@ -162,6 +171,13 @@
 }
 
 - (void) renameMessage:(NSNotification*) event{
+    if([event.object isEqual: RENAME_SUCCES]){
+        [SVProgressHUD showSuccessWithStatus:@"Renamed"];
+        self.groups = [[NewsDataSource newsDataSource] allGroups];
+        [self.tableView reloadData];
+    } else {
+        [SVProgressHUD showErrorWithStatus:@"Failed"];
+    }
 }
 
 //TALBE VIEW
