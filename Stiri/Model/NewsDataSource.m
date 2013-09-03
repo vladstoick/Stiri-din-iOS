@@ -20,7 +20,7 @@
 #define PARSEBASEURL @"http://37.139.8.146:3000/?feedId="
 #define UNREADNEWSURL @"http://37.139.8.146:4000/unread/"
 #define READNEWSURL @"http://37.139.8.146:4000/read/"
-#define SEARCHBASEURL @"http://37.139.8.146:8983/solr/collection1/select?rows=20&wt=json&q=description:"
+#define SEARCHBASEURL @"http://37.139.8.146:8983/solr/collection1/select?start=0&rows=20&wt=json&indent=true&fl=title,content,image,last_modified&sort=last_modified+desc&q=content:"
 #define DATA_CHANGED_EVENT @"data_changed"
 #define DATA_NEWSOURCE_PARSED @"newssource_loaded"
 
@@ -412,6 +412,12 @@ static NewsDataSource *_newsDataSource;
         for(NSDictionary *newsResult in results){
             NewsItem *ni = [NewsItem MR_createEntity];
             ni.title = [newsResult valueForKey:@"title"];
+            NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+            [dateFormatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"]];
+            [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSSZ"];
+            NSString *dateString = [newsResult valueForKey:@"last_modified"];
+            NSDate *date = [dateFormatter dateFromString:dateString];
+            ni.pubDate= date;
             ni.url = [newsResult valueForKey:@"url"];
             [searchParsed addObject:ni];
         }

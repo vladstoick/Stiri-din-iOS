@@ -319,14 +319,6 @@
 				7291565817BA35FB00A6FD66 /* NewsGroupViewController.m */,
 				7291565A17BA363400A6FD66 /* NewsSourceViewController.h */,
 				7291565B17BA363400A6FD66 /* NewsSourceViewController.m */,
-				7206267817BAAA8F00455298 /* NewsItemsViewController.h */,
-				7206267917BAAA8F00455298 /* NewsItemsViewController.m */,
-				72CB3B8A17BBA21200D599CA /* NewsItemViewController.h */,
-				72CB3B8B17BBA21200D599CA /* NewsItemViewController.m */,
-				72DE090B17C93F390065C0D9 /* PageNewsItemsViewController.h */,
-				72DE090C17C93F390065C0D9 /* PageNewsItemsViewController.m */,
-				728CB33817CC930100F4BA49 /* AllNewsItemsViewController.h */,
-				728CB33917CC930100F4BA49 /* AllNewsItemsViewController.m */,
 			);
 			name = DataControllers;
 			sourceTree = "<group>";
@@ -418,13 +410,13 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		7218012317CF499600386B12 /* HelperViews */ = {
+		7218012317CF499600386B12 /* TableCells */ = {
 			isa = PBXGroup;
 			children = (
 				7218011F17CF498200386B12 /* NewsItemCell.h */,
 				7218012017CF498200386B12 /* NewsItemCell.m */,
 			);
-			name = HelperViews;
+			name = TableCells;
 			sourceTree = "<group>";
 		};
 		729155E217BA173900A6FD66 /* Model */ = {
@@ -577,10 +569,34 @@
 			path = Core;
 			sourceTree = "<group>";
 		};
+		72AA3C7C17D63A3200ECA013 /* NewsItems */ = {
+			isa = PBXGroup;
+			children = (
+				7206267817BAAA8F00455298 /* NewsItemsViewController.h */,
+				7206267917BAAA8F00455298 /* NewsItemsViewController.m */,
+				728CB33817CC930100F4BA49 /* AllNewsItemsViewController.h */,
+				728CB33917CC930100F4BA49 /* AllNewsItemsViewController.m */,
+			);
+			name = NewsItems;
+			sourceTree = "<group>";
+		};
+		72AA3C7E17D63A5700ECA013 /* NewsItem */ = {
+			isa = PBXGroup;
+			children = (
+				72CB3B8A17BBA21200D599CA /* NewsItemViewController.h */,
+				72CB3B8B17BBA21200D599CA /* NewsItemViewController.m */,
+				72DE090B17C93F390065C0D9 /* PageNewsItemsViewController.h */,
+				72DE090C17C93F390065C0D9 /* PageNewsItemsViewController.m */,
+			);
+			name = NewsItem;
+			sourceTree = "<group>";
+		};
 		72AD444717A054A900074FF2 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				7218012317CF499600386B12 /* HelperViews */,
+				72AA3C7E17D63A5700ECA013 /* NewsItem */,
+				72AA3C7C17D63A3200ECA013 /* NewsItems */,
+				7218012317CF499600386B12 /* TableCells */,
 				7206267C17BAABDC00455298 /* Other */,
 				7206267B17BAABCA00455298 /* AddNewsSource */,
 				7291566617BA5BEE00A6FD66 /* SlidingMenu */,

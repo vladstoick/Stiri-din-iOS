@@ -7,6 +7,7 @@
 //
 
 #import "SearchViewController.h"
+#import "NewsItemCell.h"
 #import "MenuViewController.h"
 #import "UIViewController+MMDrawerController.h"
 #import "NewsDataSource.h"
@@ -66,14 +67,6 @@
     return YES;
 }
 
-//- (BOOL)searchBarShouldEndEditing:(UISearchBar *)searchBar
-//{
-//    self.searchBar.showsScopeBar = YES;
-//    [self.searchBar sizeToFit];
-//    self.tableView.tableHeaderView = self.searchBar;
-//    return YES;
-//}
-
 //TABLE VIEW
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     if(self.tableView != tableView){
@@ -83,18 +76,21 @@
     return self.searchResults.count;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    static NSString *subtitleTableIdentifier = @"searchViewCell";
+- (NewsItemCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    static NSString *searchResultsTableIdentifier = @"searchResultsCell";
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:subtitleTableIdentifier];
-    
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:subtitleTableIdentifier];
-    }
+    NewsItemCell *cell = [self.tableView dequeueReusableCellWithIdentifier:searchResultsTableIdentifier];
     NewsItem *newsItem = [self.searchResults objectAtIndex:indexPath.row];
-    NSLog(@"%@",newsItem);
-    cell.textLabel.text = newsItem.title;
+    cell.titleLabel.text = newsItem.title;
+    NSString *dateString = [NSDateFormatter localizedStringFromDate:newsItem.pubDate
+                                                          dateStyle:NSDateFormatterShortStyle
+                                                          timeStyle:NSDateFormatterShortStyle];
+    cell.dateLabel.text = dateString;
     return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 78.0;
 }
 
 @end

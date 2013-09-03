@@ -26,11 +26,16 @@
 
 - (void) viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-        self.navigationController.toolbarHidden = NO;
+    [self.navigationController setToolbarHidden:NO animated:YES];
+}
+
+- (void)viewWillDisappear:(BOOL)animated{
+    [self.navigationController setToolbarHidden:YES animated:YES];
 }
 
 - (void)viewDidLoad {
-    [super viewDidLoad];
+
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
     self.pageController = [[UIPageViewController alloc]
             initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll
               navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal
