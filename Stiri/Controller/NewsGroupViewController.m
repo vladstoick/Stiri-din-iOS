@@ -114,7 +114,10 @@
     self.swipedCell = [self.tableView indexPathForRowAtPoint:buttonPosition];
     SIAlertView *alertView = [[SIAlertView alloc] initWithTitle:@"Delete group"
                                                      andMessage:@"You can't undo this operation"];
-    [alertView addButtonWithTitle:@"Cancel" type:SIAlertViewButtonTypeCancel handler:nil];
+    [alertView addButtonWithTitle:@"Cancel" type:SIAlertViewButtonTypeCancel handler:^(SIAlertView *alertView){
+        HHPanningTableViewCell *cell = (HHPanningTableViewCell*)[self.tableView cellForRowAtIndexPath:self.swipedCell];
+        [cell setDrawerRevealed:NO animated:YES];
+    }];
     [alertView addButtonWithTitle:@"OK" type:SIAlertViewButtonTypeDestructive handler:^(SIAlertView *alertView) {
         [[NewsDataSource newsDataSource] deleteNewsGroup:[self.groups objectAtIndex:self.swipedCell.row]];
         [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeBlack];
@@ -133,7 +136,33 @@
     }
 }
 
+- (IBAction) shouldRenameGroup:(id)sender{
+    CGPoint buttonPosition = [sender convertPoint:CGPointZero toView:self.tableView];
+    self.swipedCell = [self.tableView indexPathForRowAtPoint:buttonPosition];
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Rename Group" message:nil delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Rename", nil];
+    alertView.alertViewStyle = UIAlertViewStylePlainTextInput;
+    [alertView show];
+}
 
+- (BOOL)alertViewShouldEnableFirstOtherButton:(UIAlertView *)alertView{
+    NSString *text = [[alertView textFieldAtIndex:0] text];
+    return text.length > 0;
+
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    NSString *title = [alertView buttonTitleAtIndex:buttonIndex];
+    if([title isEqualToString:@"Rename"]){
+        
+    } else {
+        HHPanningTableViewCell *cell = (HHPanningTableViewCell*)[self.tableView cellForRowAtIndexPath:self.swipedCell];
+        [cell setDrawerRevealed:NO animated:YES];
+        
+    }
+}
+
+- (void) renameMessage:(NSNotification*) event{
+}
 
 //TALBE VIEW
 
@@ -163,10 +192,11 @@
     UIButton *renameButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [renameButton setBackgroundImage:[UIImage imageNamed:@"rename_button.png"] forState:UIControlStateNormal];
     renameButton.frame = CGRectMake(cell.frame.size.width/2 + (cell.frame.size.width/2 - 102)/2 , 10 , 102, 24);
+    [renameButton addTarget:self action:@selector(shouldRenameGroup:) forControlEvents:UIControlEventTouchDown];
     [drawerView addSubview:renameButton];
     [drawerView addSubview:deleteButton];
     cell.drawerView = drawerView;
-    cell.directionMask =  HHPanningTableViewCellDirectionLeft;
+    cell.directionMask =  HHPanningTableViewCellDirectionLeft + HHPanningTableViewCellDirectionRight;
     NewsGroup *ng = (self.groups)[indexPath.row];
     cell.textLabel.text = ng.title;
     cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue-CondensedBold" size:18.0];
