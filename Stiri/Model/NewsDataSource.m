@@ -7,6 +7,7 @@
 //
 #import "NewsDataSource.h"
 #import "AFNetworking.h"
+#import "CoreData+MagicalRecord.h"
 #define SEARCH_END @"search_ended"
 #define DELETE_END @"delete_ended"
 #define DELETE_SUCCES @"delete_succes"
@@ -276,7 +277,7 @@ static NewsDataSource *_newsDataSource;
 }
 
 - (NSArray *)allGroups {
-    return [NewsGroup MR_findAll];
+    return [NewsGroup MR_findAllSortedBy:@"groupId" ascending:YES];
 }
 
 - (NewsGroup *)getGroupWithId:(NSNumber *)groupId {
