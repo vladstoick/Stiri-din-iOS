@@ -412,6 +412,7 @@ static NewsDataSource *_newsDataSource;
 
         for(NSDictionary *newsResult in results){
             NewsItem *ni = [NewsItem MR_createEntity];
+            ni.paperized = [newsResult valueForKey:@"content"];
             ni.title = [newsResult valueForKey:@"title"];
             NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
             [dateFormatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"]];

@@ -11,6 +11,7 @@
 #import "MenuViewController.h"
 #import "UIViewController+MMDrawerController.h"
 #import "NewsDataSource.h"
+#import "PageNewsItemsViewController.h"
 #define SEARCH_END @"search_ended"
 @interface SearchViewController ()
 @property NSString *currentQuerry;
@@ -103,6 +104,20 @@
     return YES;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [self performSegueWithIdentifier:@"showSearchResults" sender:self];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if([segue.identifier isEqualToString:@"showSearchResults"]){
+        NSIndexPath *indexPath = [self.tableViewSearch indexPathForSelectedRow];
+        PageNewsItemsViewController *destViewController = segue.destinationViewController;
+        destViewController.news = self.searchResults;
+        destViewController.newsIndex = indexPath.row;
+        [self.tableView deselectRowAtIndexPath:indexPath animated:false];
+    }
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     static NSString *searchResultsTableIdentifier = @"searchResultsCell";
@@ -121,7 +136,9 @@
         cell.dateLabel.text = @"";
         [cell addSubview:self.spinner];
         [self.spinner startAnimating];
-        [[NewsDataSource newsDataSource] searchOnlineText:self.currentQuerry fromIndex:self.size - 1 ];
+        if(indexPath.row > 0 ){
+            [[NewsDataSource newsDataSource] searchOnlineText:self.currentQuerry fromIndex:self.size - 1 ];
+        }
     }
     return cell;
 }
