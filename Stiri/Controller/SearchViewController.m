@@ -13,10 +13,12 @@
 #import "NewsDataSource.h"
 #define SEARCH_END @"search_ended"
 @interface SearchViewController ()
+@property NSString *currentQuerry;
 @property NSArray *searchResults;
 @property UITableView *tableViewSearch;
 @property UIActivityIndicatorView *spinner;
 @property NSInteger size;
+@property BOOL dataAvailable;
 @end
 
 @implementation SearchViewController
@@ -33,17 +35,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(searchRecived:) name:SEARCH_END object:nil];
     self.searchBar.showsScopeBar = NO;
     [self.searchBar sizeToFit];
     self.spinner = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
     self.spinner.center = CGPointMake( self.view.bounds.size.width/2 , 20);
-}
-
-- (void) searchRecived:(NSNotification*) notification{
-    [self.spinner stopAnimating];
-    self.searchResults = notification.object;
-    [self.tableViewSearch reloadData];
+    [NewsDataSource newsDataSource].searchResultDelegate = self;
 }
 
 - (void)didReceiveMemoryWarning
@@ -62,9 +58,10 @@
 //SEARCH
 - (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
 {
-    [[NewsDataSource newsDataSource] searchOnlineText:searchString];
     self.searchResults = nil;
-    [self.tableViewSearch reloadData];
+    self.dataAvailable = YES;
+    self.currentQuerry = searchString;
+    [[NewsDataSource newsDataSource] searchOnlineText:searchString fromIndex:0];
     return YES;
 }
 
@@ -73,18 +70,37 @@
     return YES;
 }
 
-//- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
-//    return self.spinner;
-//}
+- (void) recievedSearchResults:(NSArray *)searchResults withDataLeft:(BOOL)dataAvailable{
+    if(self.searchResults != nil){
+        NSMutableArray *finalResults = [self.searchResults mutableCopy];
+        [finalResults addObjectsFromArray:searchResults];
+        self.searchResults = finalResults;
+    } else {
+        self.searchResults = searchResults;
+    }
+    self.dataAvailable = dataAvailable;
+    if(dataAvailable == NO){
+        [self.spinner stopAnimating];
+    }
+    [self.tableViewSearch reloadData];
+}
+
 
 //TABLE VIEW
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-
     if(self.tableView != tableView){
         self.tableViewSearch = tableView;
     }
-    self.size = 1 + self.searchResults.count;
+    self.size = self.searchResults.count;
+    self.size += self.dataAvailable == YES;
     return self.size;
+}
+
+- (BOOL) isCellResult:(NSInteger) position{
+    if(self.dataAvailable == YES && position == self.size - 1 ){
+        return NO;
+    }
+    return YES;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -92,7 +108,7 @@
     static NSString *searchResultsTableIdentifier = @"searchResultsCell";
     
     NewsItemCell *cell = [self.tableView dequeueReusableCellWithIdentifier:searchResultsTableIdentifier];
-    if(indexPath.row<self.size-1){
+    if([self isCellResult:indexPath.row]){
         NewsItem *newsItem = [self.searchResults objectAtIndex:indexPath.row];
         cell.titleLabel.text = newsItem.title;
         NSString *dateString = [NSDateFormatter localizedStringFromDate:newsItem.pubDate
@@ -105,6 +121,7 @@
         cell.dateLabel.text = @"";
         [cell addSubview:self.spinner];
         [self.spinner startAnimating];
+        [[NewsDataSource newsDataSource] searchOnlineText:self.currentQuerry fromIndex:self.size - 1 ];
     }
     return cell;
 }

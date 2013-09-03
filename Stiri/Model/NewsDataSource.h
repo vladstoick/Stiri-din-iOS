@@ -11,10 +11,18 @@
 #import "NewsItem.h"    
 #import "NewsSource.h"
 
+@protocol SearchResultDeleagte <NSObject>
+
+- (void) recievedSearchResults:(NSArray*) searchResults withDataLeft:(BOOL) dataAvailable;
+
+@end
+
 @interface NewsDataSource : NSObject
 @property(nonatomic) BOOL isDataLoaded;
 @property(nonatomic) NSUInteger userId;
 
+//DELEGATES
+@property id<SearchResultDeleagte> searchResultDelegate;
 //INITIALIZATION
 + (NewsDataSource *)newsDataSource;
 
@@ -55,5 +63,5 @@
 
 //SEARCH
 
-- (void)searchOnlineText:(NSString*) search;
+- (void)searchOnlineText:(NSString *)search fromIndex:(NSInteger) startPosition;
 @end

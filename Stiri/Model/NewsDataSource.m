@@ -20,7 +20,6 @@
 #define PARSEBASEURL @"http://37.139.8.146:3000/?feedId="
 #define UNREADNEWSURL @"http://37.139.8.146:4000/unread/"
 #define READNEWSURL @"http://37.139.8.146:4000/read/"
-#define SEARCHBASEURL @"http://37.139.8.146:8983/solr/collection1/select?start=0&rows=20&wt=json&indent=true&fl=title,content,image,last_modified&sort=last_modified+desc&q=content:"
 #define DATA_CHANGED_EVENT @"data_changed"
 #define DATA_NEWSOURCE_PARSED @"newssource_loaded"
 
@@ -395,8 +394,8 @@ static NewsDataSource *_newsDataSource;
 
 //SEARCH
 
-- (void)searchOnlineText:(NSString *)search{
-    NSString *urlString = [NSString stringWithFormat:@"%@%@",SEARCHBASEURL,search];
+- (void)searchOnlineText:(NSString *)search fromIndex:(NSInteger) startPosition{
+    NSString *urlString = [NSString stringWithFormat:@"http://37.139.8.146:8983/solr/collection1/select?start=%u&rows=20&wt=json&indent=true&fl=title,content,image,last_modified&sort=last_modified+desc&q=content:%@",startPosition,search];
     NSLog(@"%@",urlString);
     AFHTTPClient *httpClient = [[AFHTTPClient alloc] initWithBaseURL:[NSURL URLWithString:urlString]];
     [httpClient getPath:@"" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
@@ -407,8 +406,10 @@ static NewsDataSource *_newsDataSource;
                                                          options:NSJSONReadingMutableContainers
                                                            error:nil];
         NSDictionary *response = [json valueForKey:@"response"];
+        NSNumber *resultsFound = [response valueForKey:@"numFound"];
         NSDictionary *results = [response valueForKey:@"docs"];
         NSMutableArray *searchParsed = [[NSMutableArray alloc] init];
+
         for(NSDictionary *newsResult in results){
             NewsItem *ni = [NewsItem MR_createEntity];
             ni.title = [newsResult valueForKey:@"title"];
@@ -421,7 +422,8 @@ static NewsDataSource *_newsDataSource;
             ni.url = [newsResult valueForKey:@"url"];
             [searchParsed addObject:ni];
         }
-        [[NSNotificationCenter defaultCenter] postNotificationName:SEARCH_END object:searchParsed];
+        BOOL dataIsLeft = (startPosition+20 < [resultsFound integerValue]);
+        [self.searchResultDelegate recievedSearchResults:searchParsed withDataLeft:dataIsLeft];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         
     }];
