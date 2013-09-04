@@ -211,6 +211,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Hbf-Gd-Hdw"/>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="tableView" destination="8tK-cG-Djc" id="dF0-Cp-MRb"/>
                     </connections>
@@ -295,6 +296,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="NqY-ZY-tLC"/>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="tableView" destination="Dxg-4W-Veg" id="CAE-MQ-Bp3"/>
                     </connections>
@@ -306,7 +308,7 @@
         <!--Page News Items View Controller - News-->
         <scene sceneID="P75-x8-qmW">
             <objects>
-                <viewController hidesBottomBarWhenPushed="YES" id="1JA-rq-pip" customClass="PageNewsItemsViewController" sceneMemberID="viewController">
+                <viewController id="1JA-rq-pip" customClass="PageNewsItemsViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="pjD-GK-Uei">
                         <rect key="frame" x="0.0" y="64" width="320" height="372"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -774,11 +776,11 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="80" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="R9L-ls-q5W">
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationWidth="0.0" reuseIdentifier="unreadNews" rowHeight="80" id="KMG-JB-e5T" customClass="NewsItemCell">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationWidth="0.0" reuseIdentifier="unreadNews" rowHeight="80" id="KMG-JB-e5T" customClass="NewsItemCell">
                                         <rect key="frame" x="0.0" y="22" width="320" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="79"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="300" height="79"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Title" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="212" translatesAutoresizingMaskIntoConstraints="NO" id="ToT-WZ-AyZ">
@@ -820,6 +822,7 @@
                                             <outlet property="articleImageView" destination="hfj-CM-A0w" id="Xz9-hR-fGV"/>
                                             <outlet property="dateLabel" destination="UIq-oT-RbE" id="sSN-zV-Yi8"/>
                                             <outlet property="titleLabel" destination="ToT-WZ-AyZ" id="z7h-Xz-czE"/>
+                                            <segue destination="1JA-rq-pip" kind="push" identifier="openNewsItem" id="P2L-Xa-wTr"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -896,6 +899,6 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="mLW-p9-2B7"/>
+        <segue reference="P2L-Xa-wTr"/>
     </inferredMetricsTieBreakers>
 </document>

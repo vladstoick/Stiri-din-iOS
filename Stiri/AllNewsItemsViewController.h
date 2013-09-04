@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AllNewsItemsViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+@interface AllNewsItemsViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate>
 - (IBAction)menuClicked:(id)sender;
 
 @end

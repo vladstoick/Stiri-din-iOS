@@ -55,9 +55,15 @@
                       json = [NSJSONSerialization JSONObjectWithData:[responseStr dataUsingEncoding:NSUTF8StringEncoding]
                                                              options:NSJSONReadingMutableContainers
                                                                error:nil];
+                      NSArray *oldUnreadNews = [NewsItem MR_findByAttribute:@"isRead" withValue:@0];
+                      for(NewsItem *newsItem in oldUnreadNews){
+                          newsItem.isRead = @1;
+                          
+                      }
                       for(NSDictionary *ni in json){
                           [self.unreadNews addObject:[ni valueForKey:@"id"]];
                       }
+                      [[NSManagedObjectContext MR_defaultContext] saveToPersistentStoreWithCompletion:nil];
                       [self loadGroupsAndSources];
                   } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                       
@@ -395,7 +401,7 @@ static NewsDataSource *_newsDataSource;
 //SEARCH
 
 - (void)searchOnlineText:(NSString *)search fromIndex:(NSInteger) startPosition{
-    NSString *urlString = [NSString stringWithFormat:@"http://37.139.8.146:8983/solr/collection1/select?start=%u&rows=10&wt=json&indent=true&fl=title,content,image,last_modified&sort=last_modified+desc&q=content:%@",startPosition,search];
+    NSString *urlString = [NSString stringWithFormat:@"http://37.139.8.146:8983/solr/collection1/select?start=%u&rows=10&wt=json&indent=true&fl=title,content,image,last_modified,url&sort=last_modified+desc&q=content:%@",startPosition,search];
     NSLog(@"%@",urlString);
     AFHTTPClient *httpClient = [[AFHTTPClient alloc] initWithBaseURL:[NSURL URLWithString:urlString]];
     [httpClient getPath:@"" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
@@ -412,8 +418,10 @@ static NewsDataSource *_newsDataSource;
 
         for(NSDictionary *newsResult in results){
             NewsItem *ni = [NewsItem MR_createEntity];
+            ni.isRead = @1;
             ni.paperized = [newsResult valueForKey:@"content"];
             ni.title = [newsResult valueForKey:@"title"];
+            ni.imageUrl = [newsResult valueForKey:@"image"];
             NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
             [dateFormatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"]];
             [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSSZ"];

@@ -12,6 +12,7 @@
 #import "UIViewController+MMDrawerController.h"
 #import "NewsDataSource.h"
 #import "PageNewsItemsViewController.h"
+#import "UIImageView+AFNetworking.h"
 #define SEARCH_END @"search_ended"
 @interface SearchViewController ()
 @property NSString *currentQuerry;
@@ -130,6 +131,7 @@
                                                           dateStyle:NSDateFormatterShortStyle
                                                           timeStyle:NSDateFormatterShortStyle];
         cell.dateLabel.text = dateString;
+        [cell.articleImageView setImageWithURL:[NSURL URLWithString:newsItem.imageUrl] placeholderImage:[UIImage imageNamed:@"blankimg.png"]];
 
     } else {
         cell.titleLabel.text = @"";
