@@ -270,7 +270,7 @@ static NewsDataSource *_newsDataSource;
 - (void)renameNewsGroup:(NewsGroup *)newsGroup withNewName:(NSString *)title{
     NSString *urlString = [NSString stringWithFormat:@"%@%d/%@",RAILSBASEURL,self.userId,newsGroup.groupId];
     NSURL *url = [NSURL URLWithString:urlString];
-    NSDictionary *params = @{@"title" : title};
+    NSDictionary *params = @{@"title" : title, @"key" : self.privateKey};
     AFHTTPClient *httpCient = [[AFHTTPClient alloc] initWithBaseURL:url];
     [httpCient putPath:@""
              parameters:params
@@ -288,8 +288,9 @@ static NewsDataSource *_newsDataSource;
 - (void)deleteNewsGroup:(NewsGroup *)newsGroup {
     NSString *urlString = [NSString stringWithFormat:@"%@%d", RAILSBASEURL, self.userId];
     AFHTTPClient *httpClient = [[AFHTTPClient alloc] initWithBaseURL:[NSURL URLWithString:urlString]];
-    [httpClient deletePath:[NSString stringWithFormat:@"%@", newsGroup.groupId] parameters:nil
-            success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [httpClient deletePath:[NSString stringWithFormat:@"%@", newsGroup.groupId]
+                parameters:self.paramsKey
+                 success:^(AFHTTPRequestOperation *operation, id responseObject) {
                 [newsGroup MR_deleteEntity];
                 [[NSManagedObjectContext MR_defaultContext] saveToPersistentStoreWithCompletion:nil];
                 [[NSNotificationCenter defaultCenter] postNotificationName:DELETE_END  object:DELETE_SUCCES];
@@ -301,7 +302,7 @@ static NewsDataSource *_newsDataSource;
 
 - (void)addNewsSourceWithUrl:(NSString *)sourceUrl inNewGroupWithName:(NSString *)groupTitle {
     NSString *urlString = [NSString stringWithFormat:@"%@%d", RAILSBASEURL, self.userId];
-    NSDictionary *params = @{@"title" : groupTitle};
+    NSDictionary *params = @{@"title" : groupTitle, @"key": self.privateKey};
     AFHTTPClient *httpClient = [[AFHTTPClient alloc] initWithBaseURL:[NSURL URLWithString:urlString]];
     [httpClient postPath:@"" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSString *responseStr = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
@@ -331,7 +332,7 @@ static NewsDataSource *_newsDataSource;
 - (void)addNewsSourceWithUrl:(NSString *)sourceUrl inNewsGroup:(NewsGroup *)newsGroup {
     NSManagedObjectContext *context = [NSManagedObjectContext defaultContext];
     NSString *urlString = [NSString stringWithFormat:@"%@%d/%@", RAILSBASEURL, self.userId, newsGroup.groupId];
-    NSDictionary *params = @{@"url" : sourceUrl};
+    NSDictionary *params = @{@"url" : sourceUrl, @"key": self.privateKey};
     AFHTTPClient *httpClient = [[AFHTTPClient alloc] initWithBaseURL:[NSURL URLWithString:urlString]];
     [httpClient postPath:@""
               parameters:params
