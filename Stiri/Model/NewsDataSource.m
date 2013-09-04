@@ -24,6 +24,7 @@
 #define DATA_NEWSOURCE_PARSED @"newssource_loaded"
 
 @interface NewsDataSource ()
+@property(nonatomic, readonly) NSDictionary *paramsKey;
 @property(nonatomic, strong) NSMutableArray *unreadNews;
 @end
 
@@ -43,11 +44,12 @@
 
 - (void)loadUnreadNews {
     [self.unreadNews removeAllObjects];
+    
     NSString *urlstring = [NSString stringWithFormat:@"%@%D", UNREADNEWSURL , self.userId];
     NSURL *url = [NSURL URLWithString:urlstring];
     AFHTTPClient *afhttpClient = [[AFHTTPClient alloc] initWithBaseURL:url];
     [afhttpClient getPath:@""
-               parameters:nil
+               parameters:self.paramsKey
                   success:^(AFHTTPRequestOperation *operation, id responseObject) {
                       NSString *responseStr = [[NSString alloc] initWithData:responseObject
                                                                     encoding:NSUTF8StringEncoding];
@@ -66,7 +68,7 @@
                       [[NSManagedObjectContext MR_defaultContext] saveToPersistentStoreWithCompletion:nil];
                       [self loadGroupsAndSources];
                   } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                      
+                      NSLog(@"Recieved error %@",error);
                   }];
 }
 
@@ -75,7 +77,7 @@
     NSURL *url = [NSURL URLWithString:urlString];
     AFHTTPClient *httpClient = [[AFHTTPClient alloc] initWithBaseURL:url];
     [httpClient getPath:@""
-             parameters:nil
+             parameters:self.paramsKey
                 success:^(AFHTTPRequestOperation *operation, id responseObject) {
                     NSString *responseStr = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
                     NSDictionary *json;
@@ -86,7 +88,8 @@
                     self.isDataLoaded = YES;
                     [[NSNotificationCenter defaultCenter] postNotificationName:DATA_CHANGED_EVENT object:nil];
                 } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                    self.isDataLoaded = YES;}];
+                    NSLog(@"Recieved error %@",error);
+                }];
 }
 
 - (void)insertGroupsAndNewsSource:(NSDictionary *)jsonData; {
@@ -234,12 +237,24 @@ static NewsDataSource *_newsDataSource;
     return _unreadNews;
 }
 
+- (NSDictionary *)paramsKey{
+    return @{@"key":self.privateKey};
+}
+
 - (NSUInteger)userId {
     if (_userId == 0) {
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         _userId = [defaults integerForKey:@"user_id"];
     }
     return _userId;
+}
+
+- (NSString*)privateKey{
+    if(!_privateKey){
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        _privateKey = [defaults stringForKey:@"key"];
+    }
+    return _privateKey;
 }
 
 + (NewsDataSource *)newsDataSource {

@@ -129,10 +129,13 @@ static NSString * const kClientId = @"976584719831.apps.googleusercontent.com";
                                                                          error: nil];
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         NSNumber *userServerId = [jsonDictionary valueForKey:@"id"];
+        NSString *key = [jsonDictionary valueForKey:@"key"];
         if([userServerId isEqual: @0]){
             return;
         }
+        [defaults setValue:key forKey:@"key"];
         [defaults setValue:userServerId forKey:@"user_id"];
+        NSLog(@"Succesfully logged in user with id : %@ ; Auth Token : %@" , userServerId, key);
         [SVProgressHUD dismiss];
         [self performSegueWithIdentifier:@"loginSuccesfulSegue" sender:self];
         NSLog(@"Request Successful, response '%@'", responseStr);

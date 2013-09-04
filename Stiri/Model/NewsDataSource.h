@@ -20,7 +20,7 @@
 @interface NewsDataSource : NSObject
 @property(nonatomic) BOOL isDataLoaded;
 @property(nonatomic) NSUInteger userId;
-
+@property(nonatomic) NSString* privateKey;
 //DELEGATES
 @property id<SearchResultDeleagte> searchResultDelegate;
 //INITIALIZATION

@@ -61,7 +61,7 @@
     self.mm_drawerController.openDrawerGestureModeMask = MMOpenDrawerGestureModeBezelPanningCenterView;
 
     self.navigationItem.hidesBackButton = true;
-    self.isDataLoading = YES;
+
     [self.refreshControl addTarget:self action:@selector(refresh) forControlEvents:UIControlEventValueChanged];
     [self.tableView addSubview:self.refreshControl];
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -76,6 +76,7 @@
                                                  name:RENAME_END
                                                object:nil];
     if([NewsDataSource newsDataSource].isDataLoaded == NO){
+        self.isDataLoading = YES;
         [[NewsDataSource newsDataSource] loadData];
         [self.tableView setContentOffset:CGPointMake(0, -self.refreshControl.frame.size.height) animated:YES];
         [self.refreshControl beginRefreshing];
