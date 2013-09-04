@@ -96,22 +96,22 @@
     NSArray *menuItemsForCurrentSection = [self.menuItems objectAtIndex:indexPath.section];
     NSDictionary *menuItem = [menuItemsForCurrentSection objectAtIndex:indexPath.row];
     NSString *identifier = [[menuItem allValues]lastObject];
+    NSString *finalIdentfier = identifier;
+    if([identifier isEqualToString:@"Logout"]){
+        [SVProgressHUD show];
+        finalIdentfier=@"Main";
+        [FBSession.activeSession closeAndClearTokenInformation];
+        [[GPPSignIn sharedInstance] signOut];
+        [[NewsDataSource newsDataSource] logout];
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"user_id"];
+        [SVProgressHUD dismiss];
+        NSIndexPath *mainIndexPath = [NSIndexPath indexPathForItem:0 inSection:0];
+        [self.tableView selectRowAtIndexPath:mainIndexPath animated:NO scrollPosition:UITableViewScrollPositionTop];
+        
+    }
+    UIViewController *newTopViewController = [self.storyboard instantiateViewControllerWithIdentifier:finalIdentfier];
+    self.mm_drawerController.centerViewController = newTopViewController;
     [self.mm_drawerController closeDrawerAnimated:YES completion:^(BOOL finished) {
-        NSString *finalIdentfier = identifier;
-        if([identifier isEqualToString:@"Logout"]){
-            [SVProgressHUD show];
-            finalIdentfier=@"Main";
-            [FBSession.activeSession closeAndClearTokenInformation];
-            [[GPPSignIn sharedInstance] signOut];
-            [[NewsDataSource newsDataSource] logout];
-            [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"user_id"];
-            [SVProgressHUD dismiss];
-            NSIndexPath *mainIndexPath = [NSIndexPath indexPathForItem:0 inSection:0];
-            [self.tableView selectRowAtIndexPath:mainIndexPath animated:NO scrollPosition:UITableViewScrollPositionTop];
-
-        }
-        UIViewController *newTopViewController = [self.storyboard instantiateViewControllerWithIdentifier:finalIdentfier];
-        self.mm_drawerController.centerViewController = newTopViewController;       
     }];
     
 }
