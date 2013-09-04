@@ -2,7 +2,34 @@
   Localizable.strings
   Stiri
 
-  Created by Vlad Stoica on 8/14/13.
+  Created by Vlad Stoica on 9/4/13.
   Copyright (c) 2013 Stoica Vlad. All rights reserved.
 */
 
+//LOGIN
+
+"Logging in" = "Logging in";
+
+//MENU
+
+"News" = "News";
+"Your groups" = "Your groups";
+"Unread news" = "Unread news";
+"Search" = "Search";
+"Settings" = "Settings";
+"Logout" = "Logout";
+
+//NEWSGROUP
+
+"Delete group" = "Delete group";
+"You can't undo this operation" = "You can't undo this operation";
+"Cancel" = "Cancel";
+"Ok" = "Ok";
+"Deleted" = "Deleted";
+"Failed" = "Failed";
+"Rename Group" = "Rename Group";
+"Rename" = "Rename";
+"Renaming" = "Renaming";
+"Renamed" = "Renamed";
+"news sources" = "news sources";
+"one news source" = "one news source";

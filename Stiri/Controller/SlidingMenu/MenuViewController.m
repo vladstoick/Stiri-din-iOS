@@ -29,9 +29,13 @@
 {
     [super viewDidLoad];
     self.tableView.backgroundColor =    [UIColor colorWithPatternImage:[UIImage imageNamed:@"squairy_light.png"]];
-    self.newsItems = @[@{@"Your groups":@"Main"},@{@"Unread News":@"AllNewsItems"},@{@"Search":@"Search"}];
-    self.settings = @[@{@"Settings":@"Settings"},@{@"Logout":@"Logout"}];
-    self.sectionTitles = @[@"News",@"Settings"];
+    self.newsItems = @[@{NSLocalizedString(@"Your groups",nil):@"Main"},
+                       @{NSLocalizedString(@"Unread News",nil):@"AllNewsItems"},
+                       @{NSLocalizedString(@"Search",nil):@"Search"}];
+    self.settings = @[@{NSLocalizedString(@"Settings", nil):@"Settings"}
+                      ,@{NSLocalizedString(@"Logout",nil):@"Logout"}];
+    self.sectionTitles = @[NSLocalizedString(@"News",nil),
+                           NSLocalizedString(@"Settings",nil)];
     self.menuItems = @[self.newsItems,self.settings];
     self.allMenuItems = [self.newsItems mutableCopy];
     [self.allMenuItems addObjectsFromArray:self.settings];

@@ -1,0 +1,35 @@
+/* 
+  Localizable.strings
+  Stiri
+
+  Created by Vlad Stoica on 9/4/13.
+  Copyright (c) 2013 Stoica Vlad. All rights reserved.
+*/
+
+//LOGIN
+
+"Logging in" = "Te loghezi";
+
+//MENU
+
+"News" = "Știri";
+"Your groups" = "Grupurile tale";
+"Unread news" = "Știri necitite";
+"Search" = "Căutare";
+"Settings" = "Setări";
+"Logout" = "Delogare";
+
+//NEWSGROUP
+
+"Delete group" = "Șterge grup";
+"You can't undo this operation" = "Această operație șterge grupul complet";
+"Cancel" = "Anulează";
+"Ok" = "Ok";
+"Deleted" = "Șters";
+"Failed" = "Eșuat";
+"Rename Group" = "Redenumește grupul";
+"Rename" = "Redenumește";
+"Renaming" = "Se redenumește";
+"Renamed" = "Redenumit";
+"news sources" = "surse de știri";
+"one news source" = "o sursă de știri";

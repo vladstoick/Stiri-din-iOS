@@ -25,11 +25,6 @@
 		7208344C17A0288800CEC1E5 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 7208344B17A0288800CEC1E5 /* Default.png */; };
 		7208344E17A0288800CEC1E5 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7208344D17A0288800CEC1E5 /* Default@2x.png */; };
 		7208345017A0288800CEC1E5 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7208344F17A0288800CEC1E5 /* Default-568h@2x.png */; };
-		7208346117A0288800CEC1E5 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7208346017A0288800CEC1E5 /* SenTestingKit.framework */; };
-		7208346217A0288800CEC1E5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7208343917A0288800CEC1E5 /* UIKit.framework */; };
-		7208346317A0288800CEC1E5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7208343B17A0288800CEC1E5 /* Foundation.framework */; };
-		7208346B17A0288800CEC1E5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7208346917A0288800CEC1E5 /* InfoPlist.strings */; };
-		7208346E17A0288800CEC1E5 /* StiriTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7208346D17A0288800CEC1E5 /* StiriTests.m */; };
 		7218012117CF498200386B12 /* NewsItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7218012017CF498200386B12 /* NewsItemCell.m */; };
 		7272DB3417BCC45F00286E9A /* dark_dotted.png in Resources */ = {isa = PBXBuildFile; fileRef = 7272DB3217BCC45F00286E9A /* dark_dotted.png */; };
 		7272DB3517BCC45F00286E9A /* dark_dotted@2X.png in Resources */ = {isa = PBXBuildFile; fileRef = 7272DB3317BCC45F00286E9A /* dark_dotted@2X.png */; };
@@ -44,6 +39,8 @@
 		728661D617BFAF5000AA13D3 /* tweed_@2X.png in Resources */ = {isa = PBXBuildFile; fileRef = 728661D417BFAF5000AA13D3 /* tweed_@2X.png */; };
 		728661D717BFAF5000AA13D3 /* tweed.png in Resources */ = {isa = PBXBuildFile; fileRef = 728661D517BFAF5000AA13D3 /* tweed.png */; };
 		728661DA17BFD21E00AA13D3 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 728661D917BFD21E00AA13D3 /* SearchViewController.m */; };
+		728BF50617D7CBE900B3F546 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 728BF50817D7CBE900B3F546 /* Localizable.strings */; };
+		728BF50E17D7CC8B00B3F546 /* Stiri-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 728BF50D17D7CC8B00B3F546 /* Stiri-Info.plist */; };
 		728CB33A17CC930100F4BA49 /* AllNewsItemsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 728CB33917CC930100F4BA49 /* AllNewsItemsViewController.m */; };
 		7291565317BA35AA00A6FD66 /* NewsDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 7291565217BA35AA00A6FD66 /* NewsDataSource.m */; };
 		7291565617BA35CF00A6FD66 /* NewsModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7291565417BA35CF00A6FD66 /* NewsModel.xcdatamodeld */; };
@@ -54,7 +51,6 @@
 		7291566917BA5DE900A6FD66 /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7291566817BA5DE900A6FD66 /* MenuViewController.m */; };
 		7296D95E17D32E9900E05075 /* blankimg.png in Resources */ = {isa = PBXBuildFile; fileRef = 7296D95C17D32E9900E05075 /* blankimg.png */; };
 		7296D95F17D32E9900E05075 /* blankimg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7296D95D17D32E9900E05075 /* blankimg@2x.png */; };
-		729FE39117D247EC00A5A653 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 729FE39017D247EC00A5A653 /* Localizable.strings */; };
 		729FE49A17D24D8E00A5A653 /* HHDirectionPanGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 729FE45817D24D8E00A5A653 /* HHDirectionPanGestureRecognizer.m */; };
 		729FE49B17D24D8E00A5A653 /* HHInnerShadowView.m in Sources */ = {isa = PBXBuildFile; fileRef = 729FE45A17D24D8E00A5A653 /* HHInnerShadowView.m */; };
 		729FE49C17D24D8E00A5A653 /* HHPanningTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 729FE45C17D24D8E00A5A653 /* HHPanningTableViewCell.m */; };
@@ -85,7 +81,6 @@
 		729FE4B517D24D8E00A5A653 /* MagicalRecord+ShorthandSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 729FE49417D24D8E00A5A653 /* MagicalRecord+ShorthandSupport.m */; };
 		729FE4B617D24D8E00A5A653 /* MagicalRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 729FE49617D24D8E00A5A653 /* MagicalRecord.m */; };
 		729FE50417D2576C00A5A653 /* NewsSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 729FE50317D2576C00A5A653 /* NewsSource.m */; };
-		72B5D32B17BB66950026766C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 72B5D32D17BB66950026766C /* Localizable.strings */; };
 		72B8682417B3C50100A871E5 /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 72B8682117B3C50100A871E5 /* MainStoryboard_iPhone.storyboard */; };
 		72CB3B8717BB82F800D599CA /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 72CB3B8617BB82F800D599CA /* icon.png */; };
 		72CB3B8917BB83C100D599CA /* iconretina.png in Resources */ = {isa = PBXBuildFile; fileRef = 72CB3B8817BB83C100D599CA /* iconretina.png */; };
@@ -100,16 +95,6 @@
 		72FF80D517CB5D0B007207D0 /* NewsItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 72FF80D417CB5D0B007207D0 /* NewsItem.m */; };
 		F6ACFD7519D3414A9256BAA2 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 33E65F1F32904CA68E71C0AC /* libPods.a */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		7208346417A0288800CEC1E5 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 7208342E17A0288800CEC1E5 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 7208343517A0288800CEC1E5;
-			remoteInfo = Stiri;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		0E217E52A67247C48E4AFB43 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
@@ -131,7 +116,6 @@
 		7208343917A0288800CEC1E5 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		7208343B17A0288800CEC1E5 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		7208343D17A0288800CEC1E5 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		7208344117A0288800CEC1E5 /* Stiri-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Stiri-Info.plist"; sourceTree = "<group>"; };
 		7208344317A0288800CEC1E5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		7208344517A0288800CEC1E5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		7208344717A0288800CEC1E5 /* Stiri-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Stiri-Prefix.pch"; sourceTree = "<group>"; };
@@ -140,12 +124,7 @@
 		7208344B17A0288800CEC1E5 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		7208344D17A0288800CEC1E5 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		7208344F17A0288800CEC1E5 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		7208345F17A0288800CEC1E5 /* StiriTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StiriTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7208346017A0288800CEC1E5 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
-		7208346817A0288800CEC1E5 /* StiriTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "StiriTests-Info.plist"; sourceTree = "<group>"; };
-		7208346A17A0288800CEC1E5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		7208346C17A0288800CEC1E5 /* StiriTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StiriTests.h; sourceTree = "<group>"; };
-		7208346D17A0288800CEC1E5 /* StiriTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StiriTests.m; sourceTree = "<group>"; };
 		7218011F17CF498200386B12 /* NewsItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewsItemCell.h; path = Views/NewsItemCell.h; sourceTree = "<group>"; };
 		7218012017CF498200386B12 /* NewsItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewsItemCell.m; path = Views/NewsItemCell.m; sourceTree = "<group>"; };
 		7272DB3217BCC45F00286E9A /* dark_dotted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dark_dotted.png; sourceTree = "<group>"; };
@@ -162,6 +141,12 @@
 		728661D517BFAF5000AA13D3 /* tweed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tweed.png; sourceTree = "<group>"; };
 		728661D817BFD21E00AA13D3 /* SearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SearchViewController.h; path = Controller/SearchViewController.h; sourceTree = "<group>"; };
 		728661D917BFD21E00AA13D3 /* SearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SearchViewController.m; path = Controller/SearchViewController.m; sourceTree = "<group>"; };
+		728BF4F317D7CA0200B3F546 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
+		728BF50717D7CBE900B3F546 /* en */ = {isa = PBXFileReference; lastKnownFileType = file; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		728BF50917D7CBF900B3F546 /* ro */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ro; path = ro.lproj/MainStoryboard_iPhone.strings; sourceTree = "<group>"; };
+		728BF50B17D7CBF900B3F546 /* ro */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ro; path = ro.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		728BF50C17D7CBFA00B3F546 /* ro */ = {isa = PBXFileReference; lastKnownFileType = file; name = ro; path = ro.lproj/Localizable.strings; sourceTree = "<group>"; };
+		728BF50D17D7CC8B00B3F546 /* Stiri-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Stiri-Info.plist"; sourceTree = "<group>"; };
 		728CB33817CC930100F4BA49 /* AllNewsItemsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllNewsItemsViewController.h; sourceTree = "<group>"; };
 		728CB33917CC930100F4BA49 /* AllNewsItemsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllNewsItemsViewController.m; sourceTree = "<group>"; };
 		7291565117BA35AA00A6FD66 /* NewsDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewsDataSource.h; path = Model/NewsDataSource.h; sourceTree = "<group>"; };
@@ -179,7 +164,6 @@
 		7291566817BA5DE900A6FD66 /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MenuViewController.m; path = Controller/SlidingMenu/MenuViewController.m; sourceTree = "<group>"; };
 		7296D95C17D32E9900E05075 /* blankimg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = blankimg.png; path = Assets/blankimg.png; sourceTree = "<group>"; };
 		7296D95D17D32E9900E05075 /* blankimg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "blankimg@2x.png"; path = "Assets/blankimg@2x.png"; sourceTree = "<group>"; };
-		729FE39017D247EC00A5A653 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = INt/Localizable.strings; sourceTree = "<group>"; };
 		729FE45717D24D8E00A5A653 /* HHDirectionPanGestureRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HHDirectionPanGestureRecognizer.h; sourceTree = "<group>"; };
 		729FE45817D24D8E00A5A653 /* HHDirectionPanGestureRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HHDirectionPanGestureRecognizer.m; sourceTree = "<group>"; };
 		729FE45917D24D8E00A5A653 /* HHInnerShadowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HHInnerShadowView.h; sourceTree = "<group>"; };
@@ -242,8 +226,6 @@
 		729FE49817D24D8E00A5A653 /* CoreData+MagicalRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CoreData+MagicalRecord.h"; sourceTree = "<group>"; };
 		729FE50217D2576C00A5A653 /* NewsSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewsSource.h; path = Model/NewsSource.h; sourceTree = "<group>"; };
 		729FE50317D2576C00A5A653 /* NewsSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewsSource.m; path = Model/NewsSource.m; sourceTree = "<group>"; };
-		72B5D32C17BB66950026766C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		72B8682217B3C50100A871E5 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
 		72CB3B8617BB82F800D599CA /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon.png; path = ../icon.png; sourceTree = "<group>"; };
 		72CB3B8817BB83C100D599CA /* iconretina.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = iconretina.png; path = ../iconretina.png; sourceTree = "<group>"; };
 		72CB3B8A17BBA21200D599CA /* NewsItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewsItemViewController.h; path = Controller/NewsItemViewController.h; sourceTree = "<group>"; };
@@ -274,16 +256,6 @@
 				7208343C17A0288800CEC1E5 /* Foundation.framework in Frameworks */,
 				7208343E17A0288800CEC1E5 /* CoreGraphics.framework in Frameworks */,
 				F6ACFD7519D3414A9256BAA2 /* libPods.a in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		7208345B17A0288800CEC1E5 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				7208346117A0288800CEC1E5 /* SenTestingKit.framework in Frameworks */,
-				7208346217A0288800CEC1E5 /* UIKit.framework in Frameworks */,
-				7208346317A0288800CEC1E5 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -328,7 +300,6 @@
 			children = (
 				7208343F17A0288800CEC1E5 /* Stiri */,
 				7282832C17BF7A90006DEE19 /* Social.framework */,
-				7208346617A0288800CEC1E5 /* StiriTests */,
 				7208343817A0288800CEC1E5 /* Frameworks */,
 				7208343717A0288800CEC1E5 /* Products */,
 				0E217E52A67247C48E4AFB43 /* Pods.xcconfig */,
@@ -339,7 +310,6 @@
 			isa = PBXGroup;
 			children = (
 				7208343617A0288800CEC1E5 /* Stiri.app */,
-				7208345F17A0288800CEC1E5 /* StiriTests.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -364,7 +334,6 @@
 			isa = PBXGroup;
 			children = (
 				729FE45617D24D8E00A5A653 /* Manual Framework */,
-				729FE38F17D247BB00A5A653 /* Internationalization */,
 				729155E217BA173900A6FD66 /* Model */,
 				72B8681D17B3C4A400A871E5 /* Assets */,
 				72AD444717A054A900074FF2 /* Controllers */,
@@ -379,33 +348,14 @@
 		7208344017A0288800CEC1E5 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				7208344117A0288800CEC1E5 /* Stiri-Info.plist */,
+				728BF50D17D7CC8B00B3F546 /* Stiri-Info.plist */,
 				7208344217A0288800CEC1E5 /* InfoPlist.strings */,
 				7208344517A0288800CEC1E5 /* main.m */,
 				7208344717A0288800CEC1E5 /* Stiri-Prefix.pch */,
 				7208344B17A0288800CEC1E5 /* Default.png */,
 				7208344D17A0288800CEC1E5 /* Default@2x.png */,
 				7208344F17A0288800CEC1E5 /* Default-568h@2x.png */,
-				72B5D32D17BB66950026766C /* Localizable.strings */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		7208346617A0288800CEC1E5 /* StiriTests */ = {
-			isa = PBXGroup;
-			children = (
-				7208346C17A0288800CEC1E5 /* StiriTests.h */,
-				7208346D17A0288800CEC1E5 /* StiriTests.m */,
-				7208346717A0288800CEC1E5 /* Supporting Files */,
-			);
-			path = StiriTests;
-			sourceTree = "<group>";
-		};
-		7208346717A0288800CEC1E5 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				7208346817A0288800CEC1E5 /* StiriTests-Info.plist */,
-				7208346917A0288800CEC1E5 /* InfoPlist.strings */,
+				728BF50817D7CBE900B3F546 /* Localizable.strings */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -444,14 +394,6 @@
 				7291566817BA5DE900A6FD66 /* MenuViewController.m */,
 			);
 			name = SlidingMenu;
-			sourceTree = "<group>";
-		};
-		729FE38F17D247BB00A5A653 /* Internationalization */ = {
-			isa = PBXGroup;
-			children = (
-				729FE39017D247EC00A5A653 /* Localizable.strings */,
-			);
-			name = Internationalization;
 			sourceTree = "<group>";
 		};
 		729FE45617D24D8E00A5A653 /* Manual Framework */ = {
@@ -644,8 +586,8 @@
 				D02957A623154244AED32548 /* Check Pods Manifest.lock */,
 				7208343217A0288800CEC1E5 /* Sources */,
 				7208343317A0288800CEC1E5 /* Frameworks */,
-				7208343417A0288800CEC1E5 /* Resources */,
 				50524F424C454D533F /* ShellScript */,
+				7208343417A0288800CEC1E5 /* Resources */,
 				731B557F6037441393BA8778 /* Copy Pods Resources */,
 			);
 			buildRules = (
@@ -656,25 +598,6 @@
 			productName = Stiri;
 			productReference = 7208343617A0288800CEC1E5 /* Stiri.app */;
 			productType = "com.apple.product-type.application";
-		};
-		7208345E17A0288800CEC1E5 /* StiriTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 7208347417A0288800CEC1E5 /* Build configuration list for PBXNativeTarget "StiriTests" */;
-			buildPhases = (
-				7208345A17A0288800CEC1E5 /* Sources */,
-				7208345B17A0288800CEC1E5 /* Frameworks */,
-				7208345C17A0288800CEC1E5 /* Resources */,
-				7208345D17A0288800CEC1E5 /* ShellScript */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				7208346517A0288800CEC1E5 /* PBXTargetDependency */,
-			);
-			name = StiriTests;
-			productName = StiriTests;
-			productReference = 7208345F17A0288800CEC1E5 /* StiriTests.octest */;
-			productType = "com.apple.product-type.bundle";
 		};
 /* End PBXNativeTarget section */
 
@@ -697,6 +620,9 @@
 			knownRegions = (
 				en,
 				"ro-RO",
+				base,
+				ro,
+				Base,
 			);
 			mainGroup = 7208342D17A0288800CEC1E5;
 			productRefGroup = 7208343717A0288800CEC1E5 /* Products */;
@@ -704,7 +630,6 @@
 			projectRoot = "";
 			targets = (
 				7208343517A0288800CEC1E5 /* Stiri */,
-				7208345E17A0288800CEC1E5 /* StiriTests */,
 			);
 		};
 /* End PBXProject section */
@@ -714,6 +639,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				728BF50617D7CBE900B3F546 /* Localizable.strings in Resources */,
 				7208344417A0288800CEC1E5 /* InfoPlist.strings in Resources */,
 				7208344C17A0288800CEC1E5 /* Default.png in Resources */,
 				7208344E17A0288800CEC1E5 /* Default@2x.png in Resources */,
@@ -721,7 +647,6 @@
 				72B8682417B3C50100A871E5 /* MainStoryboard_iPhone.storyboard in Resources */,
 				7206267217BAA25100455298 /* manual_tab_bar_icon.png in Resources */,
 				7206267417BAA2C300455298 /* recommended_tab_bar_icon.png in Resources */,
-				72B5D32B17BB66950026766C /* Localizable.strings in Resources */,
 				72CB3B8717BB82F800D599CA /* icon.png in Resources */,
 				72CB3B8917BB83C100D599CA /* iconretina.png in Resources */,
 				7272DB3417BCC45F00286E9A /* dark_dotted.png in Resources */,
@@ -740,17 +665,9 @@
 				728661D717BFAF5000AA13D3 /* tweed.png in Resources */,
 				72F48EA617C0052900F9BB56 /* noisy_net_@2X.png in Resources */,
 				72F48EA717C0052900F9BB56 /* noisy_net.png in Resources */,
-				729FE39117D247EC00A5A653 /* Localizable.strings in Resources */,
 				7296D95E17D32E9900E05075 /* blankimg.png in Resources */,
 				7296D95F17D32E9900E05075 /* blankimg@2x.png in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		7208345C17A0288800CEC1E5 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				7208346B17A0288800CEC1E5 /* InfoPlist.strings in Resources */,
+				728BF50E17D7CC8B00B3F546 /* Stiri-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -769,19 +686,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "export CODESIGN_ALLOCATE=/Library/JailCoder/codesign_allocate\nif [ \"${PLATFORM_NAME}\" == \"iphoneos\" ]; then\n/Library/JailCoder/Entitlements/Entitlements.py \"my.company.${PROJECT_NAME}\" \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/${PROJECT_NAME}.xcent\";\ncodesign -f -s \"iPhone Developer\" --entitlements \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/${PROJECT_NAME}.xcent\" \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/\"\nfi";
-		};
-		7208345D17A0288800CEC1E5 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
 		};
 		731B557F6037441393BA8778 /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -872,45 +776,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		7208345A17A0288800CEC1E5 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				7208346E17A0288800CEC1E5 /* StiriTests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		7208346517A0288800CEC1E5 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 7208343517A0288800CEC1E5 /* Stiri */;
-			targetProxy = 7208346417A0288800CEC1E5 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		7208344217A0288800CEC1E5 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
 				7208344317A0288800CEC1E5 /* en */,
+				728BF50B17D7CBF900B3F546 /* ro */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
-		7208346917A0288800CEC1E5 /* InfoPlist.strings */ = {
+		728BF50817D7CBE900B3F546 /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				7208346A17A0288800CEC1E5 /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		72B5D32D17BB66950026766C /* Localizable.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				72B5D32C17BB66950026766C /* en */,
+				728BF50717D7CBE900B3F546 /* en */,
+				728BF50C17D7CBFA00B3F546 /* ro */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -918,7 +800,8 @@
 		72B8682117B3C50100A871E5 /* MainStoryboard_iPhone.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				72B8682217B3C50100A871E5 /* en */,
+				728BF4F317D7CA0200B3F546 /* Base */,
+				728BF50917D7CBF900B3F546 /* ro */,
 			);
 			name = MainStoryboard_iPhone.storyboard;
 			path = en.lproj;
@@ -999,7 +882,7 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Stiri/Stiri-Prefix.pch";
-				INFOPLIST_FILE = "Stiri/Stiri-Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Stiri/Stiri-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "2AF20C68-8412-4A32-BFCC-D606C281143E";
@@ -1021,47 +904,13 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Stiri/Stiri-Prefix.pch";
-				INFOPLIST_FILE = "Stiri/Stiri-Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Stiri/Stiri-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "2AF20C68-8412-4A32-BFCC-D606C281143E";
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "\"${PROJECT_DIR}/Pods\"/**";
 				WRAPPER_EXTENSION = app;
-			};
-			name = Release;
-		};
-		7208347517A0288800CEC1E5 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Stiri.app/Stiri";
-				FRAMEWORK_SEARCH_PATHS = (
-					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
-					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Stiri/Stiri-Prefix.pch";
-				INFOPLIST_FILE = "StiriTests/StiriTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = octest;
-			};
-			name = Debug;
-		};
-		7208347617A0288800CEC1E5 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Stiri.app/Stiri";
-				FRAMEWORK_SEARCH_PATHS = (
-					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
-					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Stiri/Stiri-Prefix.pch";
-				INFOPLIST_FILE = "StiriTests/StiriTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = octest;
 			};
 			name = Release;
 		};
@@ -1082,15 +931,6 @@
 			buildConfigurations = (
 				7208347217A0288800CEC1E5 /* Debug */,
 				7208347317A0288800CEC1E5 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		7208347417A0288800CEC1E5 /* Build configuration list for PBXNativeTarget "StiriTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				7208347517A0288800CEC1E5 /* Debug */,
-				7208347617A0288800CEC1E5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

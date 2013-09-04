@@ -120,13 +120,13 @@
 - (IBAction)shouldDeleteGroup:(id)sender{
     CGPoint buttonPosition = [sender convertPoint:CGPointZero toView:self.tableView];
     self.swipedCell = [self.tableView indexPathForRowAtPoint:buttonPosition];
-    SIAlertView *alertView = [[SIAlertView alloc] initWithTitle:@"Delete group"
-                                                     andMessage:@"You can't undo this operation"];
-    [alertView addButtonWithTitle:@"Cancel" type:SIAlertViewButtonTypeCancel handler:^(SIAlertView *alertView){
+    SIAlertView *alertView = [[SIAlertView alloc] initWithTitle:NSLocalizedString(@"Delete group",nil)
+                                                     andMessage:NSLocalizedString(@"You can't undo this operation",nil)];
+    [alertView addButtonWithTitle:NSLocalizedString(@"Cancel",nil) type:SIAlertViewButtonTypeCancel handler:^(SIAlertView *alertView){
         HHPanningTableViewCell *cell = (HHPanningTableViewCell*)[self.tableView cellForRowAtIndexPath:self.swipedCell];
         [cell setDrawerRevealed:NO animated:YES];
     }];
-    [alertView addButtonWithTitle:@"OK" type:SIAlertViewButtonTypeDestructive handler:^(SIAlertView *alertView) {
+    [alertView addButtonWithTitle:NSLocalizedString(@"Ok",nil) type:SIAlertViewButtonTypeDestructive handler:^(SIAlertView *alertView) {
         [[NewsDataSource newsDataSource] deleteNewsGroup:[self.groups objectAtIndex:self.swipedCell.row]];
         [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeBlack];
     }];
@@ -136,18 +136,18 @@
 
 - (void) deleteMessage:(NSNotification*) event{
     if([event.object isEqual: DELETE_SUCCES]){
-        [SVProgressHUD showSuccessWithStatus:@"Deleted"];
+        [SVProgressHUD showSuccessWithStatus:NSLocalizedString(@"Deleted",nil)];
         self.groups = [[NewsDataSource newsDataSource] allGroups];
         [self.tableView reloadData];
     } else {
-        [SVProgressHUD showErrorWithStatus:@"Failed"];
+        [SVProgressHUD showErrorWithStatus:NSLocalizedString(@"Failed",nil)];
     }
 }
 
 - (IBAction) shouldRenameGroup:(id)sender{
     CGPoint buttonPosition = [sender convertPoint:CGPointZero toView:self.tableView];
     self.swipedCell = [self.tableView indexPathForRowAtPoint:buttonPosition];
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Rename Group" message:nil delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Rename", nil];
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Rename Group",nil) message:nil delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel",nil) otherButtonTitles:NSLocalizedString(@"Rename",nil), nil];
     alertView.alertViewStyle = UIAlertViewStylePlainTextInput;
     [alertView show];
 }
@@ -161,9 +161,9 @@
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     NSString *title = [alertView buttonTitleAtIndex:buttonIndex];
         NSString *text = [[alertView textFieldAtIndex:0] text];
-    if([title isEqualToString:@"Rename"]){
+    if([title isEqualToString:NSLocalizedString(@"Rename",nil)]){
         [[NewsDataSource newsDataSource] renameNewsGroup:[self.groups objectAtIndex:self.swipedCell.row] withNewName:text];
-        [SVProgressHUD showWithStatus:@"Renaming" maskType:SVProgressHUDMaskTypeBlack];
+        [SVProgressHUD showWithStatus:NSLocalizedString(@"Renaming",nil) maskType:SVProgressHUDMaskTypeBlack];
     } else {
         HHPanningTableViewCell *cell = (HHPanningTableViewCell*)[self.tableView cellForRowAtIndexPath:self.swipedCell];
         [cell setDrawerRevealed:NO animated:YES];
@@ -173,7 +173,7 @@
 
 - (void) renameMessage:(NSNotification*) event{
     if([event.object isEqual: RENAME_SUCCES]){
-        [SVProgressHUD showSuccessWithStatus:@"Renamed"];
+        [SVProgressHUD showSuccessWithStatus:NSLocalizedString(@"Renamed",nil)];
         self.groups = [[NewsDataSource newsDataSource] allGroups];
         [self.tableView reloadData];
     } else {
@@ -218,9 +218,9 @@
     cell.textLabel.text = ng.title;
     cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue-CondensedBold" size:18.0];
     NSUInteger numberOfNewSources = ng.newsSources.count;
-    NSString *surseDeStiriString = [NSString stringWithFormat:@"%d news sources",numberOfNewSources];
+    NSString *surseDeStiriString = [NSString stringWithFormat:@"%d %@",numberOfNewSources, NSLocalizedString(@"news sources", nil)];
     if(numberOfNewSources == 1 ){
-        surseDeStiriString = [NSString stringWithFormat:@"one news source"];
+        surseDeStiriString = [NSString stringWithFormat:NSLocalizedString(@"one news source", nil)];
     }
     cell.detailTextLabel.text = surseDeStiriString;
     cell.detailTextLabel.font = [UIFont fontWithName:@"HelveticaNeue-LightItalic" size:14.0];
@@ -231,7 +231,7 @@
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if( [segue.identifier isEqualToString:@"showNewsSourceForGroup"]){
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        NSLog(@"%ul",indexPath.row);
+        NSLog(@"%u",indexPath.row);
         NewsSourceViewController *destViewController = segue.destinationViewController;
         NewsGroup *selectedNewsGroup = [self.groups objectAtIndex:indexPath.row];
         destViewController.groupId = selectedNewsGroup.groupId;

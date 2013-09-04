@@ -1,0 +1,84 @@
+
+/* Class = "IBUIBarButtonItem"; title = "Browser mode"; ObjectID = "1ex-hQ-Agb"; */
+"1ex-hQ-Agb.title" = "Versiunea completă";
+
+/* Class = "IBUIButton"; normalTitle = "☰"; ObjectID = "38a-eE-cAg"; */
+"38a-eE-cAg.normalTitle" = "☰";
+
+/* Class = "IBUISearchBar"; 3to-F2-GsR.scopeButtonTitles[0] = "Online"; ObjectID = "3to-F2-GsR"; */
+"3to-F2-GsR.scopeButtonTitles[0]" = "Online";
+
+/* Class = "IBUISearchBar"; 3to-F2-GsR.scopeButtonTitles[1] = "Local"; ObjectID = "3to-F2-GsR"; */
+"3to-F2-GsR.scopeButtonTitles[1]" = "Local";
+
+/* Class = "IBUINavigationItem"; title = "Login"; ObjectID = "7Tj-Hd-5Ue"; */
+"7Tj-Hd-5Ue.title" = "Logare";
+
+/* Class = "IBUILabel"; text = "Please select a login method so we can sync your data"; ObjectID = "8nq-7K-Roe"; */
+"8nq-7K-Roe.text" = "Vă rugăm să alegeți o metodă de logare pentru a vă sincroniza datele.";
+
+/* Class = "IBUIViewController"; title = "Recomandat"; ObjectID = "8sM-nI-Wg5"; */
+"8sM-nI-Wg5.title" = "Recomandat";
+
+/* Class = "IBUIButton"; normalTitle = "☰"; ObjectID = "B6S-li-ScK"; */
+"B6S-li-ScK.normalTitle" = "☰";
+
+/* Class = "IBUIButton"; normalTitle = "+"; ObjectID = "Boa-1n-0jY"; */
+"Boa-1n-0jY.normalTitle" = "+";
+
+/* Class = "IBUIButton"; normalTitle = "Cancel"; ObjectID = "BuQ-ds-KKU"; */
+"BuQ-ds-KKU.normalTitle" = "Anulează";
+
+/* Class = "IBUIViewController"; title = "Login"; ObjectID = "IVC-mC-uX5"; */
+"IVC-mC-uX5.title" = "Logare";
+
+/* Class = "IBUILabel"; text = "Title"; ObjectID = "KdH-0Y-VuI"; */
+"KdH-0Y-VuI.text" = "Titlu";
+
+/* Class = "IBUILabel"; text = "Title"; ObjectID = "ToT-WZ-AyZ"; */
+"ToT-WZ-AyZ.text" = "Titlu";
+
+/* Class = "IBUINavigationItem"; title = "News"; ObjectID = "UHj-i4-Zxu"; */
+"UHj-i4-Zxu.title" = "Știri";
+
+/* Class = "IBUILabel"; text = "Date"; ObjectID = "UIq-oT-RbE"; */
+"UIq-oT-RbE.text" = "Zi";
+
+/* Class = "IBUILabel"; text = "Date"; ObjectID = "UOI-2S-oik"; */
+"UOI-2S-oik.text" = "Zi";
+
+/* Class = "IBUIButton"; normalTitle = "Done"; ObjectID = "Www-24-1wT"; */
+"Www-24-1wT.normalTitle" = "Adaugă";
+
+/* Class = "IBUINavigationItem"; title = "Your Groups"; ObjectID = "ce1-Wk-I1N"; */
+"ce1-Wk-I1N.title" = "Grupurile tale";
+
+/* Class = "IBUINavigationItem"; title = "Add"; ObjectID = "eq4-gm-TwY"; */
+"eq4-gm-TwY.title" = "Adaugă";
+
+/* Class = "IBUIButton"; normalTitle = "☰"; ObjectID = "gth-Ie-a4Q"; */
+"gth-Ie-a4Q.normalTitle" = "☰";
+
+/* Class = "IBUILabel"; text = "News from"; ObjectID = "imR-Zf-TIv"; */
+"imR-Zf-TIv.text" = "Știri din";
+
+/* Class = "IBUITabBarItem"; title = "Recommended"; ObjectID = "jVM-eE-SPF"; */
+"jVM-eE-SPF.title" = "Recommended";
+
+/* Class = "IBUINavigationItem"; title = "gfhh"; ObjectID = "kSv-Qd-3X0"; */
+"kSv-Qd-3X0.title" = "gfhh";
+
+/* Class = "IBUINavigationItem"; title = "Search"; ObjectID = "mEy-JK-KBj"; */
+"mEy-JK-KBj.title" = "Caută";
+
+/* Class = "IBUITabBarItem"; title = "Manual"; ObjectID = "qPl-2c-ahc"; */
+"qPl-2c-ahc.title" = "Manual";
+
+/* Class = "IBUILabel"; text = "Date"; ObjectID = "tmL-2x-tb5"; */
+"tmL-2x-tb5.text" = "Dată";
+
+/* Class = "IBUILabel"; text = "or"; ObjectID = "vZb-fA-fhw"; */
+"vZb-fA-fhw.text" = "sau";
+
+/* Class = "IBUILabel"; text = "Title"; ObjectID = "wT5-II-0iK"; */
+"wT5-II-0iK.text" = "Titlu";
