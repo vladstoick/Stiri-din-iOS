@@ -157,8 +157,10 @@
     cell.dateLabel.text = [NSDateFormatter localizedStringFromDate:newsItem.pubDate
                                                                dateStyle:NSDateFormatterShortStyle
                                                                timeStyle:NSDateFormatterShortStyle];
+    NSLog(@"%@",newsItem.imageUrl);
     if([newsItem.imageUrl isEqualToString:@""]){
         [cell.articleImageView setImage:nil];
+        [cell.titleLabel setFrame:CGRectMake(0, 0, 360, 44)];
     } else {
         [cell.articleImageView setImageWithURL:[NSURL URLWithString:newsItem.imageUrl] placeholderImage:[UIImage imageNamed:@"blankimg.png"]];
     }

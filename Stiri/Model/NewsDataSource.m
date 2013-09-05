@@ -59,7 +59,7 @@
                                                                error:nil];
                       NSArray* unreadArticles = [json valueForKey:@"articles"];
                       for(NSNumber *ni in unreadArticles){
-                          [self.unreadNews addObject:[ni valueForKey:@"id"]];
+                          [self.unreadNews addObject:ni];
                       }
                       NSArray *oldUnreadNews = [NewsItem MR_findByAttribute:@"isRead" withValue:@0];
                       for(NewsItem *newsItem in oldUnreadNews){
