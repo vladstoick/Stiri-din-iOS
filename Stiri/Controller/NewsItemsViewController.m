@@ -16,6 +16,9 @@
 #define DATA_NEWSOURCE_PARSED @"newssource_loaded"
 #import "UIImageView+AFNetworking.h"
 @interface NewsItemsViewController ()
+@property(nonatomic) CGRect defaultFrameForTitle;
+@property(nonatomic) CGRect defaultFrameForDate;
+@property(nonatomic) BOOL hasSettedDefaultFrames;
 @property(readonly, nonatomic) NewsSource *newsSource;
 @property(strong, nonatomic) NSArray *unreadNews;
 @property(strong, nonatomic) NSArray *readNews;
@@ -153,17 +156,26 @@
     } else {
         newsItem = (self.readNews)[indexPath.row];
     }
-    cell.titleLabel.text = newsItem.title;
-    cell.dateLabel.text = [NSDateFormatter localizedStringFromDate:newsItem.pubDate
-                                                               dateStyle:NSDateFormatterShortStyle
-                                                               timeStyle:NSDateFormatterShortStyle];
-    NSLog(@"%@",newsItem.imageUrl);
+    if(self.hasSettedDefaultFrames == NO){
+        self.defaultFrameForDate = cell.dateLabel.frame;
+        self.defaultFrameForTitle = cell.titleLabel.frame;
+        self.hasSettedDefaultFrames = YES;
+    }
+    NSLog(@"%@",newsItem.title);
     if([newsItem.imageUrl isEqualToString:@""]){
-        [cell.articleImageView setImage:nil];
-        [cell.titleLabel setFrame:CGRectMake(0, 0, 360, 44)];
+        [cell.articleImageView setImage:nil];       
+        [cell.titleLabel setFrame:CGRectMake(10, 10, 300, 44)];
+        [cell.dateLabel setFrame:CGRectMake(10, 50, 300, 20)];
     } else {
+        self.defaultFrameForDate = cell.dateLabel.frame;
+        [cell.titleLabel setFrame:CGRectMake(90, 10, 210, 44)];
+        [cell.dateLabel setFrame:CGRectMake(90, 50, 210, 20)];
         [cell.articleImageView setImageWithURL:[NSURL URLWithString:newsItem.imageUrl] placeholderImage:[UIImage imageNamed:@"blankimg.png"]];
     }
+    cell.titleLabel.text = newsItem.title;
+    cell.dateLabel.text = [NSDateFormatter localizedStringFromDate:newsItem.pubDate
+                                                         dateStyle:NSDateFormatterShortStyle
+                                                         timeStyle:NSDateFormatterShortStyle];
     return cell;
 }
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
