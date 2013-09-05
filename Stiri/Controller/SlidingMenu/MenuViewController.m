@@ -30,7 +30,7 @@
     [super viewDidLoad];
     self.tableView.backgroundColor =    [UIColor colorWithPatternImage:[UIImage imageNamed:@"squairy_light.png"]];
     self.newsItems = @[@{NSLocalizedString(@"Your groups",nil):@"Main"},
-                       @{NSLocalizedString(@"Unread News",nil):@"AllNewsItems"},
+                       @{NSLocalizedString(@"Unread news",nil):@"AllNewsItems"},
                        @{NSLocalizedString(@"Search",nil):@"Search"}];
     self.settings = @[@{NSLocalizedString(@"Settings", nil):@"Settings"}
                       ,@{NSLocalizedString(@"Logout",nil):@"Logout"}];

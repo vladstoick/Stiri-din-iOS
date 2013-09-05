@@ -57,14 +57,15 @@
                       json = [NSJSONSerialization JSONObjectWithData:[responseStr dataUsingEncoding:NSUTF8StringEncoding]
                                                              options:NSJSONReadingMutableContainers
                                                                error:nil];
-                      NSArray *oldUnreadNews = [NewsItem MR_findByAttribute:@"isRead" withValue:@0];
-                      for(NewsItem *newsItem in oldUnreadNews){
-                          newsItem.isRead = @1;
-                          
-                      }
                       for(NSDictionary *ni in json){
                           [self.unreadNews addObject:[ni valueForKey:@"id"]];
                       }
+                      NSArray *oldUnreadNews = [NewsItem MR_findByAttribute:@"isRead" withValue:@0];
+                      for(NewsItem *newsItem in oldUnreadNews){
+                          if(![self.unreadNews containsObject:newsItem.newsId]){
+                              newsItem.isRead = @1;
+                          }
+                        }
                       [[NSManagedObjectContext MR_defaultContext] saveToPersistentStoreWithCompletion:nil];
                       [self loadGroupsAndSources];
                   } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -253,6 +254,7 @@ static NewsDataSource *_newsDataSource;
     if(!_privateKey){
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         _privateKey = [defaults stringForKey:@"key"];
+        NSLog(@"%@",_privateKey);
     }
     return _privateKey;
 }

@@ -15,91 +15,11 @@
 #import "UIViewController+MMDrawerController.h"
 @interface AllNewsItemsViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (nonatomic, retain) NSFetchedResultsController *fetchedResultsController;
+@property (strong, nonatomic) NSArray *unreadNews;
 @end
 
 @implementation AllNewsItemsViewController
 
-//COREDATA
-
-- (NSFetchedResultsController *)fetchedResultsController {
-    
-    if (_fetchedResultsController != nil) {
-        return _fetchedResultsController;
-    }
-    
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    NSEntityDescription *entity = [NSEntityDescription
-                                   entityForName:@"NewsItem" inManagedObjectContext:[NSManagedObjectContext MR_defaultContext]];
-    [fetchRequest setEntity:entity];
-    
-    NSSortDescriptor *sort = [[NSSortDescriptor alloc]
-                              initWithKey:@"pubDate" ascending:NO];
-    [fetchRequest setSortDescriptors:[NSArray arrayWithObject:sort]];
-    
-    [fetchRequest setFetchBatchSize:20];
-    
-    NSFetchedResultsController *theFetchedResultsController =
-    [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest
-                                        managedObjectContext:[NSManagedObjectContext MR_defaultContext] sectionNameKeyPath:nil
-                                                   cacheName:@"Root"];
-    self.fetchedResultsController = theFetchedResultsController;
-    _fetchedResultsController.delegate = self;
-    
-    return _fetchedResultsController;
-    
-}
-
-- (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath {
-    
-    UITableView *tableView = self.tableView;
-    
-    switch(type) {
-            
-        case NSFetchedResultsChangeInsert:
-            [tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
-            break;
-            
-        case NSFetchedResultsChangeDelete:
-            [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-            break;
-            
-        case NSFetchedResultsChangeUpdate:
-//            [self configureCell:[tableView cellForRowAtIndexPath:indexPath] atIndexPath:indexPath];
-            break;
-            
-        case NSFetchedResultsChangeMove:
-            [tableView deleteRowsAtIndexPaths:[NSArray
-                                               arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-            [tableView insertRowsAtIndexPaths:[NSArray
-                                               arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
-            break;
-    }
-}
-
-
-- (void)controller:(NSFetchedResultsController *)controller didChangeSection:(id )sectionInfo atIndex:(NSUInteger)sectionIndex forChangeType:(NSFetchedResultsChangeType)type {
-    
-    switch(type) {
-            
-        case NSFetchedResultsChangeInsert:
-            [self.tableView insertSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
-            break;
-            
-        case NSFetchedResultsChangeDelete:
-            [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
-            break;
-    }
-}
-
-
-- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
-    // The fetch controller has sent all current change notifications, so tell the table view to process all updates.
-    [self.tableView endUpdates];
-}
-
-
-//COREDATA END
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -109,14 +29,14 @@
     return self;
 }
 
+- (NSArray*) unreadNews{
+    if(!_unreadNews) _unreadNews = [[NewsDataSource newsDataSource] unreadNewsItems];
+    return _unreadNews;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self setTitle:@"Unread news"];
-    NSError *error;
-	if (![[self fetchedResultsController] performFetch:&error]) {
-		NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-	}
 }
 
 
@@ -127,16 +47,14 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    id  sectionInfo =
-    [[_fetchedResultsController sections] objectAtIndex:section];
-    return [sectionInfo numberOfObjects];
+    return self.unreadNews.count;
 }
 
 - (NewsItemCell *)tableView:(UITableView *)tableViewLocal cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *unreadNews = @"unreadNews";
     NewsItemCell *cell = [tableViewLocal dequeueReusableCellWithIdentifier:unreadNews];
     NewsItem *newsItem;
-    newsItem = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    newsItem = [self.unreadNews objectAtIndex:indexPath.row];
     cell.titleLabel.text = newsItem.title;
     cell.dateLabel.text = [NSDateFormatter localizedStringFromDate:newsItem.pubDate
                                                          dateStyle:NSDateFormatterShortStyle

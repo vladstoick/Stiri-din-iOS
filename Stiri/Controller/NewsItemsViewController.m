@@ -19,6 +19,8 @@
 @property(readonly, nonatomic) NewsSource *newsSource;
 @property(strong, nonatomic) NSArray *unreadNews;
 @property(strong, nonatomic) NSArray *readNews;
+@property(nonatomic) BOOL hasUnreadNews;
+@property(nonatomic) BOOL hasReadNews;
 @end
 
 @implementation NewsItemsViewController
@@ -40,12 +42,7 @@
 }
 
 - (void) updateNews {
-    NSMutableArray *array;
-    if(self.isShowingAllNews==NO){
-        array = [[self.newsSource.news allObjects] mutableCopy];
-    } else {
-        array = [[[NewsDataSource newsDataSource] allNews] mutableCopy];
-    }
+    NSMutableArray *array = [[self.newsSource.news allObjects] mutableCopy];
     [array sortUsingComparator:^NSComparisonResult(id a, id b) {
         NSDate *first = [(NewsItem *) a pubDate];
         NSDate *second = [(NewsItem *) b pubDate];
@@ -60,6 +57,8 @@
             [readNews addObject:newsItem];
         }
     }
+    self.hasReadNews = readNews.count > 0;
+    self.hasUnreadNews = unreadNews.count > 0;
     self.unreadNews = unreadNews;
     self.readNews = readNews;
 }
@@ -106,18 +105,41 @@
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 2;
+    if(self.hasUnreadNews != self.hasReadNews){
+        return 1;
+    }
+    if(self.hasReadNews == self.hasUnreadNews && self.hasUnreadNews == YES){
+        return 2;
+    }
+    return 0;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    if (section == 0) {
-        return @"Unread News";
+    if (section == 0 && self.hasUnreadNews == YES) {
+        return NSLocalizedString(@"Unread news",nil);
     }
-    return @"Old news";
+    return NSLocalizedString(@"Old news",nil);
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    return 26.0;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    UIView *headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 280, 26)];
+    headerView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"tweed.png"]];
+    UILabel *sectionTitle = [[UILabel alloc] initWithFrame:CGRectMake(10,2,250,22)];
+    sectionTitle.opaque = true;
+    sectionTitle.backgroundColor = [UIColor clearColor];
+    sectionTitle.textColor = [UIColor whiteColor];
+    sectionTitle.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:16.0];
+    sectionTitle.text = [self tableView:tableView titleForHeaderInSection:section];
+    [headerView addSubview:sectionTitle];
+    return headerView;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if (section == 0) return self.unreadNews.count;
+    if (section == 0 && self.hasUnreadNews == YES)  return self.unreadNews.count;
     return self.readNews.count;
 }
 
@@ -126,7 +148,7 @@
     static NSString *subtitleTableIdentifier = @"titleViewCellItem";
     NewsItemCell *cell = [tableViewLocal dequeueReusableCellWithIdentifier:subtitleTableIdentifier];
     NewsItem *newsItem;
-    if(indexPath.section == 0) {
+    if(indexPath.section == 0 && self.hasUnreadNews == YES) {
         newsItem = (self.unreadNews)[indexPath.row];
     } else {
         newsItem = (self.readNews)[indexPath.row];
@@ -146,7 +168,7 @@
     if ([segue.identifier isEqualToString:@"openNewsItem"]) {
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         PageNewsItemsViewController *destViewController = segue.destinationViewController;
-        if(indexPath.section == 0){
+        if(indexPath.section == 0 && self.hasUnreadNews == YES){
             destViewController.news = self.unreadNews;
         } else {
             destViewController.news = self.readNews;
