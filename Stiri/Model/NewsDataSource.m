@@ -45,10 +45,10 @@
 - (void)loadUnreadNews {
     [self.unreadNews removeAllObjects];
     
-    NSString *urlstring = [NSString stringWithFormat:@"%@%D", UNREADNEWSURL , self.userId];
+    NSString *urlstring = [NSString stringWithFormat:@"%@%D", RAILSBASEURL , self.userId];
     NSURL *url = [NSURL URLWithString:urlstring];
     AFHTTPClient *afhttpClient = [[AFHTTPClient alloc] initWithBaseURL:url];
-    [afhttpClient getPath:@""
+    [afhttpClient getPath:@"unread"
                parameters:self.paramsKey
                   success:^(AFHTTPRequestOperation *operation, id responseObject) {
                       NSString *responseStr = [[NSString alloc] initWithData:responseObject
@@ -57,7 +57,8 @@
                       json = [NSJSONSerialization JSONObjectWithData:[responseStr dataUsingEncoding:NSUTF8StringEncoding]
                                                              options:NSJSONReadingMutableContainers
                                                                error:nil];
-                      for(NSDictionary *ni in json){
+                      NSArray* unreadArticles = [json valueForKey:@"articles"];
+                      for(NSNumber *ni in unreadArticles){
                           [self.unreadNews addObject:[ni valueForKey:@"id"]];
                       }
                       NSArray *oldUnreadNews = [NewsItem MR_findByAttribute:@"isRead" withValue:@0];
@@ -330,6 +331,23 @@ static NewsDataSource *_newsDataSource;
 }
 
 //NEWSSOURCE
+
+- (void) deleteNewsSource:(NewsSource *)newsSource{
+    NSString *urlString = [NSString stringWithFormat:@"%@%d/%@", RAILSBASEURL, self.userId, newsSource.groupOwner.groupId];
+    AFHTTPClient *httpClient = [[AFHTTPClient alloc] initWithBaseURL:[NSURL URLWithString:urlString]];
+    [httpClient deletePath:[NSString stringWithFormat:@"%@",newsSource.sourceId]
+                parameters:self.paramsKey
+                   success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                       [newsSource MR_deleteEntity];
+                       [[NSManagedObjectContext MR_defaultContext] saveToPersistentStoreWithCompletion:nil];
+                       [[NSNotificationCenter defaultCenter] postNotificationName:DELETE_END  object:DELETE_SUCCES];
+                       [[NSNotificationCenter defaultCenter] postNotificationName:DELETE_SUCCES object:nil];
+
+                   }
+                   failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                        [[NSNotificationCenter defaultCenter] postNotificationName:DELETE_END object:DELETE_FAIL];
+                   }];
+}
 
 - (void)addNewsSourceWithUrl:(NSString *)sourceUrl inNewsGroup:(NewsGroup *)newsGroup {
     NSManagedObjectContext *context = [NSManagedObjectContext defaultContext];

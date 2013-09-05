@@ -24,6 +24,7 @@
 //DELEGATES
 @property id<SearchResultDeleagte> searchResultDelegate;
 //INITIALIZATION
+
 + (NewsDataSource *)newsDataSource;
 
 - (void)loadData;
@@ -41,6 +42,8 @@
 
 
 //NEWSOURCE
+- (void) deleteNewsSource:(NewsSource *) newsSource;
+
 - (void)addNewsSourceWithUrl:(NSString *)sourceUrl inNewsGroup:(NewsGroup *)newsGroup;
 
 - (NSArray *)allSources;

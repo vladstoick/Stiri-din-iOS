@@ -22,7 +22,7 @@
 //NEWSGROUP
 
 "Delete group" = "Șterge grup";
-"You can't undo this operation" = "Această operație șterge grupul complet";
+"You can't undo this operation" = "Acțiunea nu este reversibilă";
 "Cancel" = "Anulează";
 "Ok" = "Ok";
 "Deleted" = "Șters";
@@ -33,6 +33,10 @@
 "Renamed" = "Redenumit";
 "news sources" = "surse de știri";
 "one news source" = "o sursă de știri";
+
+//NEWSSOURCE
+
+"Delete news source" = "Șterge sursa de știri";
 
 //NEWSITEMS
 

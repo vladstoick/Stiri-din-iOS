@@ -194,12 +194,24 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *subtitleTableIdentifier = @"panningCell";
-    HHPanningTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:subtitleTableIdentifier];
+    static NSString *identifier = @"groupCell";
+    HHPanningTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
     if (cell == nil) {
         cell = [[HHPanningTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle
-                                             reuseIdentifier:subtitleTableIdentifier];
+                                             reuseIdentifier:identifier];
     }
+    //FRONT VIEW
+    NewsGroup *ng = (self.groups)[indexPath.row];
+    cell.textLabel.text = ng.title;
+    cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue-CondensedBold" size:18.0];
+    NSUInteger numberOfNewSources = ng.newsSources.count;
+    NSString *surseDeStiriString = [NSString stringWithFormat:@"%d %@",numberOfNewSources, NSLocalizedString(@"news sources", nil)];
+    if(numberOfNewSources == 1 ){
+        surseDeStiriString = [NSString stringWithFormat:NSLocalizedString(@"one news source", nil)];
+    }
+    cell.detailTextLabel.text = surseDeStiriString;
+    cell.detailTextLabel.font = [UIFont fontWithName:@"HelveticaNeue-LightItalic" size:14.0];
+    //BACK VIEW
     UIView *drawerView = [[UIView alloc] initWithFrame:cell.frame];
     drawerView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"dark_dotted"]];
     UIButton *deleteButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -214,16 +226,7 @@
     [drawerView addSubview:deleteButton];
     cell.drawerView = drawerView;
     cell.directionMask =  HHPanningTableViewCellDirectionLeft + HHPanningTableViewCellDirectionRight;
-    NewsGroup *ng = (self.groups)[indexPath.row];
-    cell.textLabel.text = ng.title;
-    cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue-CondensedBold" size:18.0];
-    NSUInteger numberOfNewSources = ng.newsSources.count;
-    NSString *surseDeStiriString = [NSString stringWithFormat:@"%d %@",numberOfNewSources, NSLocalizedString(@"news sources", nil)];
-    if(numberOfNewSources == 1 ){
-        surseDeStiriString = [NSString stringWithFormat:NSLocalizedString(@"one news source", nil)];
-    }
-    cell.detailTextLabel.text = surseDeStiriString;
-    cell.detailTextLabel.font = [UIFont fontWithName:@"HelveticaNeue-LightItalic" size:14.0];
+
 
     return cell;
 }

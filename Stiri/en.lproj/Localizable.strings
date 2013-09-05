@@ -34,6 +34,10 @@
 "news sources" = "news sources";
 "one news source" = "one news source";
 
+//NEWSSOURCE
+
+"Delete news source" = "Delete news source";
+
 //NEWSITEMS
 
 "Old news" = "Old news";

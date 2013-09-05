@@ -19,7 +19,6 @@
 		7208343A17A0288800CEC1E5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7208343917A0288800CEC1E5 /* UIKit.framework */; };
 		7208343C17A0288800CEC1E5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7208343B17A0288800CEC1E5 /* Foundation.framework */; };
 		7208343E17A0288800CEC1E5 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7208343D17A0288800CEC1E5 /* CoreGraphics.framework */; };
-		7208344417A0288800CEC1E5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7208344217A0288800CEC1E5 /* InfoPlist.strings */; };
 		7208344617A0288800CEC1E5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7208344517A0288800CEC1E5 /* main.m */; };
 		7208344A17A0288800CEC1E5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7208344917A0288800CEC1E5 /* AppDelegate.m */; };
 		7208344C17A0288800CEC1E5 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 7208344B17A0288800CEC1E5 /* Default.png */; };
@@ -142,10 +141,10 @@
 		728661D817BFD21E00AA13D3 /* SearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SearchViewController.h; path = Controller/SearchViewController.h; sourceTree = "<group>"; };
 		728661D917BFD21E00AA13D3 /* SearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SearchViewController.m; path = Controller/SearchViewController.m; sourceTree = "<group>"; };
 		728BF4F317D7CA0200B3F546 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
-		728BF50717D7CBE900B3F546 /* en */ = {isa = PBXFileReference; lastKnownFileType = file; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		728BF50717D7CBE900B3F546 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		728BF50917D7CBF900B3F546 /* ro */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ro; path = ro.lproj/MainStoryboard_iPhone.strings; sourceTree = "<group>"; };
 		728BF50B17D7CBF900B3F546 /* ro */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ro; path = ro.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		728BF50C17D7CBFA00B3F546 /* ro */ = {isa = PBXFileReference; lastKnownFileType = file; name = ro; path = ro.lproj/Localizable.strings; sourceTree = "<group>"; };
+		728BF50C17D7CBFA00B3F546 /* ro */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ro; path = ro.lproj/Localizable.strings; sourceTree = "<group>"; };
 		728BF50D17D7CC8B00B3F546 /* Stiri-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Stiri-Info.plist"; sourceTree = "<group>"; };
 		728CB33817CC930100F4BA49 /* AllNewsItemsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllNewsItemsViewController.h; sourceTree = "<group>"; };
 		728CB33917CC930100F4BA49 /* AllNewsItemsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllNewsItemsViewController.m; sourceTree = "<group>"; };
@@ -640,7 +639,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				728BF50617D7CBE900B3F546 /* Localizable.strings in Resources */,
-				7208344417A0288800CEC1E5 /* InfoPlist.strings in Resources */,
 				7208344C17A0288800CEC1E5 /* Default.png in Resources */,
 				7208344E17A0288800CEC1E5 /* Default@2x.png in Resources */,
 				7208345017A0288800CEC1E5 /* Default-568h@2x.png in Resources */,
