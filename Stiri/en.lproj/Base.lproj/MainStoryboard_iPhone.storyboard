@@ -31,7 +31,7 @@
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="BuQ-ds-KKU">
                                 <rect key="frame" x="5" y="5" width="71" height="33"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBold" family="Helvetica Neue" pointSize="19"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="19"/>
                                 <state key="normal" title="Cancel">
                                     <color key="titleColor" red="0.9960784912109375" green="0.99215692281723022" blue="0.99215692281723022" alpha="1" colorSpace="deviceRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -51,7 +51,7 @@
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Www-24-1wT">
                                 <rect key="frame" x="244" y="5" width="71" height="33"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBold" family="Helvetica Neue" pointSize="19"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="19"/>
                                 <state key="normal" title="Done">
                                     <color key="titleColor" red="0.9960784912109375" green="0.99215692281723022" blue="0.99215692281723022" alpha="1" colorSpace="deviceRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -82,7 +82,28 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Search" id="Dz0-zv-OGv"/>
+                    <navigationItem key="navigationItem" title="Search" id="Dz0-zv-OGv">
+                        <barButtonItem key="leftBarButtonItem" style="plain" id="BKd-cd-GVd">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="zdc-Du-vxG">
+                                <rect key="frame" x="5" y="5" width="71" height="33"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="19"/>
+                                <state key="normal" title="Cancel">
+                                    <color key="titleColor" red="0.99607849120000003" green="0.99215692280000001" blue="0.99215692280000001" alpha="1" colorSpace="deviceRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="cancelPressed:" destination="8sM-nI-Wg5" eventType="touchUpInside" id="bbh-aJ-6zN"/>
+                                </connections>
+                            </button>
+                            <connections>
+                                <action selector="cancelPressed:" destination="8sM-nI-Wg5" id="eUj-Yg-mIr"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <segue destination="GYb-MJ-hah" kind="push" id="F3o-AY-tNd"/>
                     </connections>
@@ -91,7 +112,7 @@
             </objects>
             <point key="canvasLocation" x="4628" y="1016"/>
         </scene>
-        <!--Add News Source Select Group View Controller-->
+        <!--Add News Source Select Group View Controller - Select a group-->
         <scene sceneID="s0H-Jf-rQA">
             <objects>
                 <viewController id="GYb-MJ-hah" customClass="AddNewsSourceSelectGroupViewController" sceneMemberID="viewController">
@@ -101,6 +122,28 @@
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="gQj-la-S0f">
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="selectGroupCell" textLabel="pzo-jU-xIL" style="IBUITableViewCellStyleDefault" id="diF-nw-Ggj">
+                                        <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pzo-jU-xIL">
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="GYb-MJ-hah" id="g9Z-Av-A36"/>
+                                    <outlet property="delegate" destination="GYb-MJ-hah" id="oLn-cE-c8V"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -111,7 +154,7 @@
                             <constraint firstItem="gQj-la-S0f" firstAttribute="leading" secondItem="JB8-qu-w2M" secondAttribute="leading" type="default" id="mpi-Zi-Im7"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="nPn-le-veD"/>
+                    <navigationItem key="navigationItem" title="Select a group" id="nPn-le-veD"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1Dv-mx-JZ5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -167,7 +210,26 @@
                             <constraint firstItem="duK-AW-GcB" firstAttribute="bottom" secondItem="OCC-Rt-CvQ" secondAttribute="bottom" type="default" id="y9t-zs-IkX"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Categories" id="RAd-Xf-x1i"/>
+                    <navigationItem key="navigationItem" title="Categories" id="RAd-Xf-x1i">
+                        <barButtonItem key="leftBarButtonItem" style="plain" id="G9Q-Xb-aoT">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="T2x-f3-Wsx">
+                                <rect key="frame" x="5" y="5" width="71" height="33"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="19"/>
+                                <state key="normal" title="Cancel">
+                                    <color key="titleColor" red="0.99607849120000003" green="0.99215692280000001" blue="0.99215692280000001" alpha="1" colorSpace="deviceRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="cancelClicked:" destination="zQr-eA-oia" eventType="touchUpInside" id="ebf-b1-Vc5"/>
+                                    <action selector="cancelPressed:" destination="8sM-nI-Wg5" eventType="touchUpInside" id="Cf7-Fn-1wo"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="duK-AW-GcB" id="TAm-si-X4A"/>
                     </connections>
@@ -186,6 +248,31 @@
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="M53-Nt-yDn">
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="feedCategoryCell" textLabel="vKn-0N-vQy" style="IBUITableViewCellStyleDefault" id="IEQ-3h-J8N">
+                                        <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="300" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vKn-0N-vQy">
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <connections>
+                                            <segue destination="GYb-MJ-hah" kind="push" identifier="selectedAFeed" id="Ae0-rI-srF"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="3Lp-QJ-7Z8" id="kuH-Px-kza"/>
+                                    <outlet property="delegate" destination="3Lp-QJ-7Z8" id="0AK-XV-wxH"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -198,7 +285,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="NUG-Sx-b9c"/>
                     <connections>
-                        <segue destination="GYb-MJ-hah" kind="push" id="gru-gQ-1FO"/>
+                        <outlet property="tableView" destination="M53-Nt-yDn" id="GnL-5E-g7M"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rhU-N8-fry" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -456,6 +543,7 @@
                         </barButtonItem>
                     </toolbarItems>
                     <navigationItem key="navigationItem" title="News" id="UHj-i4-Zxu"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="blackOpaque" prompted="NO"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics" barStyle="blackOpaque"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Pnv-nI-dkY" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -855,11 +943,11 @@
             </objects>
             <point key="canvasLocation" x="3086" y="448"/>
         </scene>
-        <!--Navigation Controller - Categories-->
+        <!--Navigation Controller - Manual-->
         <scene sceneID="2Qx-xY-IeT">
             <objects>
                 <navigationController id="fYp-aE-IF7" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Categories" image="manual_tab_bar_icon.png" id="qPl-2c-ahc"/>
+                    <tabBarItem key="tabBarItem" title="Manual" image="manual_tab_bar_icon.png" id="qPl-2c-ahc"/>
                     <toolbarItems/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="blackOpaque" prompted="NO"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="blackOpaque" id="pQY-Rp-hQ8">
@@ -1042,7 +1130,8 @@
                 <navigationController id="39B-Mv-Tmo" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Search" image="recommended_tab_bar_icon.png" id="jVM-eE-SPF"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="1xQ-iA-zvZ">
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="blackOpaque" prompted="NO"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="blackOpaque" id="1xQ-iA-zvZ">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1064,10 +1153,14 @@
     <classes>
         <class className="AddNewsSourceCategoriesFeedsViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/AddNewsSourceCategoriesFeedsViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+            </relationships>
         </class>
         <class className="AddNewsSourceCategoriesViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/AddNewsSourceCategoriesViewController.h"/>
             <relationships>
+                <relationship kind="action" name="cancelClicked:"/>
                 <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
             </relationships>
         </class>
@@ -1084,6 +1177,9 @@
         </class>
         <class className="AddNewsSourceSelectGroupViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/AddNewsSourceSelectGroupViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+            </relationships>
         </class>
         <class className="AllNewsItemsViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/AllNewsItemsViewController.h"/>
@@ -1097,9 +1193,6 @@
             <relationships>
                 <relationship kind="outlet" name="delegate"/>
             </relationships>
-        </class>
-        <class className="GPPSignInButton" superclassName="UIButton">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/GPPSignInButton.h"/>
         </class>
         <class className="HHPanningTableViewCell" superclassName="UITableViewCell">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/HHPanningTableViewCell.h"/>
@@ -1182,7 +1275,7 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="gru-gQ-1FO"/>
+        <segue reference="F3o-AY-tNd"/>
         <segue reference="P2L-Xa-wTr"/>
     </inferredMetricsTieBreakers>
 </document>

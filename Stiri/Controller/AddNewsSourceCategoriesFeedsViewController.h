@@ -11,5 +11,6 @@
 @interface AddNewsSourceCategoriesFeedsViewController : UIViewController <UITableViewDelegate , UITableViewDataSource>
 @property (strong,nonatomic) NSArray *feeds;
 @property (strong,nonatomic) NSString *categoryTitle;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end

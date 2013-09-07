@@ -9,5 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface AddNewsSourceCategoriesViewController : UIViewController <UITableViewDataSource , UITableViewDelegate>
+- (IBAction)cancelClicked:(id)sender;
+
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @end

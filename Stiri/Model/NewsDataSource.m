@@ -346,7 +346,7 @@ static NewsDataSource *_newsDataSource;
         newsGroup.title = groupTitle;
         [self addNewsSourceWithUrl:sourceUrl inNewsGroup:newsGroup];
     }            failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-
+        NSLog(@"%@",error);
     }];
 }
 

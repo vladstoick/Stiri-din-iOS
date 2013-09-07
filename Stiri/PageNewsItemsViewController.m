@@ -131,6 +131,7 @@
     NewsItemViewController *currentViewController = (self.pageController.viewControllers)[0];
     NSURL *url = [NSURL URLWithString:currentViewController.currentNewsItem.url];
     TSMiniWebBrowser *webBrowser = [[TSMiniWebBrowser alloc] initWithUrl:url];
+    webBrowser.barStyle = UIBarStyleBlack;
     [self.navigationController pushViewController:webBrowser animated:YES];   
 }
 

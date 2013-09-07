@@ -7,7 +7,7 @@
 //
 
 #import "AddNewsSourceCategoriesFeedsViewController.h"
-
+#import "AddNewsSourceSelectGroupViewController.h"
 @interface AddNewsSourceCategoriesFeedsViewController ()
 
 @end
@@ -34,6 +34,29 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return self.feeds.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    NSString *tableIdentifier = @"feedCategoryCell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:tableIdentifier];
+    if(cell == nil ){
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:tableIdentifier];
+    }
+    NSDictionary *feed = [self.feeds objectAtIndex:indexPath.row];
+    cell.textLabel.text = [feed objectForKey:@"title"];
+    return cell;
+}
+
+- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if([segue.identifier isEqualToString:@"selectedAFeed"]){
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        AddNewsSourceSelectGroupViewController *destViewController = segue.destinationViewController;
+        destViewController.feedToBeAdded = [self.feeds objectAtIndex:indexPath.row];
+        [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+    }
 }
 
 @end
