@@ -234,7 +234,6 @@
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if( [segue.identifier isEqualToString:@"showNewsSourceForGroup"]){
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        NSLog(@"%u",indexPath.row);
         NewsSourceViewController *destViewController = segue.destinationViewController;
         NewsGroup *selectedNewsGroup = [self.groups objectAtIndex:indexPath.row];
         destViewController.groupId = selectedNewsGroup.groupId;

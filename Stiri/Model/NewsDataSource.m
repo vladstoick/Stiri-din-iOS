@@ -16,6 +16,7 @@
 #define RENAME_SUCCES @"rename_succes"
 #define RENAME_FAIL @"rename_fail"
 #define ADD_ENDED @"add_ended"
+#define FEEDSBASEURL @"http://37.139.26.80/newssource"
 #define RAILSBASEURL @"http://37.139.26.80/user/"
 #define PARSEBASEURL @"http://37.139.8.146:3000/?feedId="
 #define UNREADNEWSURL @"http://37.139.8.146:4000/unread/"
@@ -26,19 +27,54 @@
 @interface NewsDataSource ()
 @property(nonatomic, readonly) NSDictionary *paramsKey;
 @property(nonatomic, strong) NSMutableArray *unreadNews;
+@property(nonatomic, strong) NSMutableDictionary *allFeedsMutable;
 @end
 
 @implementation NewsDataSource
 
++ (NewsDataSource *)newsDataSource {
+    if (!_newsDataSource) {
+        _newsDataSource = [[NewsDataSource alloc] init];
+        [_newsDataSource loadFeeds];
+    }
+    return _newsDataSource;
+}
+
 //ADDING DATA
+//0. all Feeds are loaded
 //1. loadData is Called
 //2. loadUnreadNews is called
 //3. Once loadUnreadNews process is finished loadGroupsAndSources is called
 //4. Once loadGroupsAndSources is finished insertGroupsAndNewsSource is called
 //5. parseNewsSource is called for each NewsSource - > after that news are inserted;
+- (void)loadFeeds{
+    self.allFeedsMutable = [[NSMutableDictionary alloc] init];
+    NSString *urlString = [NSString stringWithFormat:@"%@",FEEDSBASEURL];
+    AFHTTPClient *httpClient = [[AFHTTPClient alloc] initWithBaseURL:[NSURL URLWithString:urlString]];
+    [httpClient getPath:@""
+             parameters:nil
+                success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                    NSString *responseStr = [[NSString alloc] initWithData:responseObject
+                                                                  encoding:NSUTF8StringEncoding];
+                    NSDictionary *json;
+                    json = [NSJSONSerialization JSONObjectWithData:[responseStr dataUsingEncoding:NSUTF8StringEncoding]
+                                                           options:NSJSONReadingMutableContainers
+                                                             error:nil];
+                    NSArray *feeds = [json valueForKey:@"feeds"];
+                    for(NSDictionary *feed in feeds){
+                        NSString *category = [feed valueForKey:@"category"];
+                        if(![self.allFeedsMutable objectForKey:category]){
+                            [self.allFeedsMutable setObject:[[NSMutableArray alloc]init] forKey:category];
+                        }
+                        [(NSMutableArray*)[self.allFeedsMutable objectForKey:category] addObject:feed];
+                    }
+                }
+                failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                    
+                }];
+}
 - (void)loadData {
     self.isDataLoaded = NO;
-    
     [self loadUnreadNews];
 }
 
@@ -260,14 +296,6 @@ static NewsDataSource *_newsDataSource;
     return _privateKey;
 }
 
-+ (NewsDataSource *)newsDataSource {
-    if (!_newsDataSource) {
-        _newsDataSource = [[NewsDataSource alloc] init];
-
-    }
-    return _newsDataSource;
-}
-
 //NEWSGROUP
 
 - (void)renameNewsGroup:(NewsGroup *)newsGroup withNewName:(NSString *)title{
@@ -472,6 +500,12 @@ static NewsDataSource *_newsDataSource;
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         
     }];
+}
+
+//ALL FEEDS
+
+- (NSDictionary*) allFeeds{
+    return self.allFeedsMutable;
 }
 
 @end

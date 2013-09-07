@@ -1,18 +1,18 @@
 //
-//  AddNewsSourceRecommendedViewController.m
+//  AddNewsSourceSelectGroupViewController.m
 //  Stiri
 //
-//  Created by Vlad Stoica on 8/13/13.
+//  Created by Vlad Stoica on 9/7/13.
 //  Copyright (c) 2013 Stoica Vlad. All rights reserved.
 //
 
-#import "AddNewsSourceRecommendedViewController.h"
+#import "AddNewsSourceSelectGroupViewController.h"
 
-@interface AddNewsSourceRecommendedViewController ()
+@interface AddNewsSourceSelectGroupViewController ()
 
 @end
 
-@implementation AddNewsSourceRecommendedViewController
+@implementation AddNewsSourceSelectGroupViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {

@@ -67,4 +67,10 @@
 //SEARCH
 
 - (void)searchOnlineText:(NSString *)search fromIndex:(NSInteger) startPosition;
+
+//ALL FEEDS
+
+@property (readonly, nonatomic) NSDictionary *allFeeds;
+
+
 @end
