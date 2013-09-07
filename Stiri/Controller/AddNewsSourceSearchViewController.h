@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AddNewsSourceSearchViewController : UIViewController
+@interface AddNewsSourceSearchViewController : UIViewController <UISearchDisplayDelegate, UITableViewDelegate, UITableViewDataSource>
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+
+- (IBAction)cancelClicked:(id)sender;
 
 @end

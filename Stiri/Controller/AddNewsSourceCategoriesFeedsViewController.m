@@ -43,10 +43,11 @@
     NSString *tableIdentifier = @"feedCategoryCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:tableIdentifier];
     if(cell == nil ){
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:tableIdentifier];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:tableIdentifier];
     }
     NSDictionary *feed = [self.feeds objectAtIndex:indexPath.row];
     cell.textLabel.text = [feed objectForKey:@"title"];
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@",[feed objectForKey:@"subscribers"]];
     return cell;
 }
 
