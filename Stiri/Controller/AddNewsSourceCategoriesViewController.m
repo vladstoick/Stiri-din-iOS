@@ -16,7 +16,10 @@
 @implementation AddNewsSourceCategoriesViewController
 
 - (NSDictionary*) allFeeds{
-    if(!_allFeeds) _allFeeds = [[NewsDataSource newsDataSource] allFeeds];
+    if(!_allFeeds){
+        _allFeeds = [[[NewsDataSource newsDataSource] allFeeds] mutableCopy];
+
+    }
     return _allFeeds;
 }
 
@@ -54,7 +57,13 @@
     NSString *category = [[self.allFeeds allKeys] objectAtIndex:indexPath.row];
     NSArray *feedsForCategory = [self.allFeeds objectForKey:category];
     cell.textLabel.text = [category capitalizedString];
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%u",feedsForCategory.count];
+    NSString *feedsString = [NSString stringWithFormat:@"%u ",feedsForCategory.count];
+    if(feedsForCategory.count == 1){
+        feedsString = NSLocalizedString(@"one news source", nil);
+    } else {
+        feedsString = [feedsString stringByAppendingString:NSLocalizedString(@"news sources", nil)];
+    }
+    cell.detailTextLabel.text = feedsString;
     return cell;
 }
 

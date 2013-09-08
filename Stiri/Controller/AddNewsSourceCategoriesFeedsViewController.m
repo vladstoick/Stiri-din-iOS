@@ -47,7 +47,14 @@
     }
     NSDictionary *feed = [self.feeds objectAtIndex:indexPath.row];
     cell.textLabel.text = [feed objectForKey:@"title"];
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@",[feed objectForKey:@"subscribers"]];
+    NSNumber *subscribers = [feed objectForKey:@"subscribers"];
+    NSString *subscribersString = [NSString stringWithFormat:@"%@ ",subscribers];
+    if([subscribers isEqual: @1]){
+        subscribersString = NSLocalizedString(@"one subscriber", nil);
+    } else {
+        subscribersString = [subscribersString stringByAppendingString:NSLocalizedString(@"subscribers", nil)];
+    }
+    cell.detailTextLabel.text =  subscribersString;
     return cell;
 }
 

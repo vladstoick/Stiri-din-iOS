@@ -12,6 +12,7 @@
 @interface AddNewsSourceSearchViewController ()
 @property (strong, nonatomic) NSArray *allFeeds;
 @property (strong, nonatomic) NSArray *searchResults;
+@property (strong, nonatomic) NSDictionary *selectedFeed;
 @end
 
 @implementation AddNewsSourceSearchViewController
@@ -92,17 +93,40 @@
         feed = [self.searchResults objectAtIndex:indexPath.row];
     }
     cell.textLabel.text = [feed objectForKey:@"title"];
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@",[feed objectForKey:@"subscribers"]];
+    NSNumber *subscribers = [feed objectForKey:@"subscribers"];
+    NSString *subscribersString = [NSString stringWithFormat:@"%@ ",subscribers];
+    if([subscribers isEqual: @1]){
+        subscribersString = NSLocalizedString(@"one subscriber", nil);
+    } else {
+        subscribersString = [subscribersString stringByAppendingString:NSLocalizedString(@"subscribers", nil)];
+    }
+    cell.detailTextLabel.text =  subscribersString;
 
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
+    if(tableView == self.tableView){
+        self.selectedFeed = [self.allFeeds objectAtIndex:indexPath.row];
+    } else {
+        self.selectedFeed = [self.searchResults objectAtIndex:indexPath.row];
+    }
+    [self performSegueWithIdentifier:@"selectedAFeedFromSearch" sender:self];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if([segue.identifier isEqualToString:@"selectedAFeedFromSearch"]){
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        AddNewsSourceSelectGroupViewController *destViewController = segue.destinationViewController;
+        destViewController.feedToBeAdded = self.selectedFeed;
+        [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+    }
 }
 
 - (IBAction)cancelClicked:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
+
+
 
 @end

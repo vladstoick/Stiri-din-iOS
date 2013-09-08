@@ -32,6 +32,8 @@
 		727B033A17BA12CD003A0500 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 727B033917BA12CD003A0500 /* CoreData.framework */; };
 		7282832A17BF79DA006DEE19 /* navbar_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 7282832817BF79DA006DEE19 /* navbar_bg.png */; };
 		7282832B17BF79DA006DEE19 /* navbar_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7282832917BF79DA006DEE19 /* navbar_bg@2x.png */; };
+		7284E40D17DC7F2B00DB4718 /* blankimgfavico in Resources */ = {isa = PBXBuildFile; fileRef = 7284E40B17DC7F2B00DB4718 /* blankimgfavico */; };
+		7284E40E17DC7F2B00DB4718 /* blankimgfavico@2x in Resources */ = {isa = PBXBuildFile; fileRef = 7284E40C17DC7F2B00DB4718 /* blankimgfavico@2x */; };
 		728661D217BFAF4200AA13D3 /* squairy_light.png in Resources */ = {isa = PBXBuildFile; fileRef = 728661D017BFAF4200AA13D3 /* squairy_light.png */; };
 		728661D317BFAF4200AA13D3 /* squairy_light@2X.png in Resources */ = {isa = PBXBuildFile; fileRef = 728661D117BFAF4200AA13D3 /* squairy_light@2X.png */; };
 		728661D617BFAF5000AA13D3 /* tweed_@2X.png in Resources */ = {isa = PBXBuildFile; fileRef = 728661D417BFAF5000AA13D3 /* tweed_@2X.png */; };
@@ -135,6 +137,8 @@
 		7282832817BF79DA006DEE19 /* navbar_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = navbar_bg.png; path = Assets/navbar_bg.png; sourceTree = "<group>"; };
 		7282832917BF79DA006DEE19 /* navbar_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "navbar_bg@2x.png"; path = "Assets/navbar_bg@2x.png"; sourceTree = "<group>"; };
 		7282832C17BF7A90006DEE19 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		7284E40B17DC7F2B00DB4718 /* blankimgfavico */ = {isa = PBXFileReference; lastKnownFileType = file; name = blankimgfavico; path = Assets/blankimgfavico; sourceTree = "<group>"; };
+		7284E40C17DC7F2B00DB4718 /* blankimgfavico@2x */ = {isa = PBXFileReference; lastKnownFileType = file; name = "blankimgfavico@2x"; path = "Assets/blankimgfavico@2x"; sourceTree = "<group>"; };
 		728661D017BFAF4200AA13D3 /* squairy_light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = squairy_light.png; path = Assets/squairy_light.png; sourceTree = "<group>"; };
 		728661D117BFAF4200AA13D3 /* squairy_light@2X.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "squairy_light@2X.png"; path = "Assets/squairy_light@2X.png"; sourceTree = "<group>"; };
 		728661D417BFAF5000AA13D3 /* tweed_@2X.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tweed_@2X.png"; sourceTree = "<group>"; };
@@ -588,6 +592,8 @@
 		72B8681D17B3C4A400A871E5 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				7284E40B17DC7F2B00DB4718 /* blankimgfavico */,
+				7284E40C17DC7F2B00DB4718 /* blankimgfavico@2x */,
 				7296D95C17D32E9900E05075 /* blankimg.png */,
 				7296D95D17D32E9900E05075 /* blankimg@2x.png */,
 				72F48EA417C0052900F9BB56 /* noisy_net_@2X.png */,
@@ -705,6 +711,8 @@
 				7296D95E17D32E9900E05075 /* blankimg.png in Resources */,
 				7296D95F17D32E9900E05075 /* blankimg@2x.png in Resources */,
 				728BF50E17D7CC8B00B3F546 /* Stiri-Info.plist in Resources */,
+				7284E40D17DC7F2B00DB4718 /* blankimgfavico in Resources */,
+				7284E40E17DC7F2B00DB4718 /* blankimgfavico@2x in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

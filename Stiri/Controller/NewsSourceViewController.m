@@ -85,9 +85,10 @@
     //FRONT VIEW
     NewsSource *ns = (self.newsSources)[indexPath.row];
     if([ns.imageUrl isEqualToString:@""]){
-        [cell.imageView setImage:[UIImage imageNamed:@"blankimg.png"]];
+        [cell.imageView setImage:[UIImage imageNamed:@"blankimgfavico.png"]];
     } else {
-        [cell.imageView setImageWithURL:[NSURL URLWithString:ns.imageUrl]];
+        [cell.imageView setFrame:CGRectMake(0, 0, 20, 20)];
+        [cell.imageView setImageWithURL:[NSURL URLWithString:ns.imageUrl] placeholderImage:[UIImage imageNamed:@"blankimgfavico.png"]];
     }
 
     cell.textLabel.text = ns.title;

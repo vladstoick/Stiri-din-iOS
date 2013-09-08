@@ -37,7 +37,7 @@
 {
     [super viewDidLoad];
     __typeof (&*self) __weak weakSelf = self;
-//    self.tabBarController.navigationItem
+    //    self.tabBarController.navigationItem
     self.allGroups = [[NewsDataSource newsDataSource] allGroups];
     self.manager = [[RETableViewManager alloc]initWithTableView:self.tableView];
     self.section = [RETableViewSection sectionWithHeaderTitle:@""];
@@ -69,7 +69,7 @@
     [self.section addItem:self.newsGroup];
     self.addNewsGroupName = [RETextItem itemWithTitle:@"Group name" value:@"Sport" placeholder:@"The name of the new group"];
     [self.section addItem:self.addNewsGroupName];
-        [self.manager addSection:self.section];
+    [self.manager addSection:self.section];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(addEnded:) name:ADD_ENDED object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(selectedGroup:) name:selected_group object:nil];
 	// Do any additional setup after loading the view.
