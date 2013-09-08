@@ -21,24 +21,28 @@
 #define DELETE_FAIL @"delete_fail"
 @interface NewsSourceViewController ()
 @property (weak, nonatomic) NSIndexPath *swipedCell;
-@property (readonly,nonatomic) NewsGroup* newsGroup;
-@property (readonly,nonatomic) NSArray* newsSources;
+@property (strong,nonatomic) NewsGroup* newsGroup;
+@property (strong,nonatomic) NSArray* newsSources;
 @end
 
 @implementation NewsSourceViewController
 
 - (NewsGroup *) newsGroup{
-    return [[NewsDataSource newsDataSource]getGroupWithId:self.groupId];
+    if(!_newsGroup){
+        _newsGroup = [[NewsDataSource newsDataSource]getGroupWithId:self.groupId];
+        [self updateNewsSources];
+    }
+    return _newsGroup;
 }
 
-- (NSArray *) newsSources{
+- (void ) updateNewsSources{
     NSMutableArray *newsSources = [[self.newsGroup.newsSources allObjects] mutableCopy];
     [newsSources sortUsingComparator:^NSComparisonResult(id obj1, id obj2) {
         NSNumber *id1 = ((NewsSource*)obj1).sourceId;
         NSNumber *id2 = ((NewsSource*)obj2).sourceId;
         return [id1 compare:id2];
     }];
-    return newsSources;
+    self.newsSources = newsSources;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -53,9 +57,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.title = self.newsGroup.title;
-    [self.tableView reloadData];
-    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(deleteMessage:)
+                                                 name:DELETE_END
+                                               object:nil];
+    self.title = self.newsGroup.title;   
 }
 
 
@@ -130,6 +136,8 @@
 - (void) deleteMessage:(NSNotification*) event{
     if([event.object isEqual: DELETE_SUCCES]){
         [SVProgressHUD showSuccessWithStatus:NSLocalizedString(@"Deleted",nil)];
+        self.newsGroup = nil;
+        [self updateNewsSources];
         [self.tableView reloadData];
     } else {
         [SVProgressHUD showErrorWithStatus:NSLocalizedString(@"Failed",nil)];

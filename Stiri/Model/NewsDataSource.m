@@ -369,8 +369,6 @@ static NewsDataSource *_newsDataSource;
                        [newsSource MR_deleteEntity];
                        [[NSManagedObjectContext MR_defaultContext] saveToPersistentStoreWithCompletion:nil];
                        [[NSNotificationCenter defaultCenter] postNotificationName:DELETE_END  object:DELETE_SUCCES];
-                       [[NSNotificationCenter defaultCenter] postNotificationName:DELETE_SUCCES object:nil];
-
                    }
                    failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                         [[NSNotificationCenter defaultCenter] postNotificationName:DELETE_END object:DELETE_FAIL];
