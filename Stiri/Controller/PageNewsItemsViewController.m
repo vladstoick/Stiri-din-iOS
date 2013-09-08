@@ -56,15 +56,6 @@
     [self addChildViewController:self.pageController];
     [[self view] addSubview:[self.pageController view]];
     [self.pageController didMoveToParentViewController:self];
-    self.adView = [[MPAdView alloc] initWithAdUnitId:@"e1c80c4a89ab449a8fe3da82e08a209f"
-                                                size:MOPUB_BANNER_SIZE];
-    self.adView.delegate = self;
-    CGRect frame = self.adView.frame;
-    CGSize size = [self.adView adContentViewSize];
-    frame.origin.y = [[UIScreen mainScreen] applicationFrame].size.height - size.height;
-    self.adView.frame = frame;
-    [self.view addSubview:self.adView];
-    [self.adView loadAd];
     [super viewDidLoad];
     // Do any additional setup after loading the view.
 }
@@ -141,10 +132,6 @@
     TSMiniWebBrowser *webBrowser = [[TSMiniWebBrowser alloc] initWithUrl:url];
     webBrowser.barStyle = UIBarStyleBlack;
     [self.navigationController pushViewController:webBrowser animated:YES];   
-}
-
-- (UIViewController *)viewControllerForPresentingModalView {
-    return self;
 }
 
 @end

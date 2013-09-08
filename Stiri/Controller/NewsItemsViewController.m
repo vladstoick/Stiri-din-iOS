@@ -16,7 +16,7 @@
 #define DATA_NEWSOURCE_PARSED @"newssource_loaded"
 #import "UIImageView+AFNetworking.h"
 @interface NewsItemsViewController ()
-@property(readonly, nonatomic) NewsSource *newsSource;
+@property(strong, nonatomic) NewsSource *newsSource;
 @property(strong, nonatomic) NSArray *unreadNews;
 @property(strong, nonatomic) NSArray *readNews;
 @property(nonatomic) BOOL hasUnreadNews;
@@ -26,8 +26,10 @@
 @implementation NewsItemsViewController
 
 - (NewsSource *)newsSource {
-    NewsSource *localNewsSource = [[NewsDataSource newsDataSource] getNewsSourceWithId:self.sourceId];
-    return localNewsSource;
+    if(!_newsSource){
+        _newsSource = [[NewsDataSource newsDataSource] getNewsSourceWithId:self.sourceId];
+    }
+    return _newsSource;
 }
 
 - (void)checkIfParsed:(NewsSource *)ns {
@@ -42,6 +44,7 @@
 }
 
 - (void) updateNews {
+    self.newsSource = nil;
     NSMutableArray *array = [[self.newsSource.news allObjects] mutableCopy];
     [array sortUsingComparator:^NSComparisonResult(id a, id b) {
         NSDate *first = [(NewsItem *) a pubDate];

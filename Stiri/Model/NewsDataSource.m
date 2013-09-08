@@ -70,7 +70,7 @@
                     }
                 }
                 failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                    
+                    NSLog(@"Recieved error %@",error);
                 }];
 }
 - (void)loadData {
