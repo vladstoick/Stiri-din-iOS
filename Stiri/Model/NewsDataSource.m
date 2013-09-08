@@ -168,7 +168,6 @@
                     }
                 }
             } else {
-
                 newsSource = [NewsSource MR_createInContext:context];
                 newsSource.groupOwner = newsGroup;
                 newsSource.title = title;
@@ -395,6 +394,12 @@ static NewsDataSource *_newsDataSource;
         newsSource.url = sourceUrl;
         newsSource.sourceId = [jsonDictionary valueForKey:@"id"];
         newsSource.groupOwner = ng;
+        NSString *imageUrl = [jsonDictionary valueForKey:@"image"];
+        if( (NSNull*) imageUrl == [NSNull null]){
+            newsSource.imageUrl = @"";
+        } else {
+            newsSource.imageUrl = imageUrl;
+        }
         [set addObject:newsSource];
         ng.newsSources = set;
         [self parseNewsSource:newsSource];
