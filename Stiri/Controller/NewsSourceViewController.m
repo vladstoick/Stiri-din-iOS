@@ -32,7 +32,13 @@
 }
 
 - (NSArray *) newsSources{
-    return [self.newsGroup.newsSources allObjects];
+    NSMutableArray *newsSources = [[self.newsGroup.newsSources allObjects] mutableCopy];
+    [newsSources sortUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+        NSNumber *id1 = ((NewsSource*)obj1).sourceId;
+        NSNumber *id2 = ((NewsSource*)obj2).sourceId;
+        return [id1 compare:id2];
+    }];
+    return newsSources;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
