@@ -15,6 +15,7 @@
 #import "HHPanningTableViewCell.h"
 #import "SVProgressHUD.h"
 #import "SIAlertView.h"
+#import "NewsSourceCell.h"
 #define DELETE_END @"delete_ended"
 #define DELETE_SUCCES @"delete_succes"
 #define DELETE_FAIL @"delete_fail"
@@ -73,26 +74,20 @@
     return self.newsSources.count;
 }
 
-- (HHPanningTableViewCell *)tableView:(UITableView *)tableViewLocal cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (NewsSourceCell *)tableView:(UITableView *)tableViewLocal cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *subtitleTableIdentifier = @"subtitleViewCellSource";
-    
-    HHPanningTableViewCell *cell = [tableViewLocal dequeueReusableCellWithIdentifier:subtitleTableIdentifier];
-    
-    if (cell == nil) {
-        cell = [[HHPanningTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault  reuseIdentifier:subtitleTableIdentifier];
-    }
+    static NSString *tableIdentifier = @"sourceViewCell";
+    NewsSourceCell *cell = [tableViewLocal dequeueReusableCellWithIdentifier:tableIdentifier];
     //FRONT VIEW
     NewsSource *ns = (self.newsSources)[indexPath.row];
     if([ns.imageUrl isEqualToString:@""]){
-        [cell.imageView setImage:[UIImage imageNamed:@"blankimgfavico.png"]];
+        [cell.favImageView setImage:[UIImage imageNamed:@"blankimgfavico.png"]];
     } else {
-        [cell.imageView setFrame:CGRectMake(0, 0, 20, 20)];
-        [cell.imageView setImageWithURL:[NSURL URLWithString:ns.imageUrl] placeholderImage:[UIImage imageNamed:@"blankimgfavico.png"]];
+        [cell.favImageView setImageWithURL:[NSURL URLWithString:ns.imageUrl] placeholderImage:[UIImage imageNamed:@"blankimgfavico.png"]];
     }
 
-    cell.textLabel.text = ns.title;
-    cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue-CondensedBold" size:20.0];
+    cell.titleLabel.text = ns.title;
+    cell.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue-CondensedBold" size:20.0];
     //BACK VIEW
     UIView *drawerView = [[UIView alloc] initWithFrame:cell.frame];
     drawerView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"dark_dotted"]];
