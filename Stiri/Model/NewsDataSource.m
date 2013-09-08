@@ -427,11 +427,14 @@ static NewsDataSource *_newsDataSource;
     if([newsItem.isRead isEqualToNumber:@1]){
         return;
     }
-    NSString *urlString = [NSString stringWithFormat:@"%@%d/%@", READNEWSURL, self.userId, newsItem.newsId];
-    NSURL *url = [NSURL URLWithString:urlString];
+    NSString *urlstring = [NSString stringWithFormat:@"%@%D", RAILSBASEURL , self.userId];
+    NSURL *url = [NSURL URLWithString:urlstring];
     AFHTTPClient *httpClient = [[AFHTTPClient alloc] initWithBaseURL:url];
+    NSDictionary *paramters = @{@"article_id": newsItem.newsId, @"key": self.privateKey};
     newsItem.isRead = @1;
-    [httpClient postPath:@"" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [httpClient postPath:@"unread"
+              parameters:paramters
+                 success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"Made News read %@" , newsItem.url);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"%@",error);

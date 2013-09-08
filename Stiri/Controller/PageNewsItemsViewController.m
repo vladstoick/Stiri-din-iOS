@@ -10,7 +10,7 @@
 #import "NewsItemViewController.h"
 #import "NewsDataSource.h"
 #import "TSMiniWebBrowser.h"
-@interface PageNewsItemsViewController () <UIPageViewControllerDataSource, UIPageViewControllerDelegate>
+@interface PageNewsItemsViewController () 
 @property(strong, nonatomic) UIPageViewController *pageController;
 @end
 
@@ -34,7 +34,6 @@
 }
 
 - (void)viewDidLoad {
-
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     self.pageController = [[UIPageViewController alloc]
             initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll
@@ -43,8 +42,8 @@
 
     self.pageController.dataSource = self;
     self.pageController.delegate = self;
-    CGRect frame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height+36);
-    [[self.pageController view] setFrame:frame];
+    CGRect framePC = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height+36);
+    [[self.pageController view] setFrame:framePC];
     [[NewsDataSource newsDataSource] makeNewsItemRead:[self newsItemAtIndex:self.newsIndex]];
     NewsItemViewController *initialViewController = [self viewControllerAtIndex:self.newsIndex];
     NSArray *viewControllers = [NSArray arrayWithObject:initialViewController];
@@ -57,7 +56,16 @@
     [self addChildViewController:self.pageController];
     [[self view] addSubview:[self.pageController view]];
     [self.pageController didMoveToParentViewController:self];
-
+    self.adView = [[MPAdView alloc] initWithAdUnitId:@"e1c80c4a89ab449a8fe3da82e08a209f"
+                                                size:MOPUB_BANNER_SIZE];
+    self.adView.delegate = self;
+    CGRect frame = self.adView.frame;
+    CGSize size = [self.adView adContentViewSize];
+    frame.origin.y = [[UIScreen mainScreen] applicationFrame].size.height - size.height;
+    self.adView.frame = frame;
+    [self.view addSubview:self.adView];
+    [self.adView loadAd];
+    [super viewDidLoad];
     // Do any additional setup after loading the view.
 }
 
@@ -133,6 +141,10 @@
     TSMiniWebBrowser *webBrowser = [[TSMiniWebBrowser alloc] initWithUrl:url];
     webBrowser.barStyle = UIBarStyleBlack;
     [self.navigationController pushViewController:webBrowser animated:YES];   
+}
+
+- (UIViewController *)viewControllerForPresentingModalView {
+    return self;
 }
 
 @end

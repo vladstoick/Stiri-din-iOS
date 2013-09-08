@@ -124,24 +124,24 @@
     static NSString *searchResultsTableIdentifier = @"searchResultsCell";
     
     NewsItemCell *cell = [self.tableView dequeueReusableCellWithIdentifier:searchResultsTableIdentifier];
-    if([self isCellResult:indexPath.row]){
-        NewsItem *newsItem = [self.searchResults objectAtIndex:indexPath.row];
-        cell.titleLabel.text = newsItem.title;
-        NSString *dateString = [NSDateFormatter localizedStringFromDate:newsItem.pubDate
-                                                          dateStyle:NSDateFormatterShortStyle
-                                                          timeStyle:NSDateFormatterShortStyle];
-        cell.dateLabel.text = dateString;
-        [cell.articleImageView setImageWithURL:[NSURL URLWithString:newsItem.imageUrl] placeholderImage:[UIImage imageNamed:@"blankimg.png"]];
-
-    } else {
-        cell.titleLabel.text = @"";
-        cell.dateLabel.text = @"";
-        [cell addSubview:self.spinner];
-        [self.spinner startAnimating];
-        if(indexPath.row > 0 ){
-            [[NewsDataSource newsDataSource] searchOnlineText:self.currentQuerry fromIndex:self.size - 1 ];
-        }
-    }
+//    if([self isCellResult:indexPath.row]){
+//        NewsItem *newsItem = [self.searchResults objectAtIndex:indexPath.row];
+//        cell.titleLabel.text = newsItem.title;
+//        NSString *dateString = [NSDateFormatter localizedStringFromDate:newsItem.pubDate
+//                                                          dateStyle:NSDateFormatterShortStyle
+//                                                          timeStyle:NSDateFormatterShortStyle];
+//        cell.dateLabel.text = dateString;
+//        [cell.articleImageView setImageWithURL:[NSURL URLWithString:newsItem.imageUrl] placeholderImage:[UIImage imageNamed:@"blankimg.png"]];
+//
+//    } else {
+//        cell.titleLabel.text = @"";
+//        cell.dateLabel.text = @"";
+//        [cell addSubview:self.spinner];
+//        [self.spinner startAnimating];
+//        if(indexPath.row > 0 ){
+//            [[NewsDataSource newsDataSource] searchOnlineText:self.currentQuerry fromIndex:self.size - 1 ];
+//        }
+//    }
     return cell;
 }
 

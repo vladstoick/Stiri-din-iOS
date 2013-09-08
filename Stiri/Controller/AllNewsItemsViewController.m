@@ -53,17 +53,8 @@
 - (NewsItemCell *)tableView:(UITableView *)tableViewLocal cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *unreadNews = @"unreadNews";
     NewsItemCell *cell = [tableViewLocal dequeueReusableCellWithIdentifier:unreadNews];
-    NewsItem *newsItem;
-    newsItem = [self.unreadNews objectAtIndex:indexPath.row];
-    cell.titleLabel.text = newsItem.title;
-    cell.dateLabel.text = [NSDateFormatter localizedStringFromDate:newsItem.pubDate
-                                                         dateStyle:NSDateFormatterShortStyle
-                                                         timeStyle:NSDateFormatterShortStyle];
-    if([newsItem.imageUrl isEqualToString:@""]){
-        [cell.articleImageView setImage:nil];
-    } else {
-        [cell.articleImageView setImageWithURL:[NSURL URLWithString:newsItem.imageUrl] placeholderImage:[UIImage imageNamed:@"blankimg.png"]];
-    }
+    NewsItem *newsItem = [self.unreadNews objectAtIndex:indexPath.row];
+    [cell setNewsItem:newsItem];
     return cell;
 }
 

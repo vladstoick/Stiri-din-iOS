@@ -10,9 +10,11 @@
 #import "NewsSource.h"
 #import "NewsItem.h"
 #import <Social/Social.h>
-@interface PageNewsItemsViewController : UIViewController
+#import "MPAdView.h"
+@interface PageNewsItemsViewController : UIViewController <MPAdViewDelegate, UIPageViewControllerDataSource, UIPageViewControllerDelegate>
 - (IBAction)openInBrowser:(id)sender;
 - (IBAction)share:(id)sender;
 @property (nonatomic) NSInteger newsIndex;
 @property (strong, nonatomic) NSArray* news;
+@property (nonatomic, retain) MPAdView *adView;
 @end
