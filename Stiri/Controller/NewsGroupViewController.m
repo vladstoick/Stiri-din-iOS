@@ -119,7 +119,7 @@
                 self.groups = [[NewsDataSource newsDataSource] allGroups];
                 [self.tableView reloadData];
             } else {
-                [SVProgressHUD showErrorWithStatus:NSLocalizedString(@"Error",nil)];
+                [SVProgressHUD showErrorWithStatus:NSLocalizedString(@"Failed",nil)];
             }
         }];
         [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeBlack];
@@ -152,7 +152,7 @@
                 self.groups = [[NewsDataSource newsDataSource] allGroups];
                 [self.tableView reloadData];
             } else {
-                [SVProgressHUD showErrorWithStatus:@"Error"];
+                [SVProgressHUD showErrorWithStatus:@"Failed"];
             }
         }];
         [SVProgressHUD showWithStatus:NSLocalizedString(@"Renaming",nil) maskType:SVProgressHUDMaskTypeBlack];

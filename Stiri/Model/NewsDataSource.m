@@ -362,7 +362,7 @@ static NewsDataSource *_newsDataSource;
 
 //NEWSSOURCE
 
-- (void) deleteNewsSource:(NewsSource *)newsSource{
+- (void) deleteNewsSource:(NewsSource *)newsSource completion:(void (^)(BOOL))completionBlock{
     NSString *urlString = [NSString stringWithFormat:@"%@%d/%@", RAILSBASEURL, self.userId, newsSource.groupOwner.groupId];
     AFHTTPClient *httpClient = [[AFHTTPClient alloc] initWithBaseURL:[NSURL URLWithString:urlString]];
     [httpClient deletePath:[NSString stringWithFormat:@"%@",newsSource.sourceId]
@@ -370,10 +370,10 @@ static NewsDataSource *_newsDataSource;
                    success:^(AFHTTPRequestOperation *operation, id responseObject) {
                        [newsSource MR_deleteEntity];
                        [[NSManagedObjectContext MR_defaultContext] saveToPersistentStoreWithCompletion:nil];
-                       [[NSNotificationCenter defaultCenter] postNotificationName:DELETE_END  object:DELETE_SUCCES];
+                       completionBlock(YES);
                    }
                    failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                        [[NSNotificationCenter defaultCenter] postNotificationName:DELETE_END object:DELETE_FAIL];
+                       completionBlock(NO);
                    }];
 }
 

@@ -47,7 +47,8 @@
 
 
 //NEWSOURCE
-- (void) deleteNewsSource:(NewsSource *) newsSource;
+- (void) deleteNewsSource:(NewsSource *) newsSource
+               completion:(void (^)(BOOL success)) completionBlock;
 
 - (void)addNewsSourceWithUrl:(NSString *)sourceUrl
                  inNewsGroup:(NewsGroup *)newsGroup

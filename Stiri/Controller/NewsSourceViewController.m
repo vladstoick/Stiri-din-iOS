@@ -16,9 +16,6 @@
 #import "SVProgressHUD.h"
 #import "SIAlertView.h"
 #import "NewsSourceCell.h"
-#define DELETE_END @"delete_ended"
-#define DELETE_SUCCES @"delete_succes"
-#define DELETE_FAIL @"delete_fail"
 @interface NewsSourceViewController ()
 @property (weak, nonatomic) NSIndexPath *swipedCell;
 @property (strong,nonatomic) NewsGroup* newsGroup;
@@ -57,10 +54,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(deleteMessage:)
-                                                 name:DELETE_END
-                                               object:nil];
     self.title = self.newsGroup.title;   
 }
 
@@ -118,30 +111,32 @@
 
 - (IBAction)shouldDeleteSource:(id)sender{
     CGPoint buttonPosition = [sender convertPoint:CGPointZero toView:self.tableView];
-    self.swipedCell = [self.tableView indexPathForRowAtPoint:buttonPosition];
+
     SIAlertView *alertView = [[SIAlertView alloc] initWithTitle:NSLocalizedString(@"Delete news source",nil)
                                                      andMessage:NSLocalizedString(@"You can't undo this operation",nil)];
     [alertView addButtonWithTitle:NSLocalizedString(@"Cancel",nil) type:SIAlertViewButtonTypeCancel handler:^(SIAlertView *alertView){
         HHPanningTableViewCell *cell = (HHPanningTableViewCell*)[self.tableView cellForRowAtIndexPath:self.swipedCell];
         [cell setDrawerRevealed:NO animated:YES];
     }];
+
     [alertView addButtonWithTitle:NSLocalizedString(@"Ok",nil) type:SIAlertViewButtonTypeDestructive handler:^(SIAlertView *alertView) {
-        [[NewsDataSource newsDataSource] deleteNewsSource:[self.newsSources objectAtIndex:self.swipedCell.row]];
+        self.swipedCell = [self.tableView indexPathForRowAtPoint:buttonPosition];
+        [[NewsDataSource newsDataSource] deleteNewsSource:[self.newsSources objectAtIndex:self.swipedCell.row] completion:^(BOOL success) {
+
+            if(success){
+                [SVProgressHUD showSuccessWithStatus:NSLocalizedString(@"Deleted",nil)];
+                self.newsGroup = nil;
+                [self updateNewsSources];
+                [self.tableView reloadData];
+            } else {
+                [SVProgressHUD showErrorWithStatus:NSLocalizedString(@"Failed",nil)];
+            }
+        }];
         [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeBlack];
     }];
     alertView.transitionStyle = SIAlertViewTransitionStyleDropDown;
     [alertView show];
 }
 
-- (void) deleteMessage:(NSNotification*) event{
-    if([event.object isEqual: DELETE_SUCCES]){
-        [SVProgressHUD showSuccessWithStatus:NSLocalizedString(@"Deleted",nil)];
-        self.newsGroup = nil;
-        [self updateNewsSources];
-        [self.tableView reloadData];
-    } else {
-        [SVProgressHUD showErrorWithStatus:NSLocalizedString(@"Failed",nil)];
-    }
-}
 
 @end
