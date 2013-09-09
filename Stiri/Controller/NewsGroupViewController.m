@@ -17,12 +17,6 @@
 #import "SIAlertView.h"
 #import <QuartzCore/QuartzCore.h>
 #define DATA_CHANGED_EVENT @"data_changed"
-#define DELETE_END @"delete_ended"
-#define DELETE_SUCCES @"delete_succes"
-#define DELETE_FAIL @"delete_fail"
-#define RENAME_END @"rename_ended"
-#define RENAME_SUCCES @"rename_succes"
-#define RENAME_FAIL @"rename_fail"
 @interface NewsGroupViewController ()
 @property (strong, nonatomic) NSIndexPath *swipedCell;
 @property (strong, nonatomic) NSArray *groups;
@@ -67,14 +61,6 @@
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(dataChanged:)
                                                  name:DATA_CHANGED_EVENT object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(deleteMessage:)
-                                                 name:DELETE_END
-                                               object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(renameMessage:)
-                                                 name:RENAME_END
-                                               object:nil];
     if([NewsDataSource newsDataSource].isDataLoaded == NO){
         self.isDataLoading = YES;
         [[NewsDataSource newsDataSource] loadData];
@@ -127,21 +113,19 @@
         [cell setDrawerRevealed:NO animated:YES];
     }];
     [alertView addButtonWithTitle:NSLocalizedString(@"Ok",nil) type:SIAlertViewButtonTypeDestructive handler:^(SIAlertView *alertView) {
-        [[NewsDataSource newsDataSource] deleteNewsGroup:[self.groups objectAtIndex:self.swipedCell.row]];
+        [[NewsDataSource newsDataSource] deleteNewsGroup:[self.groups objectAtIndex:self.swipedCell.row] completion:^(BOOL success) {
+            if(success){
+                [SVProgressHUD showSuccessWithStatus:NSLocalizedString(@"Deleted",nil)];
+                self.groups = [[NewsDataSource newsDataSource] allGroups];
+                [self.tableView reloadData];
+            } else {
+                [SVProgressHUD showErrorWithStatus:NSLocalizedString(@"Error",nil)];
+            }
+        }];
         [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeBlack];
     }];
     alertView.transitionStyle = SIAlertViewTransitionStyleDropDown;
     [alertView show];
-}
-
-- (void) deleteMessage:(NSNotification*) event{
-    if([event.object isEqual: DELETE_SUCCES]){
-        [SVProgressHUD showSuccessWithStatus:NSLocalizedString(@"Deleted",nil)];
-        self.groups = [[NewsDataSource newsDataSource] allGroups];
-        [self.tableView reloadData];
-    } else {
-        [SVProgressHUD showErrorWithStatus:NSLocalizedString(@"Failed",nil)];
-    }
 }
 
 - (IBAction) shouldRenameGroup:(id)sender{
@@ -162,22 +146,20 @@
     NSString *title = [alertView buttonTitleAtIndex:buttonIndex];
         NSString *text = [[alertView textFieldAtIndex:0] text];
     if([title isEqualToString:NSLocalizedString(@"Rename",nil)]){
-        [[NewsDataSource newsDataSource] renameNewsGroup:[self.groups objectAtIndex:self.swipedCell.row] withNewName:text];
+        [[NewsDataSource newsDataSource] renameNewsGroup:[self.groups objectAtIndex:self.swipedCell.row] withNewName:text completion:^(BOOL success) {
+            if(success){
+                [SVProgressHUD showSuccessWithStatus:NSLocalizedString(@"Renamed",nil)];
+                self.groups = [[NewsDataSource newsDataSource] allGroups];
+                [self.tableView reloadData];
+            } else {
+                [SVProgressHUD showErrorWithStatus:@"Error"];
+            }
+        }];
         [SVProgressHUD showWithStatus:NSLocalizedString(@"Renaming",nil) maskType:SVProgressHUDMaskTypeBlack];
     } else {
         HHPanningTableViewCell *cell = (HHPanningTableViewCell*)[self.tableView cellForRowAtIndexPath:self.swipedCell];
         [cell setDrawerRevealed:NO animated:YES];
         
-    }
-}
-
-- (void) renameMessage:(NSNotification*) event{
-    if([event.object isEqual: RENAME_SUCCES]){
-        [SVProgressHUD showSuccessWithStatus:NSLocalizedString(@"Renamed",nil)];
-        self.groups = [[NewsDataSource newsDataSource] allGroups];
-        [self.tableView reloadData];
-    } else {
-        [SVProgressHUD showErrorWithStatus:@"Failed"];
     }
 }
 

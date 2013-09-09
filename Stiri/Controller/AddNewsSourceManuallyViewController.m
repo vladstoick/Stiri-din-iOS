@@ -11,7 +11,6 @@
 #import "RETableViewManager.h"
 #import "NewsDataSource.h"
 #import "SVProgressHud.h"
-#define ADD_ENDED @"add_ended"
 #define selected_group @"selected_group"
 @interface AddNewsSourceManuallyViewController ()
 @property (strong, nonatomic) RETableViewSection *section;
@@ -70,7 +69,6 @@
     self.addNewsGroupName = [RETextItem itemWithTitle:NSLocalizedString(@"Group name",nil) value:nil placeholder:@"The name of the new group"];
     [self.section addItem:self.addNewsGroupName];
     [self.manager addSection:self.section];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(addEnded:) name:ADD_ENDED object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(selectedGroup:) name:selected_group object:nil];
 	// Do any additional setup after loading the view.
 }
@@ -95,7 +93,14 @@
     NSString* sourceUrl = self.feedUrl.value;
     NSString* addGroupName = self.addNewsGroupName.value;
     if([self.newsGroup.value isEqual: NSLocalizedString(@"New Group",nil)]){
-        [[NewsDataSource newsDataSource] addNewsSourceWithUrl:sourceUrl inNewGroupWithName:addGroupName];
+        [[NewsDataSource newsDataSource] addNewsSourceWithUrl:sourceUrl inNewGroupWithName:addGroupName completion:^(BOOL success) {
+            if(success){
+                [SVProgressHUD showSuccessWithStatus:NSLocalizedString(@"Added",nil)];
+            } else {
+                [SVProgressHUD showSuccessWithStatus:NSLocalizedString(@"Error",nil)];
+            }
+            [self dismissViewControllerAnimated:YES completion:nil];
+        }];
     } else {
         NewsGroup *newsGroup;
         for(NewsGroup* ng in self.allGroups){
@@ -104,7 +109,14 @@
                 break;
             }
         }
-        [[NewsDataSource newsDataSource] addNewsSourceWithUrl:sourceUrl inNewsGroup:newsGroup];
+        [[NewsDataSource newsDataSource] addNewsSourceWithUrl:sourceUrl inNewsGroup:newsGroup completion:^(BOOL success) {
+            if(success){
+                [SVProgressHUD showSuccessWithStatus:NSLocalizedString(@"Added",nil)];
+            } else {
+                [SVProgressHUD showSuccessWithStatus:NSLocalizedString(@"Error",nil)];
+            }
+        }];
+        [self dismissViewControllerAnimated:YES completion:nil];
     }
     [SVProgressHUD showWithStatus:NSLocalizedString(@"Adding",nil) maskType:SVProgressHUDMaskTypeBlack];
 }
@@ -112,11 +124,5 @@
 - (IBAction)cancelPressed:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
-
-- (void) addEnded:(NSNotification*) notification{
-    [SVProgressHUD showSuccessWithStatus:NSLocalizedString(@"Added",nil)];
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
-
 
 @end

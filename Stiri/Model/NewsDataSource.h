@@ -30,11 +30,16 @@
 - (void)loadData;
 
 //NEWSGROUP
-- (void)deleteNewsGroup:(NewsGroup *)newsGroup;
+- (void)deleteNewsGroup:(NewsGroup *)newsGroup
+                  completion:(void (^)(BOOL success)) completionBlock;
 
-- (void)renameNewsGroup:(NewsGroup *)newsGroup withNewName:(NSString*) title;
+- (void)renameNewsGroup:(NewsGroup *)newsGroup
+            withNewName:(NSString*) title
+             completion:(void (^)(BOOL success)) completionBlock;;
 
-- (void)addNewsSourceWithUrl:(NSString *)url inNewGroupWithName:(NSString *)groupTitle;
+- (void)addNewsSourceWithUrl:(NSString *)url
+          inNewGroupWithName:(NSString *)groupTitle
+                  completion:(void (^)(BOOL success)) completionBlock;
 
 - (NSArray *)allGroups;
 
@@ -44,7 +49,9 @@
 //NEWSOURCE
 - (void) deleteNewsSource:(NewsSource *) newsSource;
 
-- (void)addNewsSourceWithUrl:(NSString *)sourceUrl inNewsGroup:(NewsGroup *)newsGroup;
+- (void)addNewsSourceWithUrl:(NSString *)sourceUrl
+                 inNewsGroup:(NewsGroup *)newsGroup
+                  completion:(void (^)(BOOL success)) completionBlock;
 
 - (NSArray *)allSources;
 

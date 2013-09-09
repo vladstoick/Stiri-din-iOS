@@ -297,7 +297,7 @@ static NewsDataSource *_newsDataSource;
 
 //NEWSGROUP
 
-- (void)renameNewsGroup:(NewsGroup *)newsGroup withNewName:(NSString *)title{
+- (void)renameNewsGroup:(NewsGroup *)newsGroup withNewName:(NSString *)title completion:(void (^)(BOOL))completionBlock{
     NSString *urlString = [NSString stringWithFormat:@"%@%d/%@",RAILSBASEURL,self.userId,newsGroup.groupId];
     NSURL *url = [NSURL URLWithString:urlString];
     NSDictionary *params = @{@"title" : title, @"key" : self.privateKey};
@@ -305,47 +305,50 @@ static NewsDataSource *_newsDataSource;
     [httpCient putPath:@""
              parameters:params
                 success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        newsGroup.title = title;
-        [[NSManagedObjectContext MR_defaultContext] saveToPersistentStoreWithCompletion:nil];
-        [[NSNotificationCenter defaultCenter] postNotificationName:RENAME_END  object:RENAME_SUCCES];
-        
+                    newsGroup.title = title;
+                    [[NSManagedObjectContext MR_defaultContext] saveToPersistentStoreWithCompletion:nil];
+                    completionBlock(YES);
     }
                 failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-       [[NSNotificationCenter defaultCenter] postNotificationName:RENAME_END object:RENAME_FAIL];
+                    completionBlock(NO);
     }];
 }
 
-- (void)deleteNewsGroup:(NewsGroup *)newsGroup {
+- (void)deleteNewsGroup:(NewsGroup *)newsGroup completion:(void (^)(BOOL))completionBlock{
     NSString *urlString = [NSString stringWithFormat:@"%@%d", RAILSBASEURL, self.userId];
     AFHTTPClient *httpClient = [[AFHTTPClient alloc] initWithBaseURL:[NSURL URLWithString:urlString]];
     [httpClient deletePath:[NSString stringWithFormat:@"%@", newsGroup.groupId]
                 parameters:self.paramsKey
                  success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                [newsGroup MR_deleteEntity];
-                [[NSManagedObjectContext MR_defaultContext] saveToPersistentStoreWithCompletion:nil];
-                [[NSNotificationCenter defaultCenter] postNotificationName:DELETE_END  object:DELETE_SUCCES];
-                [[NSNotificationCenter defaultCenter] postNotificationName:DELETE_SUCCES object:nil];
-            } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        [[NSNotificationCenter defaultCenter] postNotificationName:DELETE_END object:DELETE_FAIL];
+                     [newsGroup MR_deleteEntity];
+                     [[NSManagedObjectContext MR_defaultContext] saveToPersistentStoreWithCompletion:nil];
+                     completionBlock(YES);
+            }
+                failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                    completionBlock(NO);
     }];
 }
 
-- (void)addNewsSourceWithUrl:(NSString *)sourceUrl inNewGroupWithName:(NSString *)groupTitle {
+- (void)addNewsSourceWithUrl:(NSString *)sourceUrl inNewGroupWithName:(NSString *)groupTitle completion:(void (^)(BOOL))completionBlock{
     NSString *urlString = [NSString stringWithFormat:@"%@%d", RAILSBASEURL, self.userId];
     NSDictionary *params = @{@"title" : groupTitle, @"key": self.privateKey};
     AFHTTPClient *httpClient = [[AFHTTPClient alloc] initWithBaseURL:[NSURL URLWithString:urlString]];
-    [httpClient postPath:@"" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSString *responseStr = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
-        NSDictionary *jsonDictionary;
-        jsonDictionary = [NSJSONSerialization JSONObjectWithData:[responseStr dataUsingEncoding:NSUTF8StringEncoding]
-                                                         options:NSJSONReadingMutableContainers
-                                                           error:nil];
-        NewsGroup *newsGroup = [NewsGroup MR_createEntity];
-        newsGroup.groupId = [jsonDictionary valueForKey:@"group_id"];
-        newsGroup.title = groupTitle;
-        [self addNewsSourceWithUrl:sourceUrl inNewsGroup:newsGroup];
-    }            failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"%@",error);
+    [httpClient postPath:@""
+              parameters:params
+                 success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                     NSString *responseStr = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+                     NSDictionary *jsonDictionary;
+                     jsonDictionary = [NSJSONSerialization JSONObjectWithData:[responseStr dataUsingEncoding:NSUTF8StringEncoding]
+                                                                      options:NSJSONReadingMutableContainers
+                                                                        error:nil];
+                     NewsGroup *newsGroup = [NewsGroup MR_createEntity];
+                     newsGroup.groupId = [jsonDictionary valueForKey:@"group_id"];
+                     newsGroup.title = groupTitle;
+                     [self addNewsSourceWithUrl:sourceUrl inNewsGroup:newsGroup completion:completionBlock];
+                 }
+                 failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                     completionBlock(NO);
+                     NSLog(@"%@",error);
     }];
 }
 
@@ -374,7 +377,8 @@ static NewsDataSource *_newsDataSource;
                    }];
 }
 
-- (void)addNewsSourceWithUrl:(NSString *)sourceUrl inNewsGroup:(NewsGroup *)newsGroup {
+- (void)addNewsSourceWithUrl:(NSString *)sourceUrl inNewsGroup:(NewsGroup *)newsGroup completion:(void (^)(BOOL))completionBlock {
+    NSLog(@"%@",completionBlock);
     NSManagedObjectContext *context = [NSManagedObjectContext defaultContext];
     NSString *urlString = [NSString stringWithFormat:@"%@%d/%@", RAILSBASEURL, self.userId, newsGroup.groupId];
     NSDictionary *params = @{@"url" : sourceUrl, @"key": self.privateKey};
@@ -382,32 +386,32 @@ static NewsDataSource *_newsDataSource;
     [httpClient postPath:@""
               parameters:params
                  success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSString *responseStr = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
-        NSDictionary *jsonDictionary;
-        jsonDictionary = [NSJSONSerialization JSONObjectWithData:[responseStr dataUsingEncoding:NSUTF8StringEncoding]
-                                                         options:NSJSONReadingMutableContainers
-                                                           error:nil];
-        NewsSource *newsSource = [NewsSource MR_createInContext:context];
-        NewsGroup *ng = [self getGroupWithId:newsGroup.groupId];
-        NSMutableSet *set = [ng.newsSources mutableCopy];
-        newsSource.title = [jsonDictionary valueForKey:@"title"];
-        newsSource.url = sourceUrl;
-        newsSource.sourceId = [jsonDictionary valueForKey:@"id"];
-        newsSource.groupOwner = ng;
-        NSString *imageUrl = [jsonDictionary valueForKey:@"image"];
-        if( (NSNull*) imageUrl == [NSNull null]){
-            newsSource.imageUrl = @"";
-        } else {
-            newsSource.imageUrl = imageUrl;
-        }
-        [set addObject:newsSource];
-        ng.newsSources = set;
-        [self parseNewsSource:newsSource];
-        [[NSNotificationCenter defaultCenter] postNotificationName:DATA_CHANGED_EVENT object:nil];
-        [[NSNotificationCenter defaultCenter] postNotificationName:ADD_ENDED object:nil];
+                     NSString *responseStr = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+                     NSDictionary *jsonDictionary;
+                     jsonDictionary = [NSJSONSerialization JSONObjectWithData:[responseStr dataUsingEncoding:NSUTF8StringEncoding]
+                                                                      options:NSJSONReadingMutableContainers
+                                                                        error:nil];
+                     NewsSource *newsSource = [NewsSource MR_createInContext:context];
+                     NewsGroup *ng = [self getGroupWithId:newsGroup.groupId];
+                     NSMutableSet *set = [ng.newsSources mutableCopy];
+                     newsSource.title = [jsonDictionary valueForKey:@"title"];
+                     newsSource.url = sourceUrl;
+                     newsSource.sourceId = [jsonDictionary valueForKey:@"id"];
+                     newsSource.groupOwner = ng;
+                     NSString *imageUrl = [jsonDictionary valueForKey:@"image"];
+                     if( (NSNull*) imageUrl == [NSNull null]){
+                         newsSource.imageUrl = @"";
+                     } else {
+                         newsSource.imageUrl = imageUrl;
+                     }
+                     [set addObject:newsSource];
+                     ng.newsSources = set;
+                     [self parseNewsSource:newsSource];
+                    [[NSNotificationCenter defaultCenter] postNotificationName:DATA_CHANGED_EVENT object:nil];
+                     completionBlock(YES);
     }
                  failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-
+                     completionBlock(NO);
     }];
 }
 

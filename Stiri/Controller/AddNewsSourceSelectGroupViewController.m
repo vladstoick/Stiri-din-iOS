@@ -9,7 +9,6 @@
 #import "AddNewsSourceSelectGroupViewController.h"
 #import "NewsDataSource.h"
 #import "SVProgressHUD.h"
-#define ADD_ENDED @"add_ended"
 @interface AddNewsSourceSelectGroupViewController ()
 @property (strong, nonatomic) NSArray *allGroups;
 @end
@@ -34,7 +33,6 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(addEnded:) name:ADD_ENDED object:nil];
 }
 
 - (void)didReceiveMemoryWarning
@@ -72,7 +70,14 @@
     NSString *title = [alertView buttonTitleAtIndex:buttonIndex];
     NSString *text = [[alertView textFieldAtIndex:0] text];
     if([title isEqualToString:NSLocalizedString(@"Ok",nil)]){
-        [[NewsDataSource newsDataSource] addNewsSourceWithUrl:[self.feedToBeAdded objectForKey:@"url"] inNewGroupWithName:text];
+        [[NewsDataSource newsDataSource] addNewsSourceWithUrl:[self.feedToBeAdded objectForKey:@"url"] inNewGroupWithName:text completion:^(BOOL success) {
+            if(success){
+                [SVProgressHUD showSuccessWithStatus:NSLocalizedString(@"Added",nil)];
+            } else {
+                [SVProgressHUD showSuccessWithStatus:NSLocalizedString(@"Error",nil)];
+            }
+            [self dismissViewControllerAnimated:YES completion:nil];
+        }];
         [SVProgressHUD showWithStatus:NSLocalizedString(@"Adding",nil) maskType:SVProgressHUDMaskTypeBlack];
 
     }
@@ -82,7 +87,14 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if(indexPath.row < self.allGroups.count){
         NewsGroup *newsGroup = [self.allGroups objectAtIndex:indexPath.row];
-        [[NewsDataSource newsDataSource] addNewsSourceWithUrl:[self.feedToBeAdded objectForKey:@"url"] inNewsGroup:newsGroup];
+        [[NewsDataSource newsDataSource] addNewsSourceWithUrl:[self.feedToBeAdded objectForKey:@"url"] inNewsGroup:newsGroup completion:^(BOOL success) {
+            if(success){
+                [SVProgressHUD showSuccessWithStatus:NSLocalizedString(@"Added",nil)];
+            } else {
+                [SVProgressHUD showSuccessWithStatus:NSLocalizedString(@"Error",nil)];
+            }
+            [self dismissViewControllerAnimated:YES completion:nil];
+        }];
         [SVProgressHUD showWithStatus:NSLocalizedString(@"Adding",nil) maskType:SVProgressHUDMaskTypeBlack];
     } else {
         UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:NSLocalizedString(@"New group", nil) message:NSLocalizedString(@"The name of the new group", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel", nil) otherButtonTitles:NSLocalizedString(@"Ok", nil), nil];
@@ -91,9 +103,5 @@
     }
 }
 
-- (void) addEnded:(NSNotification*) notification{
-    [SVProgressHUD showSuccessWithStatus:NSLocalizedString(@"Added",nil)];
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
 
 @end
