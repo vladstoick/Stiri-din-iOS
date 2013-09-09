@@ -77,7 +77,7 @@ enum actionSheetButtonIndex {
     if ( webView.loading ) {
         [webView stopLoading];
     }
-    [self dismissModalViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
     
     // Notify the delegate
     if (self.delegate != NULL && [self.delegate respondsToSelector:@selector(tsMiniWebBrowserDidDismiss)]) {

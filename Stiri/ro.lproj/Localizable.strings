@@ -24,7 +24,7 @@
 "Delete group" = "Șterge grup";
 "You can't undo this operation" = "Acțiunea nu este reversibilă";
 "Cancel" = "Anulează";
-"Ok" = "Ok";
+"Ok" = "OK";
 "Deleted" = "Șters";
 "Failed" = "Eșuat";
 "Rename Group" = "Redenumește grupul";
@@ -47,3 +47,10 @@
 
 "one subscriber" = "un abonat";
 "subscribers" = "abonați";
+"Adding" = "Se adaugă";
+"Added" = "Adăugat";
+"The rss adress" = "Adresa rss";
+"Group" = "Grupul";
+"New group" = "Creeaza un grup nou";
+"Group name" = "Numele grupului";
+"The name of the new group" = "Numele noului grup";

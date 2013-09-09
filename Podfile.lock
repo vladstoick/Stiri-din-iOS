@@ -1,6 +1,6 @@
 PODS:
   - AFNetworking (1.3.2)
-  - Facebook-iOS-SDK (3.6.0)
+  - Facebook-iOS-SDK (3.7.1)
   - google-plus-ios-sdk (1.3.0)
   - MMDrawerController (0.4.0):
     - MMDrawerController/Core
@@ -35,7 +35,7 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   AFNetworking: 7f9bcd7c287a75476cd5c61e82fd3380e93e4c54
-  Facebook-iOS-SDK: a60c23acea22161609ef6144ffff686e6f133902
+  Facebook-iOS-SDK: bf38d403928f6adb652e2e5ae46253e0c6ba9a19
   google-plus-ios-sdk: 38378c4094a72a4fcdd5254c03fdd1813b345fb9
   MMDrawerController: 44baaee6b79487b4681eb61597fb790586909c0c
   NewRelicAgent: 366c693e7f23f3f7b065cd3f23d0d70070f761ed
@@ -45,4 +45,4 @@ SPEC CHECKSUMS:
   SVProgressHUD: 03d4845ec8e64591726428a08236c6a5489d45f8
   TSMiniWebBrowser: b0d1e578f250f29615541093564df0c2aebcda07
 
-COCOAPODS: 0.23.0
+COCOAPODS: 0.24.0

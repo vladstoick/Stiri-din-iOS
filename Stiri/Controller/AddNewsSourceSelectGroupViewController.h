@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AddNewsSourceSelectGroupViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+@interface AddNewsSourceSelectGroupViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property NSDictionary *feedToBeAdded;
 @end

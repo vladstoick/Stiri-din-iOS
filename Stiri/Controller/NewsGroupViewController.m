@@ -147,7 +147,7 @@
 - (IBAction) shouldRenameGroup:(id)sender{
     CGPoint buttonPosition = [sender convertPoint:CGPointZero toView:self.tableView];
     self.swipedCell = [self.tableView indexPathForRowAtPoint:buttonPosition];
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Rename Group",nil) message:nil delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel",nil) otherButtonTitles:NSLocalizedString(@"Rename",nil), nil];
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Rename", nil) message:nil delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel",nil) otherButtonTitles:NSLocalizedString(@"Rename",nil), nil];
     alertView.alertViewStyle = UIAlertViewStylePlainTextInput;
     [alertView show];
 }

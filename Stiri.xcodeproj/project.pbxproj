@@ -43,7 +43,6 @@
 		728661D717BFAF5000AA13D3 /* tweed.png in Resources */ = {isa = PBXBuildFile; fileRef = 728661D517BFAF5000AA13D3 /* tweed.png */; };
 		728661DA17BFD21E00AA13D3 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 728661D917BFD21E00AA13D3 /* SearchViewController.m */; };
 		728BF50617D7CBE900B3F546 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 728BF50817D7CBE900B3F546 /* Localizable.strings */; };
-		728BF50E17D7CC8B00B3F546 /* Stiri-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 728BF50D17D7CC8B00B3F546 /* Stiri-Info.plist */; };
 		7291565317BA35AA00A6FD66 /* NewsDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 7291565217BA35AA00A6FD66 /* NewsDataSource.m */; };
 		7291565617BA35CF00A6FD66 /* NewsModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7291565417BA35CF00A6FD66 /* NewsModel.xcdatamodeld */; };
 		7291565917BA35FB00A6FD66 /* NewsGroupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7291565817BA35FB00A6FD66 /* NewsGroupViewController.m */; };
@@ -53,6 +52,7 @@
 		7291566917BA5DE900A6FD66 /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7291566817BA5DE900A6FD66 /* MenuViewController.m */; };
 		7296D95E17D32E9900E05075 /* blankimg.png in Resources */ = {isa = PBXBuildFile; fileRef = 7296D95C17D32E9900E05075 /* blankimg.png */; };
 		7296D95F17D32E9900E05075 /* blankimg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7296D95D17D32E9900E05075 /* blankimg@2x.png */; };
+		729B739217DDC3B60084C968 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 729B739017DDC3980084C968 /* MobileCoreServices.framework */; };
 		729EA62017DB659400145909 /* AddNewsSourceCategoriesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 729EA61F17DB659400145909 /* AddNewsSourceCategoriesViewController.m */; };
 		729EA62817DB65D000145909 /* AddNewsSourceSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 729EA62717DB65D000145909 /* AddNewsSourceSearchViewController.m */; };
 		729EA62E17DB660400145909 /* AddNewsSourceCategoriesFeedsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 729EA62D17DB660400145909 /* AddNewsSourceCategoriesFeedsViewController.m */; };
@@ -87,7 +87,6 @@
 		729FE4B517D24D8E00A5A653 /* MagicalRecord+ShorthandSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 729FE49417D24D8E00A5A653 /* MagicalRecord+ShorthandSupport.m */; };
 		729FE4B617D24D8E00A5A653 /* MagicalRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 729FE49617D24D8E00A5A653 /* MagicalRecord.m */; };
 		729FE50417D2576C00A5A653 /* NewsSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 729FE50317D2576C00A5A653 /* NewsSource.m */; };
-		72B8682417B3C50100A871E5 /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 72B8682117B3C50100A871E5 /* MainStoryboard_iPhone.storyboard */; };
 		72CB3B8717BB82F800D599CA /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 72CB3B8617BB82F800D599CA /* icon.png */; };
 		72CB3B8917BB83C100D599CA /* iconretina.png in Resources */ = {isa = PBXBuildFile; fileRef = 72CB3B8817BB83C100D599CA /* iconretina.png */; };
 		72CB3B8C17BBA21200D599CA /* NewsItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 72CB3B8B17BBA21200D599CA /* NewsItemViewController.m */; };
@@ -173,6 +172,7 @@
 		7291566817BA5DE900A6FD66 /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MenuViewController.m; path = Controller/SlidingMenu/MenuViewController.m; sourceTree = "<group>"; };
 		7296D95C17D32E9900E05075 /* blankimg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = blankimg.png; path = Assets/blankimg.png; sourceTree = "<group>"; };
 		7296D95D17D32E9900E05075 /* blankimg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "blankimg@2x.png"; path = "Assets/blankimg@2x.png"; sourceTree = "<group>"; };
+		729B739017DDC3980084C968 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		729EA61E17DB659400145909 /* AddNewsSourceCategoriesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AddNewsSourceCategoriesViewController.h; path = Controller/AddNewsSourceCategoriesViewController.h; sourceTree = "<group>"; };
 		729EA61F17DB659400145909 /* AddNewsSourceCategoriesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AddNewsSourceCategoriesViewController.m; path = Controller/AddNewsSourceCategoriesViewController.m; sourceTree = "<group>"; };
 		729EA62617DB65D000145909 /* AddNewsSourceSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AddNewsSourceSearchViewController.h; path = Controller/AddNewsSourceSearchViewController.h; sourceTree = "<group>"; };
@@ -262,6 +262,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				729B739217DDC3B60084C968 /* MobileCoreServices.framework in Frameworks */,
 				7206267F17BAAEA500455298 /* SystemConfiguration.framework in Frameworks */,
 				7273022717D0E3EA00CE4F27 /* Social.framework in Frameworks */,
 				7206266217BA8EF200455298 /* CoreTelephony.framework in Frameworks */,
@@ -315,7 +316,6 @@
 			isa = PBXGroup;
 			children = (
 				7208343F17A0288800CEC1E5 /* Stiri */,
-				7282832C17BF7A90006DEE19 /* Social.framework */,
 				7208343817A0288800CEC1E5 /* Frameworks */,
 				7208343717A0288800CEC1E5 /* Products */,
 				0E217E52A67247C48E4AFB43 /* Pods.xcconfig */,
@@ -333,6 +333,8 @@
 		7208343817A0288800CEC1E5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				729B739017DDC3980084C968 /* MobileCoreServices.framework */,
+				7282832C17BF7A90006DEE19 /* Social.framework */,
 				7206268017BAAEB500455298 /* libz.dylib */,
 				7206267E17BAAEA500455298 /* SystemConfiguration.framework */,
 				7206266117BA8EF200455298 /* CoreTelephony.framework */,
@@ -385,13 +387,6 @@
 				7284E41017DC816500DB4718 /* NewsSourceCell.m */,
 			);
 			name = TableCells;
-			sourceTree = "<group>";
-		};
-		729099D417DCCAA4000DF6BC /* MOPUB */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = MOPUB;
 			sourceTree = "<group>";
 		};
 		729155E217BA173900A6FD66 /* Model */ = {
@@ -453,7 +448,6 @@
 		729FE45617D24D8E00A5A653 /* Manual Framework */ = {
 			isa = PBXGroup;
 			children = (
-				729099D417DCCAA4000DF6BC /* MOPUB */,
 				729FE45717D24D8E00A5A653 /* HHDirectionPanGestureRecognizer.h */,
 				729FE45817D24D8E00A5A653 /* HHDirectionPanGestureRecognizer.m */,
 				729FE45917D24D8E00A5A653 /* HHInnerShadowView.h */,
@@ -700,7 +694,6 @@
 				7208344C17A0288800CEC1E5 /* Default.png in Resources */,
 				7208344E17A0288800CEC1E5 /* Default@2x.png in Resources */,
 				7208345017A0288800CEC1E5 /* Default-568h@2x.png in Resources */,
-				72B8682417B3C50100A871E5 /* MainStoryboard_iPhone.storyboard in Resources */,
 				7206267217BAA25100455298 /* manual_tab_bar_icon.png in Resources */,
 				7206267417BAA2C300455298 /* recommended_tab_bar_icon.png in Resources */,
 				72CB3B8717BB82F800D599CA /* icon.png in Resources */,
@@ -723,7 +716,6 @@
 				72F48EA717C0052900F9BB56 /* noisy_net.png in Resources */,
 				7296D95E17D32E9900E05075 /* blankimg.png in Resources */,
 				7296D95F17D32E9900E05075 /* blankimg@2x.png in Resources */,
-				728BF50E17D7CC8B00B3F546 /* Stiri-Info.plist in Resources */,
 				7284E40D17DC7F2B00DB4718 /* blankimgfavico in Resources */,
 				7284E40E17DC7F2B00DB4718 /* blankimgfavico@2x in Resources */,
 			);
@@ -946,11 +938,7 @@
 				GCC_PREFIX_HEADER = "Stiri/Stiri-Prefix.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/Stiri/Stiri-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/Stiri/Manual Framework/MOPUB/AdNetworkSupport/GoogleAdMob/SDK\"",
-					"\"$(SRCROOT)/Stiri/Manual Framework/MOPUB/AdNetworkSupport/Millennial/SDK\"",
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "2AF20C68-8412-4A32-BFCC-D606C281143E";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -973,11 +961,7 @@
 				GCC_PREFIX_HEADER = "Stiri/Stiri-Prefix.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/Stiri/Stiri-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/Stiri/Manual Framework/MOPUB/AdNetworkSupport/GoogleAdMob/SDK\"",
-					"\"$(SRCROOT)/Stiri/Manual Framework/MOPUB/AdNetworkSupport/Millennial/SDK\"",
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "2AF20C68-8412-4A32-BFCC-D606C281143E";
 				TARGETED_DEVICE_FAMILY = 1;

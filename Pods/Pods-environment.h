@@ -15,8 +15,8 @@
 // Facebook-iOS-SDK
 #define COCOAPODS_POD_AVAILABLE_Facebook_iOS_SDK
 #define COCOAPODS_VERSION_MAJOR_Facebook_iOS_SDK 3
-#define COCOAPODS_VERSION_MINOR_Facebook_iOS_SDK 6
-#define COCOAPODS_VERSION_PATCH_Facebook_iOS_SDK 0
+#define COCOAPODS_VERSION_MINOR_Facebook_iOS_SDK 7
+#define COCOAPODS_VERSION_PATCH_Facebook_iOS_SDK 1
 
 // MMDrawerController
 #define COCOAPODS_POD_AVAILABLE_MMDrawerController

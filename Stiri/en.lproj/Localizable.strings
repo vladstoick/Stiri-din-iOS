@@ -24,7 +24,7 @@
 "Delete group" = "Delete group";
 "You can't undo this operation" = "You can't undo this operation";
 "Cancel" = "Cancel";
-"Ok" = "Ok";
+"Ok" = "OK";
 "Deleted" = "Deleted";
 "Failed" = "Failed";
 "Rename Group" = "Rename Group";
@@ -47,4 +47,10 @@
 
 "one subscriber" = "one subscriber";
 "subscribers" = "subscribers";
-
+"Adding" = "Adding";
+"Added" = "Added";
+"The rss adress" = "The rss adress";
+"Group" = "Group";
+"New group" = "New group";
+"Group name" = "Group name";
+"The name of the new group" = "The name of the new group";

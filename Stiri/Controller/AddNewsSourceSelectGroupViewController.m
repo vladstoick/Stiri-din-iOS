@@ -44,7 +44,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return self.allGroups.count;
+    return self.allGroups.count+1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -53,19 +53,46 @@
     if(cell == nil){
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:tableIdentifier];
     }
-    NewsGroup *newsGroup = [self.allGroups objectAtIndex:indexPath.row];
-    cell.textLabel.text = newsGroup.title;
+    if(indexPath.row < self.allGroups.count){
+        NewsGroup *newsGroup = [self.allGroups objectAtIndex:indexPath.row];
+        cell.textLabel.text = newsGroup.title;
+    } else {
+        cell.textLabel.text = NSLocalizedString(@"New group", nil);
+    }
     return cell;
 }
+//ALERTVIEW START
+- (BOOL)alertViewShouldEnableFirstOtherButton:(UIAlertView *)alertView{
+    NSString *text = [[alertView textFieldAtIndex:0] text];
+    return text.length > 0;
+    
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    NSString *title = [alertView buttonTitleAtIndex:buttonIndex];
+    NSString *text = [[alertView textFieldAtIndex:0] text];
+    if([title isEqualToString:NSLocalizedString(@"Ok",nil)]){
+        [[NewsDataSource newsDataSource] addNewsSourceWithUrl:[self.feedToBeAdded objectForKey:@"url"] inNewGroupWithName:text];
+        [SVProgressHUD showWithStatus:NSLocalizedString(@"Adding",nil) maskType:SVProgressHUDMaskTypeBlack];
+
+    }
+}
+//ALERTVIEW END
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    NewsGroup *newsGroup = [self.allGroups objectAtIndex:indexPath.row];
-    [[NewsDataSource newsDataSource] addNewsSourceWithUrl:[self.feedToBeAdded objectForKey:@"url"] inNewsGroup:newsGroup];
-    [SVProgressHUD showWithStatus:@"Adding" maskType:SVProgressHUDMaskTypeBlack];
+    if(indexPath.row < self.allGroups.count){
+        NewsGroup *newsGroup = [self.allGroups objectAtIndex:indexPath.row];
+        [[NewsDataSource newsDataSource] addNewsSourceWithUrl:[self.feedToBeAdded objectForKey:@"url"] inNewsGroup:newsGroup];
+        [SVProgressHUD showWithStatus:NSLocalizedString(@"Adding",nil) maskType:SVProgressHUDMaskTypeBlack];
+    } else {
+        UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:NSLocalizedString(@"New group", nil) message:NSLocalizedString(@"The name of the new group", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel", nil) otherButtonTitles:NSLocalizedString(@"Ok", nil), nil];
+        alertView.alertViewStyle = UIAlertViewStylePlainTextInput;
+        [alertView show];
+    }
 }
 
 - (void) addEnded:(NSNotification*) notification{
-    [SVProgressHUD showSuccessWithStatus:@"Succes"];
+    [SVProgressHUD showSuccessWithStatus:NSLocalizedString(@"Added",nil)];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
