@@ -75,7 +75,8 @@
 {
     [super viewWillAppear:animated];
     [[self navigationController] setNavigationBarHidden:NO animated:YES];
-    
+    self.groups = [[NewsDataSource newsDataSource] allGroups];
+    [self.tableView reloadData];
 }
 
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation{
