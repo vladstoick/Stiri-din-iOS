@@ -53,6 +53,7 @@
 		7296D95E17D32E9900E05075 /* blankimg.png in Resources */ = {isa = PBXBuildFile; fileRef = 7296D95C17D32E9900E05075 /* blankimg.png */; };
 		7296D95F17D32E9900E05075 /* blankimg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7296D95D17D32E9900E05075 /* blankimg@2x.png */; };
 		729B739217DDC3B60084C968 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 729B739017DDC3980084C968 /* MobileCoreServices.framework */; };
+		729B739317DDD6770084C968 /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 72B8682117B3C50100A871E5 /* MainStoryboard_iPhone.storyboard */; };
 		729EA62017DB659400145909 /* AddNewsSourceCategoriesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 729EA61F17DB659400145909 /* AddNewsSourceCategoriesViewController.m */; };
 		729EA62817DB65D000145909 /* AddNewsSourceSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 729EA62717DB65D000145909 /* AddNewsSourceSearchViewController.m */; };
 		729EA62E17DB660400145909 /* AddNewsSourceCategoriesFeedsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 729EA62D17DB660400145909 /* AddNewsSourceCategoriesFeedsViewController.m */; };
@@ -690,6 +691,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				729B739317DDD6770084C968 /* MainStoryboard_iPhone.storyboard in Resources */,
 				728BF50617D7CBE900B3F546 /* Localizable.strings in Resources */,
 				7208344C17A0288800CEC1E5 /* Default.png in Resources */,
 				7208344E17A0288800CEC1E5 /* Default@2x.png in Resources */,

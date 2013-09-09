@@ -12,6 +12,7 @@
 @class GPPSignInButton;
 
 @interface LoginViewController : UIViewController <GPPSignInDelegate , FBLoginViewDelegate> 
+@property (weak, nonatomic) IBOutlet GPPSignInButton *gpLogin;
 - (IBAction)loginWithFacebook:(id)sender;
 @property (retain, nonatomic) IBOutlet GPPSignInButton *signInButton;
 @end

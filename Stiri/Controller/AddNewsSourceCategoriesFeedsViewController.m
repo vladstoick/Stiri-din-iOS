@@ -8,6 +8,7 @@
 
 #import "AddNewsSourceCategoriesFeedsViewController.h"
 #import "AddNewsSourceSelectGroupViewController.h"
+#import "NewsDataSource.h"
 @interface AddNewsSourceCategoriesFeedsViewController ()
 
 @end
@@ -56,6 +57,19 @@
     }
     cell.detailTextLabel.text =  subscribersString;
     return cell;
+}
+
+- (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender{
+    if([identifier isEqualToString:@"selectedAFeed"]){
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        NSDictionary *feedToBeAdded = [self.feeds objectAtIndex:indexPath.row];
+        if([[NewsDataSource newsDataSource] hasNewsSourceWithID:[feedToBeAdded valueForKey:@"id"]]==YES){
+            [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error", nil) message:NSLocalizedString(@"You already have that news source", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"Ok", nil) otherButtonTitles:nil, nil]show];
+            return NO;
+        }
+        
+    }
+    return YES;
 }
 
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{

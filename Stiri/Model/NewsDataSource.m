@@ -420,6 +420,14 @@ static NewsDataSource *_newsDataSource;
     return [[NewsSource MR_findByAttribute:@"sourceId" withValue:sourceId] lastObject];
 }
 
+- (BOOL) hasNewsSourceWithID:(NSNumber*) sourceId{
+    NSArray *array = [NewsSource MR_findByAttribute:@"sourceId" withValue:sourceId];
+    if(array == nil || array.count == 0 ){
+        return NO;
+    }
+    return YES;
+}
+
 //NEWSITEM
 - (NSArray *)allNews {
     return [NewsItem MR_findAll];

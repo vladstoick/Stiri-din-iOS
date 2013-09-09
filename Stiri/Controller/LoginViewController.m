@@ -41,6 +41,7 @@ static NSString * const kClientId = @"976584719831.apps.googleusercontent.com";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self.gpLogin setStyle:kGPPSignInButtonStyleWide];
     self.mm_drawerController.shouldStretchDrawer = NO;
     self.mm_drawerController.openDrawerGestureModeMask = MMDrawerOpenCenterInteractionModeNone;
     self.view.backgroundColor =    [UIColor colorWithPatternImage:[UIImage imageNamed:@"squairy_light.png"]];

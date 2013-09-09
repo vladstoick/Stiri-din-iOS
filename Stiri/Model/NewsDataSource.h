@@ -50,6 +50,8 @@
 
 - (NewsSource *)getNewsSourceWithId:(NSNumber *)sourceId;
 
+- (BOOL) hasNewsSourceWithID:(NSNumber*) sourceId;
+
 //NewsItem
 - (NSArray *)allNews;
 
