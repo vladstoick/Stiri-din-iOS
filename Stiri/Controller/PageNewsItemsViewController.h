@@ -15,4 +15,5 @@
 - (IBAction)share:(id)sender;
 @property (nonatomic) NSInteger newsIndex;
 @property (strong, nonatomic) NSArray* news;
+@property (nonatomic) BOOL isFromSearch;
 @end

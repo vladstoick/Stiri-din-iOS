@@ -14,12 +14,15 @@ PODS:
     - MMDrawerController/Core
   - MMDrawerController/Subclass (0.4.0):
     - MMDrawerController/Core
+  - MoPubSDK (1.12.1.0):
+    - TouchJSON (~> 1.0)
   - NewRelicAgent (1.354)
   - REFormattedNumberField (1.0.4)
   - RETableViewManager (1.1.2):
     - REFormattedNumberField (~> 1.0.4)
   - SIAlertView (1.2)
   - SVProgressHUD (0.9)
+  - TouchJSON (1.1)
   - TSMiniWebBrowser (1.0.1)
 
 DEPENDENCIES:
@@ -27,6 +30,7 @@ DEPENDENCIES:
   - Facebook-iOS-SDK
   - google-plus-ios-sdk
   - MMDrawerController
+  - MoPubSDK
   - NewRelicAgent
   - RETableViewManager
   - SIAlertView
@@ -38,11 +42,13 @@ SPEC CHECKSUMS:
   Facebook-iOS-SDK: bf38d403928f6adb652e2e5ae46253e0c6ba9a19
   google-plus-ios-sdk: 38378c4094a72a4fcdd5254c03fdd1813b345fb9
   MMDrawerController: 44baaee6b79487b4681eb61597fb790586909c0c
+  MoPubSDK: ee8f89e947d7b300b8c9f64d41f7be32a8a1d202
   NewRelicAgent: 366c693e7f23f3f7b065cd3f23d0d70070f761ed
   REFormattedNumberField: 74ac0f5ce7001102a461dd025d34c93be7794a00
   RETableViewManager: a4aba458bdff0c079eea03a0c882eb6fbf1ba3e2
   SIAlertView: fd188f66278761f4ff069f517c3deb2be16ecdcc
   SVProgressHUD: 03d4845ec8e64591726428a08236c6a5489d45f8
+  TouchJSON: 9e53f4df141b7f972766292b00b46bccf29f179a
   TSMiniWebBrowser: b0d1e578f250f29615541093564df0c2aebcda07
 
 COCOAPODS: 0.24.0

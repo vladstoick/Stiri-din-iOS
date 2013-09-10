@@ -115,6 +115,7 @@
         PageNewsItemsViewController *destViewController = segue.destinationViewController;
         destViewController.news = self.searchResults;
         destViewController.newsIndex = indexPath.row;
+        destViewController.isFromSearch = YES;
         [self.tableView deselectRowAtIndexPath:indexPath animated:false];
     }
 }

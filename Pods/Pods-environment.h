@@ -48,6 +48,12 @@
 #define COCOAPODS_VERSION_MINOR_MMDrawerController_Subclass 4
 #define COCOAPODS_VERSION_PATCH_MMDrawerController_Subclass 0
 
+// MoPubSDK
+#define COCOAPODS_POD_AVAILABLE_MoPubSDK
+#define COCOAPODS_VERSION_MAJOR_MoPubSDK 1
+#define COCOAPODS_VERSION_MINOR_MoPubSDK 12
+#define COCOAPODS_VERSION_PATCH_MoPubSDK 1
+
 // NewRelicAgent
 #define COCOAPODS_POD_AVAILABLE_NewRelicAgent
 #define COCOAPODS_VERSION_MAJOR_NewRelicAgent 1
@@ -83,6 +89,12 @@
 #define COCOAPODS_VERSION_MAJOR_TSMiniWebBrowser 1
 #define COCOAPODS_VERSION_MINOR_TSMiniWebBrowser 0
 #define COCOAPODS_VERSION_PATCH_TSMiniWebBrowser 1
+
+// TouchJSON
+#define COCOAPODS_POD_AVAILABLE_TouchJSON
+#define COCOAPODS_VERSION_MAJOR_TouchJSON 1
+#define COCOAPODS_VERSION_MINOR_TouchJSON 1
+#define COCOAPODS_VERSION_PATCH_TouchJSON 0
 
 // google-plus-ios-sdk
 #define COCOAPODS_POD_AVAILABLE_google_plus_ios_sdk

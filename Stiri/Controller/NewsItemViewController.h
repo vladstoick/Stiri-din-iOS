@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "NewsItem.h"
 @interface NewsItemViewController : UIViewController <UIWebViewDelegate>
-@property (strong, nonatomic) NewsItem *currentNewsItem;
+@property (strong, nonatomic) id<NewsItemProtocol> currentNewsItem;
 @property (nonatomic) NSInteger index;
 @end

@@ -5,7 +5,6 @@
 //  Created by Vlad Stoica on 8/13/13.
 //  Copyright (c) 2013 Stoica Vlad. All rights reserved.
 //
-
 #import "NewsSourceViewController.h"
 #import "NewsItemsViewController.h"
 #import "NewsGroup.h"
@@ -17,6 +16,7 @@
 #import "SIAlertView.h"
 #import "NewsSourceCell.h"
 @interface NewsSourceViewController ()
+@property (strong, nonatomic) MPAdView *adView;
 @property (weak, nonatomic) NSIndexPath *swipedCell;
 @property (strong,nonatomic) NewsGroup* newsGroup;
 @property (strong,nonatomic) NSArray* newsSources;
@@ -54,7 +54,15 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.title = self.newsGroup.title;   
+    MPAdView *adView = [[MPAdView alloc] initWithAdUnitId:@"a311136251424e1499ce24f5a8485c35"
+                                                      size:MOPUB_BANNER_SIZE];
+    adView.frame = CGRectMake(0, self.view.bounds.size.height - 50, 320, 50);
+    adView.delegate = self;
+    [adView loadAd];
+    _adView = adView;
+    [self.view addSubview:adView];
+
+    self.title = self.newsGroup.title;
 }
 
 
@@ -138,5 +146,9 @@
     [alertView show];
 }
 
+#pragma mark - <MPAdViewDelegate>
+- (UIViewController *)viewControllerForPresentingModalView {
+    return self;
+}
 
 @end

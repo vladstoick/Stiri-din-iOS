@@ -10,8 +10,15 @@
 #import <CoreData/CoreData.h>
 
 @class NewsSource;
-
-@interface NewsItem : NSManagedObject
+@protocol NewsItemProtocol <NSObject>
+@required
+@property (nonatomic) NSString * paperized;
+@property (nonatomic) NSString *title;
+@property (nonatomic) NSDate *pubDate;
+@property (nonatomic) NSString *url;
+@property (nonatomic) NSString *imageUrl;
+@end
+@interface NewsItem : NSManagedObject <NewsItemProtocol>
 
 @property (nonatomic, retain) NSNumber * isRead;
 @property (nonatomic, retain) NSNumber * newsId;

@@ -159,7 +159,8 @@
                         break;
                     }
                 }
-            } else {
+            }
+            if(newsSource == nil){
                 newsSource = [NewsSource MR_createInContext:context];
                 newsSource.groupOwner = newsGroup;
                 newsSource.title = title;
@@ -439,7 +440,7 @@ static NewsDataSource *_newsDataSource;
     AFHTTPClient *httpClient = [[AFHTTPClient alloc] initWithBaseURL:url];
     NSDictionary *paramters = @{@"article_id": newsItem.newsId, @"key": self.privateKey};
     newsItem.isRead = @1;
-    [httpClient postPath:@"unread"
+    [httpClient deletePath:@"unread"
               parameters:paramters
                  success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"Made News read %@" , newsItem.url);
@@ -491,19 +492,18 @@ static NewsDataSource *_newsDataSource;
         NSMutableArray *searchParsed = [[NSMutableArray alloc] init];
 
         for(NSDictionary *newsResult in results){
-            NewsItem *ni = [NewsItem MR_createEntity];
-            ni.isRead = @1;
-            ni.paperized = [newsResult valueForKey:@"content"];
-            ni.title = [newsResult valueForKey:@"title"];
-            ni.imageUrl = [newsResult valueForKey:@"image"];
+            SearchResult *result = [[SearchResult alloc] init];
+            result.paperized = [newsResult valueForKey:@"content"];
+            result.title = [newsResult valueForKey:@"title"];
+            result.imageUrl = [newsResult valueForKey:@"image"];
             NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
             [dateFormatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"]];
             [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSSZ"];
             NSString *dateString = [newsResult valueForKey:@"last_modified"];
             NSDate *date = [dateFormatter dateFromString:dateString];
-            ni.pubDate= date;
-            ni.url = [newsResult valueForKey:@"url"];
-            [searchParsed addObject:ni];
+            result.pubDate= date;
+            result.url = [newsResult valueForKey:@"url"];
+            [searchParsed addObject:result];
         }
         BOOL dataIsLeft = (startPosition+10 < [resultsFound integerValue]);
         [self.searchResultDelegate recievedSearchResults:searchParsed withDataLeft:dataIsLeft];

@@ -44,7 +44,9 @@
     self.pageController.delegate = self;
     CGRect framePC = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height+36);
     [[self.pageController view] setFrame:framePC];
-    [[NewsDataSource newsDataSource] makeNewsItemRead:[self newsItemAtIndex:self.newsIndex]];
+    if(self.isFromSearch == NO){
+        [[NewsDataSource newsDataSource] makeNewsItemRead:[self newsItemAtIndex:self.newsIndex]];
+    }
     NewsItemViewController *initialViewController = [self viewControllerAtIndex:self.newsIndex];
     NSArray *viewControllers = [NSArray arrayWithObject:initialViewController];
 
@@ -64,7 +66,7 @@
         didFinishAnimating:(BOOL)finished
    previousViewControllers:(NSArray *)previousViewControllers
        transitionCompleted:(BOOL)completed {
-    if (completed == YES) {
+    if (completed == YES && self.isFromSearch == NO) {
         NewsItemViewController *currentViewController = (self.pageController.viewControllers)[0];
         NSInteger index = currentViewController.index;
         [[NewsDataSource newsDataSource] makeNewsItemRead:[self newsItemAtIndex:(NSUInteger) index]];

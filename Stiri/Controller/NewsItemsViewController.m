@@ -14,7 +14,7 @@
 #import "SVProgressHud.h"
 #import "NewsItemCell.h"
 #define DATA_NEWSOURCE_PARSED @"newssource_loaded"
-#import "UIImageView+AFNetworking.h"
+#import "NewsItemWithoutImageCell.h"
 @interface NewsItemsViewController ()
 @property(strong, nonatomic) NewsSource *newsSource;
 @property(strong, nonatomic) NSArray *unreadNews;
@@ -82,24 +82,17 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    if(self.isShowingAllNews == NO){
-        [self checkIfParsed:self.newsSource];
-        self.title = self.newsSource.title;
-    }
+    [self checkIfParsed:self.newsSource];
+    self.title = self.newsSource.title;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dataChanged:)
                                                  name:DATA_NEWSOURCE_PARSED object:nil];
     // Do any additional setup after loading the view.
 }
 
 - (void)dataChanged:(NSNotification *)notification {
-    if(self.isShowingAllNews == NO){
-        [self checkIfParsed:self.newsSource];
-    } else {
-        [self updateNews];
-        [self.tableView reloadData];
-
-    }
+    [self checkIfParsed:self.newsSource];
+    [self updateNews];
+    [self.tableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -147,17 +140,25 @@
 }
 
 
-- (NewsItemCell *)tableView:(UITableView *)tableViewLocal cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *subtitleTableIdentifier = @"titleViewCellItem";
-    NewsItemCell *cell = [tableViewLocal dequeueReusableCellWithIdentifier:subtitleTableIdentifier];
-    NewsItem *newsItem;
+- (UITableViewCell *)tableView:(UITableView *)tableViewLocal cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    id<NewsItemProtocol> newsItem;
     if(indexPath.section == 0 && self.hasUnreadNews == YES) {
         newsItem = (self.unreadNews)[indexPath.row];
     } else {
         newsItem = (self.readNews)[indexPath.row];
     }
-    [cell setNewsItem:newsItem];
-    return cell;
+    if(![newsItem.imageUrl isEqualToString:@""]){
+        NSString *identifier = @"newsCellWithImage";
+        NewsItemCell *cell = [tableViewLocal dequeueReusableCellWithIdentifier:identifier];
+        [cell setNewsItem:newsItem];
+        return cell;
+    } else {
+        NSString *identifier = @"newsCellWithoutImage";
+        NewsItemWithoutImageCell *cell = [tableViewLocal dequeueReusableCellWithIdentifier:identifier];
+        [cell setNewsItem:newsItem];
+        return cell;
+    }
+    return nil;
 }
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"openNewsItem"]) {
@@ -169,6 +170,7 @@
             destViewController.news = self.readNews;
         }
         destViewController.newsIndex = indexPath.row;
+        destViewController.isFromSearch = self.isFromSearch;
         [self.tableView deselectRowAtIndexPath:indexPath animated:false];
     }
 }

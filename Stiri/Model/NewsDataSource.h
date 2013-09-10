@@ -10,7 +10,7 @@
 #import "NewsGroup.h"
 #import "NewsItem.h"    
 #import "NewsSource.h"
-
+#import "SearchResult.h"
 @protocol SearchResultDeleagte <NSObject>
 
 - (void) recievedSearchResults:(NSArray*) searchResults withDataLeft:(BOOL) dataAvailable;

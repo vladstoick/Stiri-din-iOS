@@ -1,0 +1,1 @@
+../../MoPubSDK/MoPubSDK/Internal/Banners/MPBannerCustomEventAdapter.h

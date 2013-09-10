@@ -40,6 +40,9 @@ install_resource()
   esac
 }
 install_resource "Facebook-iOS-SDK/src/FBUserSettingsViewResources.bundle"
+install_resource "MoPubSDK/MoPubSDK/Internal/Common/MPAdBrowserController.xib"
+install_resource "MoPubSDK/MoPubSDK/Resources/MPCloseButtonX.png"
+install_resource "MoPubSDK/MoPubSDK/Resources/MPCloseButtonX@2x.png"
 install_resource "RETableViewManager/RETableViewManager/RETableViewManager.bundle"
 install_resource "SIAlertView/SIAlertView/SIAlertView.bundle"
 install_resource "SVProgressHUD/SVProgressHUD/SVProgressHUD.bundle"

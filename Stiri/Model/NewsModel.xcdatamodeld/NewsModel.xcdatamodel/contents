@@ -26,7 +26,7 @@
         <relationship name="news" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="NewsItem" inverseName="sourceOwner" inverseEntity="NewsItem" syncable="YES"/>
     </entity>
     <elements>
-        <element name="NewsGroup" positionX="-1226" positionY="-216" width="128" height="88"/>
+        <element name="NewsGroup" positionX="-1226" positionY="-216" width="128" height="90"/>
         <element name="NewsItem" positionX="-765" positionY="-216" width="128" height="165"/>
         <element name="NewsSource" positionX="-992" positionY="-184" width="128" height="165"/>
     </elements>

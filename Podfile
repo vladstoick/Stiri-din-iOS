@@ -8,4 +8,4 @@ pod 'google-plus-ios-sdk'
 pod 'SVProgressHUD'
 pod 'NewRelicAgent'
 pod 'TSMiniWebBrowser'
-
+pod 'MoPubSDK'

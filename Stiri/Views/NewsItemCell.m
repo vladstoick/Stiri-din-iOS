@@ -60,22 +60,11 @@
 }
 
 - (void) setNewsItem:(NewsItem *)newsItem{
-    if([newsItem.imageUrl isEqualToString:@""]){
-        [self.articleImageView setFrame:self.secondaryRectForImage];
-        [self.titleLabel setFrame:self.secondaryRectForTitle];
-        [self.dateLabel setFrame:self.secondaryRectForDate];
-    } else {
-        [self.articleImageView setFrame:self.defaultRectForImage];
-        [self.titleLabel setFrame:self.defaultRectForTitle];
-        [self.dateLabel setFrame:self.defaultRectForDate];
-        [self.articleImageView setImageWithURL:[NSURL URLWithString:newsItem.imageUrl] placeholderImage:[UIImage imageNamed:@"blankimg.png"]];
-    }
+    [self.articleImageView setImageWithURL:[NSURL URLWithString:newsItem.imageUrl] placeholderImage:[UIImage imageNamed:@"blankimg.png"]];
     self.titleLabel.text = newsItem.title;
     self.dateLabel.text = [NSDateFormatter localizedStringFromDate:newsItem.pubDate
                                                           dateStyle:NSDateFormatterShortStyle
                                                           timeStyle:NSDateFormatterShortStyle];
-
-    [self setNeedsDisplay];
 }
 
 @end

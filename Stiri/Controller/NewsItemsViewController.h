@@ -11,5 +11,5 @@
 @interface NewsItemsViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSNumber *sourceId;
-@property (nonatomic) BOOL isShowingAllNews;
+@property (nonatomic) BOOL isFromSearch;
 @end
