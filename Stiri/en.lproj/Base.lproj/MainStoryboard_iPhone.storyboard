@@ -812,7 +812,7 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="CKb-cI-4u1">
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="menuViewCell" id="YjL-dg-eeW">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="gray" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="menuViewCell" id="YjL-dg-eeW">
                                         <rect key="frame" x="0.0" y="22" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -1114,7 +1114,7 @@
         <scene sceneID="2Qx-xY-IeT">
             <objects>
                 <navigationController id="fYp-aE-IF7" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Manual" image="manual_tab_bar_icon.png" id="qPl-2c-ahc"/>
+                    <tabBarItem key="tabBarItem" title="Manual" image="manual-tab.png" id="qPl-2c-ahc"/>
                     <toolbarItems/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="blackOpaque" prompted="NO"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="blackOpaque" id="pQY-Rp-hQ8">
@@ -1314,7 +1314,7 @@
         <scene sceneID="PeC-Wd-LaJ">
             <objects>
                 <navigationController id="K4B-sw-TW0" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Categories" image="recommended_tab_bar_icon.png" id="qO0-w8-kYs"/>
+                    <tabBarItem key="tabBarItem" title="Categories" image="categories-tab.png" id="qO0-w8-kYs"/>
                     <toolbarItems/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="blackOpaque" prompted="NO"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="blackOpaque" id="nWV-zH-SwE">
@@ -1334,7 +1334,7 @@
         <scene sceneID="Gqp-iZ-tf9">
             <objects>
                 <navigationController id="39B-Mv-Tmo" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Search" image="recommended_tab_bar_icon.png" id="jVM-eE-SPF"/>
+                    <tabBarItem key="tabBarItem" title="Search" image="search-tab.png" id="jVM-eE-SPF"/>
                     <toolbarItems/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="blackOpaque" prompted="NO"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="blackOpaque" id="1xQ-iA-zvZ">
@@ -1352,10 +1352,142 @@
         </scene>
     </scenes>
     <resources>
+        <image name="categories-tab.png" width="26" height="26"/>
         <image name="logo.png" width="140" height="140"/>
-        <image name="manual_tab_bar_icon.png" width="40" height="40"/>
-        <image name="recommended_tab_bar_icon.png" width="40" height="40"/>
+        <image name="manual-tab.png" width="26" height="26"/>
+        <image name="search-tab.png" width="26" height="26"/>
     </resources>
+    <classes>
+        <class className="AddNewsSourceCategoriesFeedsViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/AddNewsSourceCategoriesFeedsViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="AddNewsSourceCategoriesViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/AddNewsSourceCategoriesViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="cancelClicked:"/>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="AddNewsSourceManuallyViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/AddNewsSourceManuallyViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="cancelPressed:"/>
+                <relationship kind="action" name="donePressed:"/>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="AddNewsSourceSearchViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/AddNewsSourceSearchViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="cancelClicked:"/>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="AddNewsSourceSelectGroupViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/AddNewsSourceSelectGroupViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="AllNewsItemsViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/AllNewsItemsViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="menuClicked:"/>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="FBLoginView" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FBLoginView.h"/>
+            <relationships>
+                <relationship kind="outlet" name="delegate"/>
+            </relationships>
+        </class>
+        <class className="HHPanningTableViewCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/HHPanningTableViewCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="drawerView" candidateClass="UIView"/>
+            </relationships>
+        </class>
+        <class className="InitialViewController" superclassName="MMDrawerController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/InitialViewController.h"/>
+        </class>
+        <class className="LoginViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/LoginViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="loginWithFacebook:"/>
+                <relationship kind="outlet" name="gpLogin" candidateClass="GPPSignInButton"/>
+                <relationship kind="outlet" name="signInButton" candidateClass="GPPSignInButton"/>
+            </relationships>
+        </class>
+        <class className="MMDrawerController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MMDrawerController.h"/>
+        </class>
+        <class className="MenuViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MenuViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+        <class className="NewsGroupViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NewsGroupViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="NewsItemCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NewsItemCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="articleImageView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="dateLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="titleLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="NewsItemViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NewsItemViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="webView" candidateClass="UIWebView"/>
+            </relationships>
+        </class>
+        <class className="NewsItemsViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NewsItemsViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="NewsSourceCell" superclassName="HHPanningTableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NewsSourceCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="favImageView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="titleLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="NewsSourceViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NewsSourceViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="PageNewsItemsViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PageNewsItemsViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="openInBrowser:"/>
+                <relationship kind="action" name="share:"/>
+            </relationships>
+        </class>
+        <class className="SearchViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SearchViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="searchBar" candidateClass="UISearchBar"/>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
