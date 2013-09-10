@@ -580,7 +580,6 @@
                                             <outlet property="articleImageView" destination="V3i-mU-0FJ" id="oUZ-0f-2f4"/>
                                             <outlet property="dateLabel" destination="tmL-2x-tb5" id="V5M-nS-xBI"/>
                                             <outlet property="titleLabel" destination="KdH-0Y-VuI" id="Mha-Zc-4rk"/>
-                                            <segue destination="1JA-rq-pip" kind="push" identifier="openNewsItem" id="wQt-Gy-Y3W"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="newsCellWithoutImage" rowHeight="80" id="Hkl-TU-hfn" customClass="NewsItemCell">
@@ -641,6 +640,7 @@
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="tableView" destination="Dxg-4W-Veg" id="CAE-MQ-Bp3"/>
+                        <segue destination="1JA-rq-pip" kind="push" identifier="openNewsItem" id="Oiw-Ei-FBu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6rN-PK-di3" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1362,7 +1362,7 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+        <segue reference="Oiw-Ei-FBu"/>
         <segue reference="Ae0-rI-srF"/>
-        <segue reference="viH-hh-LmZ"/>
     </inferredMetricsTieBreakers>
 </document>
