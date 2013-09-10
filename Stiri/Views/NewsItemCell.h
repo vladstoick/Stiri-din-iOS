@@ -8,7 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "NewsItem.h"
-@interface NewsItemCell : UITableViewCell
+@protocol NewsItemCellProtocol <NSObject>
+- (void) setNewsItem:(NewsItem*) newsItem;
+@property (weak,nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak,nonatomic) IBOutlet UILabel *dateLabel;
+@end
+@interface NewsItemCell : UITableViewCell <NewsItemCellProtocol>
 @property (weak,nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak,nonatomic) IBOutlet UILabel *dateLabel;
 @property (weak,nonatomic) IBOutlet UIImageView *articleImageView;

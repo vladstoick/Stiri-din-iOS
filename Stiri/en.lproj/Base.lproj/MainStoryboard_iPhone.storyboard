@@ -84,7 +84,7 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="3zQ-7O-bk9">
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <searchBar key="tableHeaderView" contentMode="redraw" barStyle="blackOpaque" id="Scc-IZ-WoZ">
-                                    <rect key="frame" x="0.0" y="0.0" width="960" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                     <textInputTraits key="textInputTraits"/>
                                     <connections>
@@ -923,7 +923,7 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="BAb-X5-C9O">
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <searchBar key="tableHeaderView" contentMode="redraw" barStyle="blackOpaque" showsScopeBar="YES" id="3to-F2-GsR">
-                                    <rect key="frame" x="0.0" y="0.0" width="1600" height="88"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="88"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="no"/>
                                     <scopeButtonTitles>
@@ -935,7 +935,7 @@
                                     </connections>
                                 </searchBar>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationWidth="0.0" reuseIdentifier="searchResultsCell" rowHeight="80" id="AKr-iP-PAn" customClass="NewsItemCell">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationWidth="0.0" reuseIdentifier="newsCellWithImage" rowHeight="80" id="AKr-iP-PAn" customClass="NewsItemCell">
                                         <rect key="frame" x="0.0" y="110" width="320" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -983,6 +983,45 @@
                                             <outlet property="titleLabel" destination="wT5-II-0iK" id="oqc-9j-CDN"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="newsCellWithoutImage" rowHeight="80" id="fhK-vL-xNR" customClass="NewsItemCell">
+                                        <rect key="frame" x="0.0" y="190" width="320" height="80"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="79"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Title" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="F2M-Ew-Xag">
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="43" type="user" id="Qpc-uJ-Cc0"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </label>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Date" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ijb-uP-XaH">
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="20" type="user" id="Olk-iV-6a4"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue-LightItalic" family="Helvetica Neue" pointSize="10"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstItem="ijb-uP-XaH" firstAttribute="leading" secondItem="fhK-vL-xNR" secondAttribute="leading" constant="20" type="default" id="2EE-1C-Ml1"/>
+                                            <constraint firstItem="F2M-Ew-Xag" firstAttribute="leading" secondItem="fhK-vL-xNR" secondAttribute="leading" constant="20" type="default" id="33c-xw-ANs"/>
+                                            <constraint firstItem="F2M-Ew-Xag" firstAttribute="top" secondItem="fhK-vL-xNR" secondAttribute="top" constant="8" id="4iM-CO-OSS"/>
+                                            <constraint firstItem="ijb-uP-XaH" firstAttribute="trailing" secondItem="fhK-vL-xNR" secondAttribute="trailing" type="default" id="CUc-CV-PcW"/>
+                                            <constraint firstItem="ijb-uP-XaH" firstAttribute="top" secondItem="F2M-Ew-Xag" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="J4W-fQ-I1y"/>
+                                            <constraint firstAttribute="trailing" secondItem="F2M-Ew-Xag" secondAttribute="trailing" constant="20" type="default" id="xja-bf-ZYJ"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="dateLabel" destination="ijb-uP-XaH" id="ms2-T8-sfc"/>
+                                            <outlet property="titleLabel" destination="F2M-Ew-Xag" id="T7t-zq-SF7"/>
+                                        </connections>
+                                    </tableViewCell>
                                 </prototypes>
                             </tableView>
                         </subviews>
@@ -1018,7 +1057,7 @@
                         <outlet property="searchBar" destination="3to-F2-GsR" id="74b-eF-Q3t"/>
                         <outlet property="searchDisplayController" destination="Twb-oM-5x0" id="Nlb-ww-oYz"/>
                         <outlet property="tableView" destination="BAb-X5-C9O" id="NOR-3o-SSS"/>
-                        <segue destination="1JA-rq-pip" kind="push" identifier="showSearchResults" id="mLW-p9-2B7"/>
+                        <segue destination="1JA-rq-pip" kind="push" identifier="showSearchResults" id="viH-hh-LmZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4aB-aY-hJm" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1317,137 +1356,6 @@
         <image name="manual_tab_bar_icon.png" width="40" height="40"/>
         <image name="recommended_tab_bar_icon.png" width="40" height="40"/>
     </resources>
-    <classes>
-        <class className="AddNewsSourceCategoriesFeedsViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/AddNewsSourceCategoriesFeedsViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
-            </relationships>
-        </class>
-        <class className="AddNewsSourceCategoriesViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/AddNewsSourceCategoriesViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="cancelClicked:"/>
-                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
-            </relationships>
-        </class>
-        <class className="AddNewsSourceManuallyViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/AddNewsSourceManuallyViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="cancelPressed:"/>
-                <relationship kind="action" name="donePressed:"/>
-                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
-            </relationships>
-        </class>
-        <class className="AddNewsSourceSearchViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/AddNewsSourceSearchViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="cancelClicked:"/>
-                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
-            </relationships>
-        </class>
-        <class className="AddNewsSourceSelectGroupViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/AddNewsSourceSelectGroupViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
-            </relationships>
-        </class>
-        <class className="AllNewsItemsViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/AllNewsItemsViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="menuClicked:"/>
-                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
-            </relationships>
-        </class>
-        <class className="FBLoginView" superclassName="UIView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/FBLoginView.h"/>
-            <relationships>
-                <relationship kind="outlet" name="delegate"/>
-            </relationships>
-        </class>
-        <class className="HHPanningTableViewCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/HHPanningTableViewCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="drawerView" candidateClass="UIView"/>
-            </relationships>
-        </class>
-        <class className="InitialViewController" superclassName="MMDrawerController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/InitialViewController.h"/>
-        </class>
-        <class className="LoginViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/LoginViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="loginWithFacebook:"/>
-                <relationship kind="outlet" name="gpLogin" candidateClass="GPPSignInButton"/>
-                <relationship kind="outlet" name="signInButton" candidateClass="GPPSignInButton"/>
-            </relationships>
-        </class>
-        <class className="MMDrawerController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/MMDrawerController.h"/>
-        </class>
-        <class className="MenuViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/MenuViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
-            </relationships>
-        </class>
-        <class className="NSLayoutConstraint" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
-        </class>
-        <class className="NewsGroupViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NewsGroupViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
-            </relationships>
-        </class>
-        <class className="NewsItemCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NewsItemCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="articleImageView" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="dateLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="titleLabel" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="NewsItemViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NewsItemViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="webView" candidateClass="UIWebView"/>
-            </relationships>
-        </class>
-        <class className="NewsItemsViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NewsItemsViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
-            </relationships>
-        </class>
-        <class className="NewsSourceCell" superclassName="HHPanningTableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NewsSourceCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="favImageView" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="titleLabel" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="NewsSourceViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NewsSourceViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
-            </relationships>
-        </class>
-        <class className="PageNewsItemsViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/PageNewsItemsViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="openInBrowser:"/>
-                <relationship kind="action" name="share:"/>
-            </relationships>
-        </class>
-        <class className="SearchViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SearchViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="searchBar" candidateClass="UISearchBar"/>
-                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
@@ -1455,6 +1363,6 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="Ae0-rI-srF"/>
-        <segue reference="ziX-fY-D71"/>
+        <segue reference="viH-hh-LmZ"/>
     </inferredMetricsTieBreakers>
 </document>

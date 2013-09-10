@@ -122,13 +122,22 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    static NSString *searchResultsTableIdentifier = @"searchResultsCell";
     
-    NewsItemCell *cell = [self.tableView dequeueReusableCellWithIdentifier:searchResultsTableIdentifier];
+    UITableViewCell<NewsItemCellProtocol> *cell;
     if([self isCellResult:indexPath.row]){
-        NewsItem *newsItem = [self.searchResults objectAtIndex:indexPath.row];
+        id<NewsItemProtocol> newsItem = [self.searchResults objectAtIndex:indexPath.row];
+        NSLog(@"%@",newsItem.imageUrl);
+        if(![newsItem.imageUrl isEqualToString:@""] && newsItem.imageUrl != nil ){
+            NSString *identifier = @"newsCellWithImage";
+            cell = [self.tableView dequeueReusableCellWithIdentifier:identifier];
+        } else {
+            NSString *identifier = @"newsCellWithoutImage";
+            cell = [self.tableView dequeueReusableCellWithIdentifier:identifier];
+        }
         [cell setNewsItem:newsItem];
     } else {
+        NSString *identifier = @"newsCellWithoutImage";
+        cell = [self.tableView dequeueReusableCellWithIdentifier:identifier];
         cell.titleLabel.text = @"";
         cell.dateLabel.text = @"";
         [cell addSubview:self.spinner];
