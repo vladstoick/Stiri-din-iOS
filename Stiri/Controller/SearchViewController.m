@@ -21,9 +21,11 @@
 @property UIActivityIndicatorView *spinner;
 @property NSInteger size;
 @property BOOL dataAvailable;
+@property NSFetchedResultsController *fetch
 @end
 
 @implementation SearchViewController
+#pragma mark CORE DATA
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {

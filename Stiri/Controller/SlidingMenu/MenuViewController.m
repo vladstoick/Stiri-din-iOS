@@ -13,7 +13,7 @@
 #import "FBSession.h"
 #import "NewsDataSource.h"
 #import <GooglePlus/GooglePlus.h>
-
+#import "FontAwesomeKit.h"
 @interface MenuViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property NSArray *menuItems;
@@ -29,11 +29,15 @@
 {
     [super viewDidLoad];
     self.tableView.backgroundColor =    [UIColor colorWithPatternImage:[UIImage imageNamed:@"squairy_light.png"]];
-    self.newsItems = @[@{NSLocalizedString(@"Your groups",nil):@"Main"},
-                       @{NSLocalizedString(@"Unread news",nil):@"AllNewsItems"},
-                       @{NSLocalizedString(@"Search",nil):@"Search"}];
-    self.settings = @[@{NSLocalizedString(@"Settings", nil):@"Settings"}
-                      ,@{NSLocalizedString(@"Logout",nil):@"Logout"}];
+    NSDictionary *yourGroupsDictionary = @{@"title": NSLocalizedString(@"Your groups",nil) , @"img" : FAKIconFolderOpen};
+    NSDictionary *unreadNewsDictionary = @{@"title": NSLocalizedString(@"Unread news", nil) , @"img" : FAKIconRssSign };
+    NSDictionary *searchDictionary = @{@"title" : NSLocalizedString(@"Search", nil) , @"img" : FAKIconSearch};
+    NSDictionary *settingsDictionary = nil;
+    NSDictionary *logoutDictionary = @{@"title" : NSLocalizedString(@"Logout", nil) , @"img" : FAKIconOff};
+    self.newsItems = @[@{yourGroupsDictionary:@"Main"},
+                       @{unreadNewsDictionary:@"AllNewsItems"},
+                       @{searchDictionary:@"Search"}];
+    self.settings = @[@{logoutDictionary:@"Logout"}];
     self.sectionTitles = @[NSLocalizedString(@"News",nil),
                            NSLocalizedString(@"Settings",nil)];
     self.menuItems = @[self.newsItems,self.settings];
@@ -82,17 +86,19 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableViewLocal cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *subtitleTableIdentifier = @"menuViewCell";
+    static NSString *identifier = @"menuViewCell";
     
-    UITableViewCell *cell = [tableViewLocal dequeueReusableCellWithIdentifier:subtitleTableIdentifier];
+    UITableViewCell *cell = [tableViewLocal dequeueReusableCellWithIdentifier:identifier];
     
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:subtitleTableIdentifier];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
     }
     NSArray *menuItemsForCurrentSection = [self.menuItems objectAtIndex:indexPath.section];
     NSDictionary *menuItem = [menuItemsForCurrentSection objectAtIndex:indexPath.row];
-    cell.textLabel.text = [[menuItem allKeys]lastObject];
+    NSDictionary *menuInfo = [[menuItem allKeys] lastObject];
+    cell.textLabel.text = [menuInfo valueForKey:@"title"];
     cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:18.0];
+    [cell.imageView setImage:[FontAwesomeKit imageForIcon:[menuInfo valueForKey:@"img"] imageSize:CGSizeMake(18, 18) fontSize:18 attributes:nil]];
     return cell;
 }
 

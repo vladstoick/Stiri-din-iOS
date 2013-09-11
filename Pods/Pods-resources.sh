@@ -40,6 +40,7 @@ install_resource()
   esac
 }
 install_resource "Facebook-iOS-SDK/src/FBUserSettingsViewResources.bundle"
+install_resource "FontAwesomeKit/FontAwesomeKit/FontAwesome.otf"
 install_resource "MoPubSDK/MoPubSDK/Internal/Common/MPAdBrowserController.xib"
 install_resource "MoPubSDK/MoPubSDK/Resources/MPCloseButtonX.png"
 install_resource "MoPubSDK/MoPubSDK/Resources/MPCloseButtonX@2x.png"

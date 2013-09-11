@@ -18,6 +18,12 @@
 #define COCOAPODS_VERSION_MINOR_Facebook_iOS_SDK 7
 #define COCOAPODS_VERSION_PATCH_Facebook_iOS_SDK 1
 
+// FontAwesomeKit
+#define COCOAPODS_POD_AVAILABLE_FontAwesomeKit
+#define COCOAPODS_VERSION_MAJOR_FontAwesomeKit 1
+#define COCOAPODS_VERSION_MINOR_FontAwesomeKit 1
+#define COCOAPODS_VERSION_PATCH_FontAwesomeKit 3
+
 // MMDrawerController
 #define COCOAPODS_POD_AVAILABLE_MMDrawerController
 #define COCOAPODS_VERSION_MAJOR_MMDrawerController 0
