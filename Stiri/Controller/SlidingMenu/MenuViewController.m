@@ -7,6 +7,7 @@
 //
 
 #import <SVProgressHUD/SVProgressHUD.h>
+#define SYSTEM_VERSION_LESS_THAN(v)                 ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedAscending)
 #import "MenuViewController.h"
 #import "UIViewController+MMDrawerController.h"
 #import "AllNewsItemsViewController.h"
@@ -32,7 +33,7 @@
     NSDictionary *yourGroupsDictionary = @{@"title": NSLocalizedString(@"Your groups",nil) , @"img" : FAKIconFolderOpen};
     NSDictionary *unreadNewsDictionary = @{@"title": NSLocalizedString(@"Unread news", nil) , @"img" : FAKIconRssSign };
     NSDictionary *searchDictionary = @{@"title" : NSLocalizedString(@"Search", nil) , @"img" : FAKIconSearch};
-    NSDictionary *settingsDictionary = nil;
+
     NSDictionary *logoutDictionary = @{@"title" : NSLocalizedString(@"Logout", nil) , @"img" : FAKIconOff};
     self.newsItems = @[@{yourGroupsDictionary:@"Main"},
                        @{unreadNewsDictionary:@"AllNewsItems"},
@@ -65,13 +66,22 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return 26.0;
+    CGFloat statusbar = 20.0;
+    if(SYSTEM_VERSION_LESS_THAN(@"7.0") || section > 0 ){
+        statusbar = 0;
+    }
+    return 26.0+statusbar;
 }
 
+
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-    UIView *headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 280, 26)];
+    CGFloat statusbar = 20.0;
+    if(SYSTEM_VERSION_LESS_THAN(@"7.0") || section > 0 ){
+        statusbar = 0;
+    }
+    UIView *headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 280, 26+statusbar)];
     headerView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"tweed.png"]];
-    UILabel *sectionTitle = [[UILabel alloc] initWithFrame:CGRectMake(10,2,250,22)];
+    UILabel *sectionTitle = [[UILabel alloc] initWithFrame:CGRectMake(10,2+statusbar,250,22)];
     sectionTitle.opaque = true;
     sectionTitle.backgroundColor = [UIColor clearColor];
     sectionTitle.textColor = [UIColor whiteColor];
@@ -98,6 +108,7 @@
     NSDictionary *menuInfo = [[menuItem allKeys] lastObject];
     cell.textLabel.text = [menuInfo valueForKey:@"title"];
     cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:18.0];
+    cell.backgroundColor = [UIColor clearColor];
     [cell.imageView setImage:[FontAwesomeKit imageForIcon:[menuInfo valueForKey:@"img"] imageSize:CGSizeMake(18, 18) fontSize:18 attributes:nil]];
     return cell;
 }
