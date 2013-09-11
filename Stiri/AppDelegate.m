@@ -11,6 +11,7 @@
 #import <GooglePlus/GooglePlus.h>
 #import <FacebookSDK/FacebookSDK.h>
 #import <NewRelicAgent/NewRelicAgent.h>
+#define SYSTEM_VERSION_LESS_THAN(v)                 ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedAscending)
 #import <CoreData/CoreData.h>
 @implementation AppDelegate
 
@@ -29,7 +30,11 @@
     [NewRelicAgent startWithApplicationToken:@"AAda1a6278e5ef8e4349079aa07d6b5039aaa395a0"];
     [MagicalRecord setupCoreDataStackWithAutoMigratingSqliteStoreNamed:@"data.sqlite"];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
-//    [[UINavigationBar appearance] setTitleTextAttributes:@{UITextAttributeFont: [UIFont fontWithName:@"HelveticaNeue-CondensedBold" size:20.0]}];
+    if(SYSTEM_VERSION_LESS_THAN(@"7.0")){
+        [[UINavigationBar appearance] setTintColor:[UIColor blackColor]];
+        [[UITabBar appearance] setTintColor:[UIColor blackColor]];
+        [[UIToolbar appearance] setTintColor:[UIColor blackColor]];
+    }
     return YES;
     
 }

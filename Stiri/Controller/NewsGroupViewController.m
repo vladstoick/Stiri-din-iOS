@@ -48,16 +48,12 @@
     }
 }
 
--(UIStatusBarStyle)preferredStatusBarStyle{
-    return UIStatusBarStyleLightContent;
-}
-
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     self.mm_drawerController.openDrawerGestureModeMask = MMOpenDrawerGestureModeBezelPanningCenterView;
-
+    [self.navigationController setToolbarHidden:YES];
     self.navigationItem.hidesBackButton = true;
 
     [self.refreshControl addTarget:self action:@selector(refresh) forControlEvents:UIControlEventValueChanged];

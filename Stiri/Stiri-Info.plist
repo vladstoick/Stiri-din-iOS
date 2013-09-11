@@ -65,9 +65,9 @@
 		<key>UINavigationBar</key>
 		<dict>
 			<key>Style</key>
-			<string>UIBarStyleDefault</string>
+			<string>UIBarStyleBlack</string>
 			<key>Translucent</key>
-			<true/>
+			<false/>
 		</dict>
 	</dict>
 	<key>UISupportedInterfaceOrientations</key>
