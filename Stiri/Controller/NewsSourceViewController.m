@@ -11,7 +11,6 @@
 #import "NewsSource.h"
 #import "NewsDataSource.h"
 #import "UIImageView+AFNetworking.h"
-#import "HHPanningTableViewCell.h"
 #import "SVProgressHUD.h"
 #import "SIAlertView.h"
 #import "NewsSourceCell.h"
@@ -109,8 +108,6 @@
     [deleteButton setBackgroundImage:[UIImage imageNamed:@"delete_button.png"] forState:UIControlStateNormal];
     [deleteButton addTarget:self action:@selector(shouldDeleteSource:) forControlEvents:UIControlEventTouchDown];
     [drawerView addSubview:deleteButton];
-    cell.drawerView = drawerView;
-    cell.directionMask =  HHPanningTableViewCellDirectionLeft + HHPanningTableViewCellDirectionRight;
 
     return cell;
 }
@@ -123,8 +120,6 @@
     SIAlertView *alertView = [[SIAlertView alloc] initWithTitle:NSLocalizedString(@"Delete news source",nil)
                                                      andMessage:NSLocalizedString(@"You can't undo this operation",nil)];
     [alertView addButtonWithTitle:NSLocalizedString(@"Cancel",nil) type:SIAlertViewButtonTypeCancel handler:^(SIAlertView *alertView){
-        HHPanningTableViewCell *cell = (HHPanningTableViewCell*)[self.tableView cellForRowAtIndexPath:self.swipedCell];
-        [cell setDrawerRevealed:NO animated:YES];
     }];
 
     [alertView addButtonWithTitle:NSLocalizedString(@"Ok",nil) type:SIAlertViewButtonTypeDestructive handler:^(SIAlertView *alertView) {

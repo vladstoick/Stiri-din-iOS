@@ -21,6 +21,7 @@
 		7208344C17A0288800CEC1E5 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 7208344B17A0288800CEC1E5 /* Default.png */; };
 		7208344E17A0288800CEC1E5 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7208344D17A0288800CEC1E5 /* Default@2x.png */; };
 		7218012117CF498200386B12 /* NewsItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7218012017CF498200386B12 /* NewsItemCell.m */; };
+		7227449417E080A500739490 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7227449317E080A500739490 /* Images.xcassets */; };
 		726C22D817DF0B370048C891 /* SearchResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 726C22D717DF0B370048C891 /* SearchResult.m */; };
 		726C22DB17DF206A0048C891 /* search-tab.png in Resources */ = {isa = PBXBuildFile; fileRef = 726C22D917DF206A0048C891 /* search-tab.png */; };
 		726C22DC17DF206A0048C891 /* search-tab@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 726C22DA17DF206A0048C891 /* search-tab@2x.png */; };
@@ -68,9 +69,6 @@
 		729EA62817DB65D000145909 /* AddNewsSourceSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 729EA62717DB65D000145909 /* AddNewsSourceSearchViewController.m */; };
 		729EA62E17DB660400145909 /* AddNewsSourceCategoriesFeedsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 729EA62D17DB660400145909 /* AddNewsSourceCategoriesFeedsViewController.m */; };
 		729EA63117DB661000145909 /* AddNewsSourceSelectGroupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 729EA63017DB661000145909 /* AddNewsSourceSelectGroupViewController.m */; };
-		729FE49A17D24D8E00A5A653 /* HHDirectionPanGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 729FE45817D24D8E00A5A653 /* HHDirectionPanGestureRecognizer.m */; };
-		729FE49B17D24D8E00A5A653 /* HHInnerShadowView.m in Sources */ = {isa = PBXBuildFile; fileRef = 729FE45A17D24D8E00A5A653 /* HHInnerShadowView.m */; };
-		729FE49C17D24D8E00A5A653 /* HHPanningTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 729FE45C17D24D8E00A5A653 /* HHPanningTableViewCell.m */; };
 		729FE49D17D24D8E00A5A653 /* MagicalImportFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = 729FE46117D24D8E00A5A653 /* MagicalImportFunctions.m */; };
 		729FE49E17D24D8E00A5A653 /* NSAttributeDescription+MagicalDataImport.m in Sources */ = {isa = PBXBuildFile; fileRef = 729FE46317D24D8E00A5A653 /* NSAttributeDescription+MagicalDataImport.m */; };
 		729FE49F17D24D8E00A5A653 /* NSEntityDescription+MagicalDataImport.m in Sources */ = {isa = PBXBuildFile; fileRef = 729FE46517D24D8E00A5A653 /* NSEntityDescription+MagicalDataImport.m */; };
@@ -136,6 +134,7 @@
 		7208346017A0288800CEC1E5 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		7218011F17CF498200386B12 /* NewsItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewsItemCell.h; path = Views/NewsItemCell.h; sourceTree = "<group>"; };
 		7218012017CF498200386B12 /* NewsItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewsItemCell.m; path = Views/NewsItemCell.m; sourceTree = "<group>"; };
+		7227449317E080A500739490 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		726C22D617DF0B370048C891 /* SearchResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SearchResult.h; path = Model/SearchResult.h; sourceTree = "<group>"; };
 		726C22D717DF0B370048C891 /* SearchResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SearchResult.m; path = Model/SearchResult.m; sourceTree = "<group>"; };
 		726C22D917DF206A0048C891 /* search-tab.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "search-tab.png"; path = "Assets/search-tab.png"; sourceTree = "<group>"; };
@@ -201,12 +200,6 @@
 		729EA62D17DB660400145909 /* AddNewsSourceCategoriesFeedsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AddNewsSourceCategoriesFeedsViewController.m; path = Controller/AddNewsSourceCategoriesFeedsViewController.m; sourceTree = "<group>"; };
 		729EA62F17DB661000145909 /* AddNewsSourceSelectGroupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AddNewsSourceSelectGroupViewController.h; path = Controller/AddNewsSourceSelectGroupViewController.h; sourceTree = "<group>"; };
 		729EA63017DB661000145909 /* AddNewsSourceSelectGroupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AddNewsSourceSelectGroupViewController.m; path = Controller/AddNewsSourceSelectGroupViewController.m; sourceTree = "<group>"; };
-		729FE45717D24D8E00A5A653 /* HHDirectionPanGestureRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HHDirectionPanGestureRecognizer.h; sourceTree = "<group>"; };
-		729FE45817D24D8E00A5A653 /* HHDirectionPanGestureRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HHDirectionPanGestureRecognizer.m; sourceTree = "<group>"; };
-		729FE45917D24D8E00A5A653 /* HHInnerShadowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HHInnerShadowView.h; sourceTree = "<group>"; };
-		729FE45A17D24D8E00A5A653 /* HHInnerShadowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HHInnerShadowView.m; sourceTree = "<group>"; };
-		729FE45B17D24D8E00A5A653 /* HHPanningTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HHPanningTableViewCell.h; sourceTree = "<group>"; };
-		729FE45C17D24D8E00A5A653 /* HHPanningTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HHPanningTableViewCell.m; sourceTree = "<group>"; };
 		729FE46017D24D8E00A5A653 /* MagicalImportFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MagicalImportFunctions.h; sourceTree = "<group>"; };
 		729FE46117D24D8E00A5A653 /* MagicalImportFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MagicalImportFunctions.m; sourceTree = "<group>"; };
 		729FE46217D24D8E00A5A653 /* NSAttributeDescription+MagicalDataImport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSAttributeDescription+MagicalDataImport.h"; sourceTree = "<group>"; };
@@ -380,6 +373,7 @@
 				7208344817A0288800CEC1E5 /* AppDelegate.h */,
 				7208344917A0288800CEC1E5 /* AppDelegate.m */,
 				72B8682117B3C50100A871E5 /* MainStoryboard_iPhone.storyboard */,
+				7227449317E080A500739490 /* Images.xcassets */,
 				7208344017A0288800CEC1E5 /* Supporting Files */,
 			);
 			path = Stiri;
@@ -474,12 +468,6 @@
 		729FE45617D24D8E00A5A653 /* Manual Framework */ = {
 			isa = PBXGroup;
 			children = (
-				729FE45717D24D8E00A5A653 /* HHDirectionPanGestureRecognizer.h */,
-				729FE45817D24D8E00A5A653 /* HHDirectionPanGestureRecognizer.m */,
-				729FE45917D24D8E00A5A653 /* HHInnerShadowView.h */,
-				729FE45A17D24D8E00A5A653 /* HHInnerShadowView.m */,
-				729FE45B17D24D8E00A5A653 /* HHPanningTableViewCell.h */,
-				729FE45C17D24D8E00A5A653 /* HHPanningTableViewCell.m */,
 				729FE45D17D24D8E00A5A653 /* MagicalRecord */,
 			);
 			path = "Manual Framework";
@@ -730,6 +718,7 @@
 				7272DB3517BCC45F00286E9A /* dark_dotted@2X.png in Resources */,
 				7272DB3817BCC47A00286E9A /* logo.png in Resources */,
 				7272DB3917BCC47A00286E9A /* logo@2x.png in Resources */,
+				7227449417E080A500739490 /* Images.xcassets in Resources */,
 				7282832A17BF79DA006DEE19 /* navbar_bg.png in Resources */,
 				7282832B17BF79DA006DEE19 /* navbar_bg@2x.png in Resources */,
 				72EEB31D17BF881C0059469B /* delete_button.png in Resources */,
@@ -828,9 +817,6 @@
 				728661DA17BFD21E00AA13D3 /* SearchViewController.m in Sources */,
 				72FF80D517CB5D0B007207D0 /* NewsItem.m in Sources */,
 				7218012117CF498200386B12 /* NewsItemCell.m in Sources */,
-				729FE49A17D24D8E00A5A653 /* HHDirectionPanGestureRecognizer.m in Sources */,
-				729FE49B17D24D8E00A5A653 /* HHInnerShadowView.m in Sources */,
-				729FE49C17D24D8E00A5A653 /* HHPanningTableViewCell.m in Sources */,
 				729FE49D17D24D8E00A5A653 /* MagicalImportFunctions.m in Sources */,
 				729FE49E17D24D8E00A5A653 /* NSAttributeDescription+MagicalDataImport.m in Sources */,
 				729FE49F17D24D8E00A5A653 /* NSEntityDescription+MagicalDataImport.m in Sources */,
@@ -968,7 +954,9 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 0E217E52A67247C48E4AFB43 /* Pods.xcconfig */;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: Alexandru Stoica (W2JH5CS6B6)";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -976,6 +964,23 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Stiri/Stiri-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"\"${PODS_ROOT}/Headers\"",
+					"\"${PODS_ROOT}/Headers/AFNetworking\"",
+					"\"${PODS_ROOT}/Headers/Facebook-iOS-SDK\"",
+					"\"${PODS_ROOT}/Headers/Facebook-iOS-SDK/FacebookSDK\"",
+					"\"${PODS_ROOT}/Headers/FontAwesomeKit\"",
+					"\"${PODS_ROOT}/Headers/MMDrawerController\"",
+					"\"${PODS_ROOT}/Headers/MoPubSDK\"",
+					"\"${PODS_ROOT}/Headers/NewRelicAgent\"",
+					"\"${PODS_ROOT}/Headers/REFormattedNumberField\"",
+					"\"${PODS_ROOT}/Headers/RETableViewManager\"",
+					"\"${PODS_ROOT}/Headers/SIAlertView\"",
+					"\"${PODS_ROOT}/Headers/SVProgressHUD\"",
+					"\"${PODS_ROOT}/Headers/TSMiniWebBrowser\"",
+					"\"${PODS_ROOT}/Headers/TouchJSON\"",
+					"\"${PODS_ROOT}/Headers/google-plus-ios-sdk\"",
+				);
 				INFOPLIST_FILE = "$(SRCROOT)/Stiri/Stiri-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
@@ -991,7 +996,9 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 0E217E52A67247C48E4AFB43 /* Pods.xcconfig */;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Alexandru Stoica (MQ8JA8H9EG)";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -999,6 +1006,23 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Stiri/Stiri-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"\"${PODS_ROOT}/Headers\"",
+					"\"${PODS_ROOT}/Headers/AFNetworking\"",
+					"\"${PODS_ROOT}/Headers/Facebook-iOS-SDK\"",
+					"\"${PODS_ROOT}/Headers/Facebook-iOS-SDK/FacebookSDK\"",
+					"\"${PODS_ROOT}/Headers/FontAwesomeKit\"",
+					"\"${PODS_ROOT}/Headers/MMDrawerController\"",
+					"\"${PODS_ROOT}/Headers/MoPubSDK\"",
+					"\"${PODS_ROOT}/Headers/NewRelicAgent\"",
+					"\"${PODS_ROOT}/Headers/REFormattedNumberField\"",
+					"\"${PODS_ROOT}/Headers/RETableViewManager\"",
+					"\"${PODS_ROOT}/Headers/SIAlertView\"",
+					"\"${PODS_ROOT}/Headers/SVProgressHUD\"",
+					"\"${PODS_ROOT}/Headers/TSMiniWebBrowser\"",
+					"\"${PODS_ROOT}/Headers/TouchJSON\"",
+					"\"${PODS_ROOT}/Headers/google-plus-ios-sdk\"",
+				);
 				INFOPLIST_FILE = "$(SRCROOT)/Stiri/Stiri-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";

@@ -36,7 +36,9 @@ static NSString * const kClientId = @"976584719831.apps.googleusercontent.com";
                                                object:nil];
 }
 
-
+-(UIStatusBarStyle)preferredStatusBarStyle{
+    return UIStatusBarStyleLightContent;
+}
 
 - (void)viewDidLoad
 {

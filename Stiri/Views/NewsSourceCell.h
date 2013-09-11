@@ -7,8 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "HHPanningTableViewCell.h"
-@interface NewsSourceCell : HHPanningTableViewCell
+@interface NewsSourceCell : UITableViewCell
 @property (weak,nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak,nonatomic) IBOutlet UIImageView *favImageView;
 @end

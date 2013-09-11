@@ -21,7 +21,7 @@
 @property UIActivityIndicatorView *spinner;
 @property NSInteger size;
 @property BOOL dataAvailable;
-@property NSFetchedResultsController *fetch
+@property NSFetchedResultsController *fetchController;
 @end
 
 @implementation SearchViewController

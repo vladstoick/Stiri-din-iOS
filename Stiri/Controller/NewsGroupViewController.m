@@ -8,7 +8,6 @@
 
 #import "NewsGroupViewController.h"
 #import "SVProgressHud.h"
-#import "HHPanningTableViewCell.h"
 #import "NewsDataSource.h"
 #import "AFNetworking.h"
 #import "NewsGroup.h"
@@ -48,6 +47,11 @@
         [self.mm_drawerController openDrawerSide:MMDrawerSideLeft animated:YES completion:nil];
     }
 }
+
+-(UIStatusBarStyle)preferredStatusBarStyle{
+    return UIStatusBarStyleLightContent;
+}
+
 
 - (void)viewDidLoad
 {
@@ -104,17 +108,12 @@
 }
 
 //DELETE AND RENAME
-- (IBAction)shouldDeleteGroup:(id)sender{
-    CGPoint buttonPosition = [sender convertPoint:CGPointZero toView:self.tableView];
-    self.swipedCell = [self.tableView indexPathForRowAtPoint:buttonPosition];
+- (void)tableView:(UITableView *)tableView moreOptionButtonPressedInRowAtIndexPath:(NSIndexPath *)indexPath{
     SIAlertView *alertView = [[SIAlertView alloc] initWithTitle:NSLocalizedString(@"Delete group",nil)
                                                      andMessage:NSLocalizedString(@"You can't undo this operation",nil)];
-    [alertView addButtonWithTitle:NSLocalizedString(@"Cancel",nil) type:SIAlertViewButtonTypeCancel handler:^(SIAlertView *alertView){
-        HHPanningTableViewCell *cell = (HHPanningTableViewCell*)[self.tableView cellForRowAtIndexPath:self.swipedCell];
-        [cell setDrawerRevealed:NO animated:YES];
-    }];
+    [alertView addButtonWithTitle:NSLocalizedString(@"Cancel",nil) type:SIAlertViewButtonTypeCancel handler:^(SIAlertView *alertView){}];
     [alertView addButtonWithTitle:NSLocalizedString(@"Ok",nil) type:SIAlertViewButtonTypeDestructive handler:^(SIAlertView *alertView) {
-        [[NewsDataSource newsDataSource] deleteNewsGroup:[self.groups objectAtIndex:self.swipedCell.row] completion:^(BOOL success) {
+        [[NewsDataSource newsDataSource] deleteNewsGroup:[self.groups objectAtIndex:indexPath.row] completion:^(BOOL success) {
             if(success){
                 [SVProgressHUD showSuccessWithStatus:NSLocalizedString(@"Deleted",nil)];
                 self.groups = [[NewsDataSource newsDataSource] allGroups];
@@ -157,10 +156,6 @@
             }
         }];
         [SVProgressHUD showWithStatus:NSLocalizedString(@"Renaming",nil) maskType:SVProgressHUDMaskTypeBlack];
-    } else {
-        HHPanningTableViewCell *cell = (HHPanningTableViewCell*)[self.tableView cellForRowAtIndexPath:self.swipedCell];
-        [cell setDrawerRevealed:NO animated:YES];
-        
     }
 }
 
@@ -178,12 +173,11 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *identifier = @"groupCell";
-    HHPanningTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
     if (cell == nil) {
-        cell = [[HHPanningTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle
                                              reuseIdentifier:identifier];
     }
-    //FRONT VIEW
     NewsGroup *ng = (self.groups)[indexPath.row];
     cell.textLabel.text = ng.title;
     cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue-CondensedBold" size:18.0];
@@ -194,23 +188,6 @@
     }
     cell.detailTextLabel.text = surseDeStiriString;
     cell.detailTextLabel.font = [UIFont fontWithName:@"HelveticaNeue-LightItalic" size:14.0];
-    //BACK VIEW
-    UIView *drawerView = [[UIView alloc] initWithFrame:cell.frame];
-    drawerView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"dark_dotted"]];
-    UIButton *deleteButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    deleteButton.frame = CGRectMake( (cell.frame.size.width/2 - 102)/2  , 10, 102, 24);
-    [deleteButton setBackgroundImage:[UIImage imageNamed:@"delete_button.png"] forState:UIControlStateNormal];
-    [deleteButton addTarget:self action:@selector(shouldDeleteGroup:) forControlEvents:UIControlEventTouchDown];
-    UIButton *renameButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [renameButton setBackgroundImage:[UIImage imageNamed:@"rename_button.png"] forState:UIControlStateNormal];
-    renameButton.frame = CGRectMake(cell.frame.size.width/2 + (cell.frame.size.width/2 - 102)/2 , 10 , 102, 24);
-    [renameButton addTarget:self action:@selector(shouldRenameGroup:) forControlEvents:UIControlEventTouchDown];
-    [drawerView addSubview:renameButton];
-    [drawerView addSubview:deleteButton];
-    cell.drawerView = drawerView;
-    cell.directionMask =  HHPanningTableViewCellDirectionLeft + HHPanningTableViewCellDirectionRight;
-
-
     return cell;
 }
 
