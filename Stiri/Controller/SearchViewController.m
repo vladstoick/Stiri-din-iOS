@@ -21,12 +21,86 @@
 @property UIActivityIndicatorView *spinner;
 @property NSInteger size;
 @property BOOL dataAvailable;
-@property NSFetchedResultsController *fetchController;
+@property (nonatomic)  NSFetchedResultsController *fetchController;
 @end
 
 @implementation SearchViewController
 #pragma mark CORE DATA
+-(NSFetchedResultsController *)fetchController{
+    if(!_fetchController && self.currentQuerry != nil){
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"title LIKE %@",self.currentQuerry];
+        NSManagedObjectContext *context =[NSManagedObjectContext MR_defaultContext];
+        NSFetchRequest *request = [[NSFetchRequest alloc] init];
+        [request setPredicate:predicate];
+        [request setFetchBatchSize:20];
+        NSEntityDescription *entity = [NSEntityDescription entityForName:@"NewsItem" inManagedObjectContext:context];
+        [request setEntity:entity];
+        NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"pubDate" ascending:NO];
+        [request setSortDescriptors:@[sortDescriptor]];
+        [NSFetchedResultsController deleteCacheWithName:@"unreadNews"];
+        self.fetchController= [[NSFetchedResultsController alloc] initWithFetchRequest:request
+                                                                           managedObjectContext:context
+                                                                             sectionNameKeyPath:nil
+                                                                                      cacheName:@"unreadNews"];
+        self.fetchController.delegate = self;
+        NSError *error;
+        [self.fetchController performFetch:&error];
+        if(error){
+            NSLog(@"%@",error);
+        }
+    }
+    return _fetchController;
+}
 
+- (void)controllerWillChangeContent:(NSFetchedResultsController *)controller {
+    // The fetch controller is about to start sending change notifications, so prepare the table view for updates.
+    [self.tableView beginUpdates];
+}
+
+- (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath {
+    
+    UITableView *tableView = self.tableView;
+    
+    switch(type) {
+            
+        case NSFetchedResultsChangeInsert:
+            [tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
+            break;
+            
+        case NSFetchedResultsChangeDelete:
+            [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+            break;
+            
+        case NSFetchedResultsChangeUpdate:
+        {
+            [self setCellAtIndexPath:indexPath withCell:(id<NewsItemCellProtocol>)[tableView cellForRowAtIndexPath:indexPath]];
+            break;
+        }
+        case NSFetchedResultsChangeMove:
+            [tableView deleteRowsAtIndexPaths:[NSArray
+                                               arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+            [tableView insertRowsAtIndexPaths:[NSArray
+                                               arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
+            break;
+    }
+}
+
+
+- (void)controller:(NSFetchedResultsController *)controller didChangeSection:(id )sectionInfo atIndex:(NSUInteger)sectionIndex forChangeType:(NSFetchedResultsChangeType)type {
+    
+    switch(type) {
+            
+        case NSFetchedResultsChangeInsert:
+            [self.tableView insertSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
+            break;
+            
+        case NSFetchedResultsChangeDelete:
+            [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
+            break;
+    }
+}
+
+#pragma mark View Controller
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -59,18 +133,27 @@
         [self.mm_drawerController openDrawerSide:MMDrawerSideLeft animated:YES completion:nil];
     }
 }
-//SEARCH
+#pragma mark SearchDisplay
 - (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
 {
-    self.searchResults = nil;
-    self.dataAvailable = YES;
     self.currentQuerry = searchString;
-    [[NewsDataSource newsDataSource] searchOnlineText:searchString fromIndex:0];
+    if(self.searchBar.selectedScopeButtonIndex == 0 ){
+        self.searchResults = nil;
+        self.dataAvailable = YES;
+        [[NewsDataSource newsDataSource] searchOnlineText:searchString fromIndex:0];
+    } else {
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"title contains %@",self.currentQuerry];
+        [self.fetchController.fetchRequest setPredicate:predicate];
+        [self.fetchController performFetch:nil];
+    }
     return YES;
 }
 
 - (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchScope:(NSInteger)searchOption
 {
+    if(searchOption == 1){
+        self.fetchController = nil;
+    }
     return YES;
 }
 
@@ -90,14 +173,19 @@
 }
 
 
-//TABLE VIEW
+#pragma mark TableView
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     if(self.tableView != tableView){
         self.tableViewSearch = tableView;
     }
-    self.size = self.searchResults.count;
-    self.size += self.dataAvailable == YES;
-    return self.size;
+    if(self.searchBar.selectedScopeButtonIndex == 0){
+        self.size = self.searchResults.count;
+        self.size += self.dataAvailable == YES;
+        return self.size;
+    }
+    id sectionInfo = [[self.fetchController sections] objectAtIndex:section];
+    return [sectionInfo numberOfObjects];
+    
 }
 
 - (BOOL) isCellResult:(NSInteger) position{
@@ -122,13 +210,27 @@
     }
 }
 
+- (id<NewsItemProtocol>) objectAtIndex:(NSIndexPath*) indexPath{
+    id<NewsItemProtocol> newsItem;
+    if(self.searchBar.selectedScopeButtonIndex == 0){
+        newsItem = [self.searchResults objectAtIndex:indexPath.row];
+    } else {
+        newsItem = [self.fetchController objectAtIndexPath:indexPath];
+    }
+    return newsItem;
+}
+
+- (void) setCellAtIndexPath:(NSIndexPath *) indexPath withCell:(id<NewsItemCellProtocol>) tableCell{
+    id<NewsItemProtocol> newsItem = [self objectAtIndex:indexPath];
+    [tableCell setNewsItem:newsItem];
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     
     UITableViewCell<NewsItemCellProtocol> *cell;
-    if([self isCellResult:indexPath.row]){
-        id<NewsItemProtocol> newsItem = [self.searchResults objectAtIndex:indexPath.row];
-        NSLog(@"%@",newsItem.imageUrl);
+    id<NewsItemProtocol> newsItem = [self objectAtIndex:indexPath];
+    if([self isCellResult:indexPath.row] || self.searchBar.selectedScopeButtonIndex == 1){
         if(![newsItem.imageUrl isEqualToString:@""] && newsItem.imageUrl != nil ){
             NSString *identifier = @"newsCellWithImage";
             cell = [self.tableView dequeueReusableCellWithIdentifier:identifier];

@@ -59,8 +59,8 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="455"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="3zQ-7O-bk9">
-                                <rect key="frame" x="0.0" y="-1" width="320" height="456"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="3zQ-7O-bk9">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="456"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <searchBar key="tableHeaderView" contentMode="redraw" barStyle="black" id="Scc-IZ-WoZ">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -102,10 +102,10 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="3zQ-7O-bk9" firstAttribute="leading" secondItem="vzZ-9p-DnO" secondAttribute="leading" id="1UH-Zc-TuK"/>
-                            <constraint firstItem="3zQ-7O-bk9" firstAttribute="trailing" secondItem="vzZ-9p-DnO" secondAttribute="trailing" id="KRP-qb-8ma"/>
-                            <constraint firstItem="3zQ-7O-bk9" firstAttribute="top" secondItem="vzZ-9p-DnO" secondAttribute="top" id="T2J-XJ-S9L"/>
-                            <constraint firstItem="3zQ-7O-bk9" firstAttribute="bottom" secondItem="vzZ-9p-DnO" secondAttribute="bottom" id="otZ-Ci-Uee"/>
+                            <constraint firstItem="3zQ-7O-bk9" firstAttribute="top" secondItem="vzZ-9p-DnO" secondAttribute="top" id="3kO-hf-40i"/>
+                            <constraint firstItem="3zQ-7O-bk9" firstAttribute="leading" secondItem="vzZ-9p-DnO" secondAttribute="leading" id="8Pd-DP-3P1"/>
+                            <constraint firstAttribute="trailing" secondItem="3zQ-7O-bk9" secondAttribute="trailing" id="Rc9-oX-JSJ"/>
+                            <constraint firstAttribute="bottom" secondItem="3zQ-7O-bk9" secondAttribute="bottom" constant="-1" id="VMQ-wQ-f7L"/>
                         </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
@@ -1132,7 +1132,7 @@
                 <tabBarController id="ceo-2c-FHC" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Add" id="eq4-gm-TwY"/>
-                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics" barStyle="black" translucent="NO"/>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" barStyle="black" translucent="NO" id="zPM-WF-zAh">
                         <rect key="frame" x="0.0" y="0.0" width="0.0" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -1410,7 +1410,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="Oiw-Ei-FBu"/>
         <segue reference="Ae0-rI-srF"/>
+        <segue reference="viH-hh-LmZ"/>
     </inferredMetricsTieBreakers>
 </document>

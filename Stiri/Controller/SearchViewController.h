@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "NewsDataSource.h"
-@interface SearchViewController : UIViewController <UISearchDisplayDelegate, UITableViewDataSource, UITableViewDelegate, SearchResultDeleagte>
+@interface SearchViewController : UIViewController <UISearchDisplayDelegate, UITableViewDataSource, UITableViewDelegate, SearchResultDeleagte, NSFetchedResultsControllerDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 
