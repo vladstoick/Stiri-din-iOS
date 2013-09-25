@@ -103,6 +103,7 @@
 		726C22D617DF0B370048C891 /* SearchResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SearchResult.h; path = Model/SearchResult.h; sourceTree = "<group>"; };
 		726C22D717DF0B370048C891 /* SearchResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SearchResult.m; path = Model/SearchResult.m; sourceTree = "<group>"; };
 		727B033917BA12CD003A0500 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		72823EF417F37156004471E1 /* ro */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ro; path = ro.lproj/MainStoryboard_iPhone.strings; sourceTree = "<group>"; };
 		7282832C17BF7A90006DEE19 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		7284E40F17DC816500DB4718 /* NewsSourceCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewsSourceCell.h; path = Views/NewsSourceCell.h; sourceTree = "<group>"; };
 		7284E41017DC816500DB4718 /* NewsSourceCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewsSourceCell.m; path = Views/NewsSourceCell.m; sourceTree = "<group>"; };
@@ -114,7 +115,6 @@
 		728661D917BFD21E00AA13D3 /* SearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SearchViewController.m; path = Controller/SearchViewController.m; sourceTree = "<group>"; };
 		728BF4F317D7CA0200B3F546 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
 		728BF50717D7CBE900B3F546 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		728BF50917D7CBF900B3F546 /* ro */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ro; path = ro.lproj/MainStoryboard_iPhone.strings; sourceTree = "<group>"; };
 		728BF50B17D7CBF900B3F546 /* ro */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ro; path = ro.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		728BF50C17D7CBFA00B3F546 /* ro */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ro; path = ro.lproj/Localizable.strings; sourceTree = "<group>"; };
 		728BF50D17D7CC8B00B3F546 /* Stiri-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Stiri-Info.plist"; sourceTree = "<group>"; };
@@ -749,7 +749,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				728BF4F317D7CA0200B3F546 /* Base */,
-				728BF50917D7CBF900B3F546 /* ro */,
+				72823EF417F37156004471E1 /* ro */,
 			);
 			name = MainStoryboard_iPhone.storyboard;
 			path = en.lproj;

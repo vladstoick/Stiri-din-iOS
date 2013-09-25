@@ -235,7 +235,6 @@
 		8611E21AA0F84AA3B4F1C702 /* MRAdView+Controllers.h in Headers */ = {isa = PBXBuildFile; fileRef = 8F5BDD099E40419D9016A9CF /* MRAdView+Controllers.h */; };
 		8621155DACE6490589E32F1D /* FBDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = B524E3CF50F04841A6643481 /* FBDialog.m */; };
 		86371804F24A4C348C442DF2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CECCC880756F42539259BF98 /* Foundation.framework */; };
-		86BB2B8F53A647CCB0EFA1AB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CECCC880756F42539259BF98 /* Foundation.framework */; };
 		888917DAC74447D1842ACA0C /* CJSONSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = C24F013E01E2404A8EFFAE7C /* CJSONSerializer.m */; settings = {COMPILER_FLAGS = "-fobjc-arc -DOS_OBJECT_USE_OBJC=0"; }; };
 		894D8A9885A1497589B1C851 /* RETableViewTextCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A2DD4761528544CD8EBFE12F /* RETableViewTextCell.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		8951BE1CAA174F0AB59AD74F /* FBDialogsData.m in Sources */ = {isa = PBXBuildFile; fileRef = F668172E07514027A4F5B916 /* FBDialogsData.m */; };
@@ -247,7 +246,6 @@
 		8D2D41B27B0842B68D389D90 /* FBURLConnection.h in Headers */ = {isa = PBXBuildFile; fileRef = 2151661632044DC884099AB5 /* FBURLConnection.h */; };
 		8D36551B61084FCFAD24BEC7 /* AFPropertyListRequestOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 3208A7C15D0D4781A8BC4264 /* AFPropertyListRequestOperation.h */; };
 		8D7DB922914F4B97BA68F2BB /* FBLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = ED2DE197DEFD499AB105E771 /* FBLogger.h */; };
-		8D805308A56446C4B9D86247 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CECCC880756F42539259BF98 /* Foundation.framework */; };
 		8DAF2359776542AFB036B2CC /* FBFrictionlessRequestSettings.h in Headers */ = {isa = PBXBuildFile; fileRef = B8323A05874C4B5CA2C67F82 /* FBFrictionlessRequestSettings.h */; };
 		8E3C427F482C4C908AC72EA7 /* MRAdViewDisplayController.h in Headers */ = {isa = PBXBuildFile; fileRef = 22974246BAC541739B7D50AD /* MRAdViewDisplayController.h */; };
 		8E55D069296343ADA66954BD /* CJSONSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = B87087FCDAE34D98A95D16ED /* CJSONSerialization.m */; settings = {COMPILER_FLAGS = "-fobjc-arc -DOS_OBJECT_USE_OBJC=0"; }; };
@@ -329,7 +327,6 @@
 		B765A412A96A42359ADD2052 /* FBPlacePickerViewGenericPlacePNG.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AB7AE057AFD49748B000AD2 /* FBPlacePickerViewGenericPlacePNG.h */; };
 		B7ED8B9EAA204795940CBB44 /* REFloatItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D5E02A7F2C94284AF841B5D /* REFloatItem.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		B8FB2347ECA24375B5E822F0 /* FBSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = B3DCAA637A4945839088C592 /* FBSettings.m */; };
-		B94EBCFA9CDA483D86449F8E /* MMDrawerController+Subclass.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F4B6A227E90475F8C496246 /* MMDrawerController+Subclass.h */; };
 		B9631882B05F457B90E05837 /* FBAppEvents.h in Headers */ = {isa = PBXBuildFile; fileRef = C771CC93F2A64A89A34A82D6 /* FBAppEvents.h */; };
 		BA4EEAF044BE4A13932E1D38 /* Facebook.m in Sources */ = {isa = PBXBuildFile; fileRef = E4B3363989A140E8900BD050 /* Facebook.m */; };
 		BA6E4CB9487E46A2B57FD188 /* libPods-TouchJSON.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FF490A4162C48C08EB21BF6 /* libPods-TouchJSON.a */; };
@@ -1101,7 +1098,6 @@
 			files = (
 				0806359462C3488A841ADB39 /* Foundation.framework in Frameworks */,
 				554CC482BD08471999A8BA14 /* UIKit.framework in Frameworks */,
-				86BB2B8F53A647CCB0EFA1AB /* Foundation.framework in Frameworks */,
 				29C0FFCF1E0A4020832B6D53 /* StoreKit.framework in Frameworks */,
 				42B64C66F50F4D3DA1DA5124 /* CoreLocation.framework in Frameworks */,
 				9F95E97D991C47BE9AD0A213 /* CoreGraphics.framework in Frameworks */,
@@ -1146,7 +1142,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				10EB7584DFA144A9A8177F5A /* Foundation.framework in Frameworks */,
-				8D805308A56446C4B9D86247 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2505,7 +2500,6 @@
 				7F91F28E61CB42948E6EA1A1 /* UIViewController+MMDrawerController.h in Headers */,
 				B613D014377E4588B7A6A23B /* MMDrawerBarButtonItem.h in Headers */,
 				6D8151136CBA4FAC811E2ACA /* MMDrawerVisualState.h in Headers */,
-				B94EBCFA9CDA483D86449F8E /* MMDrawerController+Subclass.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2801,7 +2795,7 @@
 		94C799F4387A404194401724 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0450;
+				LastUpgradeCheck = 0500;
 			};
 			buildConfigurationList = C2CEF70E848642A6B64A34CF /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -3200,7 +3194,6 @@
 			baseConfigurationReference = 374729B6B7404389ADFF719B /* Pods-SIAlertView-Private.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				COPY_PHASE_STRIP = NO;
 				DSTROOT = /tmp/xcodeproj.dst;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -3229,7 +3222,6 @@
 			baseConfigurationReference = 724FA87584EF42758516BCBF /* Pods-NewRelicAgent-Private.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				COPY_PHASE_STRIP = YES;
 				DSTROOT = /tmp/xcodeproj.dst;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -3260,7 +3252,6 @@
 			baseConfigurationReference = 5A4923B325E3462B9F77EF59 /* Pods-FontAwesomeKit-Private.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				COPY_PHASE_STRIP = NO;
 				DSTROOT = /tmp/xcodeproj.dst;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -3289,7 +3280,6 @@
 			baseConfigurationReference = 5A4923B325E3462B9F77EF59 /* Pods-FontAwesomeKit-Private.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				COPY_PHASE_STRIP = YES;
 				DSTROOT = /tmp/xcodeproj.dst;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -3320,7 +3310,6 @@
 			baseConfigurationReference = AAAECBA1E6B040B995019880 /* Pods-TouchJSON-Private.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				COPY_PHASE_STRIP = NO;
 				DSTROOT = /tmp/xcodeproj.dst;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -3349,7 +3338,6 @@
 			baseConfigurationReference = 767198CAD5CD4F48B903045A /* Pods-MMDrawerController-Private.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				COPY_PHASE_STRIP = YES;
 				DSTROOT = /tmp/xcodeproj.dst;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -3380,7 +3368,6 @@
 			baseConfigurationReference = B6FA458C12994D888C32C61E /* Pods-REFormattedNumberField-Private.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				COPY_PHASE_STRIP = YES;
 				DSTROOT = /tmp/xcodeproj.dst;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -3411,7 +3398,6 @@
 			baseConfigurationReference = 2618AC605858449AB2F468CB /* Pods-TSMiniWebBrowser-Private.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				COPY_PHASE_STRIP = NO;
 				DSTROOT = /tmp/xcodeproj.dst;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -3440,7 +3426,6 @@
 			baseConfigurationReference = B5E40E9C000F49D1AF048464 /* Pods.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				COPY_PHASE_STRIP = NO;
 				DSTROOT = /tmp/xcodeproj.dst;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -3468,7 +3453,6 @@
 			baseConfigurationReference = 2618AC605858449AB2F468CB /* Pods-TSMiniWebBrowser-Private.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				COPY_PHASE_STRIP = YES;
 				DSTROOT = /tmp/xcodeproj.dst;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -3499,7 +3483,6 @@
 			baseConfigurationReference = 15FF63CD006C426F85294143 /* Pods-MoPubSDK-Private.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				COPY_PHASE_STRIP = NO;
 				DSTROOT = /tmp/xcodeproj.dst;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -3528,7 +3511,6 @@
 			baseConfigurationReference = 374729B6B7404389ADFF719B /* Pods-SIAlertView-Private.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				COPY_PHASE_STRIP = YES;
 				DSTROOT = /tmp/xcodeproj.dst;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -3559,7 +3541,6 @@
 			baseConfigurationReference = 15FF63CD006C426F85294143 /* Pods-MoPubSDK-Private.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				COPY_PHASE_STRIP = YES;
 				DSTROOT = /tmp/xcodeproj.dst;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -3590,7 +3571,6 @@
 			baseConfigurationReference = B6FA458C12994D888C32C61E /* Pods-REFormattedNumberField-Private.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				COPY_PHASE_STRIP = NO;
 				DSTROOT = /tmp/xcodeproj.dst;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -3619,7 +3599,6 @@
 			baseConfigurationReference = 97EA206F9E604CD5ADDD8196 /* Pods-google-plus-ios-sdk-Private.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				COPY_PHASE_STRIP = YES;
 				DSTROOT = /tmp/xcodeproj.dst;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -3650,7 +3629,6 @@
 			baseConfigurationReference = AAAECBA1E6B040B995019880 /* Pods-TouchJSON-Private.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				COPY_PHASE_STRIP = YES;
 				DSTROOT = /tmp/xcodeproj.dst;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -3681,7 +3659,6 @@
 			baseConfigurationReference = 7D46FAB673CB40E59A5F098E /* Pods-SVProgressHUD-Private.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				COPY_PHASE_STRIP = NO;
 				DSTROOT = /tmp/xcodeproj.dst;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -3710,7 +3687,6 @@
 			baseConfigurationReference = 0584CC22654C45C0B55ED0E1 /* Pods-Facebook-iOS-SDK-Private.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				COPY_PHASE_STRIP = YES;
 				DSTROOT = /tmp/xcodeproj.dst;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -3740,6 +3716,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				ONLY_ACTIVE_ARCH = YES;
 				STRIP_INSTALLED_PRODUCT = NO;
 			};
 			name = Debug;
@@ -3749,7 +3726,6 @@
 			baseConfigurationReference = 68581CEDD44748D58CF8B056 /* Pods-AFNetworking-Private.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				COPY_PHASE_STRIP = NO;
 				DSTROOT = /tmp/xcodeproj.dst;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -3778,7 +3754,6 @@
 			baseConfigurationReference = 724FA87584EF42758516BCBF /* Pods-NewRelicAgent-Private.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				COPY_PHASE_STRIP = NO;
 				DSTROOT = /tmp/xcodeproj.dst;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -3807,7 +3782,6 @@
 			baseConfigurationReference = B5E40E9C000F49D1AF048464 /* Pods.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				COPY_PHASE_STRIP = YES;
 				DSTROOT = /tmp/xcodeproj.dst;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -3837,7 +3811,6 @@
 			baseConfigurationReference = 0584CC22654C45C0B55ED0E1 /* Pods-Facebook-iOS-SDK-Private.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				COPY_PHASE_STRIP = NO;
 				DSTROOT = /tmp/xcodeproj.dst;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -3866,7 +3839,6 @@
 			baseConfigurationReference = D1B04CA42B8F44F79336C2B4 /* Pods-RETableViewManager-Private.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				COPY_PHASE_STRIP = NO;
 				DSTROOT = /tmp/xcodeproj.dst;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -3895,7 +3867,6 @@
 			baseConfigurationReference = D1B04CA42B8F44F79336C2B4 /* Pods-RETableViewManager-Private.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				COPY_PHASE_STRIP = YES;
 				DSTROOT = /tmp/xcodeproj.dst;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -3926,7 +3897,6 @@
 			baseConfigurationReference = 767198CAD5CD4F48B903045A /* Pods-MMDrawerController-Private.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				COPY_PHASE_STRIP = NO;
 				DSTROOT = /tmp/xcodeproj.dst;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -3963,7 +3933,6 @@
 			baseConfigurationReference = 68581CEDD44748D58CF8B056 /* Pods-AFNetworking-Private.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				COPY_PHASE_STRIP = YES;
 				DSTROOT = /tmp/xcodeproj.dst;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -3994,7 +3963,6 @@
 			baseConfigurationReference = 7D46FAB673CB40E59A5F098E /* Pods-SVProgressHUD-Private.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				COPY_PHASE_STRIP = YES;
 				DSTROOT = /tmp/xcodeproj.dst;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -4025,7 +3993,6 @@
 			baseConfigurationReference = 97EA206F9E604CD5ADDD8196 /* Pods-google-plus-ios-sdk-Private.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				COPY_PHASE_STRIP = NO;
 				DSTROOT = /tmp/xcodeproj.dst;
 				GCC_C_LANGUAGE_STANDARD = gnu99;

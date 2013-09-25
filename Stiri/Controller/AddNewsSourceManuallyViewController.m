@@ -42,10 +42,10 @@
     self.section = [RETableViewSection sectionWithHeaderTitle:@""];
     self.feedUrl = [RETextItem itemWithTitle:@"RSS" value:nil placeholder:NSLocalizedString(@"The rss adress",nil)];
     [self.section addItem:self.feedUrl];
-    self.newsGroup = [RERadioItem itemWithTitle:NSLocalizedString(@"Group",nil) value:NSLocalizedString(@"New Group",nil) selectionHandler:^(RERadioItem *item) {
+    self.newsGroup = [RERadioItem itemWithTitle:NSLocalizedString(@"Group",nil) value:NSLocalizedString(@"New group",nil) selectionHandler:^(RERadioItem *item) {
         [item deselectRowAnimated:YES];
         NSMutableArray *options = [[NSMutableArray alloc] init];
-        [options addObject:NSLocalizedString(@"New Group",nil)];
+        [options addObject:NSLocalizedString(@"New group",nil)];
         for (NewsGroup *ng in weakSelf.allGroups)
             [options addObject:ng.title];
         RETableViewOptionsController *optionsController = [[RETableViewOptionsController alloc] initWithItem:item options:options multipleChoice:NO completionHandler:^{
@@ -66,7 +66,7 @@
         [weakSelf.navigationController pushViewController:optionsController animated:YES];
     }];
     [self.section addItem:self.newsGroup];
-    self.addNewsGroupName = [RETextItem itemWithTitle:NSLocalizedString(@"Group name",nil) value:nil placeholder:@"The name of the new group"];
+    self.addNewsGroupName = [RETextItem itemWithTitle:NSLocalizedString(@"Group name",nil) value:nil placeholder:NSLocalizedString(@"The name of the New group",nil )];
     [self.section addItem:self.addNewsGroupName];
     [self.manager addSection:self.section];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(selectedGroup:) name:selected_group object:nil];
@@ -77,7 +77,7 @@
     [self.section removeAllItems];
     [self.section addItem:self.feedUrl];
     [self.section addItem:self.newsGroup];
-    if([self.newsGroup.value isEqual: NSLocalizedString(@"New Group",nil)]){
+    if([self.newsGroup.value isEqual: NSLocalizedString(@"New group",nil)]){
         [self.section addItem:self.addNewsGroupName];
     }
     [self.section reloadSectionWithAnimation:UITableViewRowAnimationAutomatic];
@@ -92,7 +92,7 @@
 - (IBAction)donePressed:(id)sender {
     NSString* sourceUrl = self.feedUrl.value;
     NSString* addGroupName = self.addNewsGroupName.value;
-    if([self.newsGroup.value isEqual: NSLocalizedString(@"New Group",nil)]){
+    if([self.newsGroup.value isEqual: NSLocalizedString(@"New group",nil)]){
         [[NewsDataSource newsDataSource] addNewsSourceWithUrl:sourceUrl inNewGroupWithName:addGroupName completion:^(BOOL success) {
             if(success){
                 [SVProgressHUD showSuccessWithStatus:NSLocalizedString(@"Added",nil)];
