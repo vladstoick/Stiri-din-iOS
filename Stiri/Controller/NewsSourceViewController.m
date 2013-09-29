@@ -14,6 +14,7 @@
 #import "SVProgressHUD.h"
 #import "SIAlertView.h"
 #import "NewsSourceCell.h"
+#import "MKSlidingTableViewCell.h"
 @interface NewsSourceViewController ()
 @property (strong, nonatomic) MPAdView *adView;
 @property (weak, nonatomic) NSIndexPath *swipedCell;
@@ -86,29 +87,25 @@
     return self.newsSources.count;
 }
 
-- (NewsSourceCell *)tableView:(UITableView *)tableViewLocal cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *tableIdentifier = @"sourceViewCell";
-    NewsSourceCell *cell = [tableViewLocal dequeueReusableCellWithIdentifier:tableIdentifier];
+    MKSlidingTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"container"];
+    NewsSourceCell *foregroundCell = [tableView dequeueReusableCellWithIdentifier:@"foreground"];
+    UITableViewCell *backgroundCell = [tableView dequeueReusableCellWithIdentifier:@"background"];
     //FRONT VIEW
     NewsSource *ns = (self.newsSources)[indexPath.row];
     if([ns.imageUrl isEqualToString:@""]){
-        [cell.favImageView setImage:[UIImage imageNamed:@"blankimgfavico.png"]];
+        [foregroundCell.favImageView setImage:[UIImage imageNamed:@"blankimgfavico.png"]];
     } else {
-        [cell.favImageView setImageWithURL:[NSURL URLWithString:ns.imageUrl] placeholderImage:[UIImage imageNamed:@"blankimgfavico.png"]];
+        [foregroundCell.favImageView setImageWithURL:[NSURL URLWithString:ns.imageUrl] placeholderImage:[UIImage imageNamed:@"blankimgfavico.png"]];
     }
-
-    cell.titleLabel.text = ns.title;
-    cell.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue-CondensedBold" size:20.0];
-    //BACK VIEW
-    UIView *drawerView = [[UIView alloc] initWithFrame:cell.frame];
-    drawerView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"dark_dotted"]];
-    UIButton *deleteButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    deleteButton.frame = CGRectMake( (cell.frame.size.width/2 - 102/2)  , 10, 102, 24);
-    [deleteButton setBackgroundImage:[UIImage imageNamed:@"delete_button.png"] forState:UIControlStateNormal];
-    [deleteButton addTarget:self action:@selector(shouldDeleteSource:) forControlEvents:UIControlEventTouchDown];
-    [drawerView addSubview:deleteButton];
-
+    foregroundCell.titleLabel.text = ns.title;
+    foregroundCell.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue-CondensedBold" size:20.0];
+    cell.backgroundView = backgroundCell;
+    cell.foregroundView = foregroundCell;
+    cell.drawerView = backgroundCell;
+    cell.drawerRevealAmount = 73;
+    cell.delegate = self;
     return cell;
 }
 

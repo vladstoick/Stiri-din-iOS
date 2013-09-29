@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "MPAdView.h"
-@interface NewsSourceViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, MPAdViewDelegate>
+#import "MKSlidingTableViewCell.h"
+@interface NewsSourceViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, MPAdViewDelegate,MKSlidingTableViewCellDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSNumber *groupId;
 @end
