@@ -1,6 +1,6 @@
 
 /* Class = "IBUIBarButtonItem"; title = "Browser mode"; ObjectID = "1ex-hQ-Agb"; */
-"1ex-hQ-Agb.title" = "Versiunea completă";
+"1ex-hQ-Agb.title" = "Browser mode";
 
 /* Class = "IBUIButton"; normalTitle = "☰"; ObjectID = "38a-eE-cAg"; */
 "38a-eE-cAg.normalTitle" = "☰";
@@ -12,19 +12,19 @@
 "3to-F2-GsR.scopeButtonTitles[1]" = "Local";
 
 /* Class = "IBUILabel"; text = "Title"; ObjectID = "4yR-rC-bMF"; */
-"4yR-rC-bMF.text" = "Titlu";
+"4yR-rC-bMF.text" = "Title";
 
 /* Class = "IBUINavigationItem"; title = "Login"; ObjectID = "7Tj-Hd-5Ue"; */
-"7Tj-Hd-5Ue.title" = "Logare";
+"7Tj-Hd-5Ue.title" = "Login";
 
 /* Class = "IBUILabel"; text = "Please select a login method so we can sync your data"; ObjectID = "8nq-7K-Roe"; */
-"8nq-7K-Roe.text" = "Te rugăm să îți alegi o metodă de logare";
+"8nq-7K-Roe.text" = "Please select a login method so we can sync your data";
 
 /* Class = "IBUIViewController"; title = "Recomandat"; ObjectID = "8sM-nI-Wg5"; */
-"8sM-nI-Wg5.title" = "Recomandate";
+"8sM-nI-Wg5.title" = "Recomandat";
 
-/* Class = "IBUILabel"; text = "Label"; ObjectID = "9BV-2c-j9F"; */
-"9BV-2c-j9F.text" = "Label";
+/* Class = "IBUILabel"; text = "Title"; ObjectID = "9tQ-Ob-mpj"; */
+"9tQ-Ob-mpj.text" = "Title";
 
 /* Class = "IBUIButton"; normalTitle = "☰"; ObjectID = "B6S-li-ScK"; */
 "B6S-li-ScK.normalTitle" = "☰";
@@ -32,8 +32,11 @@
 /* Class = "IBUIButton"; normalTitle = "+"; ObjectID = "Boa-1n-0jY"; */
 "Boa-1n-0jY.normalTitle" = "+";
 
+/* Class = "IBUIButton"; normalTitle = "Rename"; ObjectID = "CdL-MR-ZLh"; */
+"CdL-MR-ZLh.normalTitle" = "Rename";
+
 /* Class = "IBUINavigationItem"; title = "Search"; ObjectID = "Dz0-zv-OGv"; */
-"Dz0-zv-OGv.title" = "Caută";
+"Dz0-zv-OGv.title" = "Search";
 
 /* Class = "IBUILabel"; text = "Subtitle"; ObjectID = "ERA-d1-I5o"; */
 "ERA-d1-I5o.text" = "Subtitle";
@@ -42,28 +45,28 @@
 "F2M-Ew-Xag.text" = "Title";
 
 /* Class = "IBUIViewController"; title = "Login"; ObjectID = "IVC-mC-uX5"; */
-"IVC-mC-uX5.title" = "Logare";
+"IVC-mC-uX5.title" = "Login";
 
 /* Class = "IBUINavigationItem"; title = "Unread news"; ObjectID = "Iup-3O-7jb"; */
-"Iup-3O-7jb.title" = "Știri necitite";
+"Iup-3O-7jb.title" = "Unread news";
 
 /* Class = "IBUILabel"; text = "Title"; ObjectID = "KdH-0Y-VuI"; */
 "KdH-0Y-VuI.text" = "Title";
 
+/* Class = "IBUIButton"; normalTitle = "Delete"; ObjectID = "Kke-cX-MCn"; */
+"Kke-cX-MCn.normalTitle" = "Delete";
+
 /* Class = "IBUILabel"; text = "Subtitle"; ObjectID = "QqT-Gk-MHo"; */
 "QqT-Gk-MHo.text" = "Subtitle";
 
-/* Class = "IBUILabel"; text = "Title"; ObjectID = "R2Q-lR-9ZH"; */
-"R2Q-lR-9ZH.text" = "Title";
-
 /* Class = "IBUINavigationItem"; title = "Categories"; ObjectID = "RAd-Xf-x1i"; */
-"RAd-Xf-x1i.title" = "Categorii";
+"RAd-Xf-x1i.title" = "Categories";
 
 /* Class = "IBUILabel"; text = "Title"; ObjectID = "ToT-WZ-AyZ"; */
 "ToT-WZ-AyZ.text" = "Title";
 
 /* Class = "IBUINavigationItem"; title = "News"; ObjectID = "UHj-i4-Zxu"; */
-"UHj-i4-Zxu.title" = "Știri";
+"UHj-i4-Zxu.title" = "News";
 
 /* Class = "IBUILabel"; text = "Date"; ObjectID = "UIq-oT-RbE"; */
 "UIq-oT-RbE.text" = "Date";
@@ -71,17 +74,17 @@
 /* Class = "IBUILabel"; text = "Date"; ObjectID = "UOI-2S-oik"; */
 "UOI-2S-oik.text" = "Date";
 
-/* Class = "IBUILabel"; text = "Subtitle"; ObjectID = "V0J-tt-6zY"; */
-"V0J-tt-6zY.text" = "Subtitle";
+/* Class = "IBUILabel"; text = "Label"; ObjectID = "UYy-3K-qPg"; */
+"UYy-3K-qPg.text" = "Label";
 
 /* Class = "IBUILabel"; text = "Subtitle"; ObjectID = "aRh-eK-dyL"; */
 "aRh-eK-dyL.text" = "Subtitle";
 
 /* Class = "IBUINavigationItem"; title = "Your Groups"; ObjectID = "ce1-Wk-I1N"; */
-"ce1-Wk-I1N.title" = "Grupurile tale";
+"ce1-Wk-I1N.title" = "Your Groups";
 
 /* Class = "IBUINavigationItem"; title = "Add"; ObjectID = "eq4-gm-TwY"; */
-"eq4-gm-TwY.title" = "Adaugă";
+"eq4-gm-TwY.title" = "Add";
 
 /* Class = "IBUILabel"; text = "Title"; ObjectID = "fIu-1c-WqU"; */
 "fIu-1c-WqU.text" = "Title";
@@ -89,14 +92,17 @@
 /* Class = "IBUIButton"; normalTitle = "☰"; ObjectID = "gth-Ie-a4Q"; */
 "gth-Ie-a4Q.normalTitle" = "☰";
 
+/* Class = "IBUIButton"; normalTitle = "Delete"; ObjectID = "icw-ht-Txr"; */
+"icw-ht-Txr.normalTitle" = "Delete";
+
 /* Class = "IBUILabel"; text = "Date"; ObjectID = "ijb-uP-XaH"; */
 "ijb-uP-XaH.text" = "Date";
 
 /* Class = "IBUILabel"; text = "News from"; ObjectID = "imR-Zf-TIv"; */
-"imR-Zf-TIv.text" = "Știri din";
+"imR-Zf-TIv.text" = "News from";
 
 /* Class = "IBUITabBarItem"; title = "Search"; ObjectID = "jVM-eE-SPF"; */
-"jVM-eE-SPF.title" = "Caută";
+"jVM-eE-SPF.title" = "Search";
 
 /* Class = "IBUILabel"; text = "Title"; ObjectID = "jtF-Ft-KQ2"; */
 "jtF-Ft-KQ2.text" = "Title";
@@ -105,16 +111,16 @@
 "m9w-7y-F0I.text" = "Title";
 
 /* Class = "IBUINavigationItem"; title = "Search"; ObjectID = "mEy-JK-KBj"; */
-"mEy-JK-KBj.title" = "Caută";
+"mEy-JK-KBj.title" = "Search";
 
 /* Class = "IBUINavigationItem"; title = "Select a group"; ObjectID = "nPn-le-veD"; */
-"nPn-le-veD.title" = "Selectează un grup";
+"nPn-le-veD.title" = "Select a group";
 
 /* Class = "IBUILabel"; text = "Title"; ObjectID = "pzo-jU-xIL"; */
-"pzo-jU-xIL.text" = "Titlu";
+"pzo-jU-xIL.text" = "Title";
 
 /* Class = "IBUITabBarItem"; title = "Categories"; ObjectID = "qO0-w8-kYs"; */
-"qO0-w8-kYs.title" = "Categorie";
+"qO0-w8-kYs.title" = "Categories";
 
 /* Class = "IBUITabBarItem"; title = "Manual"; ObjectID = "qPl-2c-ahc"; */
 "qPl-2c-ahc.title" = "Manual";
@@ -122,11 +128,14 @@
 /* Class = "IBUILabel"; text = "Date"; ObjectID = "tmL-2x-tb5"; */
 "tmL-2x-tb5.text" = "Date";
 
+/* Class = "IBUILabel"; text = "Subtitle"; ObjectID = "vEd-Db-H9P"; */
+"vEd-Db-H9P.text" = "Subtitle";
+
 /* Class = "IBUILabel"; text = "Title"; ObjectID = "vKn-0N-vQy"; */
 "vKn-0N-vQy.text" = "Title";
 
 /* Class = "IBUILabel"; text = "or"; ObjectID = "vZb-fA-fhw"; */
-"vZb-fA-fhw.text" = "sau";
+"vZb-fA-fhw.text" = "or";
 
 /* Class = "IBUILabel"; text = "Title"; ObjectID = "wT5-II-0iK"; */
 "wT5-II-0iK.text" = "Title";
@@ -136,3 +145,12 @@
 
 /* Class = "IBUILabel"; text = "Date"; ObjectID = "zCl-dV-OFl"; */
 "zCl-dV-OFl.text" = "Date";
+
+/* Class = "IBUIButton"; normalTitle = "Delete"; ObjectID = "Kke-cX-MCn"; */
+"Kke-cX-MCn.normalTitle" = "Șterge";
+
+/* Class = "IBUIButton"; normalTitle = "Delete"; ObjectID = "icw-ht-Txr"; */
+"icw-ht-Txr.normalTitle" = "Șterge";
+
+/* Class = "IBUIButton"; normalTitle = "Rename"; ObjectID = "CdL-MR-ZLh"; */
+"CdL-MR-ZLh.normalTitle" = "Redenumește";
