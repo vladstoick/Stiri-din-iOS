@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-@interface NewsGroupViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UIAlertViewDelegate>
+#import "MKSlidingTableViewCell.h"
+@interface NewsGroupViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UIAlertViewDelegate, MKSlidingTableViewCellDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @end

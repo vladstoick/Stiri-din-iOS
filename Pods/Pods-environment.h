@@ -24,6 +24,12 @@
 #define COCOAPODS_VERSION_MINOR_FontAwesomeKit 1
 #define COCOAPODS_VERSION_PATCH_FontAwesomeKit 3
 
+// MKSlidingTableViewCell
+#define COCOAPODS_POD_AVAILABLE_MKSlidingTableViewCell
+#define COCOAPODS_VERSION_MAJOR_MKSlidingTableViewCell 0
+#define COCOAPODS_VERSION_MINOR_MKSlidingTableViewCell 5
+#define COCOAPODS_VERSION_PATCH_MKSlidingTableViewCell 0
+
 // MMDrawerController
 #define COCOAPODS_POD_AVAILABLE_MMDrawerController
 #define COCOAPODS_VERSION_MAJOR_MMDrawerController 0

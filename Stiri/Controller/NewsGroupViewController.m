@@ -5,7 +5,7 @@
 //  Created by Stoica Vlad on 7/24/13.
 //  Copyright (c) 2013 Stoica Vlad. All rights reserved.
 //
-
+#import "MKSlidingTableViewCell.h"
 #import "NewsGroupViewController.h"
 #import "SVProgressHud.h"
 #import "NewsDataSource.h"
@@ -161,29 +161,30 @@
 {
     return self.groups.count;
 }
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+- (void)didSelectSlidingTableViewCell:(MKSlidingTableViewCell *)cell{
     [self performSegueWithIdentifier:@"showNewsSourceForGroup" sender:self];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *identifier = @"groupCell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle
-                                             reuseIdentifier:identifier];
-    }
+    MKSlidingTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"container"];
+    UITableViewCell *foregroundCell = [tableView dequeueReusableCellWithIdentifier:@"foreground"];
+    UITableViewCell *backgroundCell = [tableView dequeueReusableCellWithIdentifier:@"background"];
     NewsGroup *ng = (self.groups)[indexPath.row];
-    cell.textLabel.text = ng.title;
-    cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue-CondensedBold" size:18.0];
+    foregroundCell.textLabel.text = ng.title;
+    foregroundCell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue-CondensedBold" size:18.0];
     NSUInteger numberOfNewSources = ng.newsSources.count;
     NSString *surseDeStiriString = [NSString stringWithFormat:@"%d %@",numberOfNewSources, NSLocalizedString(@"news sources", nil)];
     if(numberOfNewSources == 1 ){
         surseDeStiriString = [NSString stringWithFormat:NSLocalizedString(@"one news source", nil)];
     }
-    cell.detailTextLabel.text = surseDeStiriString;
-    cell.detailTextLabel.font = [UIFont fontWithName:@"HelveticaNeue-LightItalic" size:14.0];
+    foregroundCell.detailTextLabel.text = surseDeStiriString;
+    foregroundCell.detailTextLabel.font = [UIFont fontWithName:@"HelveticaNeue-LightItalic" size:14.0];
+
+    cell.foregroundView = foregroundCell;
+    cell.drawerView = backgroundCell;
+    cell.drawerRevealAmount = 146;
+    cell.delegate = self;
     return cell;
 }
 
