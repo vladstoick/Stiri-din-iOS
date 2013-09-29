@@ -82,6 +82,10 @@
     }
 }
 
+- (void)didSelectSlidingTableViewCell:(MKSlidingTableViewCell *)cell{
+    [self performSegueWithIdentifier:@"showNewsItemsForNewsSource" sender:self];
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return self.newsSources.count;

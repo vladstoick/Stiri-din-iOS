@@ -598,6 +598,7 @@
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="tableView" destination="8tK-cG-Djc" id="dF0-Cp-MRb"/>
+                        <segue destination="rSr-bq-DR0" kind="push" identifier="showNewsItemsForNewsSource" id="vif-lg-5EF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="heM-ce-aJr" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -621,7 +622,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" horizontalHuggingPriority="157" placeholderIntrinsicWidth="200" placeholderIntrinsicHeight="80" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="newsCellWithImage" rowHeight="80" id="1Zn-3k-I0N" customClass="NewsItemCell">
-                                        <rect key="frame" x="0.0" y="22" width="320" height="80"/>
+                                        <rect key="frame" x="0.0" y="86" width="320" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1Zn-3k-I0N" id="Upc-LD-73L">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="79"/>
@@ -672,7 +673,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="newsCellWithoutImage" rowHeight="80" id="Hkl-TU-hfn" customClass="NewsItemCell">
-                                        <rect key="frame" x="0.0" y="102" width="320" height="80"/>
+                                        <rect key="frame" x="0.0" y="166" width="320" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Hkl-TU-hfn" id="dOm-oP-ty3">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="79"/>
@@ -842,7 +843,7 @@
                                 <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBold" family="Helvetica Neue" pointSize="38"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="c3O-28-2JJ">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" misplaced="YES" image="logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="c3O-28-2JJ">
                                 <rect key="frame" x="90" y="0.0" width="140" height="140"/>
                             </imageView>
                             <view contentMode="scaleToFill" horizontalCompressionResistancePriority="679" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OMc-j8-rTk" customClass="FBLoginView">
