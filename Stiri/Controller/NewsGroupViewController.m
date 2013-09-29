@@ -104,12 +104,15 @@
 }
 
 //DELETE AND RENAME
-- (void)tableView:(UITableView *)tableView moreOptionButtonPressedInRowAtIndexPath:(NSIndexPath *)indexPath{
+- (IBAction) shouldDeleteGroup:(id)sender{
+    
     SIAlertView *alertView = [[SIAlertView alloc] initWithTitle:NSLocalizedString(@"Delete group",nil)
                                                      andMessage:NSLocalizedString(@"You can't undo this operation",nil)];
     [alertView addButtonWithTitle:NSLocalizedString(@"Cancel",nil) type:SIAlertViewButtonTypeCancel handler:^(SIAlertView *alertView){}];
     [alertView addButtonWithTitle:NSLocalizedString(@"Ok",nil) type:SIAlertViewButtonTypeDestructive handler:^(SIAlertView *alertView) {
-        [[NewsDataSource newsDataSource] deleteNewsGroup:[self.groups objectAtIndex:indexPath.row] completion:^(BOOL success) {
+        CGPoint buttonPosition = [sender convertPoint:CGPointZero toView:self.tableView];
+        self.swipedCell = [self.tableView indexPathForRowAtPoint:buttonPosition];
+        [[NewsDataSource newsDataSource] deleteNewsGroup:[self.groups objectAtIndex:self.swipedCell.row] completion:^(BOOL success) {
             if(success){
                 [SVProgressHUD showSuccessWithStatus:NSLocalizedString(@"Deleted",nil)];
                 self.groups = [[NewsDataSource newsDataSource] allGroups];

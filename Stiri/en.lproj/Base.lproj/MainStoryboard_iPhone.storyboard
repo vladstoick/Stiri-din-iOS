@@ -394,6 +394,9 @@
                                                     <state key="highlighted">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="shouldDeleteGroup:" destination="CBJ-JQ-w2e" eventType="touchUpInside" id="VoF-qx-s2s"/>
+                                                    </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CdL-MR-ZLh">
                                                     <rect key="frame" x="174" y="0.0" width="73" height="44"/>
