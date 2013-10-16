@@ -27,12 +27,12 @@
 
 @implementation RETextItem
 
-+ (id)itemWithTitle:(NSString *)title value:(NSString *)value
++ (instancetype)itemWithTitle:(NSString *)title value:(NSString *)value
 {
     return [[self alloc] initWithTitle:title value:value];
 }
 
-+ (id)itemWithTitle:(NSString *)title value:(NSString *)value placeholder:(NSString *)placeholder
++ (instancetype)itemWithTitle:(NSString *)title value:(NSString *)value placeholder:(NSString *)placeholder
 {
     return [[self alloc] initWithTitle:title value:value placeholder:placeholder];
 }
@@ -53,6 +53,14 @@
     self.placeholder = placeholder;
     
     return self;
+}
+
+#pragma mark -
+#pragma mark Error validation
+
+- (NSArray *)errors
+{
+    return [REValidation validateObject:self.value name:self.name ? self.name : self.title validators:self.validators];
 }
 
 @end

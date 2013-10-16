@@ -26,6 +26,12 @@
 #import "RETableViewLongTextCell.h"
 #import "RETableViewManager.h"
 
+@interface RETableViewLongTextCell ()
+
+@property (strong, readwrite, nonatomic) REPlaceholderTextView *textView;
+
+@end
+
 @implementation RETableViewLongTextCell
 
 + (BOOL)canFocusWithItem:(RELongTextItem *)item
@@ -42,20 +48,20 @@
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     self.textLabel.backgroundColor = [UIColor clearColor];
     
-    _textView = [[REPlaceholderTextView alloc] init];
-    _textView.translatesAutoresizingMaskIntoConstraints = NO;
-    _textView.inputAccessoryView = self.actionBar;
-    _textView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    _textView.backgroundColor = [UIColor clearColor];
-    _textView.delegate = self;
-    [self.contentView addSubview:_textView];
+    self.textView = [[REPlaceholderTextView alloc] init];
+    self.textView.translatesAutoresizingMaskIntoConstraints = NO;
+    self.textView.inputAccessoryView = self.actionBar;
+    self.textView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    self.textView.backgroundColor = [UIColor clearColor];
+    self.textView.delegate = self;
+    [self.contentView addSubview:self.textView];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
     [super setSelected:selected animated:animated];
     if (selected) {
-        [_textView becomeFirstResponder];
+        [self.textView becomeFirstResponder];
     }
 }
 
@@ -65,27 +71,29 @@
 
     UILabel *label = self.textLabel;
     
-    CGFloat padding = (REDeviceIsUIKit7() && self.section.style.contentViewMargin <= 0) ? 7 : 2;
+    CGFloat padding = (REUIKitIsFlatMode() && self.section.style.contentViewMargin <= 0) ? 7 : 2;
     NSDictionary *metrics = @{ @"padding": @(padding) };
+    UITextView *textView = self.textView;
     [self.contentView removeConstraints:self.contentView.constraints];
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_textView]-2-|" options:0 metrics:metrics views:NSDictionaryOfVariableBindings(_textView, label)]];
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-padding-[_textView]-padding-|" options:0 metrics:metrics views:NSDictionaryOfVariableBindings(_textView, label)]];
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[textView]-2-|" options:0 metrics:metrics views:NSDictionaryOfVariableBindings(textView, label)]];
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-padding-[textView]-padding-|" options:0 metrics:metrics views:NSDictionaryOfVariableBindings(textView, label)]];
     
-    _textView.editable = self.item.editable;
-    _textView.inputAccessoryView = _textView.editable ?  self.actionBar : nil;
+    self.textView.editable = self.item.editable;
+    self.textView.inputAccessoryView = self.textView.editable ?  self.actionBar : nil;
     
-    _textView.text = self.item.value;
-    _textView.placeholder = self.item.placeholder;
-    _textView.placeholderColor = self.item.placeholderColor;
-    _textView.font = [UIFont systemFontOfSize:17];
-    _textView.autocapitalizationType = self.item.autocapitalizationType;
-    _textView.autocorrectionType = self.item.autocorrectionType;
-    _textView.spellCheckingType = self.item.spellCheckingType;
-    _textView.keyboardType = self.item.keyboardType;
-    _textView.keyboardAppearance = self.item.keyboardAppearance;
-    _textView.returnKeyType = self.item.returnKeyType;
-    _textView.enablesReturnKeyAutomatically = self.item.enablesReturnKeyAutomatically;
-    _textView.secureTextEntry = self.item.secureTextEntry;
+    self.textView.text = self.item.value;
+    self.textView.placeholder = self.item.placeholder;
+    self.textView.placeholderColor = self.item.placeholderColor;
+    self.textView.font = [UIFont systemFontOfSize:17];
+    self.textView.autocapitalizationType = self.item.autocapitalizationType;
+    self.textView.autocorrectionType = self.item.autocorrectionType;
+    self.textView.spellCheckingType = self.item.spellCheckingType;
+    self.textView.keyboardType = self.item.keyboardType;
+    self.textView.keyboardAppearance = self.item.keyboardAppearance;
+    self.textView.returnKeyType = self.item.returnKeyType;
+    self.textView.enablesReturnKeyAutomatically = self.item.enablesReturnKeyAutomatically;
+    self.textView.secureTextEntry = self.item.secureTextEntry;
+    [self.textView setNeedsDisplay];
 }
 
 - (UIResponder *)responder
@@ -93,14 +101,14 @@
     if (!self.item.editable)
         return nil;
     
-    return _textView;
+    return self.textView;
 }
 
 - (void)layoutSubviews
 {
     [super layoutSubviews];
     if ([self.tableViewManager.delegate respondsToSelector:@selector(tableView:willLayoutCellSubviews:forRowAtIndexPath:)])
-        [self.tableViewManager.delegate tableView:self.tableViewManager.tableView willLayoutCellSubviews:self forRowAtIndexPath:[(UITableView *)self.superview indexPathForCell:self]];
+        [self.tableViewManager.delegate tableView:self.tableViewManager.tableView willLayoutCellSubviews:self forRowAtIndexPath:[self.tableViewManager.tableView indexPathForCell:self]];
 }
 
 

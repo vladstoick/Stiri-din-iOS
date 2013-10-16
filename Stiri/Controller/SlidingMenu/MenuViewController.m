@@ -6,15 +6,16 @@
 //  Copyright (c) 2013 Stoica Vlad. All rights reserved.
 //
 
-#import <SVProgressHUD/SVProgressHUD.h>
+#import "SVProgressHUD/SVProgressHUD.h"
 #define SYSTEM_VERSION_LESS_THAN(v)                 ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedAscending)
 #import "MenuViewController.h"
 #import "UIViewController+MMDrawerController.h"
 #import "AllNewsItemsViewController.h"
 #import "FBSession.h"
+#import "FontAwesomeKit.h"
 #import "NewsDataSource.h"
 #import <GooglePlus/GooglePlus.h>
-#import "FontAwesomeKit.h"
+
 @interface MenuViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property NSArray *menuItems;
@@ -31,10 +32,10 @@
     [super viewDidLoad];
     self.tableView.backgroundColor =    [UIColor colorWithPatternImage:[UIImage imageNamed:@"squairy_light.png"]];
     NSDictionary *yourGroupsDictionary = @{@"title": NSLocalizedString(@"Your groups",nil) , @"img" : FAKIconFolderOpen};
-    NSDictionary *unreadNewsDictionary = @{@"title": NSLocalizedString(@"Unread news", nil) , @"img" : FAKIconRssSign };
+    NSDictionary *unreadNewsDictionary = @{@"title": NSLocalizedString(@"Unread news", nil) , @"img" : FAKIconFolderOpen };
     NSDictionary *searchDictionary = @{@"title" : NSLocalizedString(@"Search", nil) , @"img" : FAKIconSearch};
-
-    NSDictionary *logoutDictionary = @{@"title" : NSLocalizedString(@"Logout", nil) , @"img" : FAKIconOff};
+    
+    NSDictionary *logoutDictionary = @{@"title" : NSLocalizedString(@"Logout", nil) , @"img" : FAKIconOff};;
     self.newsItems = @[@{yourGroupsDictionary:@"Main"},
                        @{unreadNewsDictionary:@"AllNewsItems"},
                        @{searchDictionary:@"Search"}];
@@ -109,7 +110,7 @@
     cell.textLabel.text = [menuInfo valueForKey:@"title"];
     cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:18.0];
     cell.backgroundColor = [UIColor clearColor];
-    [cell.imageView setImage:[FontAwesomeKit imageForIcon:[menuInfo valueForKey:@"img"] imageSize:CGSizeMake(18, 18) fontSize:18 attributes:nil]];
+//    [cell.imageView setImage:[FontAwesomeKit imageForIcon:[menuInfo valueForKey:@"img"] imageSize:CGSizeMake(18, 18) fontSize:18 attributes:nil]];
     return cell;
 }
 

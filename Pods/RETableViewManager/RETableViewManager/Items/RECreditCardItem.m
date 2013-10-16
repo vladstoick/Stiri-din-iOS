@@ -27,9 +27,21 @@
 
 @implementation RECreditCardItem
 
-+ (id)itemWithNumber:(NSString *)number expirationDate:(NSString *)expirationDate cvv:(NSString *)cvv
++ (instancetype)itemWithNumber:(NSString *)number expirationDate:(NSDate *)expiration cvv:(NSString *)cvv {
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    dateFormatter.dateFormat = @"MM/yy";
+
+    return [[self alloc] initWithNumber:number expirationDate:[dateFormatter stringFromDate:expiration] cvv:cvv];
+}
+
++ (instancetype)itemWithNumber:(NSString *)number expirationString:(NSString *)expirationDate cvv:(NSString *)cvv
 {
     return [[self alloc] initWithNumber:number expirationDate:expirationDate cvv:cvv];
+}
+
++ (instancetype)item
+{
+    return [[self alloc] initWithNumber:@"" expirationDate:@"" cvv:@""];
 }
 
 - (id)initWithNumber:(NSString *)number expirationDate:(NSString *)expirationDate cvv:(NSString *)cvv
@@ -41,8 +53,25 @@
     self.number = number;
     self.expirationDate = expirationDate;
     self.cvv = cvv;
+    self.cvvRequired = YES;
     
     return self;
+}
+
+- (UIImage *)expiredRibbonImage
+{
+    if (!_expiredRibbonImage) {
+        _expiredRibbonImage = [UIImage imageNamed:@"RETableViewManager.bundle/Ribbon_Expired"];
+    }
+    return _expiredRibbonImage;
+}
+
+#pragma mark -
+#pragma mark Error validation
+
+- (NSArray *)errors
+{
+    return [REValidation validateObject:self name:self.name ? self.name : self.title validators:self.validators];
 }
 
 @end

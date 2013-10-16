@@ -26,6 +26,12 @@
 #import "RETableViewNumberCell.h"
 #import "RETableViewManager.h"
 
+@interface RETableViewNumberCell ()
+
+@property (strong, readwrite, nonatomic) REFormattedNumberField *textField;
+
+@end
+
 @implementation RETableViewNumberCell
 
 + (BOOL)canFocusWithItem:(RETableViewItem *)item
@@ -56,7 +62,7 @@
     [super cellWillAppear];
     
     self.textLabel.text = self.item.title.length == 0 ? @" " : self.item.title;
-    self.textField.text = [self.textField string:self.item.value withNumberFormat:self.item.format];
+    self.textField.text = [self.item.value re_stringWithNumberFormat:self.item.format];
     self.textField.placeholder = self.item.placeholder;
     self.textField.format = self.item.format;
     self.textField.font = [UIFont systemFontOfSize:17];
@@ -68,7 +74,7 @@
 {
     [super layoutSubviews];
     if ([self.tableViewManager.delegate respondsToSelector:@selector(tableView:willLayoutCellSubviews:forRowAtIndexPath:)])
-        [self.tableViewManager.delegate tableView:self.tableViewManager.tableView willLayoutCellSubviews:self forRowAtIndexPath:[(UITableView *)self.superview indexPathForCell:self]];
+        [self.tableViewManager.delegate tableView:self.tableViewManager.tableView willLayoutCellSubviews:self forRowAtIndexPath:[self.tableViewManager.tableView indexPathForCell:self]];
 }
 
 #pragma mark -
@@ -77,6 +83,10 @@
 - (void)textFieldDidChange:(REFormattedNumberField *)textField
 {
     self.item.value = textField.unformattedText;
+}
+- (void)textFieldDidEndEditing:(UITextField *)textField{
+    if (self.item.onEndEditing)
+        self.item.onEndEditing(self.item);
 }
 
 @end

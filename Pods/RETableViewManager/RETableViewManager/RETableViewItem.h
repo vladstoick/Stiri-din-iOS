@@ -24,6 +24,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <REValidation/REValidation.h>
 #import "RETableViewCellStyle.h"
 
 @class RETableViewSection;
@@ -54,10 +55,20 @@
 @property (assign, readwrite, nonatomic) CGFloat cellHeight;
 @property (copy, readwrite, nonatomic) NSString *cellIdentifier;
 
-+ (id)item;
-+ (id)itemWithTitle:(NSString *)title;
-+ (id)itemWithTitle:(NSString *)title accessoryType:(UITableViewCellAccessoryType)accessoryType selectionHandler:(void(^)(RETableViewItem *item))selectionHandler;
-+ (id)itemWithTitle:(NSString *)title accessoryType:(UITableViewCellAccessoryType)accessoryType selectionHandler:(void(^)(RETableViewItem *item))selectionHandler accessoryButtonTapHandler:(void(^)(RETableViewItem *item))accessoryButtonTapHandler;
+// Action bar
+@property (copy, readwrite, nonatomic) void (^actionBarDoneButtonTapHandler)(id item); //handler for done button on ActionBar
+
+
+// Error validation
+//
+@property (copy, readwrite, nonatomic) NSString *name;
+@property (strong, readwrite, nonatomic) NSArray *validators;
+@property (strong, readonly, nonatomic) NSArray *errors;
+
++ (instancetype)item;
++ (instancetype)itemWithTitle:(NSString *)title;
++ (instancetype)itemWithTitle:(NSString *)title accessoryType:(UITableViewCellAccessoryType)accessoryType selectionHandler:(void(^)(RETableViewItem *item))selectionHandler;
++ (instancetype)itemWithTitle:(NSString *)title accessoryType:(UITableViewCellAccessoryType)accessoryType selectionHandler:(void(^)(RETableViewItem *item))selectionHandler accessoryButtonTapHandler:(void(^)(RETableViewItem *item))accessoryButtonTapHandler;
 
 - (id)initWithTitle:(NSString *)title;
 - (id)initWithTitle:(NSString *)title accessoryType:(UITableViewCellAccessoryType)accessoryType selectionHandler:(void(^)(RETableViewItem *item))selectionHandler;

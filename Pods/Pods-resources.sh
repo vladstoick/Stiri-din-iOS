@@ -56,5 +56,8 @@ install_resource "TSMiniWebBrowser/TSMiniWebBrowser/images/reload_icon@2x.png"
 install_resource "TSMiniWebBrowser/TSMiniWebBrowser/TSMiniWebBrowser.xib"
 install_resource "google-plus-ios-sdk/google-plus-ios-sdk-1.3.0/GooglePlus.bundle"
 
-rsync -avr --no-relative --exclude '*/.svn/*' --files-from="$RESOURCES_TO_COPY" / "${CONFIGURATION_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}"
+rsync -avr --copy-links --no-relative --exclude '*/.svn/*' --files-from="$RESOURCES_TO_COPY" / "${CONFIGURATION_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}"
+if [[ "${ACTION}" == "install" ]]; then
+  rsync -avr --copy-links --no-relative --exclude '*/.svn/*' --files-from="$RESOURCES_TO_COPY" / "${INSTALL_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}"
+fi
 rm -f "$RESOURCES_TO_COPY"

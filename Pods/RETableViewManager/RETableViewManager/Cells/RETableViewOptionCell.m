@@ -25,6 +25,13 @@
 
 #import "RETableViewOptionCell.h"
 #import "RETableViewManager.h"
+#import "NSString+RETableViewManagerAdditions.h"
+
+@interface RETableViewOptionCell ()
+
+@property (strong, readwrite, nonatomic) UILabel *valueLabel;
+
+@end
 
 @implementation RETableViewOptionCell
 
@@ -36,13 +43,13 @@
     [super cellDidLoad];
     self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
-    _valueLabel = [[UILabel alloc] initWithFrame:CGRectNull];
-    _valueLabel.font = [UIFont systemFontOfSize:17];
-    _valueLabel.backgroundColor = [UIColor clearColor];
-    _valueLabel.textColor = self.detailTextLabel.textColor;
-    _valueLabel.highlightedTextColor = [UIColor whiteColor];
-    _valueLabel.textAlignment = NSTextAlignmentRight;
-    [self.contentView addSubview:_valueLabel];
+    self.valueLabel = [[UILabel alloc] initWithFrame:CGRectNull];
+    self.valueLabel.font = [UIFont systemFontOfSize:17];
+    self.valueLabel.backgroundColor = [UIColor clearColor];
+    self.valueLabel.textColor = self.detailTextLabel.textColor;
+    self.valueLabel.highlightedTextColor = [UIColor whiteColor];
+    self.valueLabel.textAlignment = NSTextAlignmentRight;
+    [self.contentView addSubview:self.valueLabel];
 }
 
 - (void)cellWillAppear
@@ -52,20 +59,24 @@
     self.textLabel.text = self.item.title.length == 0 ? @" " : self.item.title;
     self.detailTextLabel.text = @"";
     self.valueLabel.text = self.item.detailLabelText;
+    
+    if (!self.item.title) {
+        self.valueLabel.textAlignment = NSTextAlignmentLeft;
+    }
 }
 
 - (void)layoutSubviews
 {
     [super layoutSubviews];
-    [self layoutDetailView:_valueLabel minimumWidth:[_valueLabel.text sizeWithFont:_valueLabel.font].width];
-    if (REDeviceIsUIKit7()) {
+    [self layoutDetailView:self.valueLabel minimumWidth:[self.valueLabel.text re_sizeWithFont:self.valueLabel.font].width];
+    if (REUIKitIsFlatMode()) {
         CGRect frame = self.valueLabel.frame;
         frame.size.width += 10.0;
         self.valueLabel.frame = frame;
     }
     
     if ([self.tableViewManager.delegate respondsToSelector:@selector(tableView:willLayoutCellSubviews:forRowAtIndexPath:)])
-        [self.tableViewManager.delegate tableView:self.tableViewManager.tableView willLayoutCellSubviews:self forRowAtIndexPath:[(UITableView *)self.superview indexPathForCell:self]];
+        [self.tableViewManager.delegate tableView:self.tableViewManager.tableView willLayoutCellSubviews:self forRowAtIndexPath:[self.tableViewManager.tableView indexPathForCell:self]];
 }
 
 @end

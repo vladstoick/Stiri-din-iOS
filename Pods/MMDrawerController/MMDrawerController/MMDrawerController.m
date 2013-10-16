@@ -120,11 +120,14 @@ static NSString *MMDrawerOpenSideKey = @"MMDrawerOpenSide";
 @interface MMDrawerController () <UIGestureRecognizerDelegate>{
     CGFloat _maximumRightDrawerWidth;
     CGFloat _maximumLeftDrawerWidth;
+    UIColor * _statusBarViewBackgroundColor;
 }
 
 @property (nonatomic, assign, readwrite) MMDrawerSide openSide;
 
+@property (nonatomic, strong) UIView * childControllerContainerView;
 @property (nonatomic, strong) MMDrawerCenterContainerView * centerContainerView;
+@property (nonatomic, strong) UIView * dummyStatusBarView;
 
 @property (nonatomic, assign) CGRect startingPanRect;
 @property (nonatomic, copy) MMDrawerControllerDrawerVisualStateBlock drawerVisualState;
@@ -251,14 +254,14 @@ static NSString *MMDrawerOpenSideKey = @"MMDrawerOpenSide";
 }
 
 -(void)closeDrawerAnimated:(BOOL)animated velocity:(CGFloat)velocity animationOptions:(UIViewAnimationOptions)options completion:(void (^)(BOOL finished))completion{
-    if (self.isAnimatingDrawer) {
+    if(self.isAnimatingDrawer){
         if(completion){
             completion(NO);
         }
     }
     else {
-        self.animatingDrawer = animated;
-        CGRect newFrame = self.view.bounds;
+        [self setAnimatingDrawer:animated];
+        CGRect newFrame = self.childControllerContainerView.bounds;
         
         CGFloat distance = ABS(CGRectGetMinX(self.centerContainerView.frame));
         NSTimeInterval duration = MAX(distance/ABS(velocity),MMDrawerMinimumAnimationDuration);
@@ -291,6 +294,7 @@ static NSString *MMDrawerOpenSideKey = @"MMDrawerOpenSide";
          delay:0.0
          options:options
          animations:^{
+             [self setNeedsStatusBarAppearanceUpdateIfSupported];
              [self.centerContainerView setFrame:newFrame];
              [self updateDrawerVisualStateForDrawerSide:visibleSide percentVisible:0.0];
          }
@@ -314,14 +318,15 @@ static NSString *MMDrawerOpenSideKey = @"MMDrawerOpenSide";
 
 -(void)openDrawerSide:(MMDrawerSide)drawerSide animated:(BOOL)animated velocity:(CGFloat)velocity animationOptions:(UIViewAnimationOptions)options completion:(void (^)(BOOL finished))completion{
     NSParameterAssert(drawerSide != MMDrawerSideNone);
-    if(self.isAnimatingDrawer){
+    if (self.isAnimatingDrawer) {
         if(completion){
             completion(NO);
         }
     }
     else {
+        [self setAnimatingDrawer:animated];
         UIViewController * sideDrawerViewController = [self sideDrawerViewControllerForSide:drawerSide];
-        CGRect visibleRect = CGRectIntersection(self.view.bounds,sideDrawerViewController.view.frame);
+        CGRect visibleRect = CGRectIntersection(self.childControllerContainerView.bounds,sideDrawerViewController.view.frame);
         BOOL drawerFullyCovered = (CGRectContainsRect(self.centerContainerView.frame, visibleRect) ||
                                    CGRectIsNull(visibleRect));
         if(drawerFullyCovered){
@@ -329,7 +334,6 @@ static NSString *MMDrawerOpenSideKey = @"MMDrawerOpenSide";
         }
         
         if(sideDrawerViewController){
-            self.animatingDrawer = animated;
             CGRect newFrame;
             CGRect oldFrame = self.centerContainerView.frame;
             if(drawerSide == MMDrawerSideLeft){
@@ -349,6 +353,7 @@ static NSString *MMDrawerOpenSideKey = @"MMDrawerOpenSide";
              delay:0.0
              options:options
              animations:^{
+                 [self setNeedsStatusBarAppearanceUpdateIfSupported];
                  [self.centerContainerView setFrame:newFrame];
                  [self updateDrawerVisualStateForDrawerSide:drawerSide percentVisible:1.0];
              }
@@ -372,12 +377,12 @@ static NSString *MMDrawerOpenSideKey = @"MMDrawerOpenSide";
 #pragma mark - Updating the Center View Controller
 -(void)setCenterViewController:(UIViewController *)centerViewController animated:(BOOL)animated{
     if(_centerContainerView == nil){
-        _centerContainerView = [[MMDrawerCenterContainerView alloc] initWithFrame:self.view.bounds];
+        _centerContainerView = [[MMDrawerCenterContainerView alloc] initWithFrame:self.childControllerContainerView.bounds];
         [self.centerContainerView setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
         [self.centerContainerView setBackgroundColor:[UIColor clearColor]];
         [self.centerContainerView setOpenSide:self.openSide];
         [self.centerContainerView setCenterInteractionMode:self.centerHiddenInteractionMode];
-        [self.view addSubview:self.centerContainerView];
+        [self.childControllerContainerView addSubview:self.centerContainerView];
     }
     
     UIViewController * oldCenterViewController = self.centerViewController;
@@ -395,9 +400,9 @@ static NSString *MMDrawerOpenSideKey = @"MMDrawerOpenSide";
     _centerViewController = centerViewController;
     
     [self addChildViewController:self.centerViewController];
-    [self.centerViewController.view setFrame:self.view.bounds];
+    [self.centerViewController.view setFrame:self.childControllerContainerView.bounds];
     [self.centerContainerView addSubview:self.centerViewController.view];
-    [self.view bringSubviewToFront:self.centerContainerView];
+    [self.childControllerContainerView bringSubviewToFront:self.centerContainerView];
     [self.centerViewController.view setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
     [self updateShadowForCenterView];
     
@@ -442,10 +447,10 @@ static NSString *MMDrawerOpenSideKey = @"MMDrawerOpenSide";
         
         CGFloat targetClosePoint = 0.0f;
         if(self.openSide == MMDrawerSideRight){
-            targetClosePoint = -CGRectGetWidth(self.view.bounds);
+            targetClosePoint = -CGRectGetWidth(self.childControllerContainerView.bounds);
         }
         else if(self.openSide == MMDrawerSideLeft) {
-            targetClosePoint = CGRectGetWidth(self.view.bounds);
+            targetClosePoint = CGRectGetWidth(self.childControllerContainerView.bounds);
         }
         
         CGFloat distance = ABS(self.centerContainerView.frame.origin.x-targetClosePoint);
@@ -462,7 +467,7 @@ static NSString *MMDrawerOpenSideKey = @"MMDrawerOpenSide";
          options:UIViewAnimationOptionCurveEaseInOut
          animations:^{
              [self.centerContainerView setFrame:newCenterRect];
-             [sideDrawerViewController.view setFrame:self.view.bounds];
+             [sideDrawerViewController.view setFrame:self.childControllerContainerView.bounds];
          }
          completion:^(BOOL finished) {
 
@@ -474,11 +479,11 @@ static NSString *MMDrawerOpenSideKey = @"MMDrawerOpenSide";
              [self.centerViewController beginAppearanceTransition:YES animated:animated];
              [sideDrawerViewController beginAppearanceTransition:NO animated:animated];
             [UIView
-             animateWithDuration:[self animationDurationForAnimationDistance:CGRectGetWidth(self.view.bounds)]
+             animateWithDuration:[self animationDurationForAnimationDistance:CGRectGetWidth(self.childControllerContainerView.bounds)]
              delay:MMDrawerDefaultFullAnimationDelay
              options:UIViewAnimationOptionCurveEaseInOut
              animations:^{
-                 [self.centerContainerView setFrame:self.view.bounds];
+                 [self.centerContainerView setFrame:self.childControllerContainerView.bounds];
                  [self updateDrawerVisualStateForDrawerSide:self.openSide percentVisible:0.0];
              }
              completion:^(BOOL finished) {
@@ -634,7 +639,7 @@ static NSString *MMDrawerOpenSideKey = @"MMDrawerOpenSide";
 - (void)viewDidLoad {
 	[super viewDidLoad];
 
-	[self.view setBackgroundColor:[UIColor blackColor]];
+	[self.childControllerContainerView setBackgroundColor:[UIColor blackColor]];
 
 	[self setupGestureRecognizers];
 }
@@ -665,7 +670,7 @@ static NSString *MMDrawerOpenSideKey = @"MMDrawerOpenSide";
 -(void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration{
     [super willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];
     //If a rotation begins, we are going to cancel the current gesture and reset transform and anchor points so everything works correctly
-    for(UIGestureRecognizer * gesture in self.view.gestureRecognizers){
+    for(UIGestureRecognizer * gesture in self.childControllerContainerView.gestureRecognizers){
         if(gesture.state == UIGestureRecognizerStateChanged){
             [gesture setEnabled:NO];
             [gesture setEnabled:YES];
@@ -751,14 +756,14 @@ static NSString *MMDrawerOpenSideKey = @"MMDrawerOpenSide";
         [self addChildViewController:viewController];
         
         if((self.openSide == drawerSide) &&
-           [self.view.subviews containsObject:self.centerContainerView]){
-            [self.view insertSubview:viewController.view belowSubview:self.centerContainerView];
+           [self.childControllerContainerView.subviews containsObject:self.centerContainerView]){
+            [self.childControllerContainerView insertSubview:viewController.view belowSubview:self.centerContainerView];
             [viewController beginAppearanceTransition:YES animated:NO];
             [viewController endAppearanceTransition];
         }
         else{
-            [self.view addSubview:viewController.view];
-            [self.view sendSubviewToBack:viewController.view];
+            [self.childControllerContainerView addSubview:viewController.view];
+            [self.childControllerContainerView sendSubviewToBack:viewController.view];
             [viewController.view setHidden:YES];
         }
         [viewController didMoveToParentViewController:self];
@@ -784,6 +789,7 @@ static NSString *MMDrawerOpenSideKey = @"MMDrawerOpenSide";
             [self.leftDrawerViewController.view setHidden:YES];
             [self.rightDrawerViewController.view setHidden:YES];
         }
+        [self setNeedsStatusBarAppearanceUpdateIfSupported];
     }
 }
 
@@ -800,6 +806,35 @@ static NSString *MMDrawerOpenSideKey = @"MMDrawerOpenSide";
 
 -(void)setMaximumRightDrawerWidth:(CGFloat)maximumRightDrawerWidth{
     [self setMaximumRightDrawerWidth:maximumRightDrawerWidth animated:NO completion:nil];
+}
+
+-(void)setShowsStatusBarBackgroundView:(BOOL)showsDummyStatusBar{
+    NSArray *sysVersion = [[UIDevice currentDevice].systemVersion componentsSeparatedByString:@"."];
+    float majorVersion = [[sysVersion objectAtIndex:0] floatValue];
+    if (majorVersion >= 7){
+        if(showsDummyStatusBar!=_showsStatusBarBackgroundView){
+            _showsStatusBarBackgroundView = showsDummyStatusBar;
+            CGRect frame = self.childControllerContainerView.frame;
+            if(_showsStatusBarBackgroundView){
+                frame.origin.y = 20;
+                frame.size.height = CGRectGetHeight(self.view.bounds)-20;
+            }
+            else {
+                frame.origin.y = 0;
+                frame.size.height = CGRectGetHeight(self.view.bounds);
+            }
+            [self.childControllerContainerView setFrame:frame];
+            [self.dummyStatusBarView setHidden:!showsDummyStatusBar];
+        }
+    }
+    else {
+        _showsStatusBarBackgroundView = NO;
+    }
+}
+
+-(void)setStatusBarViewBackgroundColor:(UIColor *)dummyStatusBarColor{
+    _statusBarViewBackgroundColor = dummyStatusBarColor;
+    [self.dummyStatusBarView setBackgroundColor:_statusBarViewBackgroundColor];
 }
 
 #pragma mark - Getters
@@ -827,13 +862,40 @@ static NSString *MMDrawerOpenSideKey = @"MMDrawerOpenSide";
 
 -(CGFloat)visibleRightDrawerWidth{
     if(CGRectGetMinX(self.centerContainerView.frame)<0){
-        return CGRectGetWidth(self.view.bounds)-CGRectGetMaxX(self.centerContainerView.frame);
+        return CGRectGetWidth(self.childControllerContainerView.bounds)-CGRectGetMaxX(self.centerContainerView.frame);
     }
     else {
         return 0.0f;
     }
 }
 
+-(UIView*)childControllerContainerView{
+    if(_childControllerContainerView == nil){
+        _childControllerContainerView = [[UIView alloc] initWithFrame:self.view.bounds];
+        [_childControllerContainerView setBackgroundColor:[UIColor clearColor]];
+        [_childControllerContainerView setAutoresizingMask:UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth];
+        [self.view addSubview:_childControllerContainerView];
+    }
+    return _childControllerContainerView;
+}
+
+-(UIView*)dummyStatusBarView{
+    if(_dummyStatusBarView==nil){
+        _dummyStatusBarView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), 20)];
+        [_dummyStatusBarView setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
+        [_dummyStatusBarView setBackgroundColor:self.statusBarViewBackgroundColor];
+        [_dummyStatusBarView setHidden:!_showsStatusBarBackgroundView];
+        [self.view addSubview:_dummyStatusBarView];
+    }
+    return _dummyStatusBarView;
+}
+
+-(UIColor*)statusBarViewBackgroundColor{
+    if(_statusBarViewBackgroundColor == nil){
+        _statusBarViewBackgroundColor = [UIColor blackColor];
+    }
+    return _statusBarViewBackgroundColor;
+}
 
 #pragma mark - Gesture Handlers
 
@@ -893,7 +955,7 @@ static NSString *MMDrawerOpenSideKey = @"MMDrawerOpenSide";
         case UIGestureRecognizerStateCancelled:
         case UIGestureRecognizerStateEnded:{
             self.startingPanRect = CGRectNull;
-            CGPoint velocity = [panGesture velocityInView:self.view];
+            CGPoint velocity = [panGesture velocityInView:self.childControllerContainerView];
             [self finishAnimationForPanGestureWithXVelocity:velocity.x completion:^(BOOL finished) {
                 if(self.gestureCompletion){
                     self.gestureCompletion(self, panGesture);
@@ -903,6 +965,21 @@ static NSString *MMDrawerOpenSideKey = @"MMDrawerOpenSide";
         }
         default:
             break;
+    }
+}
+
+#pragma mark - iOS 7 Status Bar Helpers
+-(UIViewController*)childViewControllerForStatusBarStyle{
+    return [self childViewControllerForSide:self.openSide];
+}
+
+-(UIViewController*)childViewControllerForStatusBarHidden{
+    return [self childViewControllerForSide:self.openSide];
+}
+
+-(void)setNeedsStatusBarAppearanceUpdateIfSupported{
+    if([self respondsToSelector:@selector(setNeedsStatusBarAppearanceUpdate)]){
+        [self performSelector:@selector(setNeedsStatusBarAppearanceUpdate)];
     }
 }
 
@@ -929,7 +1006,7 @@ static NSString *MMDrawerOpenSideKey = @"MMDrawerOpenSide";
     }
     else if(self.openSide == MMDrawerSideRight){
         currentOriginX = CGRectGetMaxX(self.centerContainerView.frame);
-        CGFloat midPoint = (CGRectGetWidth(self.view.bounds)-self.maximumRightDrawerWidth) + (self.maximumRightDrawerWidth / 2.0);
+        CGFloat midPoint = (CGRectGetWidth(self.childControllerContainerView.bounds)-self.maximumRightDrawerWidth) + (self.maximumRightDrawerWidth / 2.0);
         if(xVelocity > MMDrawerPanVelocityXAnimationThreshold){
             [self closeDrawerAnimated:YES velocity:animationVelocity animationOptions:UIViewAnimationOptionCurveEaseOut completion:completion];
         }
@@ -1051,7 +1128,7 @@ static inline CGFloat originXForDrawerOriginAndTargetOriginOffset(CGFloat origin
     UIViewController * sideDrawerViewControllerToPresent = [self sideDrawerViewControllerForSide:drawer];
     UIViewController * sideDrawerViewControllerToHide = [self sideDrawerViewControllerForSide:drawerToHide];
 
-    [self.view sendSubviewToBack:sideDrawerViewControllerToHide.view];
+    [self.childControllerContainerView sendSubviewToBack:sideDrawerViewControllerToHide.view];
     [sideDrawerViewControllerToHide.view setHidden:YES];
     [sideDrawerViewControllerToPresent.view setHidden:NO];
     [self resetDrawerVisualStateForDrawerSide:drawer];
@@ -1070,6 +1147,7 @@ static inline CGFloat originXForDrawerOriginAndTargetOriginOffset(CGFloat origin
     }
     else {
         centerView.layer.shadowPath = [UIBezierPath bezierPathWithRect:CGRectNull].CGPath;
+        centerView.layer.masksToBounds = YES;
     }
 }
 
@@ -1080,13 +1158,26 @@ static inline CGFloat originXForDrawerOriginAndTargetOriginOffset(CGFloat origin
 
 -(UIViewController*)sideDrawerViewControllerForSide:(MMDrawerSide)drawerSide{
     UIViewController * sideDrawerViewController = nil;
-    if(drawerSide == MMDrawerSideLeft){
-        sideDrawerViewController = self.leftDrawerViewController;
-    }
-    else if(drawerSide == MMDrawerSideRight){
-        sideDrawerViewController = self.rightDrawerViewController;
+    if(drawerSide != MMDrawerSideNone){
+        sideDrawerViewController = [self childViewControllerForSide:drawerSide];
     }
     return sideDrawerViewController;
+}
+
+-(UIViewController*)childViewControllerForSide:(MMDrawerSide)drawerSide{
+    UIViewController * childViewController = nil;
+    switch (drawerSide) {
+        case MMDrawerSideLeft:
+            childViewController = self.leftDrawerViewController;
+            break;
+        case MMDrawerSideRight:
+            childViewController = self.rightDrawerViewController;
+            break;
+        case MMDrawerSideNone:
+            childViewController = self.centerViewController;
+            break;
+    }
+    return childViewController;
 }
 
 #pragma mark - UIGestureRecognizerDelegate
@@ -1108,7 +1199,7 @@ static inline CGFloat originXForDrawerOriginAndTargetOriginOffset(CGFloat origin
 
 #pragma mark Gesture Recogizner Delegate Helpers
 -(MMCloseDrawerGestureMode)possibleCloseGestureModesForGestureRecognizer:(UIGestureRecognizer*)gestureRecognizer withTouch:(UITouch*)touch{
-    CGPoint point = [touch locationInView:self.view];
+    CGPoint point = [touch locationInView:self.childControllerContainerView];
     MMCloseDrawerGestureMode possibleCloseGestureModes = MMCloseDrawerGestureModeNone;
     if([gestureRecognizer isKindOfClass:[UITapGestureRecognizer class]]){
         if([self isPointContainedWithinNavigationRect:point]){
@@ -1148,7 +1239,7 @@ static inline CGFloat originXForDrawerOriginAndTargetOriginOffset(CGFloat origin
 }
 
 -(MMOpenDrawerGestureMode)possibleOpenGestureModesForGestureRecognizer:(UIGestureRecognizer*)gestureRecognizer withTouch:(UITouch*)touch{
-    CGPoint point = [touch locationInView:self.view];
+    CGPoint point = [touch locationInView:self.childControllerContainerView];
     MMOpenDrawerGestureMode possibleOpenGestureModes = MMOpenDrawerGestureModeNone;
     if([gestureRecognizer isKindOfClass:[UIPanGestureRecognizer class]]){
         if([self isPointContainedWithinNavigationRect:point]){
@@ -1179,15 +1270,15 @@ static inline CGFloat originXForDrawerOriginAndTargetOriginOffset(CGFloat origin
     CGRect navigationBarRect = CGRectNull;
     if([self.centerViewController isKindOfClass:[UINavigationController class]]){
         UINavigationBar * navBar = [(UINavigationController*)self.centerViewController navigationBar];
-        navigationBarRect = [navBar convertRect:navBar.frame toView:self.view];
-        navigationBarRect = CGRectIntersection(navigationBarRect,self.view.bounds);
+        navigationBarRect = [navBar convertRect:navBar.frame toView:self.childControllerContainerView];
+        navigationBarRect = CGRectIntersection(navigationBarRect,self.childControllerContainerView.bounds);
     }
     return CGRectContainsPoint(navigationBarRect,point);
 }
 
 -(BOOL)isPointContainedWithinCenterViewContentRect:(CGPoint)point{
     CGRect centerViewContentRect = self.centerContainerView.frame;
-    centerViewContentRect = CGRectIntersection(centerViewContentRect,self.view.bounds);
+    centerViewContentRect = CGRectIntersection(centerViewContentRect,self.childControllerContainerView.bounds);
     return (CGRectContainsPoint(centerViewContentRect, point) &&
             [self isPointContainedWithinNavigationRect:point] == NO);
 }
@@ -1195,7 +1286,7 @@ static inline CGFloat originXForDrawerOriginAndTargetOriginOffset(CGFloat origin
 -(BOOL)isPointContainedWithinLeftBezelRect:(CGPoint)point{
     CGRect leftBezelRect = CGRectNull;
     CGRect tempRect;
-    CGRectDivide(self.view.bounds, &leftBezelRect, &tempRect, MMDrawerBezelRange, CGRectMinXEdge);
+    CGRectDivide(self.childControllerContainerView.bounds, &leftBezelRect, &tempRect, MMDrawerBezelRange, CGRectMinXEdge);
     return (CGRectContainsPoint(leftBezelRect, point) &&
             [self isPointContainedWithinCenterViewContentRect:point]);
 }
@@ -1203,7 +1294,7 @@ static inline CGFloat originXForDrawerOriginAndTargetOriginOffset(CGFloat origin
 -(BOOL)isPointContainedWithRightBezelRect:(CGPoint)point{
     CGRect rightBezelRect = CGRectNull;
     CGRect tempRect;
-    CGRectDivide(self.view.bounds, &rightBezelRect, &tempRect, MMDrawerBezelRange, CGRectMaxXEdge);
+    CGRectDivide(self.childControllerContainerView.bounds, &rightBezelRect, &tempRect, MMDrawerBezelRange, CGRectMaxXEdge);
     
     return (CGRectContainsPoint(rightBezelRect, point) &&
             [self isPointContainedWithinCenterViewContentRect:point]);

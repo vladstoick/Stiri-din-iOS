@@ -24,10 +24,11 @@
 //
 
 #import "REMultipleChoiceItem.h"
+#import "RETableViewManager.h"
 
 @implementation REMultipleChoiceItem
 
-+ (id)itemWithTitle:(NSString *)title value:(NSArray *)value selectionHandler:(void(^)(REMultipleChoiceItem *item))selectionHandler
++ (instancetype)itemWithTitle:(NSString *)title value:(NSArray *)value selectionHandler:(void(^)(REMultipleChoiceItem *item))selectionHandler
 {
     return [[self alloc] initWithTitle:title value:value selectionHandler:selectionHandler];
 }
@@ -40,7 +41,11 @@
     
     self.title = title;
     self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    self.selectionHandler = selectionHandler;
+    self.selectionHandler = ^(REMultipleChoiceItem *item) {
+        [item.section.tableViewManager.tableView endEditing:YES];
+        if (selectionHandler)
+            selectionHandler(item);
+    };
     self.value = value;
     self.style = UITableViewCellStyleValue1;
     
@@ -59,6 +64,14 @@
     
     if (value.count > 1)
         self.detailLabelText = [NSString stringWithFormat:NSLocalizedString(@"%i selected", @"%i selected"), value.count];
+}
+
+#pragma mark -
+#pragma mark Error validation
+
+- (NSArray *)errors
+{
+    return [REValidation validateObject:self.value name:self.name ? self.name : self.title validators:self.validators];
 }
 
 @end

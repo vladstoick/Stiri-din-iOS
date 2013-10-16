@@ -12,6 +12,9 @@
 #import "SVProgressHUD.h"
 #import "AppDelegate.h"
 #import "UIViewController+MMDrawerController.h"
+#import "EAIntroPage.h"
+#import "EAIntroView.h"
+
 @interface LoginViewController ()
 
 @end
@@ -43,7 +46,13 @@ static NSString * const kClientId = @"976584719831.apps.googleusercontent.com";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self.gpLogin setStyle:kGPPSignInButtonStyleWide];
+    [self.navigationController setNavigationBarHidden:YES];
+    //EA INTRO VIEW SETUP
+    EAIntroPage *page1 = [EAIntroPage page];
+    page1.title = @"Hello world";
+    page1.desc = @"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.";
+    EAIntroView *intro = [[EAIntroView alloc] initWithFrame:self.view.bounds andPages:@[page1]];
+    [intro showInView:self.view animateDuration:0.0];
     self.mm_drawerController.shouldStretchDrawer = NO;
     self.mm_drawerController.openDrawerGestureModeMask = MMDrawerOpenCenterInteractionModeNone;
     self.view.backgroundColor =    [UIColor colorWithPatternImage:[UIImage imageNamed:@"squairy_light.png"]];

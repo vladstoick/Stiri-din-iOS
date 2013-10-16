@@ -28,8 +28,9 @@
 @interface RENumberItem : RETextItem
 
 @property (copy, readwrite, nonatomic) NSString *format;
+@property (copy, readwrite, nonatomic) void (^onEndEditing)(RENumberItem *item);
 
-+ (id)itemWithTitle:(NSString *)title value:(NSString *)value placeholder:(NSString *)placeholder format:(NSString *)format;
++ (instancetype)itemWithTitle:(NSString *)title value:(NSString *)value placeholder:(NSString *)placeholder format:(NSString *)format;
 - (id)initWithTitle:(NSString *)title value:(NSString *)value placeholder:(NSString *)placeholder format:(NSString *)format;
 
 @end

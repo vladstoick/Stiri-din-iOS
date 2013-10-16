@@ -28,6 +28,9 @@
 
 @interface RETableViewOptionsController ()
 
+@property (strong, readwrite, nonatomic) RETableViewManager *tableViewManager;
+@property (strong, readwrite, nonatomic) RETableViewSection *mainSection;
+
 @end
 
 @implementation RETableViewOptionsController
@@ -51,12 +54,12 @@
 {
     [super viewDidLoad];
 
-    _tableViewManager = [[RETableViewManager alloc] initWithTableView:self.tableView delegate:self.delegate];
-    _mainSection = [[RETableViewSection alloc] init];
-    [_tableViewManager addSection:_mainSection];
+    self.tableViewManager = [[RETableViewManager alloc] initWithTableView:self.tableView delegate:self.delegate];
+    self.mainSection = [[RETableViewSection alloc] init];
+    [self.tableViewManager addSection:self.mainSection];
     
     if (self.style)
-        _tableViewManager.style = self.style;
+        self.tableViewManager.style = self.style;
     
     __typeof (&*self) __weak weakSelf = self;
     void (^refreshItems)(void) = ^{
@@ -84,9 +87,17 @@
                 }
             }
         }
-        [_mainSection addItem:[RETableViewItem itemWithTitle:title accessoryType:accessoryType selectionHandler:^(RETableViewItem *selectedItem) {
+        [self.mainSection addItem:[RETableViewItem itemWithTitle:title accessoryType:accessoryType selectionHandler:^(RETableViewItem *selectedItem) {
             UITableViewCell *cell = [weakSelf.tableView cellForRowAtIndexPath:selectedItem.indexPath];
             if (!weakSelf.multipleChoice) {
+                for (NSIndexPath *indexPath in [weakSelf.tableView indexPathsForVisibleRows]) {
+                    UITableViewCell *cell = [weakSelf.tableView cellForRowAtIndexPath:indexPath];
+                    cell.accessoryType = UITableViewCellAccessoryNone;
+                }
+                for (RETableViewItem *item in weakSelf.mainSection.items) {
+                    item.accessoryType = UITableViewCellAccessoryNone;
+                }
+                selectedItem.accessoryType = UITableViewCellAccessoryCheckmark;
                 cell.accessoryType = UITableViewCellAccessoryCheckmark;
                 RERadioItem * __weak item = (RERadioItem *)weakSelf.item;
                 item.value = selectedItem.title;
@@ -95,7 +106,8 @@
             } else { // Multiple choice item
                 REMultipleChoiceItem * __weak item = (REMultipleChoiceItem *)weakSelf.item;
                 [weakSelf.tableView deselectRowAtIndexPath:selectedItem.indexPath animated:YES];
-                if (cell.accessoryType == UITableViewCellAccessoryCheckmark) {
+                if (selectedItem.accessoryType == UITableViewCellAccessoryCheckmark) {
+                    selectedItem.accessoryType = UITableViewCellAccessoryNone;
                     cell.accessoryType = UITableViewCellAccessoryNone;
                     NSMutableArray *items = [[NSMutableArray alloc] init];
                     for (NSString *val in item.value) {
@@ -105,6 +117,7 @@
                     
                     item.value = items;
                 } else {
+                    selectedItem.accessoryType = UITableViewCellAccessoryCheckmark;
                     cell.accessoryType = UITableViewCellAccessoryCheckmark;
                     NSMutableArray *items = [[NSMutableArray alloc] initWithArray:item.value];
                     [items addObject:selectedItem.title];
@@ -118,7 +131,7 @@
     };
     
     for (RETableViewItem *item in self.options) {
-        addItem([item isKindOfClass:[RERadioItem item]] ? item.title : (NSString *)item);
+        addItem([item isKindOfClass:[[RERadioItem item] class]] ? item.title : (NSString *)item);
     }
 }
 

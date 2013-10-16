@@ -27,12 +27,12 @@
 
 @implementation REFloatItem
 
-+ (id)itemWithTitle:(NSString *)title value:(float)value
++ (instancetype)itemWithTitle:(NSString *)title value:(float)value
 {
     return [[self alloc] initWithTitle:title value:value];
 }
 
-+ (id)itemWithTitle:(NSString *)title value:(float)value sliderValueChangeHandler:(void(^)(REFloatItem *item))sliderValueChangeHandler
++ (instancetype)itemWithTitle:(NSString *)title value:(float)value sliderValueChangeHandler:(void(^)(REFloatItem *item))sliderValueChangeHandler
 {
     return [[self alloc] initWithTitle:title value:value sliderValueChangeHandler:sliderValueChangeHandler];
 }
@@ -54,6 +54,14 @@
     self.sliderWidth = 140.0;
     
     return self;
+}
+
+#pragma mark -
+#pragma mark Error validation
+
+- (NSArray *)errors
+{
+    return [REValidation validateObject:@(self.value) name:self.name ? self.name : self.title validators:self.validators];
 }
 
 @end

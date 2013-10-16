@@ -27,12 +27,12 @@
 
 @implementation REBoolItem
 
-+ (id)itemWithTitle:(NSString *)title value:(BOOL)value
++ (instancetype)itemWithTitle:(NSString *)title value:(BOOL)value
 {
     return [[self alloc] initWithTitle:title value:value];
 }
 
-+ (id)itemWithTitle:(NSString *)title value:(BOOL)value switchValueChangeHandler:(void(^)(REBoolItem *item))switchValueChangeHandler
++ (instancetype)itemWithTitle:(NSString *)title value:(BOOL)value switchValueChangeHandler:(void(^)(REBoolItem *item))switchValueChangeHandler
 {
     return [[self alloc] initWithTitle:title value:value switchValueChangeHandler:switchValueChangeHandler];
 }
@@ -53,6 +53,14 @@
     self.switchValueChangeHandler = switchValueChangeHandler;
     
     return self;
+}
+
+#pragma mark -
+#pragma mark Error validation
+
+- (NSArray *)errors
+{
+    return [REValidation validateObject:@(self.value) name:self.name ? self.name : self.title validators:self.validators];
 }
 
 @end

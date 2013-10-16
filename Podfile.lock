@@ -1,37 +1,41 @@
 PODS:
-  - AFNetworking (1.3.2)
-  - Facebook-iOS-SDK (3.7.1)
-  - FontAwesomeKit (1.1.3)
+  - AFNetworking (1.3.3)
+  - EAIntroView (1.3.0)
+  - Facebook-iOS-SDK (3.8.0)
+  - FontAwesomeKit (1.1.4)
   - google-plus-ios-sdk (1.3.0)
   - MKSlidingTableViewCell (0.5)
-  - MMDrawerController (0.4.0):
+  - MMDrawerController (0.5.1):
     - MMDrawerController/Core
     - MMDrawerController/MMDrawerBarButtonItem
     - MMDrawerController/MMDrawerVisualStates
     - MMDrawerController/Subclass
-  - MMDrawerController/Core (0.4.0)
-  - MMDrawerController/MMDrawerBarButtonItem (0.4.0):
+  - MMDrawerController/Core (0.5.1)
+  - MMDrawerController/MMDrawerBarButtonItem (0.5.1):
     - MMDrawerController/Core
-  - MMDrawerController/MMDrawerVisualStates (0.4.0):
+  - MMDrawerController/MMDrawerVisualStates (0.5.1):
     - MMDrawerController/Core
-  - MMDrawerController/Subclass (0.4.0):
+  - MMDrawerController/Subclass (0.5.1):
     - MMDrawerController/Core
   - MoPubSDK (1.12.1.0):
     - TouchJSON (~> 1.0)
-  - NewRelicAgent (1.354)
-  - REFormattedNumberField (1.0.4)
-  - RETableViewManager (1.1.2):
-    - REFormattedNumberField (~> 1.0.4)
-  - SIAlertView (1.2)
+  - NewRelicAgent (1.376)
+  - REFormattedNumberField (1.1.1)
+  - RETableViewManager (1.5.2):
+    - REFormattedNumberField (~> 1.1.1)
+    - REValidation (~> 0.1.4)
+  - REValidation (0.1.4)
+  - SIAlertView (1.3)
   - SVProgressHUD (0.9)
   - TouchJSON (1.1)
   - TSMiniWebBrowser (1.0.1)
 
 DEPENDENCIES:
-  - AFNetworking
+  - AFNetworking (= 1.3.3)
+  - EAIntroView
   - Facebook-iOS-SDK
   - FontAwesomeKit
-  - google-plus-ios-sdk
+  - google-plus-ios-sdk (= 1.3.0)
   - MKSlidingTableViewCell
   - MMDrawerController
   - MoPubSDK
@@ -42,19 +46,21 @@ DEPENDENCIES:
   - TSMiniWebBrowser
 
 SPEC CHECKSUMS:
-  AFNetworking: 7f9bcd7c287a75476cd5c61e82fd3380e93e4c54
-  Facebook-iOS-SDK: bf38d403928f6adb652e2e5ae46253e0c6ba9a19
-  FontAwesomeKit: 4c839de6549fabe8dd50db00fc7e3dd177ac98a9
+  AFNetworking: 0700ec7a58c36ad217173e167f6e4df7270df66b
+  EAIntroView: 71a7bd8614f8e21e81cf65bf3a3386a9e3c6d2da
+  Facebook-iOS-SDK: 55a22fe8bcaacd638cde9014af6b3ee85f4d71fb
+  FontAwesomeKit: 5898a51ceadcdb05d72b04991ecf04469332b20c
   google-plus-ios-sdk: 38378c4094a72a4fcdd5254c03fdd1813b345fb9
   MKSlidingTableViewCell: 396b30990b5fd4b4e1f3fba8820eb193241c622e
-  MMDrawerController: 44baaee6b79487b4681eb61597fb790586909c0c
+  MMDrawerController: 3e22aec684dbee5307ff9d1e76523003a3303a2d
   MoPubSDK: ee8f89e947d7b300b8c9f64d41f7be32a8a1d202
-  NewRelicAgent: 520c095c0d2b4789ddd6434a74adcaae57cb5259
-  REFormattedNumberField: 74ac0f5ce7001102a461dd025d34c93be7794a00
-  RETableViewManager: a4aba458bdff0c079eea03a0c882eb6fbf1ba3e2
-  SIAlertView: fd188f66278761f4ff069f517c3deb2be16ecdcc
+  NewRelicAgent: 10ee6cd70c8b58d1abb9d6cc09862f1abe5db8b0
+  REFormattedNumberField: 53db6b5097b02f608999b7c95ec8ccda95be93be
+  RETableViewManager: fb459abc3fcbb791d73d456ee2d32d43eda07df0
+  REValidation: 02160035110a63af1bf6ad1b8791837b3fa13584
+  SIAlertView: e6d0d786c3a3f6e456b0e8b9376d0c34d68e827b
   SVProgressHUD: 03d4845ec8e64591726428a08236c6a5489d45f8
   TouchJSON: 9e53f4df141b7f972766292b00b46bccf29f179a
   TSMiniWebBrowser: b0d1e578f250f29615541093564df0c2aebcda07
 
-COCOAPODS: 0.24.0
+COCOAPODS: 0.26.2

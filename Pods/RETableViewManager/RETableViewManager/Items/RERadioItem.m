@@ -24,10 +24,11 @@
 //
 
 #import "RERadioItem.h"
+#import "RETableViewManager.h"
 
 @implementation RERadioItem
 
-+ (id)itemWithTitle:(NSString *)title value:(NSString *)value selectionHandler:(void(^)(RERadioItem *item))selectionHandler
++ (instancetype)itemWithTitle:(NSString *)title value:(NSString *)value selectionHandler:(void(^)(RERadioItem *item))selectionHandler
 {
     return [[self alloc] initWithTitle:title value:value selectionHandler:selectionHandler];
 }
@@ -40,11 +41,29 @@
     
     self.title = title;
     self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    self.selectionHandler = selectionHandler;
+    self.selectionHandler = ^(RERadioItem *item) {
+        [item.section.tableViewManager.tableView endEditing:YES];
+        if (selectionHandler)
+            selectionHandler(item);
+    };
     self.value = value;
     self.style = UITableViewCellStyleValue1;
     
     return self;
+}
+
+- (void)setValue:(NSString *)value
+{
+    _value = value;
+    self.detailLabelText = value;
+}
+
+#pragma mark -
+#pragma mark Error validation
+
+- (NSArray *)errors
+{
+    return [REValidation validateObject:self.value name:self.name ? self.name : self.title validators:self.validators];
 }
 
 @end

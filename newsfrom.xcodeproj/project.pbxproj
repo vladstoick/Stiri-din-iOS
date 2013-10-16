@@ -86,13 +86,13 @@
 		7206268017BAAEB500455298 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		7206268717BAB2DD00455298 /* NewsGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewsGroup.h; path = Model/NewsGroup.h; sourceTree = "<group>"; };
 		7206268817BAB2DD00455298 /* NewsGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewsGroup.m; path = Model/NewsGroup.m; sourceTree = "<group>"; };
-		7208343617A0288800CEC1E5 /* Stiri.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Stiri.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		7208343617A0288800CEC1E5 /* newsfrom.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = newsfrom.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7208343917A0288800CEC1E5 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		7208343B17A0288800CEC1E5 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		7208343D17A0288800CEC1E5 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		7208344317A0288800CEC1E5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		7208344517A0288800CEC1E5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		7208344717A0288800CEC1E5 /* Stiri-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Stiri-Prefix.pch"; sourceTree = "<group>"; };
+		7208344717A0288800CEC1E5 /* newsfrom-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "newsfrom-Prefix.pch"; sourceTree = "<group>"; };
 		7208344817A0288800CEC1E5 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		7208344917A0288800CEC1E5 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		7208344F17A0288800CEC1E5 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
@@ -116,7 +116,7 @@
 		728BF50717D7CBE900B3F546 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		728BF50B17D7CBF900B3F546 /* ro */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ro; path = ro.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		728BF50C17D7CBFA00B3F546 /* ro */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ro; path = ro.lproj/Localizable.strings; sourceTree = "<group>"; };
-		728BF50D17D7CC8B00B3F546 /* Stiri-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Stiri-Info.plist"; sourceTree = "<group>"; };
+		728BF50D17D7CC8B00B3F546 /* newsfrom-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "newsfrom-Info.plist"; sourceTree = "<group>"; };
 		7291565117BA35AA00A6FD66 /* NewsDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewsDataSource.h; path = Model/NewsDataSource.h; sourceTree = "<group>"; };
 		7291565217BA35AA00A6FD66 /* NewsDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewsDataSource.m; path = Model/NewsDataSource.m; sourceTree = "<group>"; };
 		7291565517BA35CF00A6FD66 /* NewsModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = NewsModel.xcdatamodel; sourceTree = "<group>"; };
@@ -272,7 +272,7 @@
 		7208343717A0288800CEC1E5 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				7208343617A0288800CEC1E5 /* Stiri.app */,
+				7208343617A0288800CEC1E5 /* newsfrom.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -314,10 +314,10 @@
 		7208344017A0288800CEC1E5 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				728BF50D17D7CC8B00B3F546 /* Stiri-Info.plist */,
+				728BF50D17D7CC8B00B3F546 /* newsfrom-Info.plist */,
 				7208344217A0288800CEC1E5 /* InfoPlist.strings */,
 				7208344517A0288800CEC1E5 /* main.m */,
-				7208344717A0288800CEC1E5 /* Stiri-Prefix.pch */,
+				7208344717A0288800CEC1E5 /* newsfrom-Prefix.pch */,
 				7208344F17A0288800CEC1E5 /* Default-568h@2x.png */,
 				728BF50817D7CBE900B3F546 /* Localizable.strings */,
 			);
@@ -550,9 +550,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		7208343517A0288800CEC1E5 /* Stiri */ = {
+		7208343517A0288800CEC1E5 /* newsfrom */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 7208347117A0288800CEC1E5 /* Build configuration list for PBXNativeTarget "Stiri" */;
+			buildConfigurationList = 7208347117A0288800CEC1E5 /* Build configuration list for PBXNativeTarget "newsfrom" */;
 			buildPhases = (
 				7208343217A0288800CEC1E5 /* Sources */,
 				7208343317A0288800CEC1E5 /* Frameworks */,
@@ -562,9 +562,9 @@
 			);
 			dependencies = (
 			);
-			name = Stiri;
+			name = newsfrom;
 			productName = Stiri;
-			productReference = 7208343617A0288800CEC1E5 /* Stiri.app */;
+			productReference = 7208343617A0288800CEC1E5 /* newsfrom.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -581,7 +581,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 7208343117A0288800CEC1E5 /* Build configuration list for PBXProject "Stiri" */;
+			buildConfigurationList = 7208343117A0288800CEC1E5 /* Build configuration list for PBXProject "newsfrom" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -597,7 +597,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				7208343517A0288800CEC1E5 /* Stiri */,
+				7208343517A0288800CEC1E5 /* newsfrom */,
 			);
 		};
 /* End PBXProject section */
@@ -775,7 +775,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -783,7 +783,7 @@
 					"\"$(SRCROOT)/Stiri/Manual Framework\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Stiri/Stiri-Prefix.pch";
+				GCC_PREFIX_HEADER = "Stiri/newsfrom-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
 					"\"${PODS_ROOT}/Headers\"",
 					"\"${PODS_ROOT}/Headers/AFNetworking\"",
@@ -801,11 +801,11 @@
 					"\"${PODS_ROOT}/Headers/TouchJSON\"",
 					"\"${PODS_ROOT}/Headers/google-plus-ios-sdk\"",
 				);
-				INFOPLIST_FILE = "$(SRCROOT)/Stiri/Stiri-Info.plist";
+				INFOPLIST_FILE = "Stiri/newsfrom-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "897B471B-0619-4D52-9A17-5DE411C09C17";
+				PRODUCT_NAME = newsfrom;
+				PROVISIONING_PROFILE = "176D1CCB-B959-40CB-9BD3-D35105096F12";
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "\"${PROJECT_DIR}/Pods\"/**";
 				WRAPPER_EXTENSION = app;
@@ -818,7 +818,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -826,7 +826,7 @@
 					"\"$(SRCROOT)/Stiri/Manual Framework\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Stiri/Stiri-Prefix.pch";
+				GCC_PREFIX_HEADER = "Stiri/newsfrom-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
 					"\"${PODS_ROOT}/Headers\"",
 					"\"${PODS_ROOT}/Headers/AFNetworking\"",
@@ -844,11 +844,11 @@
 					"\"${PODS_ROOT}/Headers/TouchJSON\"",
 					"\"${PODS_ROOT}/Headers/google-plus-ios-sdk\"",
 				);
-				INFOPLIST_FILE = "$(SRCROOT)/Stiri/Stiri-Info.plist";
+				INFOPLIST_FILE = "Stiri/newsfrom-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "897B471B-0619-4D52-9A17-5DE411C09C17";
+				PRODUCT_NAME = newsfrom;
+				PROVISIONING_PROFILE = "176D1CCB-B959-40CB-9BD3-D35105096F12";
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "\"${PROJECT_DIR}/Pods\"/**";
 				WRAPPER_EXTENSION = app;
@@ -858,7 +858,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		7208343117A0288800CEC1E5 /* Build configuration list for PBXProject "Stiri" */ = {
+		7208343117A0288800CEC1E5 /* Build configuration list for PBXProject "newsfrom" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				7208346F17A0288800CEC1E5 /* Debug */,
@@ -867,7 +867,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		7208347117A0288800CEC1E5 /* Build configuration list for PBXNativeTarget "Stiri" */ = {
+		7208347117A0288800CEC1E5 /* Build configuration list for PBXNativeTarget "newsfrom" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				7208347217A0288800CEC1E5 /* Debug */,

@@ -27,7 +27,7 @@
 
 @implementation REDateTimeItem
 
-+ (id)itemWithTitle:(NSString *)title value:(NSDate *)value placeholder:(NSString *)placeholder format:(NSString *)format datePickerMode:(UIDatePickerMode)datePickerMode
++ (instancetype)itemWithTitle:(NSString *)title value:(NSDate *)value placeholder:(NSString *)placeholder format:(NSString *)format datePickerMode:(UIDatePickerMode)datePickerMode
 {
     return [[self alloc] initWithTitle:title value:value placeholder:placeholder format:format datePickerMode:datePickerMode];
 }
@@ -46,6 +46,14 @@
     self.placeholder = placeholder;
     
     return self;
+}
+
+#pragma mark -
+#pragma mark Error validation
+
+- (NSArray *)errors
+{
+    return [REValidation validateObject:self.value name:self.name ? self.name : self.title validators:self.validators];
 }
 
 @end
